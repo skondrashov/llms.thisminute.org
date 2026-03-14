@@ -24,9 +24,8 @@ You review the portal page and shared theme for quality, and audit visual consis
 ## Cross-Site Consistency
 
 When asked to audit consistency, read the sub-site HTML/CSS:
-- `~/projects/rhizome/index.html`
-- `~/projects/mainmenu/index.html`
-- Agent-forge landing (via `git show gh-pages:index.html` in `~/projects/agent-forge`)
+- `rhizome/index.html`
+- `toolshed/index.html`
 
 Check:
 - Are sub-sites referencing theme.css?

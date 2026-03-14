@@ -9,9 +9,9 @@ Three sub-sites under one domain, each from a different source project:
 ```
 forge.thisminute.org/
 ├── /            → this project (portal landing page + shared theme)
-├── /rhizome/    → ~/projects/rhizome (pattern catalog)
-├── /toolshed/   → ~/projects/mainmenu (software directory)
-└── /forge/      → ~/projects/agent-forge gh-pages (forge landing page)
+├── /rhizome/    → rhizome/ (pattern catalog)
+├── /toolshed/   → toolshed/ (software directory)
+└── /forge/      → forge/ (forge landing page)
 ```
 
 This project owns the portal page and theme.css. The sub-sites are independent — don't modify their code.

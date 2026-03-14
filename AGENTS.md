@@ -5,8 +5,8 @@ Portal site for the forge ecosystem. The agent-forge landing page serves as the 
 | Sub-site | Path | Source project | What it is |
 |----------|------|---------------|------------|
 | Forge (landing) | `/` and `/forge/` | This repo (`forge/index.html`) | Agent system manager landing page |
-| Rhizome | `/rhizome/` | `~/projects/rhizome` | Agent orchestration pattern catalog (200 patterns) |
-| Toolshed | `/toolshed/` | `~/projects/mainmenu` | Software directory (15K+ entries) |
+| Rhizome | `/rhizome/` | `rhizome/` | Agent orchestration pattern catalog (200 patterns) |
+| Toolshed | `/toolshed/` | `toolshed/` | Software directory (15K+ entries) |
 
 If told to go, start, or begin — you are the **orchestrator**. See `agents/orchestrator.md`.
 
