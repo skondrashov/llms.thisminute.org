@@ -1,0 +1,806 @@
+[
+  {
+    "id": "process-explorer",
+    "name": "Process Explorer",
+    "description": "Advanced Windows task manager by Sysinternals. Shows detailed process info, DLLs, handles, and GPU usage.",
+    "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer",
+    "category": "System Utilities",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "sysinternals",
+      "process-manager",
+      "microsoft",
+      "diagnostics"
+    ]
+  },
+  {
+    "id": "htop",
+    "name": "htop",
+    "description": "Interactive process viewer for Unix. Color-coded resource usage, tree view, and mouse support.",
+    "url": "https://htop.dev",
+    "category": "System Utilities",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "terminal",
+      "process-viewer",
+      "open-source",
+      "monitoring"
+    ],
+    "source": "https://github.com/htop-dev/htop"
+  },
+  {
+    "id": "btop",
+    "name": "btop++",
+    "description": "Beautiful resource monitor with CPU, memory, disk, network, and process stats in a polished TUI.",
+    "url": "https://github.com/aristocratos/btop",
+    "category": "System Utilities",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "terminal",
+      "resource-monitor",
+      "open-source",
+      "beautiful"
+    ],
+    "source": "https://github.com/aristocratos/btop"
+  },
+  {
+    "id": "ccleaner",
+    "name": "CCleaner",
+    "description": "System cleaner that removes junk files, cleans the registry, and manages startup programs.",
+    "url": "https://www.ccleaner.com",
+    "category": "System Utilities",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "disk-cleanup",
+      "registry",
+      "optimization"
+    ]
+  },
+  {
+    "id": "bleachbit",
+    "name": "BleachBit",
+    "description": "Free, open-source disk cleaner. Removes cache, cookies, logs, and temporary files to free space.",
+    "url": "https://www.bleachbit.org",
+    "category": "System Utilities",
+    "os": [
+      "windows",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "disk-cleanup",
+      "privacy",
+      "open-source"
+    ],
+    "source": "https://github.com/bleachbit/bleachbit"
+  },
+  {
+    "id": "hwinfo",
+    "name": "HWiNFO",
+    "description": "Comprehensive hardware analysis and monitoring tool. Detailed sensor data, reports, and logging.",
+    "url": "https://www.hwinfo.com",
+    "category": "System Utilities",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "hardware-info",
+      "sensors",
+      "monitoring",
+      "diagnostics"
+    ]
+  },
+  {
+    "id": "crystaldiskinfo",
+    "name": "CrystalDiskInfo",
+    "description": "Free disk health monitoring utility. Shows S.M.A.R.T. data, temperature, and drive status at a glance.",
+    "url": "https://crystalmark.info/en/software/crystaldiskinfo",
+    "category": "System Utilities",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "disk-health",
+      "smart",
+      "monitoring",
+      "open-source"
+    ],
+    "source": "https://github.com/hiyohiyo/CrystalDiskInfo"
+  },
+  {
+    "id": "fastfetch",
+    "name": "Fastfetch",
+    "description": "Fast, maintained system info tool. Displays OS, kernel, CPU, GPU, memory with distro logos. Successor to neofetch.",
+    "url": "https://github.com/fastfetch-cli/fastfetch",
+    "category": "System Utilities",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "system-info",
+      "open-source",
+      "rice"
+    ],
+    "source": "https://github.com/fastfetch-cli/fastfetch"
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "description": "Container platform for building, shipping, and running applications in isolated environments.",
+    "url": "https://www.docker.com",
+    "category": "Virtualization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "containers",
+      "devops",
+      "microservices",
+      "images"
+    ],
+    "source": "https://github.com/moby/moby"
+  },
+  {
+    "id": "virtualbox",
+    "name": "VirtualBox",
+    "description": "Free, open-source hypervisor by Oracle for running multiple operating systems as virtual machines.",
+    "url": "https://www.virtualbox.org",
+    "category": "Virtualization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vm",
+      "hypervisor",
+      "open-source",
+      "oracle"
+    ],
+    "source": "https://www.virtualbox.org/browser/vbox/trunk"
+  },
+  {
+    "id": "vmware-workstation",
+    "name": "VMware Workstation",
+    "description": "Professional desktop virtualization for running multiple OSes. Snapshots, clones, and virtual networking.",
+    "url": "https://www.vmware.com/products/desktop-hypervisor",
+    "category": "Virtualization",
+    "os": [
+      "windows",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vm",
+      "professional",
+      "snapshots",
+      "enterprise"
+    ]
+  },
+  {
+    "id": "parallels-desktop",
+    "name": "Parallels Desktop",
+    "description": "Run Windows on Mac seamlessly. Coherence mode, DirectX support, and tight macOS integration.",
+    "url": "https://www.parallels.com/products/desktop",
+    "category": "Virtualization",
+    "os": [
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "windows-on-mac",
+      "apple-silicon",
+      "coherence"
+    ]
+  },
+  {
+    "id": "podman",
+    "name": "Podman",
+    "description": "Daemonless container engine compatible with Docker. Rootless by default for better security.",
+    "url": "https://podman.io",
+    "category": "Virtualization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "containers",
+      "rootless",
+      "docker-compatible",
+      "open-source"
+    ],
+    "source": "https://github.com/containers/podman"
+  },
+  {
+    "id": "utm",
+    "name": "UTM",
+    "description": "Free, open-source virtual machine host for macOS and iOS. Runs Windows, Linux, and more on Apple silicon.",
+    "url": "https://mac.getutm.app",
+    "category": "Virtualization",
+    "os": [
+      "macos",
+      "ios"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vm",
+      "apple-silicon",
+      "open-source",
+      "qemu"
+    ],
+    "source": "https://github.com/utmapp/UTM"
+  },
+  {
+    "id": "syncthing",
+    "name": "Syncthing",
+    "description": "Free, open-source continuous file sync between devices. Decentralized, encrypted, no cloud required.",
+    "url": "https://syncthing.net",
+    "category": "Backup & Sync",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "android"
+    ],
+    "pricing": "free",
+    "tags": [
+      "sync",
+      "decentralized",
+      "encrypted",
+      "open-source"
+    ],
+    "source": "https://github.com/syncthing/syncthing"
+  },
+  {
+    "id": "rsync",
+    "name": "rsync",
+    "description": "Fast, versatile file-copying tool for local and remote transfers. Delta encoding minimizes data sent.",
+    "url": "https://rsync.samba.org",
+    "category": "Backup & Sync",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "delta-transfer",
+      "remote",
+      "open-source"
+    ],
+    "source": "https://github.com/RsyncProject/rsync"
+  },
+  {
+    "id": "backblaze",
+    "name": "Backblaze",
+    "description": "Unlimited cloud backup for your computer. Simple, set-and-forget with easy file restores and B2 storage.",
+    "url": "https://www.backblaze.com",
+    "category": "Backup & Sync",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "cloud-backup",
+      "unlimited",
+      "simple",
+      "restore"
+    ]
+  },
+  {
+    "id": "restic",
+    "name": "restic",
+    "description": "Fast, secure, open-source backup program. Deduplication, encryption, and support for many storage backends.",
+    "url": "https://restic.net",
+    "category": "Backup & Sync",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "backup",
+      "encryption",
+      "deduplication",
+      "open-source"
+    ],
+    "source": "https://github.com/restic/restic"
+  },
+  {
+    "id": "borg-backup",
+    "name": "BorgBackup",
+    "description": "Deduplicating backup tool with compression and encryption. Efficient for large datasets and incremental backups.",
+    "url": "https://www.borgbackup.org",
+    "category": "Backup & Sync",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "backup",
+      "deduplication",
+      "compression",
+      "open-source"
+    ],
+    "source": "https://github.com/borgbackup/borg"
+  },
+  {
+    "id": "duplicati",
+    "name": "Duplicati",
+    "description": "Free, open-source backup client with web UI. Encrypted backups to cloud storage, FTP, or local drives.",
+    "url": "https://www.duplicati.com",
+    "category": "Backup & Sync",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "backup",
+      "cloud-storage",
+      "encrypted",
+      "open-source"
+    ],
+    "source": "https://github.com/duplicati/duplicati"
+  },
+  {
+    "id": "freefilesync",
+    "name": "FreeFileSync",
+    "description": "Free, open-source file synchronization tool. Compare and sync folders with visual diff and batch jobs.",
+    "url": "https://freefilesync.org",
+    "category": "Backup & Sync",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "sync",
+      "folder-compare",
+      "batch-jobs",
+      "open-source"
+    ],
+    "source": "https://github.com/nicedayzhu/FreeFileSync"
+  },
+  {
+    "id": "homebrew",
+    "name": "Homebrew",
+    "description": "The missing package manager for macOS (and Linux). Install CLI tools, apps, and fonts from the terminal.",
+    "url": "https://brew.sh",
+    "category": "Package Managers",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "macos",
+      "casks",
+      "open-source"
+    ],
+    "source": "https://github.com/Homebrew/brew"
+  },
+  {
+    "id": "chocolatey",
+    "name": "Chocolatey",
+    "description": "Package manager for Windows. Install, upgrade, and manage software from the command line.",
+    "url": "https://chocolatey.org",
+    "category": "Package Managers",
+    "os": [
+      "windows"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "cli",
+      "windows",
+      "automation",
+      "open-source"
+    ],
+    "source": "https://github.com/chocolatey/choco"
+  },
+  {
+    "id": "winget",
+    "name": "winget",
+    "description": "Microsoft's official Windows package manager. Install and update apps from a curated repository via CLI.",
+    "url": "https://learn.microsoft.com/en-us/windows/package-manager",
+    "category": "Package Managers",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "microsoft",
+      "windows",
+      "official",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/winget-cli"
+  },
+  {
+    "id": "apt",
+    "name": "APT",
+    "description": "Advanced Package Tool for Debian and Ubuntu. The standard way to install and manage packages on Debian-based Linux.",
+    "url": "https://wiki.debian.org/Apt",
+    "category": "Package Managers",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "debian",
+      "ubuntu",
+      "open-source"
+    ],
+    "source": "https://salsa.debian.org/apt-team/apt"
+  },
+  {
+    "id": "scoop",
+    "name": "Scoop",
+    "description": "Command-line installer for Windows. Installs to user directory, no UAC popups, Git-based buckets.",
+    "url": "https://scoop.sh",
+    "category": "Package Managers",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "windows",
+      "portable",
+      "open-source"
+    ],
+    "source": "https://github.com/ScoopInstaller/Scoop"
+  },
+  {
+    "id": "nix",
+    "name": "Nix",
+    "description": "Purely functional package manager with reproducible builds. Atomic upgrades, rollbacks, and NixOS integration.",
+    "url": "https://nix.dev",
+    "category": "Package Managers",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "functional",
+      "reproducible",
+      "nixos",
+      "open-source"
+    ],
+    "source": "https://github.com/NixOS/nix"
+  },
+  {
+    "id": "flatpak",
+    "name": "Flatpak",
+    "description": "Linux app sandboxing and distribution framework. Install apps from Flathub across any Linux distro.",
+    "url": "https://flatpak.org",
+    "category": "Package Managers",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "sandboxed",
+      "flathub",
+      "universal",
+      "open-source"
+    ],
+    "source": "https://github.com/flatpak/flatpak"
+  },
+  {
+    "id": "snap",
+    "name": "Snap",
+    "description": "Canonical's universal Linux package format. Auto-updating, sandboxed apps distributed via the Snap Store.",
+    "url": "https://snapcraft.io",
+    "category": "Package Managers",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "canonical",
+      "auto-update",
+      "sandboxed",
+      "open-source"
+    ],
+    "source": "https://github.com/canonical/snapd"
+  },
+  {
+    "id": "rclone",
+    "name": "rclone",
+    "description": "Command-line program to sync files to and from cloud storage. Supports 70+ backends including S3, GDrive, and Dropbox.",
+    "url": "https://rclone.org",
+    "category": "Backup & Sync",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cloud-sync",
+      "cli",
+      "multi-backend",
+      "open-source"
+    ],
+    "source": "https://github.com/rclone/rclone"
+  },
+  {
+    "id": "kopia",
+    "name": "Kopia",
+    "description": "Fast, encrypted backup tool with deduplication. Supports cloud, local, and network storage with a GUI and CLI.",
+    "url": "https://kopia.io",
+    "category": "Backup & Sync",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "backup",
+      "encrypted",
+      "deduplication",
+      "open-source"
+    ],
+    "source": "https://github.com/kopia/kopia"
+  },
+  {
+    "id": "timeshift",
+    "name": "Timeshift",
+    "description": "System restore tool for Linux. Creates filesystem snapshots using rsync or BTRFS for easy rollback.",
+    "url": "https://github.com/linuxmint/timeshift",
+    "category": "Backup & Sync",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "snapshot",
+      "restore",
+      "btrfs",
+      "rsync",
+      "open-source"
+    ],
+    "source": "https://github.com/linuxmint/timeshift"
+  },
+  {
+    "id": "pacman",
+    "name": "pacman",
+    "description": "Package manager for Arch Linux. Fast, simple binary package management with dependency resolution.",
+    "url": "https://archlinux.org/pacman",
+    "category": "Package Managers",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "arch-linux",
+      "binary-packages",
+      "open-source"
+    ],
+    "source": "https://gitlab.archlinux.org/pacman/pacman"
+  },
+  {
+    "id": "dnf",
+    "name": "DNF",
+    "description": "Package manager for Fedora and RHEL-based Linux distributions. Successor to Yum with improved dependency resolution.",
+    "url": "https://github.com/rpm-software-management/dnf",
+    "category": "Package Managers",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "fedora",
+      "rpm",
+      "open-source"
+    ],
+    "source": "https://github.com/rpm-software-management/dnf"
+  },
+  {
+    "id": "paru",
+    "name": "paru",
+    "description": "Feature-packed AUR helper for Arch Linux written in Rust. Wraps pacman with AUR package building and review.",
+    "url": "https://github.com/Morganamilo/paru",
+    "category": "Package Managers",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "aur",
+      "arch-linux",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/Morganamilo/paru"
+  },
+  {
+    "id": "macports",
+    "name": "MacPorts",
+    "description": "Package manager for macOS that compiles software from source. Over 30,000 ports available for open-source software.",
+    "url": "https://www.macports.org",
+    "category": "Package Managers",
+    "os": [
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "macos",
+      "compile-from-source",
+      "open-source"
+    ],
+    "source": "https://github.com/macports/macports-base"
+  },
+  {
+    "id": "qemu",
+    "name": "QEMU",
+    "description": "Open-source machine emulator and virtualizer. Runs OSes for any architecture and powers KVM-based virtualization.",
+    "url": "https://www.qemu.org",
+    "category": "Virtualization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "emulator",
+      "kvm",
+      "cross-architecture",
+      "open-source"
+    ],
+    "source": "https://github.com/qemu/qemu"
+  },
+  {
+    "id": "proxmox",
+    "name": "Proxmox VE",
+    "description": "Open-source server virtualization platform combining KVM and LXC. Web-based management, clustering, and live migration.",
+    "url": "https://www.proxmox.com/en/proxmox-virtual-environment",
+    "category": "Virtualization",
+    "os": [
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "server",
+      "kvm",
+      "lxc",
+      "web-ui",
+      "open-source"
+    ],
+    "source": "https://git.proxmox.com"
+  },
+  {
+    "id": "lxd",
+    "name": "LXD",
+    "description": "System container and virtual machine manager. Run full Linux distributions as lightweight containers with VM-like isolation.",
+    "url": "https://canonical.com/lxd",
+    "category": "Virtualization",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "containers",
+      "system-containers",
+      "canonical",
+      "open-source"
+    ],
+    "source": "https://github.com/canonical/lxd"
+  },
+  {
+    "id": "glances",
+    "name": "Glances",
+    "description": "Cross-platform system monitoring tool written in Python. Web UI, REST API, and export to InfluxDB, Prometheus, and more.",
+    "url": "https://nicolargo.github.io/glances",
+    "category": "System Utilities",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "monitoring",
+      "web-ui",
+      "api",
+      "open-source"
+    ],
+    "source": "https://github.com/nicolargo/glances"
+  },
+  {
+    "id": "ventoy",
+    "name": "Ventoy",
+    "description": "Bootable USB tool that lets you boot ISO files directly. Copy ISOs to the drive and boot any of them from a menu.",
+    "url": "https://www.ventoy.net",
+    "category": "System Utilities",
+    "os": [
+      "windows",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "bootable-usb",
+      "iso",
+      "multiboot",
+      "open-source"
+    ],
+    "source": "https://github.com/ventoy/Ventoy"
+  },
+  {
+    "id": "cpu-z",
+    "name": "CPU-Z",
+    "description": "Free system profiling tool for Windows. Detailed info on CPU, motherboard, memory, and SPD data.",
+    "url": "https://www.cpuid.com/softwares/cpu-z.html",
+    "category": "System Utilities",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "hardware-info",
+      "cpu",
+      "profiling",
+      "diagnostics"
+    ]
+  },
+  {
+    "id": "autoruns",
+    "name": "Autoruns",
+    "description": "Sysinternals tool showing all auto-start programs on Windows. Reveals hidden startup entries and scheduled tasks.",
+    "url": "https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns",
+    "category": "System Utilities",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "sysinternals",
+      "startup",
+      "microsoft",
+      "diagnostics"
+    ]
+  }
+]

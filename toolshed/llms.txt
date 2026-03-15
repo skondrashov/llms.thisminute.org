@@ -1,0 +1,154 @@
+# main.menu
+> Universal software directory with 15803 entries across 123 categories. Structured data for AI agents and developers.
+
+## Endpoints
+- Full catalog (JSON): /api/v1/catalog.json
+- Categories with counts: /api/v1/categories.json
+- Entry schema: /schema.json
+- Full text catalog: /llms-full.txt
+- Human browsable: /
+
+## Entry Schema
+{ id, name, description, url, category, os[], pricing, tags[], source?, language? }
+
+Pricing: free | freemium | paid | subscription
+OS: windows | macos | linux | web | ios | android
+
+## Categories
+- iOS UI Components: 699
+- Static Analysis: 526
+- CLI Frameworks: 449
+- Databases: 410
+- Testing Frameworks: 350
+- Image Processing: 338
+- Frontend Frameworks: 334
+- Networking: 328
+- Cross-Platform Frameworks: 305
+- Container Orchestration: 303
+- Video Editing: 286
+- Communication: 285
+- Data Validation & Serialization: 277
+- Music Production: 273
+- Game Engines: 230
+- Backend Frameworks: 217
+- Async & Concurrency: 209
+- Media Players: 208
+- Version Control: 208
+- Data Pipelines: 205
+- CI/CD Tools: 197
+- API Clients: 195
+- Logging & Diagnostics: 191
+- Project Management: 189
+- Backup & Sync: 184
+- AI/ML Libraries: 183
+- Encryption & Privacy Tools: 183
+- Configuration: 182
+- Programming Languages: 181
+- Monitoring & Metrics: 180
+- Note Taking: 179
+- UI/UX Design Tools: 179
+- Security Scanning: 177
+- Content Management Systems: 174
+- Utilities: 169
+- Launcher & Productivity Utils: 160
+- Accounting & Finance: 159
+- Code Editors: 157
+- iOS Networking & Data: 153
+- Documentation Tools: 147
+- System Utilities: 147
+- Embedded & IoT: 146
+- PDF Tools: 144
+- Auth & Identity: 143
+- Build Tools: 140
+- Web Scraping & Parsing: 140
+- File Managers: 139
+- 3D & CAD: 133
+- Screen Recording / Streaming: 129
+- Fonts & Typography: 128
+- ORMs: 125
+- Search Engines: 122
+- Real-time Communication: 121
+- Operating Systems: 119
+- Package Managers: 119
+- Password Managers: 119
+- Office Suites: 118
+- Window Managers: 117
+- Learning Platforms: 115
+- Terminal Emulators: 115
+- HTTP Libraries: 113
+- Cloud Storage: 112
+- Text Processing: 112
+- Scientific Computing: 111
+- Email: 110
+- Data Analysis: 105
+- Calendar & Scheduling: 96
+- Static Site Generators: 84
+- Photo Management: 82
+- RSS Readers: 80
+- Document Conversion: 78
+- Caching: 76
+- Virtualization: 76
+- Date & Time: 75
+- Blockchain & Web3: 72
+- Clipboard Managers: 71
+- UI Automation & E2E Testing: 71
+- Cloud SDKs & CLIs: 69
+- NLP & Text AI: 68
+- Template Engines: 62
+- Blogging & Newsletter Platforms: 61
+- VPN: 61
+- Browsers: 60
+- Database Drivers: 57
+- Load & Performance Testing: 55
+- Error & Exception Tracking: 54
+- LLM Tools: 54
+- Jupyter & Notebooks: 51
+- Torrent Clients: 51
+- Linters: 50
+- GraphQL Tools: 49
+- Image Editors: 47
+- Social Media Clients: 47
+- Diagramming & Whiteboard: 46
+- Screenshot & Annotation: 46
+- Terminal UI: 45
+- Code Coverage & Quality: 42
+- CRM & Sales: 41
+- Log Management: 39
+- Shell Environments: 38
+- Vector & Illustration: 36
+- Formatters: 35
+- Math & Numerics: 35
+- Infrastructure as Code: 33
+- API Documentation: 30
+- AI Assistants: 29
+- Compression & Archiving: 28
+- File Search & Navigation: 28
+- Video Conferencing: 25
+- Chess: 24
+- APIs & Services: 23
+- Database Migrations: 23
+- Database Tools: 23
+- Media Processing: 22
+- Error Handling: 21
+- Statistical Tools: 21
+- Task Runners & Monorepos: 20
+- Secrets Management: 18
+- Vector Databases: 18
+- HR & People: 16
+- Desktop App Frameworks: 15
+- Flashcards & Study: 14
+- Mobile IDE & Tools: 11
+
+## Querying
+Download /api/v1/catalog.json and filter by:
+- category: exact match on category field
+- os: check if desired OS is in the os[] array
+- pricing: exact match (free, freemium, paid, subscription)
+- tags: check if desired tag is in tags[] array
+- language: filter libraries by ecosystem (python, rust, go, javascript, etc.)
+- text search: match against name, description, tags
+
+## Example Queries
+- "Find free image editors for Linux": filter pricing=free, os contains "linux", category="Image Editors"
+- "Python HTTP libraries": filter language="python", category="HTTP Libraries"
+- "All database tools": filter category in ["Databases", "Database Tools", "ORMs"]

@@ -1,0 +1,1138 @@
+[
+  {
+    "id": "pytorch",
+    "name": "PyTorch",
+    "description": "Deep learning framework with dynamic computation graphs. Dominant in research, strong GPU support and ecosystem.",
+    "url": "https://pytorch.org",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "deep-learning",
+      "gpu",
+      "research",
+      "open-source"
+    ],
+    "source": "https://github.com/pytorch/pytorch",
+    "language": "python"
+  },
+  {
+    "id": "tensorflow",
+    "name": "TensorFlow",
+    "description": "Google's end-to-end ML platform. Production-ready with Keras API, TensorFlow Lite, and TensorFlow Serving.",
+    "url": "https://www.tensorflow.org",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "machine-learning",
+      "google",
+      "production",
+      "open-source"
+    ],
+    "source": "https://github.com/tensorflow/tensorflow",
+    "language": "python"
+  },
+  {
+    "id": "transformers",
+    "name": "Transformers",
+    "description": "Hugging Face library for state-of-the-art NLP, vision, and audio models. Download and fine-tune thousands of models.",
+    "url": "https://huggingface.co/docs/transformers",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "nlp",
+      "hugging-face",
+      "pretrained-models",
+      "open-source"
+    ],
+    "source": "https://github.com/huggingface/transformers",
+    "language": "python"
+  },
+  {
+    "id": "langchain",
+    "name": "LangChain",
+    "description": "Framework for building LLM-powered applications. Chains, agents, RAG, memory, and tool integrations.",
+    "url": "https://www.langchain.com",
+    "category": "LLM Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "llm",
+      "agents",
+      "rag",
+      "open-source"
+    ],
+    "source": "https://github.com/langchain-ai/langchain",
+    "language": "python"
+  },
+  {
+    "id": "scikit-learn",
+    "name": "scikit-learn",
+    "description": "Machine learning library for Python. Classification, regression, clustering, and preprocessing with a consistent API.",
+    "url": "https://scikit-learn.org",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "machine-learning",
+      "classification",
+      "open-source"
+    ],
+    "source": "https://github.com/scikit-learn/scikit-learn",
+    "language": "python"
+  },
+  {
+    "id": "llamacpp",
+    "name": "llama.cpp",
+    "description": "Run LLMs locally in C/C++. Quantized inference on CPU and GPU with minimal dependencies. Powers local AI.",
+    "url": "https://github.com/ggerganov/llama.cpp",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "llm",
+      "local-inference",
+      "cpp",
+      "quantization",
+      "open-source"
+    ],
+    "source": "https://github.com/ggerganov/llama.cpp",
+    "language": "cpp"
+  },
+  {
+    "id": "ollama",
+    "name": "Ollama",
+    "description": "Run open-source LLMs locally with one command. Supports Llama, Mistral, Gemma, and more. Simple model management.",
+    "url": "https://ollama.com",
+    "category": "LLM Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "llm",
+      "local-inference",
+      "model-management",
+      "open-source"
+    ],
+    "source": "https://github.com/ollama/ollama",
+    "language": "go"
+  },
+  {
+    "id": "hugging-face",
+    "name": "Hugging Face",
+    "description": "Platform for sharing and discovering ML models, datasets, and demos. Hub hosts over 500k models across all modalities.",
+    "url": "https://huggingface.co",
+    "category": "AI/ML Libraries",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "models",
+      "datasets",
+      "community",
+      "hub",
+      "machine-learning"
+    ]
+  },
+  {
+    "id": "wandb",
+    "name": "Weights & Biases",
+    "description": "ML experiment tracking, dataset versioning, and model management. Visualize training runs and collaborate on models.",
+    "url": "https://wandb.ai",
+    "category": "AI/ML Libraries",
+    "os": [
+      "web",
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "experiment-tracking",
+      "ml-ops",
+      "visualization",
+      "collaboration"
+    ]
+  },
+  {
+    "id": "mlflow",
+    "name": "MLflow",
+    "description": "Open-source platform for managing the ML lifecycle. Experiment tracking, model registry, and deployment tools.",
+    "url": "https://mlflow.org",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ml-ops",
+      "experiment-tracking",
+      "model-registry",
+      "deployment",
+      "open-source"
+    ],
+    "source": "https://github.com/mlflow/mlflow",
+    "language": "python"
+  },
+  {
+    "id": "xgboost",
+    "name": "XGBoost",
+    "description": "Gradient boosting library optimized for speed and performance. Dominant in Kaggle competitions and tabular data tasks.",
+    "url": "https://xgboost.readthedocs.io",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "gradient-boosting",
+      "tabular",
+      "kaggle",
+      "open-source"
+    ],
+    "source": "https://github.com/dmlc/xgboost",
+    "language": "python"
+  },
+  {
+    "id": "keras",
+    "name": "Keras",
+    "description": "High-level deep learning API running on top of TensorFlow, JAX, or PyTorch. Simple, flexible, and beginner-friendly.",
+    "url": "https://keras.io",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "deep-learning",
+      "high-level-api",
+      "neural-networks",
+      "open-source"
+    ],
+    "source": "https://github.com/keras-team/keras",
+    "language": "python"
+  },
+  {
+    "id": "jax",
+    "name": "JAX",
+    "description": "Google's library for high-performance numerical computing and ML research. Autograd and XLA compilation for GPU/TPU.",
+    "url": "https://jax.readthedocs.io",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "numerical",
+      "autograd",
+      "gpu",
+      "open-source"
+    ],
+    "source": "https://github.com/jax-ml/jax",
+    "language": "python"
+  },
+  {
+    "id": "lightgbm",
+    "name": "LightGBM",
+    "description": "Microsoft's gradient boosting framework using tree-based learning. Faster training and lower memory than XGBoost on large datasets.",
+    "url": "https://lightgbm.readthedocs.io",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "gradient-boosting",
+      "microsoft",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/LightGBM",
+    "language": "python"
+  },
+  {
+    "id": "catboost",
+    "name": "CatBoost",
+    "description": "Gradient boosting library by Yandex with native categorical feature support. Robust to overfitting, minimal tuning needed.",
+    "url": "https://catboost.ai",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "gradient-boosting",
+      "categorical",
+      "yandex",
+      "open-source"
+    ],
+    "source": "https://github.com/catboost/catboost",
+    "language": "python"
+  },
+  {
+    "id": "fastai",
+    "name": "fast.ai",
+    "description": "Deep learning library built on PyTorch with high-level abstractions. Train accurate models in a few lines of code.",
+    "url": "https://docs.fast.ai",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "deep-learning",
+      "pytorch",
+      "education",
+      "open-source"
+    ],
+    "source": "https://github.com/fastai/fastai",
+    "language": "python"
+  },
+  {
+    "id": "onnx-runtime",
+    "name": "ONNX Runtime",
+    "description": "Cross-platform inference engine for ONNX models. Hardware-accelerated inference on CPU, GPU, and edge devices.",
+    "url": "https://onnxruntime.ai",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "inference",
+      "cross-platform",
+      "onnx",
+      "hardware-acceleration",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/onnxruntime",
+    "language": "cpp"
+  },
+  {
+    "id": "vllm",
+    "name": "vLLM",
+    "description": "High-throughput LLM serving engine with PagedAttention. Serves models up to 24x faster than naive HuggingFace inference.",
+    "url": "https://docs.vllm.ai",
+    "category": "AI/ML Libraries",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "llm",
+      "serving",
+      "high-throughput",
+      "inference",
+      "open-source"
+    ],
+    "source": "https://github.com/vllm-project/vllm",
+    "language": "python"
+  },
+  {
+    "id": "stable-diffusion-webui",
+    "name": "Stable Diffusion WebUI",
+    "description": "Browser interface for Stable Diffusion image generation. Txt2img, img2img, inpainting, and extension support.",
+    "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+    "category": "AI/ML Libraries",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "image-generation",
+      "diffusion",
+      "webui",
+      "ai-art",
+      "open-source"
+    ],
+    "source": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+    "language": "python"
+  },
+  {
+    "id": "jupyter-notebook",
+    "name": "Jupyter Notebook",
+    "description": "Interactive web application for creating documents with live code, equations, and visualizations. The original notebook interface.",
+    "url": "https://jupyter.org",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "interactive",
+      "data-science",
+      "notebooks",
+      "open-source"
+    ],
+    "source": "https://github.com/jupyter/notebook",
+    "language": "python"
+  },
+  {
+    "id": "jupyterlab",
+    "name": "JupyterLab",
+    "description": "Next-generation Jupyter interface with tabs, file browser, terminals, and extensions. Full IDE experience for notebooks.",
+    "url": "https://jupyterlab.readthedocs.io",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "ide",
+      "data-science",
+      "notebooks",
+      "open-source"
+    ],
+    "source": "https://github.com/jupyterlab/jupyterlab",
+    "language": "typescript"
+  },
+  {
+    "id": "google-colab",
+    "name": "Google Colab",
+    "description": "Free hosted Jupyter notebooks with GPU/TPU access. No setup required, integrates with Google Drive for storage.",
+    "url": "https://colab.research.google.com",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "notebooks",
+      "gpu",
+      "cloud",
+      "google",
+      "data-science"
+    ]
+  },
+  {
+    "id": "kaggle-notebooks",
+    "name": "Kaggle Notebooks",
+    "description": "Free cloud notebooks with GPU support on Kaggle. Access datasets, competitions, and a community of data scientists.",
+    "url": "https://www.kaggle.com/code",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "notebooks",
+      "competitions",
+      "datasets",
+      "gpu",
+      "data-science"
+    ]
+  },
+  {
+    "id": "observable",
+    "name": "Observable",
+    "description": "Reactive JavaScript notebook platform for data visualization. Live code, D3 integration, and shareable interactive charts.",
+    "url": "https://observablehq.com",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "javascript",
+      "visualization",
+      "reactive",
+      "d3",
+      "interactive"
+    ]
+  },
+  {
+    "id": "deepnote",
+    "name": "Deepnote",
+    "description": "Collaborative data science notebook in the browser. Real-time collaboration, SQL integration, and scheduled runs.",
+    "url": "https://deepnote.com",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "notebooks",
+      "collaboration",
+      "cloud",
+      "data-science",
+      "sql"
+    ]
+  },
+  {
+    "id": "hex",
+    "name": "Hex",
+    "description": "Collaborative analytics workspace combining SQL, Python, and no-code tools. Build and share interactive data apps.",
+    "url": "https://hex.tech",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "notebooks",
+      "analytics",
+      "collaboration",
+      "sql",
+      "data-apps"
+    ]
+  },
+  {
+    "id": "databricks-notebooks",
+    "name": "Databricks Notebooks",
+    "description": "Collaborative notebooks on the Databricks Lakehouse Platform. Multi-language support with Spark, SQL, Python, and R.",
+    "url": "https://www.databricks.com",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "web"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "notebooks",
+      "spark",
+      "collaboration",
+      "enterprise",
+      "cloud"
+    ]
+  },
+  {
+    "id": "zeppelin",
+    "name": "Apache Zeppelin",
+    "description": "Web-based notebook for interactive data analytics. Multi-language backend with built-in Spark, SQL, and visualization.",
+    "url": "https://zeppelin.apache.org",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "notebooks",
+      "spark",
+      "data-analytics",
+      "multi-language",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/zeppelin",
+    "language": "java"
+  },
+  {
+    "id": "nbdev",
+    "name": "nbdev",
+    "description": "Write, test, document, and distribute Python libraries entirely in Jupyter notebooks. Literate programming for Python.",
+    "url": "https://nbdev.fast.ai",
+    "category": "Jupyter & Notebooks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "notebooks",
+      "literate-programming",
+      "python",
+      "library-development",
+      "open-source"
+    ],
+    "source": "https://github.com/fastai/nbdev",
+    "language": "python"
+  },
+  {
+    "id": "matlab",
+    "name": "MATLAB",
+    "description": "Numeric computing environment for engineering and science. Matrix math, Simulink, toolboxes, and interactive visualization.",
+    "url": "https://www.mathworks.com/products/matlab.html",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "numerical",
+      "engineering",
+      "simulation",
+      "matrix",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "r-language",
+    "name": "R",
+    "description": "Programming language for statistical computing and graphics. Rich ecosystem of packages for data analysis and visualization.",
+    "url": "https://www.r-project.org",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "statistics",
+      "data-analysis",
+      "visualization",
+      "programming-language",
+      "open-source"
+    ],
+    "source": "https://svn.r-project.org/R"
+  },
+  {
+    "id": "gnu-octave",
+    "name": "GNU Octave",
+    "description": "Free MATLAB-compatible numerical computing environment. Solves linear and nonlinear problems with a familiar syntax.",
+    "url": "https://octave.org",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "numerical",
+      "matlab-compatible",
+      "mathematics",
+      "open-source"
+    ],
+    "source": "https://hg.savannah.gnu.org/hgweb/octave"
+  },
+  {
+    "id": "julia",
+    "name": "Julia",
+    "description": "High-performance language for scientific computing. Combines speed of C with usability of Python. Multiple dispatch system.",
+    "url": "https://julialang.org",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "programming-language",
+      "high-performance",
+      "scientific",
+      "numerical",
+      "open-source"
+    ],
+    "source": "https://github.com/JuliaLang/julia"
+  },
+  {
+    "id": "mathematica",
+    "name": "Mathematica",
+    "description": "Computational software for symbolic math, data visualization, and algorithm development. Wolfram Language powered.",
+    "url": "https://www.wolfram.com/mathematica",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "symbolic-math",
+      "computation",
+      "wolfram",
+      "visualization",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "sagemath",
+    "name": "SageMath",
+    "description": "Free open-source mathematics system. Combines dozens of math packages into a unified Python-based interface.",
+    "url": "https://www.sagemath.org",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "mathematics",
+      "algebra",
+      "python",
+      "open-source"
+    ],
+    "source": "https://github.com/sagemath/sage"
+  },
+  {
+    "id": "labview",
+    "name": "LabVIEW",
+    "description": "Visual programming environment for test, measurement, and control systems. Graphical dataflow programming with hardware integration.",
+    "url": "https://www.ni.com/labview",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "visual-programming",
+      "measurement",
+      "hardware",
+      "engineering",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "scipy",
+    "name": "SciPy",
+    "description": "Python library for scientific and technical computing. Optimization, integration, interpolation, signal processing, and linear algebra.",
+    "url": "https://scipy.org",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "scientific",
+      "optimization",
+      "signal-processing",
+      "open-source"
+    ],
+    "source": "https://github.com/scipy/scipy",
+    "language": "python"
+  },
+  {
+    "id": "sympy",
+    "name": "SymPy",
+    "description": "Python library for symbolic mathematics. Algebra, calculus, equation solving, and LaTeX output with no external dependencies.",
+    "url": "https://www.sympy.org",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "symbolic-math",
+      "algebra",
+      "calculus",
+      "open-source"
+    ],
+    "source": "https://github.com/sympy/sympy",
+    "language": "python"
+  },
+  {
+    "id": "maxima",
+    "name": "Maxima",
+    "description": "Computer algebra system for symbolic and numerical computation. Manipulation of algebraic expressions, calculus, and plotting.",
+    "url": "https://maxima.sourceforge.io",
+    "category": "Scientific Computing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "computer-algebra",
+      "symbolic-math",
+      "calculus",
+      "open-source"
+    ],
+    "source": "https://sourceforge.net/projects/maxima"
+  },
+  {
+    "id": "spss",
+    "name": "SPSS",
+    "description": "IBM's statistical analysis software. Point-and-click interface for surveys, regression, ANOVA, and predictive modeling.",
+    "url": "https://www.ibm.com/spss",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "statistics",
+      "ibm",
+      "surveys",
+      "regression",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "stata",
+    "name": "Stata",
+    "description": "Statistical software for data management, analysis, and graphics. Widely used in economics, political science, and epidemiology.",
+    "url": "https://www.stata.com",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "statistics",
+      "econometrics",
+      "research",
+      "data-management",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "rstudio",
+    "name": "RStudio",
+    "description": "Integrated development environment for R. Code editor, debugger, package manager, and visualization pane for data science.",
+    "url": "https://posit.co/products/open-source/rstudio",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "r",
+      "ide",
+      "data-science",
+      "statistics",
+      "open-source"
+    ],
+    "source": "https://github.com/rstudio/rstudio"
+  },
+  {
+    "id": "jamovi",
+    "name": "jamovi",
+    "description": "Free, open statistical software with a spreadsheet-like interface. Built on R, designed for researchers who prefer GUI over code.",
+    "url": "https://www.jamovi.org",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "statistics",
+      "gui",
+      "r-based",
+      "research",
+      "open-source"
+    ],
+    "source": "https://github.com/jamovi/jamovi"
+  },
+  {
+    "id": "jasp",
+    "name": "JASP",
+    "description": "Free, open-source statistics program with both frequentist and Bayesian analyses. Designed for intuitive, publication-ready output.",
+    "url": "https://jasp-stats.org",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "statistics",
+      "bayesian",
+      "frequentist",
+      "research",
+      "open-source"
+    ],
+    "source": "https://github.com/jasp-stats/jasp-desktop"
+  },
+  {
+    "id": "orange-data-mining",
+    "name": "Orange Data Mining",
+    "description": "Visual programming tool for data analysis and machine learning. Drag-and-drop widgets for exploration, visualization, and modeling.",
+    "url": "https://orangedatamining.com",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "data-mining",
+      "visual-programming",
+      "machine-learning",
+      "visualization",
+      "open-source"
+    ],
+    "source": "https://github.com/biolab/orange3",
+    "language": "python"
+  },
+  {
+    "id": "gretl",
+    "name": "gretl",
+    "description": "Cross-platform software for econometric analysis. Time series, panel data, and scripting with an accessible GUI.",
+    "url": "https://gretl.sourceforge.net",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "econometrics",
+      "time-series",
+      "statistics",
+      "gui",
+      "open-source"
+    ],
+    "source": "https://sourceforge.net/projects/gretl"
+  },
+  {
+    "id": "sas",
+    "name": "SAS",
+    "description": "Enterprise analytics platform for advanced statistics, multivariate analysis, and predictive modeling. Industry standard in pharma and finance.",
+    "url": "https://www.sas.com",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "statistics",
+      "enterprise",
+      "analytics",
+      "predictive-modeling",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "spacy-nlp",
+    "name": "spaCy",
+    "description": "Industrial-strength NLP library for Python. Fast tokenization, NER, POS tagging, dependency parsing, and pipeline components.",
+    "url": "https://spacy.io",
+    "category": "NLP & Text AI",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "nlp", "ner", "tokenization", "open-source"],
+    "source": "https://github.com/explosion/spaCy",
+    "language": "python"
+  },
+  {
+    "id": "nltk-nlp",
+    "name": "NLTK",
+    "description": "Python platform for working with human language data. Tokenizers, parsers, classifiers, stemmers, and 50+ corpora.",
+    "url": "https://www.nltk.org",
+    "category": "NLP & Text AI",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "nlp", "education", "corpora", "open-source"],
+    "source": "https://github.com/nltk/nltk",
+    "language": "python"
+  },
+  {
+    "id": "stanford-corenlp",
+    "name": "Stanford CoreNLP",
+    "description": "Java NLP toolkit from Stanford. Tokenization, NER, sentiment, coreference, and dependency parsing in multiple languages.",
+    "url": "https://stanfordnlp.github.io/CoreNLP",
+    "category": "NLP & Text AI",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["java", "nlp", "stanford", "multilingual", "open-source"],
+    "source": "https://github.com/stanfordnlp/CoreNLP",
+    "language": "java"
+  },
+  {
+    "id": "fasttext",
+    "name": "fastText",
+    "description": "Library by Meta for efficient text classification and word representations. Trains on billions of words in seconds.",
+    "url": "https://fasttext.cc",
+    "category": "NLP & Text AI",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["nlp", "word-embeddings", "text-classification", "meta", "open-source"],
+    "source": "https://github.com/facebookresearch/fastText",
+    "language": "cpp"
+  },
+  {
+    "id": "flair-nlp",
+    "name": "Flair",
+    "description": "Simple NLP framework built on PyTorch. State-of-the-art NER, POS tagging, and text classification with stacked embeddings.",
+    "url": "https://github.com/flairNLP/flair",
+    "category": "NLP & Text AI",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "nlp", "ner", "pytorch", "open-source"],
+    "source": "https://github.com/flairNLP/flair",
+    "language": "python"
+  },
+  {
+    "id": "sentence-transformers",
+    "name": "Sentence Transformers",
+    "description": "Python library for computing sentence and text embeddings. Powers semantic search, clustering, and paraphrase detection.",
+    "url": "https://www.sbert.net",
+    "category": "NLP & Text AI",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "nlp", "embeddings", "semantic-search", "open-source"],
+    "source": "https://github.com/UKPLab/sentence-transformers",
+    "language": "python"
+  },
+  {
+    "id": "openai-api",
+    "name": "OpenAI API",
+    "description": "API access to GPT-4, DALL-E, Whisper, and embeddings. The most widely used commercial LLM API for developers.",
+    "url": "https://platform.openai.com",
+    "category": "LLM Tools",
+    "os": ["web"],
+    "pricing": "paid",
+    "tags": ["llm", "api", "gpt", "openai", "ai"]
+  },
+  {
+    "id": "llamaindex-llm",
+    "name": "LlamaIndex",
+    "description": "Data framework for LLM apps. Connect custom data sources for RAG with indexing, retrieval, and query engines.",
+    "url": "https://www.llamaindex.ai",
+    "category": "LLM Tools",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "llm", "rag", "indexing", "open-source"],
+    "source": "https://github.com/run-llama/llama_index",
+    "language": "python"
+  },
+  {
+    "id": "semantic-kernel",
+    "name": "Semantic Kernel",
+    "description": "Microsoft SDK for integrating LLMs into apps. Plugins, planners, and memory for C#, Python, and Java.",
+    "url": "https://learn.microsoft.com/en-us/semantic-kernel",
+    "category": "LLM Tools",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["microsoft", "llm", "sdk", "csharp", "open-source"],
+    "source": "https://github.com/microsoft/semantic-kernel",
+    "language": "csharp"
+  },
+  {
+    "id": "crewai",
+    "name": "CrewAI",
+    "description": "Framework for orchestrating autonomous AI agents. Define roles, goals, and tasks for collaborative multi-agent workflows.",
+    "url": "https://www.crewai.com",
+    "category": "LLM Tools",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "freemium",
+    "tags": ["python", "llm", "agents", "multi-agent", "open-source"],
+    "source": "https://github.com/crewAIInc/crewAI",
+    "language": "python"
+  },
+  {
+    "id": "text-generation-webui",
+    "name": "text-generation-webui",
+    "description": "Gradio web UI for running LLMs locally. Supports GPTQ, GGML, and many model formats with chat and notebook modes.",
+    "url": "https://github.com/oobabooga/text-generation-webui",
+    "category": "LLM Tools",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["llm", "local-inference", "webui", "gradio", "open-source"],
+    "source": "https://github.com/oobabooga/text-generation-webui",
+    "language": "python"
+  },
+  {
+    "id": "lmstudio",
+    "name": "LM Studio",
+    "description": "Desktop app for discovering, downloading, and running local LLMs. Chat interface with model management and OpenAI-compatible API.",
+    "url": "https://lmstudio.ai",
+    "category": "LLM Tools",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["llm", "local-inference", "desktop", "model-management"]
+  },
+  {
+    "id": "autogen",
+    "name": "AutoGen",
+    "description": "Microsoft framework for building multi-agent AI systems. Agents converse, code, and use tools to solve tasks together.",
+    "url": "https://microsoft.github.io/autogen",
+    "category": "LLM Tools",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "llm", "multi-agent", "microsoft", "open-source"],
+    "source": "https://github.com/microsoft/autogen",
+    "language": "python"
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "description": "Unified API for accessing LLMs from OpenAI, Anthropic, Google, Meta, and more. Single endpoint, pay-per-token pricing.",
+    "url": "https://openrouter.ai",
+    "category": "LLM Tools",
+    "os": ["web"],
+    "pricing": "paid",
+    "tags": ["llm", "api", "unified", "multi-provider"]
+  }
+]

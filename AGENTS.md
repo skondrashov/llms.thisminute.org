@@ -4,7 +4,8 @@ Portal site for the forge ecosystem. The agent-forge landing page serves as the 
 
 | Sub-site | Path | Source project | What it is |
 |----------|------|---------------|------------|
-| Forge (landing) | `/` and `/forge/` | This repo (`forge/index.html`) | Agent system manager landing page |
+| Portal | `/` | This repo (`index.html`) | Hub page linking to all three sub-sites |
+| Forge | `/forge/` | This repo (`forge/index.html`) | Agent system manager landing page |
 | Rhizome | `/rhizome/` | `rhizome/` | Agent orchestration pattern catalog (200 patterns) |
 | Toolshed | `/toolshed/` | `toolshed/` | Software directory (15K+ entries) |
 
@@ -12,8 +13,8 @@ If told to go, start, or begin — you are the **orchestrator**. See `agents/orc
 
 ## What This Project Owns
 
-- `index.html` — root landing page (copy of `forge/index.html`)
-- `forge/index.html` — agent-forge landing page (canonical source)
+- `index.html` — portal hub page (links to all three sub-sites)
+- `forge/index.html` — agent-forge landing page
 - Visual identity and consistency across the suite
 - Deploys — submit requests to `~/projects/ops/DEPLOY_QUEUE.md`
 
@@ -37,8 +38,8 @@ Vanilla HTML/CSS/JS. No frameworks, no build step. Dark/light mode. Mobile-respo
 ## Key Files
 
 ```
-index.html          # Root landing page (copy of forge/index.html)
-forge/index.html    # Agent-forge landing page (canonical)
+index.html          # Portal hub page
+forge/index.html    # Agent-forge landing page
 agents/             # Agent role files
 memory/             # Persistent agent learnings
 ```

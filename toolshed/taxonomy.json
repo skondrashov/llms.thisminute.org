@@ -1,0 +1,262 @@
+{
+  "name": "main.menu",
+  "children": [
+    {
+      "name": "Code & Editors",
+      "children": [
+        { "name": "Code Editors", "categories": ["Code Editors"] },
+        { "name": "AI Assistants", "categories": ["AI Assistants"] },
+        { "name": "Terminal Emulators", "categories": ["Terminal Emulators"] },
+        { "name": "Programming Languages", "categories": ["Programming Languages"] }
+      ]
+    },
+    {
+      "name": "Web Development",
+      "children": [
+        {
+          "name": "Frameworks",
+          "children": [
+            { "name": "Frontend Frameworks", "categories": ["Frontend Frameworks"] },
+            { "name": "Backend Frameworks", "categories": ["Backend Frameworks"] },
+            { "name": "Template Engines", "categories": ["Template Engines"] }
+          ]
+        },
+        { "name": "HTTP Libraries", "categories": ["HTTP Libraries"] },
+        { "name": "Scraping & Parsing", "categories": ["Web Scraping & Parsing"] },
+        { "name": "Real-time", "categories": ["Real-time Communication"] },
+        { "name": "Static Site Generators", "categories": ["Static Site Generators"] },
+        { "name": "Content Management", "categories": ["Content Management Systems"] },
+        { "name": "Hosting & Deployment", "categories": ["APIs & Services"] }
+      ]
+    },
+    {
+      "name": "Mobile & Cross-Platform",
+      "children": [
+        { "name": "Cross-Platform Frameworks", "categories": ["Cross-Platform Frameworks"] },
+        {
+          "name": "iOS Development",
+          "children": [
+            { "name": "iOS UI Components", "categories": ["iOS UI Components"] },
+            { "name": "iOS Networking & Data", "categories": ["iOS Networking & Data"] }
+          ]
+        },
+        {
+          "name": "Android Development",
+          "children": [
+            { "name": "Android UI Components", "categories": ["Android UI Components"] }
+          ]
+        },
+        { "name": "Mobile IDE & Tools", "categories": ["Mobile IDE & Tools"] },
+        { "name": "Desktop App Frameworks", "categories": ["Desktop App Frameworks"] }
+      ]
+    },
+    {
+      "name": "Data & Storage",
+      "children": [
+        { "name": "Databases", "categories": ["Databases", "Database Tools"] },
+        { "name": "ORMs", "categories": ["ORMs"] },
+        { "name": "Database Drivers", "categories": ["Database Drivers"] },
+        { "name": "Database Migrations", "categories": ["Database Migrations"] },
+        { "name": "Caching", "categories": ["Caching"] },
+        { "name": "Validation & Serialization", "categories": ["Data Validation & Serialization"] },
+        { "name": "Analysis", "categories": ["Data Analysis"] },
+        { "name": "Pipelines & Streaming", "categories": ["Data Pipelines"] },
+        { "name": "Search Engines", "categories": ["Search Engines"] },
+        { "name": "Vector Databases", "categories": ["Vector Databases"] }
+      ]
+    },
+    {
+      "name": "AI & Machine Learning",
+      "children": [
+        { "name": "ML Frameworks", "categories": ["AI/ML Libraries"] },
+        { "name": "NLP & Text AI", "categories": ["NLP & Text AI"] },
+        { "name": "LLM Tools", "categories": ["LLM Tools"] },
+        { "name": "Notebooks & Environments", "categories": ["Jupyter & Notebooks"] }
+      ]
+    },
+    {
+      "name": "Blockchain & Web3",
+      "children": [
+        { "name": "Blockchain & Web3", "categories": ["Blockchain & Web3"] }
+      ]
+    },
+    {
+      "name": "Scientific Computing",
+      "children": [
+        { "name": "Languages & Tools", "categories": ["Scientific Computing"] },
+        { "name": "Statistical Tools", "categories": ["Statistical Tools"] },
+        { "name": "Math & Numerics", "categories": ["Math & Numerics"] }
+      ]
+    },
+    {
+      "name": "Testing & Quality",
+      "children": [
+        { "name": "Testing Frameworks", "categories": ["Testing Frameworks"] },
+        { "name": "Static Analysis", "categories": ["Static Analysis"] },
+        { "name": "Linters", "categories": ["Linters"] },
+        { "name": "Formatters", "categories": ["Formatters"] },
+        { "name": "UI Automation & E2E", "categories": ["UI Automation & E2E Testing"] },
+        { "name": "Load & Performance", "categories": ["Load & Performance Testing"] },
+        { "name": "Code Quality", "categories": ["Code Coverage & Quality"] }
+      ]
+    },
+    {
+      "name": "DevOps & Infra",
+      "children": [
+        { "name": "CI/CD", "categories": ["CI/CD Tools"] },
+        { "name": "Version Control", "categories": ["Version Control"] },
+        { "name": "Containers & VMs", "categories": ["Virtualization", "Container Orchestration"] },
+        { "name": "Package Managers", "categories": ["Package Managers"] },
+        { "name": "Backup & Sync", "categories": ["Backup & Sync"] },
+        { "name": "Build Tools", "categories": ["Build Tools"] },
+        { "name": "Task Runners & Monorepos", "categories": ["Task Runners & Monorepos"] },
+        { "name": "Infrastructure as Code", "categories": ["Infrastructure as Code"] },
+        { "name": "Cloud SDKs & CLIs", "categories": ["Cloud SDKs & CLIs"] }
+      ]
+    },
+    {
+      "name": "Monitoring & Observability",
+      "children": [
+        { "name": "Metrics & Dashboards", "categories": ["Monitoring & Metrics"] },
+        { "name": "Error Tracking", "categories": ["Error & Exception Tracking"] },
+        { "name": "Log Management", "categories": ["Log Management"] }
+      ]
+    },
+    {
+      "name": "API & Integration",
+      "children": [
+        { "name": "API Clients", "categories": ["API Clients"] },
+        { "name": "API Documentation", "categories": ["API Documentation"] },
+        { "name": "GraphQL Tools", "categories": ["GraphQL Tools"] }
+      ]
+    },
+    {
+      "name": "CLI & Terminal",
+      "children": [
+        { "name": "CLI Frameworks", "categories": ["CLI Frameworks"] },
+        { "name": "Terminal UI", "categories": ["Terminal UI"] },
+        { "name": "File Search", "categories": ["File Search & Navigation"] },
+        { "name": "Async & Concurrency", "categories": ["Async & Concurrency"] },
+        { "name": "Logging", "categories": ["Logging & Diagnostics"] },
+        { "name": "Error Handling", "categories": ["Error Handling"] }
+      ]
+    },
+    {
+      "name": "Creative & Media",
+      "children": [
+        {
+          "name": "Images",
+          "children": [
+            { "name": "Editors", "categories": ["Image Editors"] },
+            { "name": "Processing", "categories": ["Image Processing"] }
+          ]
+        },
+        {
+          "name": "Video",
+          "children": [
+            { "name": "Editing", "categories": ["Video Editing"] },
+            { "name": "Recording & Streaming", "categories": ["Screen Recording / Streaming"] },
+            { "name": "Processing", "categories": ["Media Processing"] }
+          ]
+        },
+        { "name": "Music & Audio", "categories": ["Music Production"] },
+        { "name": "3D & CAD", "categories": ["3D & CAD"] },
+        { "name": "Media Players", "categories": ["Media Players"] },
+        { "name": "Photo Management", "categories": ["Photo Management"] },
+        { "name": "Vector & Illustration", "categories": ["Vector & Illustration"] }
+      ]
+    },
+    {
+      "name": "Design & Diagramming",
+      "children": [
+        { "name": "UI/UX Design", "categories": ["UI/UX Design Tools"] },
+        { "name": "Diagramming & Whiteboard", "categories": ["Diagramming & Whiteboard"] },
+        { "name": "Fonts & Typography", "categories": ["Fonts & Typography"] }
+      ]
+    },
+    {
+      "name": "Documents & Office",
+      "children": [
+        { "name": "Office Suites", "categories": ["Office Suites"] },
+        { "name": "Note Taking", "categories": ["Note Taking"] },
+        { "name": "PDF Tools", "categories": ["PDF Tools"] },
+        { "name": "Document Conversion", "categories": ["Document Conversion"] },
+        { "name": "Calendar & Scheduling", "categories": ["Calendar & Scheduling"] },
+        { "name": "Documentation Tools", "categories": ["Documentation Tools"] },
+        { "name": "Blogging & Newsletters", "categories": ["Blogging & Newsletter Platforms"] }
+      ]
+    },
+    {
+      "name": "System Tools",
+      "children": [
+        { "name": "Monitoring & Diagnostics", "categories": ["System Utilities"] },
+        { "name": "File Management", "categories": ["File Managers"] },
+        { "name": "Shell Environments", "categories": ["Shell Environments"] },
+        { "name": "Launchers", "categories": ["Launcher & Productivity Utils"] },
+        { "name": "Window Managers", "categories": ["Window Managers"] },
+        { "name": "Screenshot & Annotation", "categories": ["Screenshot & Annotation"] },
+        { "name": "Clipboard Managers", "categories": ["Clipboard Managers"] },
+        { "name": "Operating Systems", "categories": ["Operating Systems"] },
+        { "name": "Compression & Archiving", "categories": ["Compression & Archiving"] }
+      ]
+    },
+    {
+      "name": "Networking & Communication",
+      "children": [
+        { "name": "Browsers", "categories": ["Browsers"] },
+        { "name": "Messaging & Chat", "categories": ["Communication"] },
+        { "name": "Email", "categories": ["Email"] },
+        { "name": "VPN", "categories": ["VPN"] },
+        { "name": "Networking", "categories": ["Networking"] },
+        { "name": "Torrents", "categories": ["Torrent Clients"] },
+        { "name": "RSS Readers", "categories": ["RSS Readers"] },
+        { "name": "Social Media", "categories": ["Social Media Clients"] },
+        { "name": "Video Conferencing", "categories": ["Video Conferencing"] }
+      ]
+    },
+    {
+      "name": "Security & Privacy",
+      "children": [
+        { "name": "Password Managers", "categories": ["Password Managers"] },
+        { "name": "Cloud Storage", "categories": ["Cloud Storage"] },
+        { "name": "Auth & Identity", "categories": ["Auth & Identity"] },
+        { "name": "Secrets Management", "categories": ["Secrets Management"] },
+        { "name": "Security Scanning", "categories": ["Security Scanning"] },
+        { "name": "Encryption & Privacy", "categories": ["Encryption & Privacy Tools"] }
+      ]
+    },
+    {
+      "name": "Enterprise & Business",
+      "children": [
+        { "name": "Project Management", "categories": ["Project Management"] },
+        { "name": "CRM & Sales", "categories": ["CRM & Sales"] },
+        { "name": "Accounting & Finance", "categories": ["Accounting & Finance"] },
+        { "name": "HR & People", "categories": ["HR & People"] }
+      ]
+    },
+    {
+      "name": "Education & Learning",
+      "children": [
+        { "name": "Learning Platforms", "categories": ["Learning Platforms"] },
+        { "name": "Flashcards & Study", "categories": ["Flashcards & Study"] }
+      ]
+    },
+    {
+      "name": "Games",
+      "children": [
+        { "name": "Chess", "categories": ["Chess"] },
+        { "name": "Game Engines", "categories": ["Game Engines"] }
+      ]
+    },
+    {
+      "name": "Utilities",
+      "children": [
+        { "name": "Date & Time", "categories": ["Date & Time"] },
+        { "name": "Text Processing", "categories": ["Text Processing"] },
+        { "name": "Configuration", "categories": ["Configuration"] },
+        { "name": "General Utilities", "categories": ["Utilities"] },
+        { "name": "Embedded & IoT", "categories": ["Embedded & IoT"] }
+      ]
+    }
+  ]
+}

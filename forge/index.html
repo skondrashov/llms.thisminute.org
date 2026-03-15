@@ -146,7 +146,7 @@
 
     .role-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
     .role-card {
@@ -190,6 +190,13 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    a.pattern-item:hover {
+      border-color: var(--border-light);
+      background: var(--bg-card-hover);
+      text-decoration: none;
     }
     .pattern-item strong {
       color: var(--text);
@@ -264,6 +271,11 @@
     .other-projects a:hover {
       color: var(--accent-text);
     }
+    .other-projects a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
 
     .icon-btn {
       width: 34px;
@@ -290,6 +302,7 @@
       .content { padding: 1.5rem 1rem; }
       .pattern-item { flex-direction: column; gap: 0.25rem; }
       .pattern-item strong { min-width: auto; }
+      .role-grid { grid-template-columns: 1fr; }
       .other-projects { position: static; justify-content: center; margin-top: 0.5rem; }
     }
   </style>
@@ -298,9 +311,11 @@
 
   <div class="header">
     <div class="other-projects">
-      <span class="other-projects-label">Also:</span>
-      <a href="/rhizome">Rhizome</a>
-      <a href="/toolshed">Main Menu</a>
+      <nav aria-label="Cross-site navigation" style="display: flex; gap: 0.75rem; align-items: center;">
+        <span class="other-projects-label">Also:</span>
+        <a href="/rhizome/">Rhizome</a>
+        <a href="/toolshed/">Toolshed</a>
+      </nav>
       <button class="icon-btn" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
         <svg id="theme-icon-dark" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none">
           <path d="M8 1a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 1zm0 11a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 12zm7-4a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 0115 8zM4 8a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 014 8zm8.95-3.54a.5.5 0 010 .71l-.71.71a.5.5 0 11-.71-.71l.71-.71a.5.5 0 01.71 0zM4.46 11.46a.5.5 0 010 .71l-.7.71a.5.5 0 11-.71-.71l.7-.71a.5.5 0 01.71 0zm8.49 1.42a.5.5 0 01-.71 0l-.71-.71a.5.5 0 01.71-.71l.71.71a.5.5 0 010 .71zM4.46 4.54a.5.5 0 01-.71 0l-.7-.71a.5.5 0 11.7-.71l.71.71a.5.5 0 010 .71zM8 4.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" fill="currentColor"/>
@@ -324,7 +339,7 @@
       <summary style="cursor: pointer; display: inline-block; max-width: 540px; margin: 0 auto; padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-dim); border-radius: var(--radius); line-height: 1.5; text-align: center;">I understand that I should review the code I'm about to run before I run it.</summary>
       <div style="margin-top: 1rem;">
         <pre><span class="cmd-comment"># Clone next to your projects (or where you'll start new ones)</span>
-git clone --branch v0.1 https://github.com/skondrashov/agent-forge.git
+git clone --branch v0.2 https://github.com/skondrashov/agent-forge.git
 
 <span class="cmd-comment"># Start it up</span>
 cd agent-forge
@@ -379,19 +394,20 @@ claude go</pre>
 
     <section>
       <h2>Pattern Library</h2>
+      <p>The forge scans against patterns from <a href="/rhizome/">Rhizome</a>, the agent orchestration pattern catalog.</p>
       <div class="pattern-list">
-        <div class="pattern-item">
+        <a href="/rhizome/#steward-bootstrap" class="pattern-item">
           <strong>Steward</strong>
           <span>One agent, one memory file. The right default for almost every project.</span>
-        </div>
-        <div class="pattern-item">
+        </a>
+        <a href="/rhizome/#protocol-forum-product-team" class="pattern-item">
           <strong>Startup Protocol</strong>
           <span>Standalone PROTOCOL.md with timestamps, forum voting, and ref doc routing</span>
-        </div>
-        <div class="pattern-item">
+        </a>
+        <a href="/rhizome/#reflection-loop" class="pattern-item">
           <strong>Shutdown Reflection</strong>
           <span>Agents evaluate their context at session end; feedback fixes the docs</span>
-        </div>
+        </a>
         <div class="pattern-item">
           <strong>Reference Doc Splitting</strong>
           <span>Slim AGENTS.md + role-specific ref docs to reduce context bloat</span>
@@ -406,17 +422,23 @@ claude go</pre>
   </div>
 
   <script>
-    const lightMode = localStorage.getItem('forge_theme') === 'light';
+    const savedTheme = localStorage.getItem('thisminute_theme');
+    const lightMode = savedTheme ? savedTheme === 'light'
+      : window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     function applyTheme(isLight) {
       document.body.classList.toggle('light-mode', isLight);
       document.getElementById('theme-icon-dark').style.display = isLight ? 'block' : 'none';
       document.getElementById('theme-icon-light').style.display = isLight ? 'none' : 'block';
-      localStorage.setItem('forge_theme', isLight ? 'light' : 'dark');
+      try { localStorage.setItem('thisminute_theme', isLight ? 'light' : 'dark'); } catch {}
     }
     applyTheme(lightMode);
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+        try { if (!localStorage.getItem('thisminute_theme')) applyTheme(e.matches); } catch {}
+      });
+    }
     document.getElementById('theme-toggle').addEventListener('click', () => {
-      const isLight = !document.body.classList.contains('light-mode');
-      applyTheme(isLight);
+      applyTheme(!document.body.classList.contains('light-mode'));
     });
   </script>
 

@@ -4,7 +4,8 @@ You build and maintain the portal landing page and shared CSS theme for forge.th
 
 # What You Own
 
-- `index.html` — portal page (introduces the suite, links to rhizome/toolshed/forge)
+- `index.html` — portal hub page (links to forge/rhizome/toolshed)
+- `forge/index.html` — agent-forge landing page
 - `theme.css` — shared CSS custom properties and component patterns
 
 # NOT Your Scope

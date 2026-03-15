@@ -1,0 +1,1340 @@
+[
+  {
+    "id": "vs-code",
+    "name": "Visual Studio Code",
+    "description": "Extensible code editor with built-in Git, debugging, and a massive extension ecosystem.",
+    "url": "https://code.visualstudio.com",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "editor",
+      "microsoft",
+      "extensions",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/vscode"
+  },
+  {
+    "id": "neovim",
+    "name": "Neovim",
+    "description": "Hyperextensible Vim-based text editor focused on usability and extensibility via Lua.",
+    "url": "https://neovim.io",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vim",
+      "terminal",
+      "lua",
+      "open-source"
+    ],
+    "source": "https://github.com/neovim/neovim"
+  },
+  {
+    "id": "vim",
+    "name": "Vim",
+    "description": "The classic modal text editor. Ships with most Unix systems. Extremely fast and lightweight.",
+    "url": "https://www.vim.org",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "terminal",
+      "modal",
+      "classic",
+      "open-source"
+    ],
+    "source": "https://github.com/vim/vim"
+  },
+  {
+    "id": "emacs",
+    "name": "GNU Emacs",
+    "description": "Self-documenting, extensible editor with its own Lisp dialect. An operating system disguised as an editor.",
+    "url": "https://www.gnu.org/software/emacs",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "lisp",
+      "extensible",
+      "org-mode",
+      "open-source"
+    ],
+    "source": "https://git.savannah.gnu.org/cgit/emacs.git"
+  },
+  {
+    "id": "sublime-text",
+    "name": "Sublime Text",
+    "description": "Fast, refined text editor with a rich plugin ecosystem. Known for speed and multiple cursors.",
+    "url": "https://www.sublimetext.com",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "fast",
+      "lightweight",
+      "python-api"
+    ]
+  },
+  {
+    "id": "zed",
+    "name": "Zed",
+    "description": "High-performance code editor built in Rust with native collaboration and AI features.",
+    "url": "https://zed.dev",
+    "category": "Code Editors",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "fast",
+      "collaboration",
+      "open-source"
+    ],
+    "source": "https://github.com/zed-industries/zed"
+  },
+  {
+    "id": "helix",
+    "name": "Helix",
+    "description": "Post-modern terminal editor with Kakoune-inspired selection-first modal editing and built-in LSP.",
+    "url": "https://helix-editor.com",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "terminal",
+      "modal",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/helix-editor/helix"
+  },
+  {
+    "id": "intellij-idea",
+    "name": "IntelliJ IDEA",
+    "description": "Full-featured Java/Kotlin IDE by JetBrains with deep code analysis and refactoring tools.",
+    "url": "https://www.jetbrains.com/idea",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "java",
+      "kotlin",
+      "jetbrains",
+      "ide"
+    ]
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "description": "AI-native code editor forked from VS Code. Deep integration with LLMs for code generation and editing.",
+    "url": "https://cursor.com",
+    "category": "Code Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ai",
+      "llm",
+      "vscode-fork"
+    ]
+  },
+  {
+    "id": "windows-terminal",
+    "name": "Windows Terminal",
+    "description": "Modern terminal app for Windows with tabs, GPU-accelerated rendering, and extensive customization.",
+    "url": "https://github.com/microsoft/terminal",
+    "category": "Terminal Emulators",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "microsoft",
+      "tabs",
+      "gpu-accelerated",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/terminal"
+  },
+  {
+    "id": "iterm2",
+    "name": "iTerm2",
+    "description": "Feature-rich macOS terminal replacement with split panes, search, autocomplete, and extensive configuration.",
+    "url": "https://iterm2.com",
+    "category": "Terminal Emulators",
+    "os": [
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "macos",
+      "split-panes",
+      "open-source"
+    ],
+    "source": "https://github.com/gnachman/iTerm2"
+  },
+  {
+    "id": "alacritty",
+    "name": "Alacritty",
+    "description": "GPU-accelerated terminal emulator focused on simplicity and performance. No tabs, no splits — just speed.",
+    "url": "https://alacritty.org",
+    "category": "Terminal Emulators",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "gpu",
+      "minimal",
+      "open-source"
+    ],
+    "source": "https://github.com/alacritty/alacritty"
+  },
+  {
+    "id": "kitty",
+    "name": "Kitty",
+    "description": "Fast, feature-rich GPU-based terminal emulator with image support and extensive scripting via kittens.",
+    "url": "https://sw.kovidgoyal.net/kitty",
+    "category": "Terminal Emulators",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gpu",
+      "images",
+      "scripting",
+      "open-source"
+    ],
+    "source": "https://github.com/kovidgoyal/kitty"
+  },
+  {
+    "id": "wezterm",
+    "name": "WezTerm",
+    "description": "GPU-accelerated terminal with Lua configuration, multiplexing, ligatures, and image protocol support.",
+    "url": "https://wezfurlong.org/wezterm",
+    "category": "Terminal Emulators",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "lua",
+      "gpu",
+      "multiplexer",
+      "open-source"
+    ],
+    "source": "https://github.com/wez/wezterm"
+  },
+  {
+    "id": "warp",
+    "name": "Warp",
+    "description": "Modern terminal with IDE-like input editing, AI command search, and collaborative workflows.",
+    "url": "https://www.warp.dev",
+    "category": "Terminal Emulators",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ai",
+      "modern",
+      "collaboration",
+      "rust"
+    ]
+  },
+  {
+    "id": "hyper",
+    "name": "Hyper",
+    "description": "Electron-based terminal built on web technologies. Highly extensible via npm plugins.",
+    "url": "https://hyper.is",
+    "category": "Terminal Emulators",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "electron",
+      "themes",
+      "plugins",
+      "open-source"
+    ],
+    "source": "https://github.com/vercel/hyper"
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "description": "The standard distributed version control system. Used by virtually every software project.",
+    "url": "https://git-scm.com",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "essential",
+      "open-source"
+    ],
+    "source": "https://github.com/git/git"
+  },
+  {
+    "id": "github-desktop",
+    "name": "GitHub Desktop",
+    "description": "Simple GUI for Git focused on the GitHub workflow. Great for people who prefer not to use the CLI.",
+    "url": "https://desktop.github.com",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gui",
+      "github",
+      "beginner-friendly",
+      "open-source"
+    ],
+    "source": "https://github.com/desktop/desktop"
+  },
+  {
+    "id": "gitkraken",
+    "name": "GitKraken",
+    "description": "Visual Git client with a graph view, merge conflict editor, and integrations with GitHub/GitLab/Bitbucket.",
+    "url": "https://www.gitkraken.com",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "gui",
+      "visual",
+      "merge-tool"
+    ]
+  },
+  {
+    "id": "lazygit",
+    "name": "lazygit",
+    "description": "Terminal UI for Git that makes staging, committing, rebasing, and conflict resolution fast and visual.",
+    "url": "https://github.com/jesseduffield/lazygit",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "tui",
+      "terminal",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/jesseduffield/lazygit"
+  },
+  {
+    "id": "sourcetree",
+    "name": "Sourcetree",
+    "description": "Free Git GUI by Atlassian with visual branching, stash management, and Bitbucket integration.",
+    "url": "https://www.sourcetreeapp.com",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gui",
+      "atlassian",
+      "bitbucket"
+    ]
+  },
+  {
+    "id": "tower",
+    "name": "Tower",
+    "description": "Professional Git client with pull request management, interactive rebase, and file history visualization.",
+    "url": "https://www.git-tower.com",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "gui",
+      "professional",
+      "pull-requests"
+    ]
+  },
+  {
+    "id": "dbeaver",
+    "name": "DBeaver",
+    "description": "Universal database client supporting 100+ databases. SQL editor, ER diagrams, data transfer tools.",
+    "url": "https://dbeaver.io",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "sql",
+      "universal",
+      "er-diagrams",
+      "open-source"
+    ],
+    "source": "https://github.com/dbeaver/dbeaver"
+  },
+  {
+    "id": "pgadmin",
+    "name": "pgAdmin",
+    "description": "The standard open-source administration and management tool for PostgreSQL.",
+    "url": "https://www.pgadmin.org",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "postgresql",
+      "admin",
+      "open-source"
+    ],
+    "source": "https://github.com/pgadmin-org/pgadmin4"
+  },
+  {
+    "id": "datagrip",
+    "name": "DataGrip",
+    "description": "JetBrains IDE for databases with intelligent query console, schema navigation, and data editor.",
+    "url": "https://www.jetbrains.com/datagrip",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "jetbrains",
+      "sql",
+      "multi-database"
+    ]
+  },
+  {
+    "id": "tableplus",
+    "name": "TablePlus",
+    "description": "Clean, native database GUI with multi-tab interface. Supports PostgreSQL, MySQL, SQLite, Redis, and more.",
+    "url": "https://tableplus.com",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "native",
+      "multi-database",
+      "clean-ui"
+    ]
+  },
+  {
+    "id": "beekeeper-studio",
+    "name": "Beekeeper Studio",
+    "description": "Modern SQL editor and database manager. Open-source core with a clean, minimal interface.",
+    "url": "https://www.beekeeperstudio.io",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "sql",
+      "modern",
+      "open-source"
+    ],
+    "source": "https://github.com/beekeeper-studio/beekeeper-studio"
+  },
+  {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "description": "Anthropic's agentic CLI for Claude. Reads your codebase, edits files, runs commands, and handles complex tasks.",
+    "url": "https://docs.anthropic.com/en/docs/claude-code",
+    "category": "AI Assistants",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "cli",
+      "agentic",
+      "anthropic",
+      "coding"
+    ]
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "description": "AI pair programmer that suggests code completions and entire functions from within your editor.",
+    "url": "https://github.com/features/copilot",
+    "category": "AI Assistants",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "ai",
+      "autocomplete",
+      "github",
+      "editor-extension"
+    ]
+  },
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "description": "OpenAI's conversational AI. General-purpose assistant for writing, coding, analysis, and research.",
+    "url": "https://chat.openai.com",
+    "category": "AI Assistants",
+    "os": [
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "openai",
+      "chat",
+      "general-purpose"
+    ]
+  },
+  {
+    "id": "claude-ai",
+    "name": "Claude",
+    "description": "Anthropic's conversational AI. Strong at analysis, writing, coding, and long-context reasoning.",
+    "url": "https://claude.ai",
+    "category": "AI Assistants",
+    "os": [
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "anthropic",
+      "chat",
+      "long-context",
+      "coding"
+    ]
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "description": "AI search engine that answers questions with cited sources. Combines LLMs with real-time web search.",
+    "url": "https://www.perplexity.ai",
+    "category": "AI Assistants",
+    "os": [
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "search",
+      "citations",
+      "research"
+    ]
+  },
+  {
+    "id": "windsurf",
+    "name": "Windsurf",
+    "description": "AI-powered code editor with agentic coding flows, multi-file editing, and deep codebase awareness.",
+    "url": "https://codeium.com/windsurf",
+    "category": "AI Assistants",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ai",
+      "editor",
+      "agentic",
+      "codeium"
+    ]
+  },
+  {
+    "id": "unity",
+    "name": "Unity",
+    "description": "Widely-used game engine for 2D and 3D games. Huge asset store and community. C# scripting.",
+    "url": "https://unity.com",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "gamedev",
+      "csharp",
+      "2d",
+      "3d",
+      "cross-platform"
+    ],
+    "language": "csharp"
+  },
+  {
+    "id": "unreal-engine",
+    "name": "Unreal Engine",
+    "description": "Epic's AAA game engine. Industry-standard for high-fidelity 3D. Blueprints visual scripting and C++.",
+    "url": "https://www.unrealengine.com",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "gamedev",
+      "aaa",
+      "3d",
+      "blueprints",
+      "cpp"
+    ],
+    "language": "cpp"
+  },
+  {
+    "id": "godot",
+    "name": "Godot",
+    "description": "Open-source game engine with its own GDScript language, scene system, and growing community.",
+    "url": "https://godotengine.org",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gamedev",
+      "open-source",
+      "gdscript",
+      "2d",
+      "3d"
+    ],
+    "source": "https://github.com/godotengine/godot",
+    "language": "multi"
+  },
+  {
+    "id": "gamemaker",
+    "name": "GameMaker",
+    "description": "2D-focused game engine with drag-and-drop and GML scripting. Popular for indie games.",
+    "url": "https://gamemaker.io",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "gamedev",
+      "2d",
+      "indie",
+      "gml"
+    ],
+    "language": "multi"
+  },
+  {
+    "id": "bevy",
+    "name": "Bevy",
+    "description": "Data-driven game engine built in Rust with an ECS architecture. Fast-growing open-source project.",
+    "url": "https://bevyengine.org",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "ecs",
+      "open-source",
+      "gamedev"
+    ],
+    "source": "https://github.com/bevyengine/bevy",
+    "language": "rust"
+  },
+  {
+    "id": "defold",
+    "name": "Defold",
+    "description": "Free cross-platform game engine by King. Lua scripting, small binary size, strong mobile support.",
+    "url": "https://defold.com",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gamedev",
+      "lua",
+      "mobile",
+      "2d"
+    ],
+    "source": "https://github.com/defold/defold",
+    "language": "multi"
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "description": "Versatile, beginner-friendly language dominant in data science, AI/ML, scripting, and web development.",
+    "url": "https://www.python.org",
+    "category": "Programming Languages",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "language",
+      "data-science",
+      "scripting",
+      "beginner-friendly"
+    ],
+    "source": "https://github.com/python/cpython"
+  },
+  {
+    "id": "rust-lang",
+    "name": "Rust",
+    "description": "Systems language focused on safety, speed, and concurrency. No garbage collector, memory-safe by default.",
+    "url": "https://www.rust-lang.org",
+    "category": "Programming Languages",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "language",
+      "systems",
+      "memory-safe",
+      "performance"
+    ],
+    "source": "https://github.com/rust-lang/rust"
+  },
+  {
+    "id": "go-lang",
+    "name": "Go",
+    "description": "Google's statically typed language built for simplicity and concurrency. Fast compilation, great for backends.",
+    "url": "https://go.dev",
+    "category": "Programming Languages",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "language",
+      "concurrency",
+      "google",
+      "backend"
+    ],
+    "source": "https://github.com/golang/go"
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "description": "JavaScript runtime built on V8. Powers server-side JS with a massive npm ecosystem and event-driven I/O.",
+    "url": "https://nodejs.org",
+    "category": "Programming Languages",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "runtime",
+      "npm",
+      "server-side"
+    ],
+    "source": "https://github.com/nodejs/node"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "description": "JavaScript with static types by Microsoft. Catches errors at compile time and improves developer tooling.",
+    "url": "https://www.typescriptlang.org",
+    "category": "Programming Languages",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "language",
+      "javascript",
+      "types",
+      "microsoft"
+    ],
+    "source": "https://github.com/microsoft/TypeScript"
+  },
+  {
+    "id": "java-jdk",
+    "name": "Java (OpenJDK)",
+    "description": "Widely-used, platform-independent language. Powers enterprise backends, Android apps, and large-scale systems.",
+    "url": "https://openjdk.org",
+    "category": "Programming Languages",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "language",
+      "enterprise",
+      "jvm",
+      "cross-platform"
+    ],
+    "source": "https://github.com/openjdk/jdk"
+  },
+  {
+    "id": "swift",
+    "name": "Swift",
+    "description": "Apple's modern language for iOS, macOS, and server-side development. Safe, fast, and expressive.",
+    "url": "https://www.swift.org",
+    "category": "Programming Languages",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "language",
+      "apple",
+      "ios",
+      "server-side"
+    ],
+    "source": "https://github.com/swiftlang/swift"
+  },
+  {
+    "id": "kotlin",
+    "name": "Kotlin",
+    "description": "Modern JVM language by JetBrains. Google's preferred language for Android. Concise and interoperable with Java.",
+    "url": "https://kotlinlang.org",
+    "category": "Programming Languages",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "language",
+      "android",
+      "jvm",
+      "jetbrains"
+    ],
+    "source": "https://github.com/JetBrains/kotlin"
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "description": "Meta's JavaScript library for building user interfaces with a component model and virtual DOM.",
+    "url": "https://react.dev",
+    "category": "Frontend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "frontend",
+      "components",
+      "meta"
+    ],
+    "source": "https://github.com/facebook/react",
+    "language": "javascript"
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "description": "React framework by Vercel with server-side rendering, static generation, API routes, and App Router.",
+    "url": "https://nextjs.org",
+    "category": "Frontend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "react",
+      "ssr",
+      "fullstack",
+      "vercel"
+    ],
+    "source": "https://github.com/vercel/next.js",
+    "language": "javascript"
+  },
+  {
+    "id": "django",
+    "name": "Django",
+    "description": "Batteries-included Python web framework. ORM, admin panel, authentication, and security built in.",
+    "url": "https://www.djangoproject.com",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "fullstack",
+      "orm",
+      "batteries-included"
+    ],
+    "source": "https://github.com/django/django",
+    "language": "python"
+  },
+  {
+    "id": "ruby-on-rails",
+    "name": "Ruby on Rails",
+    "description": "Convention-over-configuration web framework in Ruby. Pioneered modern web development patterns.",
+    "url": "https://rubyonrails.org",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ruby",
+      "fullstack",
+      "mvc",
+      "convention"
+    ],
+    "source": "https://github.com/rails/rails",
+    "language": "ruby"
+  },
+  {
+    "id": "vue",
+    "name": "Vue.js",
+    "description": "Progressive JavaScript framework for building UIs. Approachable, performant, and versatile.",
+    "url": "https://vuejs.org",
+    "category": "Frontend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "frontend",
+      "progressive",
+      "reactive"
+    ],
+    "source": "https://github.com/vuejs/core",
+    "language": "javascript"
+  },
+  {
+    "id": "svelte",
+    "name": "Svelte",
+    "description": "Compiler-based frontend framework that shifts work to build time. No virtual DOM, minimal runtime overhead.",
+    "url": "https://svelte.dev",
+    "category": "Frontend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "compiler",
+      "frontend",
+      "lightweight"
+    ],
+    "source": "https://github.com/sveltejs/svelte",
+    "language": "javascript"
+  },
+  {
+    "id": "fastapi",
+    "name": "FastAPI",
+    "description": "Modern Python web framework for building APIs. Async, type-hint-driven, auto-generated OpenAPI docs.",
+    "url": "https://fastapi.tiangolo.com",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "api",
+      "async",
+      "openapi"
+    ],
+    "source": "https://github.com/fastapi/fastapi",
+    "language": "python"
+  },
+  {
+    "id": "expressjs",
+    "name": "Express.js",
+    "description": "Minimal, unopinionated Node.js web framework. The de facto standard for Node.js HTTP servers.",
+    "url": "https://expressjs.com",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "nodejs",
+      "minimal",
+      "middleware",
+      "backend"
+    ],
+    "source": "https://github.com/expressjs/express",
+    "language": "javascript"
+  },
+  {
+    "id": "google-gemini",
+    "name": "Google Gemini",
+    "description": "Google's conversational AI assistant. Integrates with Google Workspace, Search, and multimodal understanding.",
+    "url": "https://gemini.google.com",
+    "category": "AI Assistants",
+    "os": [
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "google",
+      "multimodal",
+      "chat",
+      "workspace-integration"
+    ]
+  },
+  {
+    "id": "codeium",
+    "name": "Codeium",
+    "description": "Free AI code completion and chat for 70+ languages. Extensions for VS Code, JetBrains, Vim, and more.",
+    "url": "https://codeium.com",
+    "category": "AI Assistants",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ai",
+      "autocomplete",
+      "free",
+      "editor-extension"
+    ]
+  },
+  {
+    "id": "tabnine",
+    "name": "Tabnine",
+    "description": "AI code assistant with whole-line and full-function completions. Supports private models for enterprise use.",
+    "url": "https://www.tabnine.com",
+    "category": "AI Assistants",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ai",
+      "autocomplete",
+      "private-models",
+      "editor-extension"
+    ]
+  },
+  {
+    "id": "amazon-q",
+    "name": "Amazon Q Developer",
+    "description": "AWS AI coding assistant with code generation, transformation, and security scanning integrated into IDEs.",
+    "url": "https://aws.amazon.com/q/developer",
+    "category": "AI Assistants",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "aws",
+      "ai",
+      "coding",
+      "security-scanning"
+    ]
+  },
+  {
+    "id": "phaser",
+    "name": "Phaser",
+    "description": "Fast, free HTML5 game framework for making 2D games that run in the browser with Canvas and WebGL.",
+    "url": "https://phaser.io",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gamedev",
+      "html5",
+      "2d",
+      "open-source"
+    ],
+    "source": "https://github.com/phaserjs/phaser",
+    "language": "javascript"
+  },
+  {
+    "id": "renpy",
+    "name": "Ren'Py",
+    "description": "Visual novel engine used by thousands of games. Python-based scripting with built-in save/load and rollback.",
+    "url": "https://www.renpy.org",
+    "category": "Game Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gamedev",
+      "visual-novel",
+      "python",
+      "open-source"
+    ],
+    "source": "https://github.com/renpy/renpy",
+    "language": "python"
+  },
+  {
+    "id": "stride",
+    "name": "Stride",
+    "description": "Open-source C# game engine with a visual editor, PBR rendering, and VR support. Formerly Xenko.",
+    "url": "https://www.stride3d.net",
+    "category": "Game Engines",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gamedev",
+      "csharp",
+      "3d",
+      "open-source"
+    ],
+    "source": "https://github.com/stride3d/stride",
+    "language": "csharp"
+  },
+  {
+    "id": "fossil",
+    "name": "Fossil",
+    "description": "Distributed version control with built-in wiki, bug tracker, and web interface in a single executable.",
+    "url": "https://fossil-scm.org",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "dvcs",
+      "all-in-one",
+      "wiki",
+      "open-source"
+    ],
+    "source": "https://fossil-scm.org/home/dir?ci=trunk"
+  },
+  {
+    "id": "mercurial",
+    "name": "Mercurial",
+    "description": "Distributed version control system focused on ease of use and performance. Written in Python.",
+    "url": "https://www.mercurial-scm.org",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "dvcs",
+      "python",
+      "easy-to-use",
+      "open-source"
+    ],
+    "source": "https://www.mercurial-scm.org/repo/hg"
+  },
+  {
+    "id": "jujutsu",
+    "name": "Jujutsu",
+    "description": "Git-compatible VCS with first-class conflicts, operation log, and automatic rebasing. Built by Googlers.",
+    "url": "https://martinvonz.github.io/jj",
+    "category": "Version Control",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "dvcs",
+      "git-compatible",
+      "modern",
+      "open-source"
+    ],
+    "source": "https://github.com/martinvonz/jj",
+    "language": "rust"
+  },
+  {
+    "id": "adminer",
+    "name": "Adminer",
+    "description": "Lightweight database management in a single PHP file. Supports MySQL, PostgreSQL, SQLite, and more.",
+    "url": "https://www.adminer.org",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "lightweight",
+      "single-file",
+      "multi-database",
+      "open-source"
+    ],
+    "source": "https://github.com/vrana/adminer",
+    "language": "php"
+  },
+  {
+    "id": "dbvisualizer",
+    "name": "DbVisualizer",
+    "description": "Universal database client with SQL editor, visual query builder, ER diagrams, and data export tools.",
+    "url": "https://www.dbvis.com",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "sql",
+      "universal",
+      "er-diagrams",
+      "visual-query"
+    ]
+  },
+  {
+    "id": "azure-data-studio",
+    "name": "Azure Data Studio",
+    "description": "Cross-platform database tool by Microsoft for SQL Server and Azure databases. Notebooks, extensions, and modern UI.",
+    "url": "https://learn.microsoft.com/en-us/azure-data-studio",
+    "category": "Database Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "microsoft",
+      "sql-server",
+      "azure",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/azuredatastudio"
+  }
+]

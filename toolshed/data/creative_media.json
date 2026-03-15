@@ -1,0 +1,1926 @@
+[
+  {
+    "id": "ableton-live",
+    "name": "Ableton Live",
+    "description": "Music production DAW built around a unique session/arrangement duality. Industry standard for electronic music and live performance.",
+    "url": "https://www.ableton.com/en/live",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "daw",
+      "electronic",
+      "live-performance",
+      "midi"
+    ]
+  },
+  {
+    "id": "fl-studio",
+    "name": "FL Studio",
+    "description": "Popular DAW with a pattern-based workflow, lifetime free updates, and a huge plugin ecosystem.",
+    "url": "https://www.image-line.com",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "daw",
+      "beats",
+      "plugins",
+      "lifetime-updates"
+    ]
+  },
+  {
+    "id": "logic-pro",
+    "name": "Logic Pro",
+    "description": "Apple's professional DAW. Deep MIDI editing, huge sound library, and tight macOS integration.",
+    "url": "https://www.apple.com/logic-pro",
+    "category": "Music Production",
+    "os": [
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "daw",
+      "apple",
+      "professional",
+      "sound-library"
+    ]
+  },
+  {
+    "id": "reaper",
+    "name": "Reaper",
+    "description": "Lightweight, affordable DAW with extreme customizability and broad format/plugin support.",
+    "url": "https://www.reaper.fm",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "daw",
+      "lightweight",
+      "customizable",
+      "affordable"
+    ]
+  },
+  {
+    "id": "bitwig-studio",
+    "name": "Bitwig Studio",
+    "description": "Modern DAW with a modular sound engine, hardware integration, and flexible clip launching.",
+    "url": "https://www.bitwig.com",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "daw",
+      "modular",
+      "linux-support",
+      "modern"
+    ]
+  },
+  {
+    "id": "audacity",
+    "name": "Audacity",
+    "description": "Free, open-source audio editor for recording and editing. Simple but capable for podcasts and basic mixing.",
+    "url": "https://www.audacityteam.org",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "audio-editor",
+      "recording",
+      "open-source",
+      "podcasts"
+    ],
+    "source": "https://github.com/audacity/audacity"
+  },
+  {
+    "id": "garageband",
+    "name": "GarageBand",
+    "description": "Apple's free music creation app. Beginner-friendly with loops, virtual instruments, and lessons.",
+    "url": "https://www.apple.com/garageband",
+    "category": "Music Production",
+    "os": [
+      "macos",
+      "ios"
+    ],
+    "pricing": "free",
+    "tags": [
+      "apple",
+      "beginner",
+      "loops",
+      "instruments"
+    ]
+  },
+  {
+    "id": "lmms",
+    "name": "LMMS",
+    "description": "Free, open-source DAW for beat production and electronic music. Built-in synthesizers, samples, and VST support.",
+    "url": "https://lmms.io",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "daw",
+      "open-source",
+      "electronic",
+      "beats"
+    ],
+    "source": "https://github.com/LMMS/lmms"
+  },
+  {
+    "id": "ardour",
+    "name": "Ardour",
+    "description": "Free, open-source DAW for recording, editing, and mixing audio. Full MIDI support and professional-grade routing.",
+    "url": "https://ardour.org",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "daw",
+      "recording",
+      "open-source",
+      "professional"
+    ],
+    "source": "https://github.com/Ardour/ardour"
+  },
+  {
+    "id": "musescore",
+    "name": "MuseScore",
+    "description": "Free, open-source music notation software. Write, play back, and print sheet music with a full WYSIWYG editor.",
+    "url": "https://musescore.org",
+    "category": "Music Production",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "notation",
+      "sheet-music",
+      "open-source",
+      "wysiwyg"
+    ],
+    "source": "https://github.com/musescore/MuseScore"
+  },
+  {
+    "id": "davinci-resolve",
+    "name": "DaVinci Resolve",
+    "description": "Professional video editor with industry-leading color grading, Fusion VFX, and Fairlight audio — all free.",
+    "url": "https://www.blackmagicdesign.com/products/davinciresolve",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "color-grading",
+      "vfx",
+      "professional",
+      "free-tier"
+    ]
+  },
+  {
+    "id": "premiere-pro",
+    "name": "Adobe Premiere Pro",
+    "description": "Industry-standard video editor for film, TV, and web. Deep integration with After Effects and Adobe ecosystem.",
+    "url": "https://www.adobe.com/products/premiere.html",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "adobe",
+      "professional",
+      "film",
+      "creative-cloud"
+    ]
+  },
+  {
+    "id": "final-cut-pro",
+    "name": "Final Cut Pro",
+    "description": "Apple's professional video editor. Magnetic timeline, optimized for Apple silicon, ProRes support.",
+    "url": "https://www.apple.com/final-cut-pro",
+    "category": "Video Editing",
+    "os": [
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "apple",
+      "professional",
+      "magnetic-timeline"
+    ]
+  },
+  {
+    "id": "kdenlive",
+    "name": "Kdenlive",
+    "description": "Free, open-source video editor by KDE. Multi-track editing, effects, and titling. Strong Linux support.",
+    "url": "https://kdenlive.org",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "kde",
+      "multi-track",
+      "linux"
+    ],
+    "source": "https://invent.kde.org/multimedia/kdenlive"
+  },
+  {
+    "id": "shotcut",
+    "name": "Shotcut",
+    "description": "Free, open-source cross-platform video editor with a wide format support and no import required.",
+    "url": "https://www.shotcut.org",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "cross-platform",
+      "beginner-friendly"
+    ],
+    "source": "https://github.com/mltframework/shotcut"
+  },
+  {
+    "id": "capcut",
+    "name": "CapCut",
+    "description": "Free video editor by ByteDance. Popular for short-form content with templates, effects, and auto-captions.",
+    "url": "https://www.capcut.com",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "short-form",
+      "social-media",
+      "templates",
+      "auto-captions"
+    ]
+  },
+  {
+    "id": "openshot",
+    "name": "OpenShot",
+    "description": "Free, open-source video editor with a simple drag-and-drop interface, 3D animations, and keyframe support.",
+    "url": "https://www.openshot.org",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "beginner-friendly",
+      "drag-and-drop",
+      "animations"
+    ],
+    "source": "https://github.com/OpenShot/openshot-qt"
+  },
+  {
+    "id": "filmora",
+    "name": "Wondershare Filmora",
+    "description": "Beginner-friendly video editor with drag-and-drop effects, transitions, and stock media. Quick results for casual editors.",
+    "url": "https://filmora.wondershare.com",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "beginner-friendly",
+      "effects",
+      "transitions",
+      "templates"
+    ]
+  },
+  {
+    "id": "imovie",
+    "name": "iMovie",
+    "description": "Apple's free video editor for beginners. Trailers, themes, and easy timeline editing on Mac and iOS.",
+    "url": "https://www.apple.com/imovie",
+    "category": "Video Editing",
+    "os": [
+      "macos",
+      "ios"
+    ],
+    "pricing": "free",
+    "tags": [
+      "apple",
+      "beginner",
+      "trailers",
+      "simple"
+    ]
+  },
+  {
+    "id": "photoshop",
+    "name": "Adobe Photoshop",
+    "description": "The image editor. Raster graphics, photo manipulation, compositing, digital painting — the industry standard.",
+    "url": "https://www.adobe.com/products/photoshop.html",
+    "category": "Image Editors",
+    "os": [
+      "windows",
+      "macos",
+      "web"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "adobe",
+      "professional",
+      "raster",
+      "photo-editing"
+    ]
+  },
+  {
+    "id": "gimp",
+    "name": "GIMP",
+    "description": "Free, open-source image editor. Feature-rich alternative to Photoshop with scripting and plugin support.",
+    "url": "https://www.gimp.org",
+    "category": "Image Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "photo-editing",
+      "plugins"
+    ],
+    "source": "https://gitlab.gnome.org/GNOME/gimp"
+  },
+  {
+    "id": "affinity-photo",
+    "name": "Affinity Photo",
+    "description": "Professional photo editor now part of the free unified Affinity app. RAW editing, HDR merge, focus stacking, and more.",
+    "url": "https://www.affinity.studio",
+    "category": "Image Editors",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "professional",
+      "one-time-purchase",
+      "raw",
+      "hdr"
+    ]
+  },
+  {
+    "id": "photopea",
+    "name": "Photopea",
+    "description": "Free browser-based image editor that opens PSD, XCF, Sketch files. No install needed.",
+    "url": "https://www.photopea.com",
+    "category": "Image Editors",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "browser",
+      "psd-support",
+      "no-install"
+    ]
+  },
+  {
+    "id": "paint-net",
+    "name": "Paint.NET",
+    "description": "Free Windows image editor. Layers, effects, and plugins. Much more capable than MS Paint.",
+    "url": "https://www.getpaint.net",
+    "category": "Image Editors",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "windows",
+      "layers",
+      "plugins",
+      "lightweight"
+    ]
+  },
+  {
+    "id": "krita",
+    "name": "Krita",
+    "description": "Free, open-source digital painting app. Brush engines, layer management, and animation tools built for artists.",
+    "url": "https://krita.org",
+    "category": "Image Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "digital-painting",
+      "open-source",
+      "brushes",
+      "animation"
+    ],
+    "source": "https://invent.kde.org/graphics/krita"
+  },
+  {
+    "id": "pixelmator-pro",
+    "name": "Pixelmator Pro",
+    "description": "Mac-native image editor with ML-powered tools for photo editing, design, and painting. One-time purchase.",
+    "url": "https://www.pixelmator.com/pro",
+    "category": "Image Editors",
+    "os": [
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "macos",
+      "ml-powered",
+      "photo-editing",
+      "design"
+    ]
+  },
+  {
+    "id": "pixlr",
+    "name": "Pixlr",
+    "description": "Browser-based image editor with AI-powered tools, layers, and effects. Quick edits without installing software.",
+    "url": "https://pixlr.com",
+    "category": "Image Editors",
+    "os": [
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "browser",
+      "ai-tools",
+      "layers",
+      "quick-edits"
+    ]
+  },
+  {
+    "id": "rawtherapee",
+    "name": "RawTherapee",
+    "description": "Free, open-source RAW photo processing program. Non-destructive editing with advanced color management and batch processing.",
+    "url": "https://rawtherapee.com",
+    "category": "Image Editors",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "raw",
+      "open-source",
+      "non-destructive",
+      "batch-processing"
+    ],
+    "source": "https://github.com/Beep6581/RawTherapee"
+  },
+  {
+    "id": "canva",
+    "name": "Canva",
+    "description": "Browser-based design platform with templates for social media, presentations, and print. Drag-and-drop with a huge asset library.",
+    "url": "https://www.canva.com",
+    "category": "Image Editors",
+    "os": [
+      "web",
+      "windows",
+      "macos",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "design",
+      "templates",
+      "social-media",
+      "drag-and-drop"
+    ]
+  },
+  {
+    "id": "luminar-neo",
+    "name": "Luminar Neo",
+    "description": "AI-powered photo editor by Skylum. One-click sky replacement, portrait retouching, and creative effects.",
+    "url": "https://skylum.com/luminar",
+    "category": "Image Editors",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "ai-powered",
+      "photo-editing",
+      "sky-replacement",
+      "retouching"
+    ]
+  },
+  {
+    "id": "acorn",
+    "name": "Acorn",
+    "description": "Image editor for macOS with layers, filters, vector tools, and a non-destructive workflow. Lighter than Photoshop.",
+    "url": "https://flyingmeat.com/acorn",
+    "category": "Image Editors",
+    "os": [
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "macos",
+      "layers",
+      "filters",
+      "lightweight"
+    ]
+  },
+  {
+    "id": "adobe-lightroom",
+    "name": "Adobe Lightroom",
+    "description": "Photo editor and organizer for managing large libraries. Non-destructive RAW editing, presets, and cloud sync.",
+    "url": "https://www.adobe.com/products/photoshop-lightroom.html",
+    "category": "Photo Management",
+    "os": [
+      "windows",
+      "macos",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "adobe",
+      "raw",
+      "photo-organization",
+      "presets"
+    ]
+  },
+  {
+    "id": "darktable",
+    "name": "Darktable",
+    "description": "Free, open-source photography workflow app. Non-destructive RAW processing, tethered shooting, and advanced color management.",
+    "url": "https://www.darktable.org",
+    "category": "Photo Management",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "raw",
+      "non-destructive",
+      "photography"
+    ],
+    "source": "https://github.com/darktable-org/darktable"
+  },
+  {
+    "id": "digikam",
+    "name": "digiKam",
+    "description": "Free, open-source photo management app with advanced tagging, face recognition, and geotagging for large collections.",
+    "url": "https://www.digikam.org",
+    "category": "Photo Management",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "photo-management",
+      "face-recognition",
+      "tagging"
+    ],
+    "source": "https://invent.kde.org/graphics/digikam"
+  },
+  {
+    "id": "google-photos",
+    "name": "Google Photos",
+    "description": "Cloud photo storage and organization with AI-powered search, automatic albums, and built-in editing tools.",
+    "url": "https://photos.google.com",
+    "category": "Photo Management",
+    "os": [
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "google",
+      "cloud",
+      "ai-search",
+      "automatic-albums"
+    ]
+  },
+  {
+    "id": "immich",
+    "name": "Immich",
+    "description": "Self-hosted photo and video backup solution with mobile upload, ML-based search, and a Google Photos-like UI.",
+    "url": "https://immich.app",
+    "category": "Photo Management",
+    "os": [
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "free",
+    "tags": [
+      "self-hosted",
+      "open-source",
+      "backup",
+      "ml-search"
+    ],
+    "source": "https://github.com/immich-app/immich"
+  },
+  {
+    "id": "photoprism",
+    "name": "PhotoPrism",
+    "description": "Self-hosted, AI-powered photo management app. Automatic tagging, face recognition, and map view for geotagged photos.",
+    "url": "https://www.photoprism.app",
+    "category": "Photo Management",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "self-hosted",
+      "open-source",
+      "ai-tagging",
+      "face-recognition"
+    ],
+    "source": "https://github.com/photoprism/photoprism"
+  },
+  {
+    "id": "apple-photos",
+    "name": "Apple Photos",
+    "description": "Apple's built-in photo library manager. iCloud sync, Memories, face/object recognition, and basic editing tools.",
+    "url": "https://www.apple.com/ios/photos",
+    "category": "Photo Management",
+    "os": [
+      "macos",
+      "ios"
+    ],
+    "pricing": "free",
+    "tags": [
+      "apple",
+      "icloud",
+      "face-recognition",
+      "built-in"
+    ]
+  },
+  {
+    "id": "shotwell",
+    "name": "Shotwell",
+    "description": "Simple photo manager for GNOME. Import, organize, tag, and do basic edits on your local photo library.",
+    "url": "https://wiki.gnome.org/Apps/Shotwell",
+    "category": "Photo Management",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gnome",
+      "open-source",
+      "simple",
+      "local"
+    ],
+    "source": "https://gitlab.gnome.org/GNOME/shotwell"
+  },
+  {
+    "id": "piwigo",
+    "name": "Piwigo",
+    "description": "Self-hosted photo gallery for the web. Organize thousands of photos with albums, tags, and user management.",
+    "url": "https://piwigo.org",
+    "category": "Photo Management",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "self-hosted",
+      "gallery",
+      "open-source",
+      "albums"
+    ],
+    "source": "https://github.com/Piwigo/Piwigo"
+  },
+  {
+    "id": "lychee-photo",
+    "name": "Lychee",
+    "description": "Free, self-hosted photo management tool. Beautiful gallery UI with albums, tags, and sharing built in.",
+    "url": "https://lychee.electerious.com",
+    "category": "Photo Management",
+    "os": [
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "self-hosted",
+      "gallery",
+      "open-source",
+      "sharing"
+    ],
+    "source": "https://github.com/LycheeOrg/Lychee"
+  },
+  {
+    "id": "adobe-illustrator",
+    "name": "Adobe Illustrator",
+    "description": "Industry-standard vector graphics editor for logos, icons, illustrations, and print design.",
+    "url": "https://www.adobe.com/products/illustrator.html",
+    "category": "Vector & Illustration",
+    "os": [
+      "windows",
+      "macos",
+      "web"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "adobe",
+      "vector",
+      "logos",
+      "professional"
+    ]
+  },
+  {
+    "id": "inkscape",
+    "name": "Inkscape",
+    "description": "Free, open-source vector graphics editor. SVG-native with path editing, clones, filters, and extensions.",
+    "url": "https://inkscape.org",
+    "category": "Vector & Illustration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "svg",
+      "vector",
+      "extensions"
+    ],
+    "source": "https://gitlab.com/inkscape/inkscape"
+  },
+  {
+    "id": "affinity-designer",
+    "name": "Affinity Designer",
+    "description": "Vector and raster design tool with pixel-perfect precision. Now part of the free unified Affinity app by Canva.",
+    "url": "https://www.affinity.studio/get-affinity",
+    "category": "Vector & Illustration",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vector",
+      "raster",
+      "one-time-purchase",
+      "professional"
+    ]
+  },
+  {
+    "id": "linearity-curve",
+    "name": "Linearity Curve",
+    "description": "Mac and iOS vector design app (formerly Vectornator). Intuitive pen tool, auto-trace, and real-time collaboration.",
+    "url": "https://www.linearity.io/curve",
+    "category": "Vector & Illustration",
+    "os": [
+      "macos",
+      "ios"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector",
+      "auto-trace",
+      "collaboration",
+      "apple"
+    ]
+  },
+  {
+    "id": "vectr",
+    "name": "Vectr",
+    "description": "Free, browser-based vector graphics editor for creating simple vector art, logos, and presentations.",
+    "url": "https://vectr.com",
+    "category": "Vector & Illustration",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vector",
+      "browser",
+      "beginner-friendly",
+      "free"
+    ]
+  },
+  {
+    "id": "svg-edit",
+    "name": "SVG-Edit",
+    "description": "Free, open-source browser-based SVG editor. Lightweight tool for creating and editing SVG files directly in the browser.",
+    "url": "https://svgedit.netlify.app",
+    "category": "Vector & Illustration",
+    "os": [
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "svg",
+      "browser",
+      "open-source",
+      "lightweight"
+    ],
+    "source": "https://github.com/SVG-Edit/svgedit"
+  },
+  {
+    "id": "boxy-svg",
+    "name": "Boxy SVG",
+    "description": "Modern SVG editor for web designers. Clean interface with precise control over SVG elements and CSS styling.",
+    "url": "https://boxy-svg.com",
+    "category": "Vector & Illustration",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "svg",
+      "web-design",
+      "css",
+      "modern"
+    ]
+  },
+  {
+    "id": "gravit-designer",
+    "name": "Gravit Designer",
+    "description": "Free vector design app available on all platforms. Full-featured with path editing, pages, and export to SVG, PDF, and PNG.",
+    "url": "https://www.designer.io",
+    "category": "Vector & Illustration",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector",
+      "cross-platform",
+      "svg",
+      "free-tier"
+    ]
+  },
+  {
+    "id": "vectorstyler",
+    "name": "VectorStyler",
+    "description": "Advanced vector graphics editor with multi-artboard support, parametric shapes, and extensive typography controls.",
+    "url": "https://www.vectorstyler.com",
+    "category": "Vector & Illustration",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "vector",
+      "typography",
+      "parametric",
+      "artboards"
+    ]
+  },
+  {
+    "id": "blender",
+    "name": "Blender",
+    "description": "Free, open-source 3D creation suite. Modeling, sculpting, animation, rendering, compositing, and video editing.",
+    "url": "https://www.blender.org",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "3d",
+      "modeling",
+      "animation",
+      "rendering",
+      "open-source"
+    ],
+    "source": "https://projects.blender.org/blender/blender"
+  },
+  {
+    "id": "maya",
+    "name": "Autodesk Maya",
+    "description": "Industry-standard 3D software for film VFX, game assets, and animation. Extremely deep toolset.",
+    "url": "https://www.autodesk.com/products/maya",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "3d",
+      "vfx",
+      "animation",
+      "film",
+      "autodesk"
+    ]
+  },
+  {
+    "id": "cinema-4d",
+    "name": "Cinema 4D",
+    "description": "Professional 3D software known for motion graphics, ease of use, and After Effects integration.",
+    "url": "https://www.maxon.net/en/cinema-4d",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "3d",
+      "motion-graphics",
+      "mograph"
+    ]
+  },
+  {
+    "id": "freecad",
+    "name": "FreeCAD",
+    "description": "Free, open-source parametric 3D CAD modeler for engineering and product design.",
+    "url": "https://www.freecad.org",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cad",
+      "parametric",
+      "engineering",
+      "open-source"
+    ],
+    "source": "https://github.com/FreeCAD/FreeCAD"
+  },
+  {
+    "id": "sketchup",
+    "name": "SketchUp",
+    "description": "Intuitive 3D modeling tool popular for architecture, interior design, and woodworking. Easy to learn.",
+    "url": "https://www.sketchup.com",
+    "category": "3D & CAD",
+    "os": [
+      "web",
+      "windows",
+      "macos"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "architecture",
+      "3d",
+      "easy-to-learn"
+    ]
+  },
+  {
+    "id": "fusion-360",
+    "name": "Fusion 360",
+    "description": "Cloud-based CAD/CAM/CAE by Autodesk. Parametric modeling, simulation, and manufacturing in one tool.",
+    "url": "https://www.autodesk.com/products/fusion-360",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "cad",
+      "cam",
+      "autodesk",
+      "cloud",
+      "parametric"
+    ]
+  },
+  {
+    "id": "openscad",
+    "name": "OpenSCAD",
+    "description": "Free, open-source script-based 3D CAD modeler. Define models with code rather than interactive modeling.",
+    "url": "https://openscad.org",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cad",
+      "script-based",
+      "open-source",
+      "parametric"
+    ],
+    "source": "https://github.com/openscad/openscad"
+  },
+  {
+    "id": "rhino",
+    "name": "Rhino",
+    "description": "NURBS-based 3D modeling for industrial design, architecture, and jewelry. Extensible with Grasshopper visual scripting.",
+    "url": "https://www.rhino3d.com",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "nurbs",
+      "industrial-design",
+      "architecture",
+      "grasshopper"
+    ]
+  },
+  {
+    "id": "houdini",
+    "name": "Houdini",
+    "description": "Procedural 3D software for VFX, simulations, and motion graphics. Node-based workflow used in film and games.",
+    "url": "https://www.sidefx.com/products/houdini",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "procedural",
+      "vfx",
+      "simulations",
+      "node-based"
+    ]
+  },
+  {
+    "id": "tinkercad",
+    "name": "Tinkercad",
+    "description": "Free, browser-based 3D modeling tool by Autodesk. Beginner-friendly for 3D printing, electronics, and coding.",
+    "url": "https://www.tinkercad.com",
+    "category": "3D & CAD",
+    "os": [
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "beginner",
+      "3d-printing",
+      "browser",
+      "autodesk"
+    ]
+  },
+  {
+    "id": "solidworks",
+    "name": "SolidWorks",
+    "description": "Professional CAD software for mechanical engineering and product design. Parametric modeling, simulation, and PDM.",
+    "url": "https://www.solidworks.com",
+    "category": "3D & CAD",
+    "os": [
+      "windows"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "cad",
+      "mechanical-engineering",
+      "parametric",
+      "simulation"
+    ]
+  },
+  {
+    "id": "onshape",
+    "name": "Onshape",
+    "description": "Cloud-native CAD platform with real-time collaboration. Parametric modeling, assemblies, and version control in the browser.",
+    "url": "https://www.onshape.com",
+    "category": "3D & CAD",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "cad",
+      "cloud",
+      "collaboration",
+      "parametric"
+    ]
+  },
+  {
+    "id": "plasticity",
+    "name": "Plasticity",
+    "description": "Fast, production-ready 3D modeling tool for concept artists and designers. NURBS-based with a minimal, focused UI.",
+    "url": "https://www.plasticity.xyz",
+    "category": "3D & CAD",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "3d",
+      "nurbs",
+      "concept-art",
+      "minimal"
+    ]
+  },
+  {
+    "id": "vlc",
+    "name": "VLC",
+    "description": "Plays everything. Free, open-source media player that handles virtually any audio/video format.",
+    "url": "https://www.videolan.org/vlc",
+    "category": "Media Players",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "ios",
+      "android"
+    ],
+    "pricing": "free",
+    "tags": [
+      "universal",
+      "codecs",
+      "open-source"
+    ],
+    "source": "https://code.videolan.org/videolan/vlc"
+  },
+  {
+    "id": "mpv",
+    "name": "mpv",
+    "description": "Minimalist, high-quality media player. Scriptable, GPU-accelerated, and beloved by power users.",
+    "url": "https://mpv.io",
+    "category": "Media Players",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "minimal",
+      "gpu",
+      "scriptable",
+      "open-source"
+    ],
+    "source": "https://github.com/mpv-player/mpv"
+  },
+  {
+    "id": "iina",
+    "name": "IINA",
+    "description": "Modern macOS media player built on mpv. Native UI, picture-in-picture, and Touch Bar support.",
+    "url": "https://iina.io",
+    "category": "Media Players",
+    "os": [
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "macos",
+      "native",
+      "mpv-based",
+      "open-source"
+    ],
+    "source": "https://github.com/iina/iina"
+  },
+  {
+    "id": "foobar2000",
+    "name": "foobar2000",
+    "description": "Highly customizable audio player for Windows. Lightweight, supports advanced tagging and DSP.",
+    "url": "https://www.foobar2000.org",
+    "category": "Media Players",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "audio",
+      "customizable",
+      "lightweight",
+      "dsp"
+    ]
+  },
+  {
+    "id": "spotify",
+    "name": "Spotify",
+    "description": "Dominant music streaming service with 100M+ tracks, podcasts, playlists, and social features.",
+    "url": "https://www.spotify.com",
+    "category": "Media Players",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "streaming",
+      "music",
+      "podcasts",
+      "playlists"
+    ]
+  },
+  {
+    "id": "plex",
+    "name": "Plex",
+    "description": "Media server that organizes and streams your personal video, music, and photo libraries to any device.",
+    "url": "https://www.plex.tv",
+    "category": "Media Players",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "media-server",
+      "streaming",
+      "self-hosted",
+      "library"
+    ]
+  },
+  {
+    "id": "musicbee",
+    "name": "MusicBee",
+    "description": "Feature-rich music manager and player for Windows. Great library management, skins, and plugin support.",
+    "url": "https://getmusicbee.com",
+    "category": "Media Players",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "music",
+      "library-management",
+      "skins",
+      "plugins"
+    ]
+  },
+  {
+    "id": "jellyfin",
+    "name": "Jellyfin",
+    "description": "Free, open-source media server. Self-hosted Plex alternative with no premium tier — all features are free.",
+    "url": "https://jellyfin.org",
+    "category": "Media Players",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "free",
+    "tags": [
+      "media-server",
+      "self-hosted",
+      "open-source",
+      "free"
+    ],
+    "source": "https://github.com/jellyfin/jellyfin"
+  },
+  {
+    "id": "kodi",
+    "name": "Kodi",
+    "description": "Free, open-source media center. Plays local and network media with add-ons, skins, and PVR support.",
+    "url": "https://kodi.tv",
+    "category": "Media Players",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "ios",
+      "android"
+    ],
+    "pricing": "free",
+    "tags": [
+      "media-center",
+      "add-ons",
+      "open-source",
+      "pvr"
+    ],
+    "source": "https://github.com/xbmc/xbmc"
+  },
+  {
+    "id": "strawberry-music-player",
+    "name": "Strawberry Music Player",
+    "description": "Free, open-source music player and library organizer. Fork of Clementine with audio CD support and tag editing.",
+    "url": "https://www.strawberrymusicplayer.org",
+    "category": "Media Players",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "music",
+      "library",
+      "open-source",
+      "tagging"
+    ],
+    "source": "https://github.com/strawberrymusicplayer/strawberry"
+  },
+  {
+    "id": "obs-studio",
+    "name": "OBS Studio",
+    "description": "Free, open-source software for live streaming and screen recording. The standard for streamers and creators.",
+    "url": "https://obsproject.com",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "streaming",
+      "screen-recording",
+      "open-source",
+      "twitch"
+    ],
+    "source": "https://github.com/obsproject/obs-studio"
+  },
+  {
+    "id": "streamlabs",
+    "name": "Streamlabs",
+    "description": "Streaming platform built on OBS with alerts, overlays, widgets, and an integrated app store.",
+    "url": "https://streamlabs.com",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "streaming",
+      "overlays",
+      "alerts",
+      "twitch"
+    ]
+  },
+  {
+    "id": "loom",
+    "name": "Loom",
+    "description": "Quick video messaging for work. Record screen and camera, share with a link, get viewer analytics.",
+    "url": "https://www.loom.com",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "windows",
+      "macos",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "video-messaging",
+      "async",
+      "workplace",
+      "screen-recording"
+    ]
+  },
+  {
+    "id": "sharex",
+    "name": "ShareX",
+    "description": "Free, open-source screen capture and recording tool for Windows. GIF capture, annotations, and auto-upload.",
+    "url": "https://getsharex.com",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "windows"
+    ],
+    "pricing": "free",
+    "tags": [
+      "screenshot",
+      "screen-recording",
+      "gif",
+      "open-source"
+    ],
+    "source": "https://github.com/ShareX/ShareX"
+  },
+  {
+    "id": "camtasia",
+    "name": "Camtasia",
+    "description": "Screen recorder and video editor for creating tutorials and presentations. Templates and annotations built in.",
+    "url": "https://www.techsmith.com/camtasia.html",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "tutorials",
+      "screen-recording",
+      "video-editing",
+      "presentations"
+    ]
+  },
+  {
+    "id": "screenpal",
+    "name": "ScreenPal",
+    "description": "Simple screen recorder and editor with webcam overlay, annotations, and easy sharing.",
+    "url": "https://screenpal.com",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "windows",
+      "macos",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "screen-recording",
+      "webcam",
+      "simple",
+      "sharing"
+    ]
+  },
+  {
+    "id": "flameshot",
+    "name": "Flameshot",
+    "description": "Free, open-source screenshot tool with annotation, blur, and upload features. Popular on Linux desktops.",
+    "url": "https://flameshot.org",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "screenshot",
+      "annotation",
+      "open-source",
+      "linux"
+    ],
+    "source": "https://github.com/flameshot-org/flameshot"
+  },
+  {
+    "id": "kap",
+    "name": "Kap",
+    "description": "Free, open-source screen recorder for macOS. Exports to GIF, MP4, WebM, and APNG with plugin support.",
+    "url": "https://getkap.co",
+    "category": "Screen Recording / Streaming",
+    "os": [
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "screen-recording",
+      "gif",
+      "macos",
+      "open-source"
+    ],
+    "source": "https://github.com/wulkano/Kap"
+  },
+  {
+    "id": "pillow",
+    "name": "Pillow",
+    "description": "Python imaging library fork. Open, manipulate, and save image files in dozens of formats.",
+    "url": "https://python-pillow.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "image-processing",
+      "pil",
+      "open-source"
+    ],
+    "source": "https://github.com/python-pillow/Pillow",
+    "language": "python"
+  },
+  {
+    "id": "sharp",
+    "name": "Sharp",
+    "description": "High-performance Node.js image processing. Resize, convert, and transform images using libvips. Very fast.",
+    "url": "https://sharp.pixelplumbing.com",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "nodejs",
+      "image-processing",
+      "performance",
+      "open-source"
+    ],
+    "source": "https://github.com/lovell/sharp",
+    "language": "javascript"
+  },
+  {
+    "id": "imagemagick",
+    "name": "ImageMagick",
+    "description": "CLI suite for image conversion and manipulation. Resize, crop, composite, and convert between 200+ formats.",
+    "url": "https://imagemagick.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "image-processing",
+      "conversion",
+      "open-source"
+    ],
+    "source": "https://github.com/ImageMagick/ImageMagick",
+    "language": "c"
+  },
+  {
+    "id": "opencv",
+    "name": "OpenCV",
+    "description": "Open-source computer vision library. Image processing, object detection, video analysis, and ML modules.",
+    "url": "https://opencv.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "computer-vision",
+      "image-processing",
+      "open-source"
+    ],
+    "source": "https://github.com/opencv/opencv",
+    "language": "cpp"
+  },
+  {
+    "id": "libvips",
+    "name": "libvips",
+    "description": "Fast image processing library with low memory usage. Handles large images efficiently with streaming pipelines.",
+    "url": "https://www.libvips.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "image-processing",
+      "low-memory",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/libvips/libvips",
+    "language": "c"
+  },
+  {
+    "id": "exiftool",
+    "name": "ExifTool",
+    "description": "CLI tool for reading, writing, and editing metadata in image, audio, and video files. Supports 400+ formats.",
+    "url": "https://exiftool.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "metadata",
+      "exif",
+      "cli",
+      "open-source"
+    ],
+    "source": "https://github.com/exiftool/exiftool",
+    "language": "perl"
+  },
+  {
+    "id": "graphicsmagick",
+    "name": "GraphicsMagick",
+    "description": "Image processing suite forked from ImageMagick. Focuses on stability, performance, and a smaller attack surface.",
+    "url": "http://www.graphicsmagick.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "image-processing",
+      "stable",
+      "open-source"
+    ],
+    "source": "https://sourceforge.net/projects/graphicsmagick",
+    "language": "c"
+  },
+  {
+    "id": "squoosh",
+    "name": "Squoosh",
+    "description": "Browser-based image compression tool by Google. Compare codecs side-by-side and optimize images with real-time preview.",
+    "url": "https://squoosh.app",
+    "category": "Image Processing",
+    "os": [
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "compression",
+      "browser",
+      "google",
+      "open-source"
+    ],
+    "source": "https://github.com/GoogleChromeLabs/squoosh"
+  },
+  {
+    "id": "tinypng",
+    "name": "TinyPNG",
+    "description": "Smart lossy compression for PNG and JPEG images. Reduces file sizes significantly while preserving visual quality.",
+    "url": "https://tinypng.com",
+    "category": "Image Processing",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "compression",
+      "png",
+      "jpeg",
+      "optimization"
+    ]
+  },
+  {
+    "id": "imgproxy",
+    "name": "imgproxy",
+    "description": "Fast, secure image processing server. Resize, crop, and convert images on-the-fly via URL parameters.",
+    "url": "https://imgproxy.net",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "server",
+      "image-processing",
+      "on-the-fly",
+      "open-source"
+    ],
+    "source": "https://github.com/imgproxy/imgproxy",
+    "language": "go"
+  },
+  {
+    "id": "ffmpeg",
+    "name": "FFmpeg",
+    "description": "Swiss army knife of audio/video processing. Transcode, stream, filter, and mux virtually any media format.",
+    "url": "https://ffmpeg.org",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "video",
+      "audio",
+      "transcoding",
+      "open-source"
+    ],
+    "source": "https://git.ffmpeg.org/ffmpeg.git",
+    "language": "c"
+  },
+  {
+    "id": "handbrake",
+    "name": "HandBrake",
+    "description": "Free, open-source video transcoder for converting video between formats. Presets for common devices and quality levels.",
+    "url": "https://handbrake.fr",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "video",
+      "transcoding",
+      "converter",
+      "open-source"
+    ],
+    "source": "https://github.com/HandBrake/HandBrake"
+  },
+  {
+    "id": "yt-dlp",
+    "name": "yt-dlp",
+    "description": "CLI tool for downloading video and audio from YouTube and thousands of other sites. Fork of youtube-dl with active development.",
+    "url": "https://github.com/yt-dlp/yt-dlp",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "video-download",
+      "youtube",
+      "open-source"
+    ],
+    "source": "https://github.com/yt-dlp/yt-dlp",
+    "language": "python"
+  },
+  {
+    "id": "mediainfo",
+    "name": "MediaInfo",
+    "description": "Displays technical metadata for audio and video files. Shows codec, bitrate, resolution, and container details.",
+    "url": "https://mediaarea.net/en/MediaInfo",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "metadata",
+      "media-analysis",
+      "codec-info",
+      "open-source"
+    ],
+    "source": "https://github.com/MediaArea/MediaInfo"
+  },
+  {
+    "id": "sox",
+    "name": "SoX",
+    "description": "CLI audio processing tool for converting, recording, and applying effects to audio files. The Swiss army knife of audio.",
+    "url": "https://sourceforge.net/projects/sox",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "audio",
+      "conversion",
+      "open-source"
+    ],
+    "source": "https://sourceforge.net/projects/sox",
+    "language": "c"
+  },
+  {
+    "id": "mkvtoolnix",
+    "name": "MKVToolNix",
+    "description": "Tools for creating, altering, and inspecting Matroska (MKV) files. Merge, split, and edit tracks and metadata.",
+    "url": "https://mkvtoolnix.download",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "mkv",
+      "muxing",
+      "metadata",
+      "open-source"
+    ],
+    "source": "https://gitlab.com/mbunkus/mkvtoolnix"
+  },
+  {
+    "id": "avidemux",
+    "name": "Avidemux",
+    "description": "Free video editor for simple cutting, filtering, and encoding tasks. Supports AVI, MP4, MKV, and many codecs.",
+    "url": "http://avidemux.sourceforge.net",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "video",
+      "cutting",
+      "encoding",
+      "open-source"
+    ],
+    "source": "https://github.com/mean00/avidemux2"
+  },
+  {
+    "id": "mp3tag",
+    "name": "Mp3tag",
+    "description": "Powerful audio metadata editor for Windows. Batch-edit tags, rename files, and fetch cover art for MP3, FLAC, and more.",
+    "url": "https://www.mp3tag.de",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "audio",
+      "metadata",
+      "tagging",
+      "batch"
+    ]
+  },
+  {
+    "id": "shutter-encoder",
+    "name": "Shutter Encoder",
+    "description": "Free media converter based on FFmpeg. Convert video, audio, and images with a visual interface and batch processing.",
+    "url": "https://www.shutterencoder.com",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "video",
+      "audio",
+      "conversion",
+      "ffmpeg-based"
+    ]
+  }
+]

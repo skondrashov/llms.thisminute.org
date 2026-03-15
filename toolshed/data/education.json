@@ -1,0 +1,238 @@
+[
+  {
+    "id": "khan-academy",
+    "name": "Khan Academy",
+    "description": "Free educational platform covering math, science, computing, and more. Video lessons, practice exercises, and personalized learning.",
+    "url": "https://www.khanacademy.org",
+    "category": "Learning Platforms",
+    "os": ["web", "ios", "android"],
+    "pricing": "free",
+    "tags": ["free-education", "math", "science", "video-lessons", "nonprofit"]
+  },
+  {
+    "id": "coursera",
+    "name": "Coursera",
+    "description": "Online learning platform offering courses, certificates, and degrees from top universities and companies worldwide.",
+    "url": "https://www.coursera.org",
+    "category": "Learning Platforms",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["university-courses", "certificates", "degrees", "mooc"]
+  },
+  {
+    "id": "udemy",
+    "name": "Udemy",
+    "description": "Marketplace for online courses on virtually any topic. Instructor-created content with lifetime access after purchase.",
+    "url": "https://www.udemy.com",
+    "category": "Learning Platforms",
+    "os": ["web", "ios", "android"],
+    "pricing": "paid",
+    "tags": ["marketplace", "on-demand", "lifetime-access", "diverse-topics"]
+  },
+  {
+    "id": "freecodecamp",
+    "name": "freeCodeCamp",
+    "description": "Free, nonprofit coding bootcamp. Interactive curriculum covering web development, data science, and machine learning with certifications.",
+    "url": "https://www.freecodecamp.org",
+    "category": "Learning Platforms",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["coding", "free", "nonprofit", "web-development", "certifications"],
+    "source": "https://github.com/freeCodeCamp/freeCodeCamp"
+  },
+  {
+    "id": "codecademy",
+    "name": "Codecademy",
+    "description": "Interactive coding education platform. Hands-on exercises in Python, JavaScript, SQL, and 14+ languages with guided paths.",
+    "url": "https://www.codecademy.com",
+    "category": "Learning Platforms",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["interactive", "coding", "hands-on", "guided-paths"]
+  },
+  {
+    "id": "edx",
+    "name": "edX",
+    "description": "Online learning platform founded by Harvard and MIT. University-level courses, professional certificates, and MicroMasters programs.",
+    "url": "https://www.edx.org",
+    "category": "Learning Platforms",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["university-courses", "harvard", "mit", "certificates", "mooc"]
+  },
+  {
+    "id": "brilliant",
+    "name": "Brilliant",
+    "description": "Interactive learning platform for math, science, and computer science. Bite-sized visual lessons that build problem-solving skills.",
+    "url": "https://brilliant.org",
+    "category": "Learning Platforms",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["interactive", "math", "science", "problem-solving", "visual"]
+  },
+  {
+    "id": "the-odin-project",
+    "name": "The Odin Project",
+    "description": "Free, open-source web development curriculum. Full-stack path covering HTML, CSS, JavaScript, Ruby on Rails, and Node.js.",
+    "url": "https://www.theodinproject.com",
+    "category": "Learning Platforms",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["web-development", "full-stack", "open-source", "curriculum"],
+    "source": "https://github.com/TheOdinProject/theodinproject"
+  },
+  {
+    "id": "pluralsight",
+    "name": "Pluralsight",
+    "description": "Technology skills platform with expert-led video courses. Skill assessments, learning paths, and hands-on labs for IT and dev teams.",
+    "url": "https://www.pluralsight.com",
+    "category": "Learning Platforms",
+    "os": ["web", "ios", "android"],
+    "pricing": "subscription",
+    "tags": ["technology", "skill-assessments", "learning-paths", "enterprise"]
+  },
+  {
+    "id": "leetcode",
+    "name": "LeetCode",
+    "description": "Coding challenge platform for technical interview prep. 3000+ problems, contests, and discussion forums for algorithm practice.",
+    "url": "https://leetcode.com",
+    "category": "Learning Platforms",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["coding-challenges", "interview-prep", "algorithms", "contests"]
+  },
+  {
+    "id": "exercism",
+    "name": "Exercism",
+    "description": "Free coding practice in 70+ languages with mentor feedback. Concept exercises and practice tracks for every skill level.",
+    "url": "https://exercism.org",
+    "category": "Learning Platforms",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["coding-practice", "mentorship", "multi-language", "open-source"],
+    "source": "https://github.com/exercism"
+  },
+  {
+    "id": "skillshare",
+    "name": "Skillshare",
+    "description": "Online learning community for creative skills. Short video classes in design, illustration, photography, and business.",
+    "url": "https://www.skillshare.com",
+    "category": "Learning Platforms",
+    "os": ["web", "ios", "android"],
+    "pricing": "subscription",
+    "tags": ["creative-skills", "design", "illustration", "community"]
+  },
+  {
+    "id": "anki",
+    "name": "Anki",
+    "description": "Spaced repetition flashcard app for efficient memorization. Highly customizable with add-ons, media support, and shared decks.",
+    "url": "https://apps.ankiweb.net",
+    "category": "Flashcards & Study",
+    "os": ["windows", "macos", "linux", "ios", "android", "web"],
+    "pricing": "freemium",
+    "tags": ["spaced-repetition", "flashcards", "open-source", "customizable"],
+    "source": "https://github.com/ankitects/anki"
+  },
+  {
+    "id": "quizlet",
+    "name": "Quizlet",
+    "description": "Flashcard and study tool with multiple learning modes. AI-powered study paths, practice tests, and millions of shared sets.",
+    "url": "https://quizlet.com",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["flashcards", "study-modes", "ai-powered", "shared-sets"]
+  },
+  {
+    "id": "brainscape",
+    "name": "Brainscape",
+    "description": "Adaptive flashcard platform using confidence-based repetition. Pre-made and user-created decks across academic and professional topics.",
+    "url": "https://www.brainscape.com",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["adaptive", "flashcards", "confidence-based", "professional"]
+  },
+  {
+    "id": "remnote",
+    "name": "RemNote",
+    "description": "Note-taking tool with built-in spaced repetition. Turns notes into flashcards automatically. Knowledge base and study tool in one.",
+    "url": "https://www.remnote.com",
+    "category": "Flashcards & Study",
+    "os": ["windows", "macos", "linux", "web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["notes-to-flashcards", "spaced-repetition", "knowledge-base", "all-in-one"]
+  },
+  {
+    "id": "mochi",
+    "name": "Mochi",
+    "description": "Markdown-based spaced repetition flashcard app. Clean interface, templates, and cloze deletions for effective studying.",
+    "url": "https://mochi.cards",
+    "category": "Flashcards & Study",
+    "os": ["windows", "macos", "linux", "web"],
+    "pricing": "freemium",
+    "tags": ["markdown", "spaced-repetition", "minimal", "cloze-deletions"]
+  },
+  {
+    "id": "supermemo",
+    "name": "SuperMemo",
+    "description": "The original spaced repetition software. Advanced algorithm (SM-18) for optimal review scheduling and incremental reading.",
+    "url": "https://www.supermemo.com",
+    "category": "Flashcards & Study",
+    "os": ["windows", "web"],
+    "pricing": "freemium",
+    "tags": ["spaced-repetition", "algorithm", "incremental-reading", "pioneer"]
+  },
+  {
+    "id": "orbit",
+    "name": "Orbit",
+    "description": "Spaced repetition system by Andy Matuschak. Embeds review prompts into articles and books for long-term retention.",
+    "url": "https://withorbit.com",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios"],
+    "pricing": "free",
+    "tags": ["spaced-repetition", "embedded-prompts", "reading", "retention"]
+  },
+  {
+    "id": "ankidroid",
+    "name": "AnkiDroid",
+    "description": "Free, open-source Android companion for Anki. Full spaced repetition with offline access, widgets, and shared deck downloads.",
+    "url": "https://github.com/ankidroid/Anki-Android",
+    "category": "Flashcards & Study",
+    "os": ["android"],
+    "pricing": "free",
+    "tags": ["spaced-repetition", "flashcards", "android", "open-source"],
+    "source": "https://github.com/ankidroid/Anki-Android"
+  },
+  {
+    "id": "knowt",
+    "name": "Knowt",
+    "description": "AI-powered study tool that generates flashcards from notes and documents. Spaced repetition, practice tests, and free access.",
+    "url": "https://knowt.com",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["ai-generated", "flashcards", "notes-to-cards", "study"]
+  },
+  {
+    "id": "memrise",
+    "name": "Memrise",
+    "description": "Language learning app using spaced repetition and video clips of native speakers. Gamified courses for 20+ languages.",
+    "url": "https://www.memrise.com",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["language-learning", "spaced-repetition", "gamified", "video"]
+  },
+  {
+    "id": "obsidian-spaced-repetition",
+    "name": "Obsidian Spaced Repetition",
+    "description": "Plugin for Obsidian that adds flashcard review with spaced repetition. Create cards inline in your notes using Markdown.",
+    "url": "https://github.com/st3v3nmw/obsidian-spaced-repetition",
+    "category": "Flashcards & Study",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["obsidian", "spaced-repetition", "plugin", "markdown", "open-source"],
+    "source": "https://github.com/st3v3nmw/obsidian-spaced-repetition"
+  }
+]

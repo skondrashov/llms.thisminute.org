@@ -1,0 +1,1160 @@
+[
+  {
+    "id": "pytest",
+    "name": "pytest",
+    "description": "Python's most popular testing framework. Fixtures, parametrize, plugins, and minimal boilerplate.",
+    "url": "https://docs.pytest.org",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "testing",
+      "fixtures",
+      "open-source"
+    ],
+    "source": "https://github.com/pytest-dev/pytest",
+    "language": "python"
+  },
+  {
+    "id": "jest",
+    "name": "Jest",
+    "description": "JavaScript testing framework by Meta. Zero-config, snapshot testing, mocking, and code coverage built in.",
+    "url": "https://jestjs.io",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "testing",
+      "snapshots",
+      "open-source"
+    ],
+    "source": "https://github.com/jestjs/jest",
+    "language": "javascript"
+  },
+  {
+    "id": "vitest",
+    "name": "Vitest",
+    "description": "Blazing fast unit testing framework powered by Vite. Jest-compatible API with native ESM and TypeScript support.",
+    "url": "https://vitest.dev",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "testing",
+      "vite",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/vitest-dev/vitest",
+    "language": "javascript"
+  },
+  {
+    "id": "mocha",
+    "name": "Mocha",
+    "description": "Flexible JavaScript test framework for Node.js and browsers. BDD/TDD interfaces with async support.",
+    "url": "https://mochajs.org",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "testing",
+      "bdd",
+      "open-source"
+    ],
+    "source": "https://github.com/mochajs/mocha",
+    "language": "javascript"
+  },
+  {
+    "id": "testing-library",
+    "name": "Testing Library",
+    "description": "Simple utilities for testing UI components the way users interact with them. Works with React, Vue, Angular, and more.",
+    "url": "https://testing-library.com",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "testing",
+      "ui",
+      "accessibility",
+      "open-source"
+    ],
+    "source": "https://github.com/testing-library/react-testing-library",
+    "language": "javascript"
+  },
+  {
+    "id": "unittest",
+    "name": "unittest",
+    "description": "Python's built-in testing framework. xUnit-style with test discovery, assertions, fixtures, and test suites.",
+    "url": "https://docs.python.org/3/library/unittest.html",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "testing",
+      "stdlib",
+      "xunit"
+    ],
+    "language": "python"
+  },
+  {
+    "id": "rspec",
+    "name": "RSpec",
+    "description": "Behaviour-driven testing framework for Ruby. Expressive DSL for describing expected behavior with readable specs.",
+    "url": "https://rspec.info",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ruby",
+      "testing",
+      "bdd",
+      "open-source"
+    ],
+    "source": "https://github.com/rspec/rspec",
+    "language": "ruby"
+  },
+  {
+    "id": "minitest",
+    "name": "Minitest",
+    "description": "Ruby's built-in, fast testing library. Supports TDD, BDD, mocking, and benchmarking with minimal overhead.",
+    "url": "https://github.com/minitest/minitest",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ruby",
+      "testing",
+      "lightweight",
+      "open-source"
+    ],
+    "source": "https://github.com/minitest/minitest",
+    "language": "ruby"
+  },
+  {
+    "id": "xunit",
+    "name": "xUnit.net",
+    "description": "Free, open-source unit testing tool for .NET. Used by the .NET team itself. Extensible and parallelized by default.",
+    "url": "https://xunit.net",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "csharp",
+      "dotnet",
+      "testing",
+      "open-source"
+    ],
+    "source": "https://github.com/xunit/xunit",
+    "language": "csharp"
+  },
+  {
+    "id": "nunit",
+    "name": "NUnit",
+    "description": "Widely used unit testing framework for .NET. Rich assertions, parameterized tests, and parallel execution.",
+    "url": "https://nunit.org",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "csharp",
+      "dotnet",
+      "testing",
+      "open-source"
+    ],
+    "source": "https://github.com/nunit/nunit",
+    "language": "csharp"
+  },
+  {
+    "id": "pytest-bdd",
+    "name": "pytest-bdd",
+    "description": "BDD plugin for pytest using Gherkin feature files. Write scenarios in plain language, execute with pytest.",
+    "url": "https://pytest-bdd.readthedocs.io",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "testing",
+      "bdd",
+      "gherkin",
+      "open-source"
+    ],
+    "source": "https://github.com/pytest-dev/pytest-bdd",
+    "language": "python"
+  },
+  {
+    "id": "catch2",
+    "name": "Catch2",
+    "description": "Modern C++ test framework. Header-only, BDD-style sections, and natural expression assertions with no external dependencies.",
+    "url": "https://github.com/catchorg/Catch2",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cpp",
+      "testing",
+      "header-only",
+      "bdd",
+      "open-source"
+    ],
+    "source": "https://github.com/catchorg/Catch2",
+    "language": "cpp"
+  },
+  {
+    "id": "googletest",
+    "name": "GoogleTest",
+    "description": "Google's C++ testing and mocking framework. Assertions, test fixtures, death tests, and parameterized tests.",
+    "url": "https://google.github.io/googletest",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cpp",
+      "testing",
+      "google",
+      "mocking",
+      "open-source"
+    ],
+    "source": "https://github.com/google/googletest",
+    "language": "cpp"
+  },
+  {
+    "id": "kotest",
+    "name": "Kotest",
+    "description": "Flexible testing framework for Kotlin. Multiple spec styles, property-based testing, and coroutine support.",
+    "url": "https://kotest.io",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kotlin",
+      "testing",
+      "property-based",
+      "coroutines",
+      "open-source"
+    ],
+    "source": "https://github.com/kotest/kotest",
+    "language": "kotlin"
+  },
+  {
+    "id": "junit",
+    "name": "JUnit 5",
+    "description": "Standard testing framework for Java. Annotations, assertions, parameterized tests, and extension model for the JVM.",
+    "url": "https://junit.org/junit5",
+    "category": "Testing Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "java",
+      "testing",
+      "jvm",
+      "annotations",
+      "open-source"
+    ],
+    "source": "https://github.com/junit-team/junit5",
+    "language": "java"
+  },
+  {
+    "id": "eslint",
+    "name": "ESLint",
+    "description": "Pluggable JavaScript/TypeScript linter. Find and fix problems with configurable rules and auto-fix support.",
+    "url": "https://eslint.org",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "linter",
+      "code-quality",
+      "open-source"
+    ],
+    "source": "https://github.com/eslint/eslint",
+    "language": "javascript"
+  },
+  {
+    "id": "prettier",
+    "name": "Prettier",
+    "description": "Opinionated code formatter for JS, TS, CSS, HTML, JSON, Markdown, and more. Ends style debates.",
+    "url": "https://prettier.io",
+    "category": "Formatters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "formatter",
+      "opinionated",
+      "open-source"
+    ],
+    "source": "https://github.com/prettier/prettier",
+    "language": "javascript"
+  },
+  {
+    "id": "ruff",
+    "name": "Ruff",
+    "description": "Extremely fast Python linter and formatter written in Rust. Drop-in replacement for Flake8, isort, and Black.",
+    "url": "https://docs.astral.sh/ruff",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "linter",
+      "formatter",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/astral-sh/ruff",
+    "language": "python"
+  },
+  {
+    "id": "black",
+    "name": "Black",
+    "description": "Uncompromising Python code formatter. Deterministic output with minimal configuration. Just press save.",
+    "url": "https://black.readthedocs.io",
+    "category": "Formatters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "formatter",
+      "opinionated",
+      "open-source"
+    ],
+    "source": "https://github.com/psf/black",
+    "language": "python"
+  },
+  {
+    "id": "clippy",
+    "name": "Clippy",
+    "description": "Rust's official collection of lints. Catches common mistakes, suggests idiomatic patterns, and improves code quality.",
+    "url": "https://doc.rust-lang.org/clippy",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "linter",
+      "idiomatic",
+      "open-source"
+    ],
+    "source": "https://github.com/rust-lang/rust-clippy",
+    "language": "rust"
+  },
+  {
+    "id": "shellcheck",
+    "name": "ShellCheck",
+    "description": "Static analysis tool for shell scripts. Finds bugs, pitfalls, and suggests fixes for bash/sh/zsh scripts.",
+    "url": "https://www.shellcheck.net",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "shell",
+      "linter",
+      "bash",
+      "open-source"
+    ],
+    "source": "https://github.com/koalaman/shellcheck",
+    "language": "multi"
+  },
+  {
+    "id": "biome",
+    "name": "Biome",
+    "description": "Fast formatter and linter for JS, TS, JSX, JSON, and CSS. Rust-based, aims to replace ESLint + Prettier.",
+    "url": "https://biomejs.dev",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "linter",
+      "formatter",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/biomejs/biome",
+    "language": "javascript"
+  },
+  {
+    "id": "mypy",
+    "name": "mypy",
+    "description": "Optional static type checker for Python. Catches type errors before runtime using type annotations.",
+    "url": "https://mypy-lang.org",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "type-checker",
+      "static-analysis",
+      "open-source"
+    ],
+    "source": "https://github.com/python/mypy",
+    "language": "python"
+  },
+  {
+    "id": "golangci-lint",
+    "name": "golangci-lint",
+    "description": "Fast Go linters runner. Runs 50+ linters in parallel with caching, auto-fix, and IDE integration.",
+    "url": "https://golangci-lint.run",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "go",
+      "linter",
+      "meta-linter",
+      "open-source"
+    ],
+    "source": "https://github.com/golangci/golangci-lint",
+    "language": "go"
+  },
+  {
+    "id": "rubocop",
+    "name": "RuboCop",
+    "description": "Ruby static code analyzer and formatter. Enforces community style guide with auto-correction for many offenses.",
+    "url": "https://rubocop.org",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ruby",
+      "linter",
+      "formatter",
+      "style-guide",
+      "open-source"
+    ],
+    "source": "https://github.com/rubocop/rubocop",
+    "language": "ruby"
+  },
+  {
+    "id": "hadolint",
+    "name": "Hadolint",
+    "description": "Dockerfile linter that parses Dockerfiles into an AST. Applies best practices and ShellCheck rules to RUN instructions.",
+    "url": "https://github.com/hadolint/hadolint",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "docker",
+      "linter",
+      "dockerfile",
+      "open-source"
+    ],
+    "source": "https://github.com/hadolint/hadolint"
+  },
+  {
+    "id": "oxlint",
+    "name": "oxlint",
+    "description": "JavaScript/TypeScript linter written in Rust. 50-100x faster than ESLint with zero config needed to start.",
+    "url": "https://oxc.rs/docs/guide/usage/linter",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "linter",
+      "rust",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/oxc-project/oxc",
+    "language": "javascript"
+  },
+  {
+    "id": "ktlint",
+    "name": "ktlint",
+    "description": "Anti-bikeshedding Kotlin linter and formatter. Enforces the official Kotlin coding conventions with built-in formatting.",
+    "url": "https://pinterest.github.io/ktlint",
+    "category": "Linters",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kotlin",
+      "linter",
+      "formatter",
+      "open-source"
+    ],
+    "source": "https://github.com/pinterest/ktlint",
+    "language": "kotlin"
+  },
+  {
+    "id": "playwright",
+    "name": "Playwright",
+    "description": "Cross-browser end-to-end testing by Microsoft. Chromium, Firefox, and WebKit with auto-wait and tracing.",
+    "url": "https://playwright.dev",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "e2e",
+      "browser",
+      "microsoft",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/playwright",
+    "language": "javascript"
+  },
+  {
+    "id": "cypress",
+    "name": "Cypress",
+    "description": "Front-end testing tool with a real browser, time-travel debugging, and automatic waiting. Developer-friendly.",
+    "url": "https://www.cypress.io",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "testing",
+      "e2e",
+      "browser",
+      "open-source"
+    ],
+    "source": "https://github.com/cypress-io/cypress",
+    "language": "javascript"
+  },
+  {
+    "id": "selenium",
+    "name": "Selenium",
+    "description": "Browser automation framework for web testing. Supports all major browsers with bindings in Python, Java, JS, and more.",
+    "url": "https://www.selenium.dev",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "browser-automation",
+      "e2e",
+      "open-source"
+    ],
+    "source": "https://github.com/SeleniumHQ/selenium",
+    "language": "multi"
+  },
+  {
+    "id": "appium",
+    "name": "Appium",
+    "description": "Open-source automation framework for native, hybrid, and mobile web apps on iOS and Android.",
+    "url": "https://appium.io",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "mobile",
+      "automation",
+      "e2e",
+      "open-source"
+    ],
+    "source": "https://github.com/appium/appium",
+    "language": "javascript"
+  },
+  {
+    "id": "webdriverio",
+    "name": "WebdriverIO",
+    "description": "Next-gen browser and mobile automation framework for Node.js. WebDriver and Chrome DevTools protocol support.",
+    "url": "https://webdriver.io",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "e2e",
+      "browser",
+      "webdriver",
+      "open-source"
+    ],
+    "source": "https://github.com/webdriverio/webdriverio",
+    "language": "javascript"
+  },
+  {
+    "id": "testcafe",
+    "name": "TestCafe",
+    "description": "End-to-end testing without WebDriver. Runs in all browsers, handles waits automatically, and supports TypeScript.",
+    "url": "https://testcafe.io",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "e2e",
+      "browser",
+      "no-webdriver",
+      "open-source"
+    ],
+    "source": "https://github.com/DevExpress/testcafe",
+    "language": "javascript"
+  },
+  {
+    "id": "detox",
+    "name": "Detox",
+    "description": "Gray-box end-to-end testing for React Native apps. Synchronizes with app UI to eliminate flaky tests.",
+    "url": "https://wix.github.io/Detox",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "react-native",
+      "mobile",
+      "e2e",
+      "open-source"
+    ],
+    "source": "https://github.com/wix/Detox",
+    "language": "javascript"
+  },
+  {
+    "id": "puppeteer",
+    "name": "Puppeteer",
+    "description": "Node.js library for controlling Chrome/Chromium via DevTools Protocol. Headless browser automation and scraping.",
+    "url": "https://pptr.dev",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "browser",
+      "automation",
+      "headless",
+      "open-source"
+    ],
+    "source": "https://github.com/puppeteer/puppeteer",
+    "language": "javascript"
+  },
+  {
+    "id": "nightwatch",
+    "name": "Nightwatch.js",
+    "description": "Integrated testing framework for web apps. Browser automation via Selenium WebDriver with built-in test runner and assertions.",
+    "url": "https://nightwatchjs.org",
+    "category": "UI Automation & E2E Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "e2e",
+      "browser",
+      "selenium",
+      "open-source"
+    ],
+    "source": "https://github.com/nightwatchjs/nightwatch",
+    "language": "javascript"
+  },
+  {
+    "id": "jmeter",
+    "name": "Apache JMeter",
+    "description": "Load testing tool for web apps, APIs, databases, and more. GUI and CLI modes with extensive plugin ecosystem.",
+    "url": "https://jmeter.apache.org",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "load-testing",
+      "performance",
+      "java",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/jmeter",
+    "language": "java"
+  },
+  {
+    "id": "k6",
+    "name": "k6",
+    "description": "Modern load testing tool by Grafana Labs. Write tests in JavaScript, run locally or in the cloud with detailed metrics.",
+    "url": "https://k6.io",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "testing",
+      "load-testing",
+      "performance",
+      "grafana",
+      "open-source"
+    ],
+    "source": "https://github.com/grafana/k6",
+    "language": "go"
+  },
+  {
+    "id": "gatling",
+    "name": "Gatling",
+    "description": "High-performance load testing framework. Scala/Java/Kotlin DSL, detailed HTML reports, and CI/CD integration.",
+    "url": "https://gatling.io",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "testing",
+      "load-testing",
+      "performance",
+      "scala",
+      "open-source"
+    ],
+    "source": "https://github.com/gatling/gatling",
+    "language": "scala"
+  },
+  {
+    "id": "locust",
+    "name": "Locust",
+    "description": "Scalable load testing in Python. Define user behavior in code, run distributed tests, and monitor via web UI.",
+    "url": "https://locust.io",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "load-testing",
+      "performance",
+      "python",
+      "open-source"
+    ],
+    "source": "https://github.com/locustio/locust",
+    "language": "python"
+  },
+  {
+    "id": "artillery",
+    "name": "Artillery",
+    "description": "Cloud-scale load testing for APIs, microservices, and web apps. YAML-based scenarios with real-time reporting.",
+    "url": "https://www.artillery.io",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "testing",
+      "load-testing",
+      "performance",
+      "cloud",
+      "open-source"
+    ],
+    "source": "https://github.com/artilleryio/artillery",
+    "language": "javascript"
+  },
+  {
+    "id": "vegeta",
+    "name": "Vegeta",
+    "description": "HTTP load testing tool and library written in Go. Constant request rate attacks with results in multiple formats.",
+    "url": "https://github.com/tsenart/vegeta",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "load-testing",
+      "http",
+      "cli",
+      "open-source"
+    ],
+    "source": "https://github.com/tsenart/vegeta",
+    "language": "go"
+  },
+  {
+    "id": "wrk",
+    "name": "wrk",
+    "description": "Modern HTTP benchmarking tool. Multi-threaded with Lua scripting for generating significant load on a single machine.",
+    "url": "https://github.com/wg/wrk",
+    "category": "Load & Performance Testing",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "benchmarking",
+      "http",
+      "lua",
+      "open-source"
+    ],
+    "source": "https://github.com/wg/wrk",
+    "language": "c"
+  },
+  {
+    "id": "hey",
+    "name": "hey",
+    "description": "HTTP load generator written in Go. Simple alternative to ab (ApacheBench) for quick benchmarking of web endpoints.",
+    "url": "https://github.com/rakyll/hey",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "benchmarking",
+      "http",
+      "cli",
+      "open-source"
+    ],
+    "source": "https://github.com/rakyll/hey",
+    "language": "go"
+  },
+  {
+    "id": "autocannon",
+    "name": "autocannon",
+    "description": "Fast HTTP/1.1 benchmarking tool written in Node.js. Measures latency, requests/sec, and throughput with histograms.",
+    "url": "https://github.com/mcollina/autocannon",
+    "category": "Load & Performance Testing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "testing",
+      "benchmarking",
+      "http",
+      "node",
+      "open-source"
+    ],
+    "source": "https://github.com/mcollina/autocannon",
+    "language": "javascript"
+  },
+  {
+    "id": "codecov",
+    "name": "Codecov",
+    "description": "Code coverage reporting service. Integrates with CI/CD to track coverage changes across pull requests.",
+    "url": "https://about.codecov.io",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "coverage",
+      "ci-cd",
+      "code-quality",
+      "reporting"
+    ]
+  },
+  {
+    "id": "coveralls",
+    "name": "Coveralls",
+    "description": "Web service to track code coverage over time. Shows which lines are covered and highlights regressions in PRs.",
+    "url": "https://coveralls.io",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "coverage",
+      "ci-cd",
+      "code-quality",
+      "open-source"
+    ]
+  },
+  {
+    "id": "codacy",
+    "name": "Codacy",
+    "description": "Automated code quality and security platform. Reviews pull requests for code patterns, complexity, and duplication.",
+    "url": "https://www.codacy.com",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "code-quality",
+      "static-analysis",
+      "security",
+      "automation"
+    ]
+  },
+  {
+    "id": "code-climate",
+    "name": "Code Climate",
+    "description": "Automated code review for maintainability and test coverage. Tracks technical debt and enforces quality standards.",
+    "url": "https://codeclimate.com",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "code-quality",
+      "maintainability",
+      "technical-debt",
+      "coverage"
+    ]
+  },
+  {
+    "id": "deepsource",
+    "name": "DeepSource",
+    "description": "Static analysis platform that finds bugs, anti-patterns, and security issues. Autofix support for many languages.",
+    "url": "https://deepsource.com",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "code-quality",
+      "static-analysis",
+      "autofix",
+      "security"
+    ]
+  },
+  {
+    "id": "istanbul-nyc",
+    "name": "Istanbul / nyc",
+    "description": "JavaScript code coverage tool. Instruments ES6+ code, generates HTML/lcov reports, and integrates with most test runners.",
+    "url": "https://istanbul.js.org",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "coverage",
+      "instrumentation",
+      "open-source"
+    ],
+    "source": "https://github.com/istanbuljs/nyc",
+    "language": "javascript"
+  },
+  {
+    "id": "coverage-py",
+    "name": "Coverage.py",
+    "description": "Code coverage measurement for Python. Tracks which lines were executed, generates reports, and integrates with pytest.",
+    "url": "https://coverage.readthedocs.io",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "coverage",
+      "testing",
+      "open-source"
+    ],
+    "source": "https://github.com/nedbat/coveragepy",
+    "language": "python"
+  },
+  {
+    "id": "jacoco",
+    "name": "JaCoCo",
+    "description": "Java code coverage library. Bytecode instrumentation, branch/line coverage, and HTML/XML/CSV report generation.",
+    "url": "https://www.jacoco.org",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "java",
+      "coverage",
+      "bytecode",
+      "open-source"
+    ],
+    "source": "https://github.com/jacoco/jacoco",
+    "language": "java"
+  },
+  {
+    "id": "mutation-testing-stryker",
+    "name": "Stryker Mutator",
+    "description": "Mutation testing framework for JavaScript, C#, and Scala. Tests the quality of your tests by introducing code mutations.",
+    "url": "https://stryker-mutator.io",
+    "category": "Code Coverage & Quality",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "mutation-testing",
+      "test-quality",
+      "javascript",
+      "open-source"
+    ],
+    "source": "https://github.com/stryker-mutator/stryker-js",
+    "language": "javascript"
+  }
+]

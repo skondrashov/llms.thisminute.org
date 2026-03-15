@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Software Entry",
+  "type": "object",
+  "required": ["id", "name", "description", "url", "category", "os", "pricing"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "name": { "type": "string" },
+    "description": { "type": "string", "maxLength": 200 },
+    "url": { "type": "string", "format": "uri" },
+    "category": { "type": "string" },
+    "os": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["windows", "macos", "linux", "web", "ios", "android"] }
+    },
+    "pricing": { "type": "string", "enum": ["free", "freemium", "paid", "subscription"] },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "source": { "type": "string", "format": "uri" },
+    "language": {
+      "type": "string",
+      "enum": ["python", "javascript", "typescript", "rust", "go", "c", "cpp", "java", "ruby", "php", "swift", "kotlin", "csharp", "dart", "elixir", "r", "julia", "lua", "zig", "haskell", "scala", "shell", "perl", "multi"]
+    }
+  }
+}

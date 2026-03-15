@@ -1,0 +1,297 @@
+[
+  {
+    "id": "feedly",
+    "name": "Feedly",
+    "description": "RSS reader and news aggregator with AI-powered filtering, boards, and integrations with productivity tools.",
+    "url": "https://feedly.com",
+    "category": "RSS Readers",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["rss", "news", "ai-filtering", "aggregator"]
+  },
+  {
+    "id": "miniflux",
+    "name": "Miniflux",
+    "description": "Minimalist, self-hosted RSS reader written in Go. Fast, opinionated, and privacy-respecting with a clean interface.",
+    "url": "https://miniflux.app",
+    "category": "RSS Readers",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["rss", "self-hosted", "minimalist", "go", "open-source"],
+    "source": "https://github.com/miniflux/v2"
+  },
+  {
+    "id": "netnewswire",
+    "name": "NetNewsWire",
+    "description": "Free, open-source RSS reader for Apple platforms. Fast, native, and syncs via iCloud, Feedbin, or Feedly.",
+    "url": "https://netnewswire.com",
+    "category": "RSS Readers",
+    "os": ["macos", "ios"],
+    "pricing": "free",
+    "tags": ["rss", "native", "apple", "icloud-sync", "open-source"],
+    "source": "https://github.com/Ranchero-Software/NetNewsWire"
+  },
+  {
+    "id": "inoreader",
+    "name": "Inoreader",
+    "description": "Powerful RSS reader with rules, filters, and monitoring. Tracks newsletters, social feeds, and web pages too.",
+    "url": "https://www.inoreader.com",
+    "category": "RSS Readers",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["rss", "rules", "monitoring", "newsletters"]
+  },
+  {
+    "id": "freshrss",
+    "name": "FreshRSS",
+    "description": "Self-hosted RSS aggregator supporting multiple users. Lightweight, extensible, and compatible with Google Reader API.",
+    "url": "https://freshrss.org",
+    "category": "RSS Readers",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["rss", "self-hosted", "multi-user", "open-source"],
+    "source": "https://github.com/FreshRSS/FreshRSS"
+  },
+  {
+    "id": "newsblur",
+    "name": "NewsBlur",
+    "description": "RSS reader with intelligence training. Teaches it what you like and it highlights or hides stories accordingly.",
+    "url": "https://newsblur.com",
+    "category": "RSS Readers",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["rss", "intelligence", "training", "open-source"],
+    "source": "https://github.com/samuelclay/NewsBlur"
+  },
+  {
+    "id": "readwise-reader",
+    "name": "Readwise Reader",
+    "description": "Read-it-later app with built-in RSS, newsletter support, and highlights that sync to your note-taking tools.",
+    "url": "https://readwise.io/read",
+    "category": "RSS Readers",
+    "os": ["web", "ios", "android"],
+    "pricing": "subscription",
+    "tags": ["rss", "read-later", "highlights", "newsletters"]
+  },
+  {
+    "id": "mastodon-app",
+    "name": "Mastodon",
+    "description": "Decentralized social network using the ActivityPub protocol. Self-hosted instances, no ads, and no algorithm.",
+    "url": "https://joinmastodon.org",
+    "category": "Social Media Clients",
+    "os": ["web", "ios", "android"],
+    "pricing": "free",
+    "tags": ["fediverse", "activitypub", "decentralized", "open-source"],
+    "source": "https://github.com/mastodon/mastodon"
+  },
+  {
+    "id": "bluesky",
+    "name": "Bluesky",
+    "description": "Decentralized social network built on the AT Protocol. Custom feeds, domain-based identity, and open ecosystem.",
+    "url": "https://bsky.app",
+    "category": "Social Media Clients",
+    "os": ["web", "ios", "android"],
+    "pricing": "free",
+    "tags": ["social", "at-protocol", "decentralized", "open-source"],
+    "source": "https://github.com/bluesky-social"
+  },
+  {
+    "id": "buffer",
+    "name": "Buffer",
+    "description": "Social media scheduling and publishing tool. Plan, queue, and analyze posts across multiple platforms.",
+    "url": "https://buffer.com",
+    "category": "Social Media Clients",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["social-media", "scheduling", "analytics", "publishing"]
+  },
+  {
+    "id": "ivory",
+    "name": "Ivory",
+    "description": "Premium Mastodon client for Apple platforms by Tapbots. Beautiful timeline, full-text search, and multiple accounts.",
+    "url": "https://tapbots.com/ivory",
+    "category": "Social Media Clients",
+    "os": ["macos", "ios"],
+    "pricing": "subscription",
+    "tags": ["mastodon", "fediverse", "tapbots", "native"]
+  },
+  {
+    "id": "ice-cubes",
+    "name": "Ice Cubes",
+    "description": "Open-source Mastodon client for iOS and macOS built with SwiftUI. Fast, customizable timeline and multi-account.",
+    "url": "https://github.com/Dimillian/IceCubesApp",
+    "category": "Social Media Clients",
+    "os": ["macos", "ios"],
+    "pricing": "free",
+    "tags": ["mastodon", "fediverse", "swiftui", "open-source"],
+    "source": "https://github.com/Dimillian/IceCubesApp"
+  },
+  {
+    "id": "elk",
+    "name": "Elk",
+    "description": "Web-based Mastodon client with a clean, modern interface. Nuxt-powered, keyboard-friendly, and mobile-responsive.",
+    "url": "https://elk.zone",
+    "category": "Social Media Clients",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["mastodon", "fediverse", "web-client", "open-source"],
+    "source": "https://github.com/elk-zone/elk"
+  },
+  {
+    "id": "megalodon",
+    "name": "Megalodon",
+    "description": "Fork of the official Mastodon Android app with extra features like local-only posts, quote posts, and timeline filters.",
+    "url": "https://github.com/sk22/megalodon",
+    "category": "Social Media Clients",
+    "os": ["android"],
+    "pricing": "free",
+    "tags": ["mastodon", "fediverse", "android", "open-source"],
+    "source": "https://github.com/sk22/megalodon"
+  },
+  {
+    "id": "google-meet",
+    "name": "Google Meet",
+    "description": "Google's video conferencing platform. Integrated with Google Calendar and Workspace, live captions, and recording.",
+    "url": "https://meet.google.com",
+    "category": "Video Conferencing",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["video", "meetings", "google", "captions"]
+  },
+  {
+    "id": "jitsi-meet",
+    "name": "Jitsi Meet",
+    "description": "Free, open-source video conferencing. No account required, self-hostable, end-to-end encrypted, and browser-based.",
+    "url": "https://meet.jit.si",
+    "category": "Video Conferencing",
+    "os": ["web", "windows", "macos", "linux", "ios", "android"],
+    "pricing": "free",
+    "tags": ["video", "meetings", "self-hosted", "encrypted", "open-source"],
+    "source": "https://github.com/jitsi/jitsi-meet"
+  },
+  {
+    "id": "webex",
+    "name": "Webex",
+    "description": "Cisco's enterprise video conferencing platform. HD video, screen sharing, whiteboarding, and hybrid event hosting.",
+    "url": "https://www.webex.com",
+    "category": "Video Conferencing",
+    "os": ["windows", "macos", "linux", "web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["video", "meetings", "cisco", "enterprise"]
+  },
+  {
+    "id": "livekit",
+    "name": "LiveKit",
+    "description": "Open-source platform for building real-time video, audio, and data experiences. WebRTC SFU with SDKs for every platform.",
+    "url": "https://livekit.io",
+    "category": "Video Conferencing",
+    "os": ["web", "windows", "macos", "linux", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["webrtc", "real-time", "sfu", "sdk", "open-source"],
+    "source": "https://github.com/livekit/livekit"
+  },
+  {
+    "id": "whereby",
+    "name": "Whereby",
+    "description": "Browser-based video meetings with no downloads required. Permanent room links, embeddable, and simple to join.",
+    "url": "https://whereby.com",
+    "category": "Video Conferencing",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["video", "meetings", "no-download", "embeddable"]
+  },
+  {
+    "id": "tiny-tiny-rss",
+    "name": "Tiny Tiny RSS",
+    "description": "Self-hosted RSS reader with a web interface. Supports plugins, filters, labels, and keyboard shortcuts.",
+    "url": "https://tt-rss.org",
+    "category": "RSS Readers",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["rss", "self-hosted", "plugins", "open-source"],
+    "source": "https://git.tt-rss.org/fox/tt-rss"
+  },
+  {
+    "id": "feedbin",
+    "name": "Feedbin",
+    "description": "Clean, fast RSS reader with email newsletter support. Syncs with many third-party apps and offers a hosted experience.",
+    "url": "https://feedbin.com",
+    "category": "RSS Readers",
+    "os": ["web"],
+    "pricing": "subscription",
+    "tags": ["rss", "newsletters", "sync", "open-source"],
+    "source": "https://github.com/feedbin/feedbin"
+  },
+  {
+    "id": "reeder",
+    "name": "Reeder",
+    "description": "Beautiful native RSS reader for Apple platforms. Supports Feedbin, iCloud, Feedly, and local feeds with a minimal design.",
+    "url": "https://reederapp.com",
+    "category": "RSS Readers",
+    "os": ["macos", "ios"],
+    "pricing": "paid",
+    "tags": ["rss", "native", "apple", "minimal-design"]
+  },
+  {
+    "id": "tusky",
+    "name": "Tusky",
+    "description": "Lightweight, open-source Mastodon client for Android. Material Design, multi-account support, and drafts.",
+    "url": "https://tusky.app",
+    "category": "Social Media Clients",
+    "os": ["android"],
+    "pricing": "free",
+    "tags": ["mastodon", "fediverse", "android", "material-design", "open-source"],
+    "source": "https://github.com/tuskyapp/Tusky"
+  },
+  {
+    "id": "hootsuite",
+    "name": "Hootsuite",
+    "description": "Social media management platform for scheduling posts, monitoring mentions, and analytics across multiple networks.",
+    "url": "https://www.hootsuite.com",
+    "category": "Social Media Clients",
+    "os": ["web", "ios", "android"],
+    "pricing": "subscription",
+    "tags": ["social-media", "scheduling", "analytics", "enterprise"]
+  },
+  {
+    "id": "tweetdeck",
+    "name": "TweetDeck",
+    "description": "Multi-column X/Twitter client for power users. Monitor multiple timelines, searches, and lists simultaneously.",
+    "url": "https://tweetdeck.twitter.com",
+    "category": "Social Media Clients",
+    "os": ["web"],
+    "pricing": "subscription",
+    "tags": ["twitter", "multi-column", "real-time", "power-user"]
+  },
+  {
+    "id": "gotomeeting",
+    "name": "GoTo Meeting",
+    "description": "Online meeting and video conferencing tool by GoTo. Screen sharing, recording, and meeting transcription.",
+    "url": "https://www.goto.com/meeting",
+    "category": "Video Conferencing",
+    "os": ["windows", "macos", "web", "ios", "android"],
+    "pricing": "subscription",
+    "tags": ["video", "meetings", "recording", "transcription"]
+  },
+  {
+    "id": "daily",
+    "name": "Daily",
+    "description": "Developer-first video and audio API platform. Embed real-time communication into apps with WebRTC and SDKs.",
+    "url": "https://www.daily.co",
+    "category": "Video Conferencing",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["webrtc", "api", "sdk", "embeddable"]
+  },
+  {
+    "id": "element-call",
+    "name": "Element Call",
+    "description": "Decentralized video conferencing built on Matrix. End-to-end encrypted, self-hostable, and browser-based.",
+    "url": "https://call.element.io",
+    "category": "Video Conferencing",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["video", "matrix", "decentralized", "encrypted", "open-source"],
+    "source": "https://github.com/element-hq/element-call"
+  }
+]

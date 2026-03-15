@@ -1,0 +1,1633 @@
+[
+  {
+    "id": "pandas",
+    "name": "pandas",
+    "description": "Data analysis and manipulation library for Python. DataFrames, time series, and powerful I/O for CSV, SQL, Excel.",
+    "url": "https://pandas.pydata.org",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "data-analysis",
+      "dataframes",
+      "open-source"
+    ],
+    "source": "https://github.com/pandas-dev/pandas",
+    "language": "python"
+  },
+  {
+    "id": "numpy",
+    "name": "NumPy",
+    "description": "Fundamental package for numerical computing in Python. N-dimensional arrays, linear algebra, and FFT.",
+    "url": "https://numpy.org",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "numerical",
+      "arrays",
+      "open-source"
+    ],
+    "source": "https://github.com/numpy/numpy",
+    "language": "python"
+  },
+  {
+    "id": "polars",
+    "name": "Polars",
+    "description": "Blazing fast DataFrame library written in Rust with Python and Node.js bindings. Lazy evaluation and parallel execution.",
+    "url": "https://pola.rs",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "python",
+      "dataframes",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/pola-rs/polars",
+    "language": "rust"
+  },
+  {
+    "id": "jq",
+    "name": "jq",
+    "description": "Lightweight command-line JSON processor. Slice, filter, map, and transform structured data with a concise syntax.",
+    "url": "https://jqlang.github.io/jq",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "json",
+      "data-processing",
+      "open-source"
+    ],
+    "source": "https://github.com/jqlang/jq",
+    "language": "c"
+  },
+  {
+    "id": "duckdb",
+    "name": "DuckDB",
+    "description": "In-process analytical SQL database. Columnar storage, fast OLAP queries, and zero external dependencies.",
+    "url": "https://duckdb.org",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "sql",
+      "olap",
+      "columnar",
+      "embedded",
+      "open-source"
+    ],
+    "source": "https://github.com/duckdb/duckdb",
+    "language": "cpp"
+  },
+  {
+    "id": "apache-arrow",
+    "name": "Apache Arrow",
+    "description": "Cross-language columnar memory format for flat and hierarchical data. Zero-copy reads and fast analytics across systems.",
+    "url": "https://arrow.apache.org",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "columnar",
+      "cross-language",
+      "data-format",
+      "analytics",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/arrow",
+    "language": "cpp"
+  },
+  {
+    "id": "datasette",
+    "name": "Datasette",
+    "description": "Instant JSON API and web interface for exploring and publishing SQLite databases. Great for data journalism and analysis.",
+    "url": "https://datasette.io",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "sqlite",
+      "data-exploration",
+      "api",
+      "open-source"
+    ],
+    "source": "https://github.com/simonw/datasette",
+    "language": "python"
+  },
+  {
+    "id": "apache-superset",
+    "name": "Apache Superset",
+    "description": "Modern data exploration and visualization platform. Create interactive dashboards with SQL queries and a rich chart library.",
+    "url": "https://superset.apache.org",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "visualization",
+      "dashboards",
+      "sql",
+      "business-intelligence",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/superset",
+    "language": "python"
+  },
+  {
+    "id": "metabase",
+    "name": "Metabase",
+    "description": "Open-source business intelligence tool. Ask questions about data with a visual query builder or SQL, and share dashboards.",
+    "url": "https://www.metabase.com",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "business-intelligence",
+      "dashboards",
+      "sql",
+      "visualization",
+      "open-source"
+    ],
+    "source": "https://github.com/metabase/metabase",
+    "language": "java"
+  },
+  {
+    "id": "tableau",
+    "name": "Tableau",
+    "description": "Visual analytics platform for business intelligence. Drag-and-drop dashboards, data blending, and interactive charts.",
+    "url": "https://www.tableau.com",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "web"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "business-intelligence",
+      "visualization",
+      "dashboards",
+      "analytics",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "power-bi",
+    "name": "Power BI",
+    "description": "Microsoft's business analytics service. Interactive visualizations, self-service BI, and integration with the Microsoft ecosystem.",
+    "url": "https://powerbi.microsoft.com",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "web",
+      "ios",
+      "android"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "business-intelligence",
+      "visualization",
+      "microsoft",
+      "dashboards",
+      "proprietary"
+    ]
+  },
+  {
+    "id": "redash",
+    "name": "Redash",
+    "description": "Connect to any data source, query it, and visualize results. Share dashboards built from SQL queries across your team.",
+    "url": "https://redash.io",
+    "category": "Data Analysis",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "sql",
+      "dashboards",
+      "visualization",
+      "data-source",
+      "open-source"
+    ],
+    "source": "https://github.com/getredash/redash",
+    "language": "python"
+  },
+  {
+    "id": "sqlalchemy",
+    "name": "SQLAlchemy",
+    "description": "Python SQL toolkit and ORM. Full power of SQL with flexible object-relational mapping and connection pooling.",
+    "url": "https://www.sqlalchemy.org",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "sql",
+      "orm",
+      "database",
+      "open-source"
+    ],
+    "source": "https://github.com/sqlalchemy/sqlalchemy",
+    "language": "python"
+  },
+  {
+    "id": "prisma",
+    "name": "Prisma",
+    "description": "Next-generation Node.js ORM with auto-generated types, migrations, and a visual database browser (Prisma Studio).",
+    "url": "https://www.prisma.io",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "typescript",
+      "orm",
+      "database",
+      "migrations",
+      "open-source"
+    ],
+    "source": "https://github.com/prisma/prisma",
+    "language": "typescript"
+  },
+  {
+    "id": "gorm",
+    "name": "GORM",
+    "description": "Full-featured ORM for Go. Auto migrations, associations, hooks, and support for MySQL, PostgreSQL, SQLite.",
+    "url": "https://gorm.io",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "go",
+      "orm",
+      "database",
+      "sql",
+      "open-source"
+    ],
+    "source": "https://github.com/go-gorm/gorm",
+    "language": "go"
+  },
+  {
+    "id": "sequelize",
+    "name": "Sequelize",
+    "description": "Promise-based Node.js ORM for PostgreSQL, MySQL, MariaDB, SQLite, and SQL Server. Migrations and eager loading.",
+    "url": "https://sequelize.org",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "orm",
+      "database",
+      "nodejs",
+      "open-source"
+    ],
+    "source": "https://github.com/sequelize/sequelize",
+    "language": "javascript"
+  },
+  {
+    "id": "typeorm",
+    "name": "TypeORM",
+    "description": "TypeScript ORM for Node.js supporting Active Record and Data Mapper patterns. Works with most SQL databases.",
+    "url": "https://typeorm.io",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "typescript",
+      "orm",
+      "database",
+      "nodejs",
+      "open-source"
+    ],
+    "source": "https://github.com/typeorm/typeorm",
+    "language": "typescript"
+  },
+  {
+    "id": "diesel",
+    "name": "Diesel",
+    "description": "Safe, extensible ORM and query builder for Rust. Compile-time checked queries and zero-cost abstractions.",
+    "url": "https://diesel.rs",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "orm",
+      "database",
+      "type-safe",
+      "open-source"
+    ],
+    "source": "https://github.com/diesel-rs/diesel",
+    "language": "rust"
+  },
+  {
+    "id": "drizzle-orm",
+    "name": "Drizzle ORM",
+    "description": "Lightweight TypeScript ORM with a SQL-like query builder. Serverless-ready with zero dependencies and type safety.",
+    "url": "https://orm.drizzle.team",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "typescript",
+      "orm",
+      "serverless",
+      "type-safe",
+      "open-source"
+    ],
+    "source": "https://github.com/drizzle-team/drizzle-orm",
+    "language": "typescript"
+  },
+  {
+    "id": "sea-orm",
+    "name": "SeaORM",
+    "description": "Async and dynamic ORM for Rust. Supports MySQL, PostgreSQL, and SQLite with compile-time checked queries.",
+    "url": "https://www.sea-ql.org/SeaORM",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "orm",
+      "async",
+      "database",
+      "open-source"
+    ],
+    "source": "https://github.com/SeaQL/sea-orm",
+    "language": "rust"
+  },
+  {
+    "id": "jooq",
+    "name": "jOOQ",
+    "description": "Java ORM that generates typesafe SQL queries from your database schema. Embraces SQL rather than hiding it.",
+    "url": "https://www.jooq.org",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "java",
+      "orm",
+      "sql",
+      "type-safe",
+      "code-generation"
+    ],
+    "source": "https://github.com/jOOQ/jOOQ",
+    "language": "java"
+  },
+  {
+    "id": "exposed",
+    "name": "Exposed",
+    "description": "Kotlin SQL framework with two flavors: typesafe DSL and lightweight DAO. Built by JetBrains for Kotlin-first development.",
+    "url": "https://github.com/JetBrains/Exposed",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kotlin",
+      "orm",
+      "sql",
+      "jetbrains",
+      "open-source"
+    ],
+    "source": "https://github.com/JetBrains/Exposed",
+    "language": "kotlin"
+  },
+  {
+    "id": "django-orm",
+    "name": "Django ORM",
+    "description": "Built-in ORM for Django. Defines models as Python classes with migrations, querysets, and admin interface generation.",
+    "url": "https://docs.djangoproject.com/en/stable/topics/db",
+    "category": "ORMs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "orm",
+      "django",
+      "migrations",
+      "open-source"
+    ],
+    "source": "https://github.com/django/django",
+    "language": "python"
+  },
+  {
+    "id": "pydantic",
+    "name": "Pydantic",
+    "description": "Data validation using Python type hints. Fast, extensible, and the backbone of FastAPI's request parsing.",
+    "url": "https://docs.pydantic.dev",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "validation",
+      "type-hints",
+      "open-source"
+    ],
+    "source": "https://github.com/pydantic/pydantic",
+    "language": "python"
+  },
+  {
+    "id": "zod",
+    "name": "Zod",
+    "description": "TypeScript-first schema validation. Define schemas once, infer TypeScript types automatically. Zero dependencies.",
+    "url": "https://zod.dev",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "typescript",
+      "validation",
+      "schema",
+      "open-source"
+    ],
+    "source": "https://github.com/colinhacks/zod",
+    "language": "typescript"
+  },
+  {
+    "id": "serde",
+    "name": "serde",
+    "description": "Rust's de facto serialization framework. Derive-based, zero-overhead support for JSON, TOML, YAML, and many more formats.",
+    "url": "https://serde.rs",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "serialization",
+      "json",
+      "derive",
+      "open-source"
+    ],
+    "source": "https://github.com/serde-rs/serde",
+    "language": "rust"
+  },
+  {
+    "id": "joi",
+    "name": "Joi",
+    "description": "Schema description language and data validator for JavaScript. Powerful object schema validation with chained rules.",
+    "url": "https://joi.dev",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "validation",
+      "schema",
+      "nodejs",
+      "open-source"
+    ],
+    "source": "https://github.com/hapijs/joi",
+    "language": "javascript"
+  },
+  {
+    "id": "ajv",
+    "name": "Ajv",
+    "description": "Fast JSON Schema validator for JavaScript and TypeScript. Supports JSON Schema drafts 04 through 2020-12.",
+    "url": "https://ajv.js.org",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "json-schema",
+      "validation",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/ajv-validator/ajv",
+    "language": "javascript"
+  },
+  {
+    "id": "marshmallow",
+    "name": "marshmallow",
+    "description": "Python library for object serialization and deserialization. Convert complex datatypes to and from native Python types.",
+    "url": "https://marshmallow.readthedocs.io",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "serialization",
+      "validation",
+      "rest-api",
+      "open-source"
+    ],
+    "source": "https://github.com/marshmallow-code/marshmallow",
+    "language": "python"
+  },
+  {
+    "id": "protobuf",
+    "name": "Protocol Buffers",
+    "description": "Google's language-neutral data serialization format. Compact binary encoding with code generation for many languages.",
+    "url": "https://protobuf.dev",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "serialization",
+      "binary",
+      "cross-language",
+      "google",
+      "open-source"
+    ],
+    "source": "https://github.com/protocolbuffers/protobuf",
+    "language": "cpp"
+  },
+  {
+    "id": "cerberus",
+    "name": "Cerberus",
+    "description": "Lightweight data validation library for Python. Schema-based with custom rules, type coercion, and normalization.",
+    "url": "https://docs.python-cerberus.org",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "validation",
+      "schema",
+      "lightweight",
+      "open-source"
+    ],
+    "source": "https://github.com/pyeve/cerberus",
+    "language": "python"
+  },
+  {
+    "id": "typebox",
+    "name": "TypeBox",
+    "description": "JSON Schema type builder for TypeScript. Creates in-memory JSON Schemas that can infer static TypeScript types.",
+    "url": "https://github.com/sinclairzx81/typebox",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "typescript",
+      "json-schema",
+      "validation",
+      "type-inference",
+      "open-source"
+    ],
+    "source": "https://github.com/sinclairzx81/typebox",
+    "language": "typescript"
+  },
+  {
+    "id": "valibot",
+    "name": "Valibot",
+    "description": "Modular schema validation library for TypeScript. Tree-shakeable with a tiny bundle size and Zod-like API.",
+    "url": "https://valibot.dev",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "typescript",
+      "validation",
+      "modular",
+      "lightweight",
+      "open-source"
+    ],
+    "source": "https://github.com/fabian-hiller/valibot",
+    "language": "typescript"
+  },
+  {
+    "id": "avro",
+    "name": "Apache Avro",
+    "description": "Row-oriented data serialization system. Schema evolution, compact binary format, and native integration with Hadoop.",
+    "url": "https://avro.apache.org",
+    "category": "Data Validation & Serialization",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "serialization",
+      "binary",
+      "schema-evolution",
+      "hadoop",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/avro",
+    "language": "java"
+  },
+  {
+    "id": "dbt",
+    "name": "dbt",
+    "description": "Data transformation tool using SQL SELECT statements. Version-controlled models, tests, and documentation.",
+    "url": "https://www.getdbt.com",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "sql",
+      "transformation",
+      "analytics",
+      "elt",
+      "open-source"
+    ],
+    "source": "https://github.com/dbt-labs/dbt-core",
+    "language": "python"
+  },
+  {
+    "id": "apache-spark",
+    "name": "Apache Spark",
+    "description": "Distributed data processing engine for batch and streaming. SQL, ML, and graph processing at cluster scale.",
+    "url": "https://spark.apache.org",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "distributed",
+      "big-data",
+      "sql",
+      "streaming",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/spark",
+    "language": "java"
+  },
+  {
+    "id": "apache-kafka",
+    "name": "Apache Kafka",
+    "description": "Distributed event streaming platform. Publish-subscribe messaging, stream processing, and durable log storage.",
+    "url": "https://kafka.apache.org",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "streaming",
+      "messaging",
+      "distributed",
+      "event-driven",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/kafka",
+    "language": "java"
+  },
+  {
+    "id": "apache-airflow",
+    "name": "Apache Airflow",
+    "description": "Workflow orchestration platform. Author, schedule, and monitor data pipelines as Python DAGs.",
+    "url": "https://airflow.apache.org",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "workflow",
+      "orchestration",
+      "dag",
+      "scheduling",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/airflow",
+    "language": "python"
+  },
+  {
+    "id": "apache-flink",
+    "name": "Apache Flink",
+    "description": "Stateful stream processing framework. Low-latency event processing with exactly-once semantics at scale.",
+    "url": "https://flink.apache.org",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "streaming",
+      "stateful",
+      "low-latency",
+      "distributed",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/flink",
+    "language": "java"
+  },
+  {
+    "id": "luigi",
+    "name": "Luigi",
+    "description": "Python module for building batch data pipelines. Dependency resolution, workflow management, and built-in Hadoop support.",
+    "url": "https://github.com/spotify/luigi",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "batch",
+      "workflow",
+      "spotify",
+      "open-source"
+    ],
+    "source": "https://github.com/spotify/luigi",
+    "language": "python"
+  },
+  {
+    "id": "prefect",
+    "name": "Prefect",
+    "description": "Modern workflow orchestration for data pipelines. Python-native with retries, scheduling, and a real-time dashboard.",
+    "url": "https://www.prefect.io",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "python",
+      "orchestration",
+      "workflow",
+      "data-engineering",
+      "open-source"
+    ],
+    "source": "https://github.com/PrefectHQ/prefect",
+    "language": "python"
+  },
+  {
+    "id": "dagster",
+    "name": "Dagster",
+    "description": "Data orchestrator for machine learning, analytics, and ETL. Software-defined assets with built-in testing and observability.",
+    "url": "https://dagster.io",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "python",
+      "orchestration",
+      "data-engineering",
+      "assets",
+      "open-source"
+    ],
+    "source": "https://github.com/dagster-io/dagster",
+    "language": "python"
+  },
+  {
+    "id": "temporal",
+    "name": "Temporal",
+    "description": "Durable execution platform for running reliable workflows. Handles retries, timeouts, and failures automatically.",
+    "url": "https://temporal.io",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "workflow",
+      "orchestration",
+      "durable-execution",
+      "distributed",
+      "open-source"
+    ],
+    "source": "https://github.com/temporalio/temporal",
+    "language": "go"
+  },
+  {
+    "id": "apache-nifi",
+    "name": "Apache NiFi",
+    "description": "Visual dataflow system for automating data movement between systems. Drag-and-drop interface with provenance tracking.",
+    "url": "https://nifi.apache.org",
+    "category": "Data Pipelines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "dataflow",
+      "etl",
+      "visual",
+      "provenance",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/nifi",
+    "language": "java"
+  },
+  {
+    "id": "postgresql",
+    "name": "PostgreSQL",
+    "description": "Advanced open-source relational database. ACID, JSONB, full-text search, extensions, and strong SQL compliance.",
+    "url": "https://www.postgresql.org",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "relational",
+      "sql",
+      "acid",
+      "extensible",
+      "open-source"
+    ],
+    "source": "https://github.com/postgres/postgres"
+  },
+  {
+    "id": "mysql",
+    "name": "MySQL",
+    "description": "World's most popular open-source relational database. Powers WordPress, Shopify, and millions of web applications.",
+    "url": "https://www.mysql.com",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "relational",
+      "sql",
+      "web",
+      "oracle",
+      "open-source"
+    ],
+    "source": "https://github.com/mysql/mysql-server"
+  },
+  {
+    "id": "sqlite",
+    "name": "SQLite",
+    "description": "Self-contained, serverless SQL database engine. Embedded in billions of devices. Zero configuration needed.",
+    "url": "https://www.sqlite.org",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "embedded",
+      "serverless",
+      "lightweight",
+      "ubiquitous",
+      "open-source"
+    ],
+    "source": "https://www.sqlite.org/src"
+  },
+  {
+    "id": "redis",
+    "name": "Redis",
+    "description": "In-memory data structure store used as database, cache, and message broker. Sub-millisecond latency.",
+    "url": "https://redis.io",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "in-memory",
+      "cache",
+      "key-value",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/redis/redis"
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "description": "Document-oriented NoSQL database. Flexible JSON-like documents, horizontal scaling, and rich query language.",
+    "url": "https://www.mongodb.com",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "nosql",
+      "document-store",
+      "json",
+      "scalable",
+      "open-source"
+    ],
+    "source": "https://github.com/mongodb/mongo"
+  },
+  {
+    "id": "cockroachdb",
+    "name": "CockroachDB",
+    "description": "Distributed SQL database built for cloud-native apps. PostgreSQL-compatible with global replication and strong consistency.",
+    "url": "https://www.cockroachlabs.com",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "distributed",
+      "sql",
+      "cloud-native",
+      "postgres-compatible",
+      "open-source"
+    ],
+    "source": "https://github.com/cockroachdb/cockroach"
+  },
+  {
+    "id": "mariadb",
+    "name": "MariaDB",
+    "description": "Community-developed MySQL fork with enhanced features. Drop-in MySQL replacement with better performance.",
+    "url": "https://mariadb.org",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "relational",
+      "sql",
+      "mysql-fork",
+      "community",
+      "open-source"
+    ],
+    "source": "https://github.com/MariaDB/server"
+  },
+  {
+    "id": "neo4j",
+    "name": "Neo4j",
+    "description": "Native graph database for connected data. Cypher query language, ACID transactions, and pattern matching at scale.",
+    "url": "https://neo4j.com",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "graph",
+      "cypher",
+      "relationships",
+      "acid",
+      "open-source"
+    ],
+    "source": "https://github.com/neo4j/neo4j"
+  },
+  {
+    "id": "cassandra",
+    "name": "Apache Cassandra",
+    "description": "Distributed wide-column NoSQL database. Linear scalability, no single point of failure, and tunable consistency.",
+    "url": "https://cassandra.apache.org",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "nosql",
+      "distributed",
+      "wide-column",
+      "scalable",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/cassandra",
+    "language": "java"
+  },
+  {
+    "id": "influxdb",
+    "name": "InfluxDB",
+    "description": "Time series database built for high-write and query loads. Metrics, events, and IoT data with a SQL-like query language.",
+    "url": "https://www.influxdata.com",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "time-series",
+      "metrics",
+      "iot",
+      "monitoring",
+      "open-source"
+    ],
+    "source": "https://github.com/influxdata/influxdb",
+    "language": "rust"
+  },
+  {
+    "id": "clickhouse",
+    "name": "ClickHouse",
+    "description": "Column-oriented OLAP database for real-time analytics. Processes billions of rows per second with SQL interface.",
+    "url": "https://clickhouse.com",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "olap",
+      "columnar",
+      "analytics",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/ClickHouse/ClickHouse",
+    "language": "cpp"
+  },
+  {
+    "id": "surrealdb",
+    "name": "SurrealDB",
+    "description": "Multi-model database combining document, graph, and relational paradigms. Single query language with real-time capabilities.",
+    "url": "https://surrealdb.com",
+    "category": "Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "multi-model",
+      "graph",
+      "document",
+      "real-time",
+      "open-source"
+    ],
+    "source": "https://github.com/surrealdb/surrealdb",
+    "language": "rust"
+  },
+  {
+    "id": "elasticsearch",
+    "name": "Elasticsearch",
+    "description": "Distributed search and analytics engine. Full-text search, log analysis, and real-time indexing at scale.",
+    "url": "https://www.elastic.co/elasticsearch",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "search",
+      "analytics",
+      "full-text",
+      "distributed",
+      "open-source"
+    ],
+    "source": "https://github.com/elastic/elasticsearch"
+  },
+  {
+    "id": "meilisearch",
+    "name": "Meilisearch",
+    "description": "Fast, typo-tolerant search engine with instant results. RESTful API, easy setup, and sub-50ms responses.",
+    "url": "https://www.meilisearch.com",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "search",
+      "full-text",
+      "typo-tolerant",
+      "rest-api",
+      "open-source"
+    ],
+    "source": "https://github.com/meilisearch/meilisearch",
+    "language": "rust"
+  },
+  {
+    "id": "typesense",
+    "name": "Typesense",
+    "description": "Open-source search engine optimized for instant search-as-you-type. Simple API, typo tolerance, and faceted filtering.",
+    "url": "https://typesense.org",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "search",
+      "instant-search",
+      "typo-tolerant",
+      "faceted",
+      "open-source"
+    ],
+    "source": "https://github.com/typesense/typesense",
+    "language": "cpp"
+  },
+  {
+    "id": "solr",
+    "name": "Apache Solr",
+    "description": "Enterprise search platform built on Lucene. Full-text search, faceting, highlighting, and distributed indexing.",
+    "url": "https://solr.apache.org",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "search",
+      "lucene",
+      "enterprise",
+      "full-text",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/solr",
+    "language": "java"
+  },
+  {
+    "id": "algolia",
+    "name": "Algolia",
+    "description": "Hosted search API for websites and mobile apps. Instant results, typo tolerance, and analytics out of the box.",
+    "url": "https://www.algolia.com",
+    "category": "Search Engines",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "search",
+      "hosted",
+      "api",
+      "instant-search",
+      "saas"
+    ]
+  },
+  {
+    "id": "sonic",
+    "name": "Sonic",
+    "description": "Lightweight, schema-less search backend written in Rust. Sub-millisecond ingestion and query with minimal memory footprint.",
+    "url": "https://github.com/valeriansaliou/sonic",
+    "category": "Search Engines",
+    "os": [
+      "linux",
+      "macos"
+    ],
+    "pricing": "free",
+    "tags": [
+      "search",
+      "lightweight",
+      "fast",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/valeriansaliou/sonic",
+    "language": "rust"
+  },
+  {
+    "id": "manticore-search",
+    "name": "Manticore Search",
+    "description": "Open-source database designed for search. SQL-compatible, fast full-text search, and columnar storage for analytics.",
+    "url": "https://manticoresearch.com",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "search",
+      "full-text",
+      "sql",
+      "analytics",
+      "open-source"
+    ],
+    "source": "https://github.com/manticoresoftware/manticoresearch",
+    "language": "cpp"
+  },
+  {
+    "id": "opensearch",
+    "name": "OpenSearch",
+    "description": "Community-driven fork of Elasticsearch. Full-text search, log analytics, and observability with Apache 2.0 license.",
+    "url": "https://opensearch.org",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "search",
+      "analytics",
+      "elasticsearch-fork",
+      "observability",
+      "open-source"
+    ],
+    "source": "https://github.com/opensearch-project/OpenSearch",
+    "language": "java"
+  },
+  {
+    "id": "zinc-search",
+    "name": "ZincSearch",
+    "description": "Lightweight full-text search engine written in Go. Elasticsearch-compatible API with minimal resource usage.",
+    "url": "https://zincsearch.com",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "search",
+      "full-text",
+      "lightweight",
+      "elasticsearch-compatible",
+      "open-source"
+    ],
+    "source": "https://github.com/zincsearch/zincsearch",
+    "language": "go"
+  },
+  {
+    "id": "bleve",
+    "name": "Bleve",
+    "description": "Full-text search and indexing library for Go. Embeddable search with custom analyzers, facets, and highlighting.",
+    "url": "https://blevesearch.com",
+    "category": "Search Engines",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "search",
+      "full-text",
+      "embeddable",
+      "library",
+      "open-source"
+    ],
+    "source": "https://github.com/blevesearch/bleve",
+    "language": "go"
+  },
+  {
+    "id": "pinecone",
+    "name": "Pinecone",
+    "description": "Managed vector database for similarity search. Purpose-built for embeddings with real-time indexing and filtering.",
+    "url": "https://www.pinecone.io",
+    "category": "Vector Databases",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector-search",
+      "embeddings",
+      "managed",
+      "similarity",
+      "saas"
+    ]
+  },
+  {
+    "id": "weaviate",
+    "name": "Weaviate",
+    "description": "Open-source vector database with built-in vectorization modules. Hybrid search combining vector and keyword queries.",
+    "url": "https://weaviate.io",
+    "category": "Vector Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector-search",
+      "embeddings",
+      "hybrid-search",
+      "ai",
+      "open-source"
+    ],
+    "source": "https://github.com/weaviate/weaviate",
+    "language": "go"
+  },
+  {
+    "id": "chroma",
+    "name": "Chroma",
+    "description": "Open-source embedding database for AI applications. Simple API for storing, searching, and filtering vector embeddings.",
+    "url": "https://www.trychroma.com",
+    "category": "Vector Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vector-search",
+      "embeddings",
+      "ai",
+      "python",
+      "open-source"
+    ],
+    "source": "https://github.com/chroma-core/chroma",
+    "language": "python"
+  },
+  {
+    "id": "pgvector",
+    "name": "pgvector",
+    "description": "Open-source vector similarity search extension for PostgreSQL. Store embeddings alongside relational data.",
+    "url": "https://github.com/pgvector/pgvector",
+    "category": "Vector Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "postgresql",
+      "vector-search",
+      "embeddings",
+      "extension",
+      "open-source"
+    ],
+    "source": "https://github.com/pgvector/pgvector",
+    "language": "c"
+  },
+  {
+    "id": "milvus",
+    "name": "Milvus",
+    "description": "Cloud-native vector database built for scalable similarity search. Supports billion-scale vectors with GPU acceleration.",
+    "url": "https://milvus.io",
+    "category": "Vector Databases",
+    "os": [
+      "linux",
+      "macos"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector-search",
+      "embeddings",
+      "scalable",
+      "gpu",
+      "open-source"
+    ],
+    "source": "https://github.com/milvus-io/milvus",
+    "language": "go"
+  },
+  {
+    "id": "qdrant",
+    "name": "Qdrant",
+    "description": "High-performance vector similarity search engine written in Rust. Filtering, payload storage, and on-disk indexing.",
+    "url": "https://qdrant.tech",
+    "category": "Vector Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector-search",
+      "embeddings",
+      "rust",
+      "filtering",
+      "open-source"
+    ],
+    "source": "https://github.com/qdrant/qdrant",
+    "language": "rust"
+  },
+  {
+    "id": "faiss",
+    "name": "FAISS",
+    "description": "Facebook AI library for efficient similarity search and clustering of dense vectors. GPU-accelerated nearest neighbor search.",
+    "url": "https://github.com/facebookresearch/faiss",
+    "category": "Vector Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vector-search",
+      "similarity",
+      "gpu",
+      "meta",
+      "open-source"
+    ],
+    "source": "https://github.com/facebookresearch/faiss",
+    "language": "cpp"
+  },
+  {
+    "id": "lancedb",
+    "name": "LanceDB",
+    "description": "Serverless vector database built on Lance columnar format. Embedded or cloud-hosted with automatic versioning.",
+    "url": "https://lancedb.com",
+    "category": "Vector Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector-search",
+      "serverless",
+      "embedded",
+      "columnar",
+      "open-source"
+    ],
+    "source": "https://github.com/lancedb/lancedb",
+    "language": "rust"
+  },
+  {
+    "id": "marqo",
+    "name": "Marqo",
+    "description": "End-to-end vector search engine that handles embedding generation. Multimodal search for text and images out of the box.",
+    "url": "https://www.marqo.ai",
+    "category": "Vector Databases",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "vector-search",
+      "multimodal",
+      "embeddings",
+      "ai",
+      "open-source"
+    ],
+    "source": "https://github.com/marqo-ai/marqo",
+    "language": "python"
+  }
+]
