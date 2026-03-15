@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Duplicate detection for the Main Menu software catalog.
+"""Duplicate detection for the Toolshed software catalog.
 
 Finds:
 - Entries with the same name (case-insensitive) across or within data files

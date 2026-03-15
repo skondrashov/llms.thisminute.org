@@ -11,17 +11,16 @@ Portal site for the forge ecosystem. The agent-forge landing page serves as the 
 
 If told to go, start, or begin — you are the **orchestrator**. See `agents/orchestrator.md`.
 
-## What This Project Owns
+## Scope
 
-- `index.html` — portal hub page (links to all three sub-sites)
+The orchestrator has authority over the entire repo — portal, forge, rhizome, and toolshed. Sub-sites keep their own agent definitions (`agents/`, `AGENTS.md`) but this orchestrator coordinates everything.
+
+- `index.html` — portal hub page
 - `forge/index.html` — agent-forge landing page
+- `rhizome/` — pattern catalog (200 patterns, FastAPI + SQLite API)
+- `toolshed/` — software directory (15K+ entries)
 - Visual identity and consistency across the suite
 - Deploys — submit requests to `~/projects/ops/DEPLOY_QUEUE.md`
-
-## What This Project Does NOT Own
-
-- Rhizome content, build pipeline, or API — managed by rhizome's steward
-- Toolshed entries, scraping, or categorization — managed by toolshed's agents
 
 ## Stack
 
@@ -31,15 +30,17 @@ Vanilla HTML/CSS/JS. No frameworks, no build step. Dark/light mode. Mobile-respo
 
 | Agent | Scope |
 |-------|-------|
-| orchestrator | Coordinates work, checkpoint-based state |
-| builder | Portal page implementation |
-| skeptic | Review, accessibility, cross-site consistency |
+| orchestrator | Coordinates all work across all sites |
+| builder + skeptic | Portal/forge implementation and review |
+| rhizome steward | All rhizome work (`rhizome/agents/steward.md`) |
+| toolshed agents | 6 roles (`toolshed/agents/*.md`) — read before spawning |
 
 ## Key Files
 
 ```
-index.html          # Portal hub page
-forge/index.html    # Agent-forge landing page
-agents/             # Agent role files
-memory/             # Persistent agent learnings
+index.html              # Portal hub page
+forge/index.html        # Agent-forge landing page
+agents/                 # Agent role files
+agents/skills/          # Reusable checklists (security_review.md)
+memory/                 # Persistent agent learnings
 ```

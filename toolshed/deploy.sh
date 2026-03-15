@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy Main Menu to thisminute.org/mainmenu
+# Deploy Toolshed to forge.thisminute.org/toolshed
 # Served directly by nginx as static files (same pattern as /rhizome).
 #
 # First deploy: run with --setup to create remote dir and nginx config.
@@ -8,7 +8,7 @@ set -euo pipefail
 
 INSTANCE="thisminute"
 ZONE="us-central1-a"
-REMOTE_DIR="/opt/mainmenu"
+REMOTE_DIR="/opt/toolshed"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # First-time setup: create dir and add nginx location block
@@ -20,13 +20,13 @@ if [[ "${1:-}" == "--setup" ]]; then
 
     echo "[2/3] Adding nginx location block..."
     gcloud compute ssh "$INSTANCE" --zone="$ZONE" --command="
-        if ! grep -q '/mainmenu' /etc/nginx/sites-available/thisminute; then
+        if ! grep -q '/toolshed' /etc/nginx/sites-available/thisminute; then
             sudo sed -i '/location \/static\//i\\
-    # Main Menu - static software directory\\
-    location /mainmenu/ {\\
-        alias /opt/mainmenu/;\\
+    # Toolshed - static software directory\\
+    location /toolshed/ {\\
+        alias /opt/toolshed/;\\
         index index.html;\\
-        try_files \\\$uri \\\$uri/ /mainmenu/index.html;\\
+        try_files \\\$uri \\\$uri/ /toolshed/index.html;\\
     }\\
 ' /etc/nginx/sites-available/thisminute
             sudo nginx -t && sudo systemctl reload nginx
@@ -40,7 +40,7 @@ if [[ "${1:-}" == "--setup" ]]; then
     exit 0
 fi
 
-echo "=== Deploying Main Menu ==="
+echo "=== Deploying Toolshed ==="
 
 # 1. Build all outputs
 echo "[1/3] Building..."
@@ -65,11 +65,11 @@ gcloud compute scp \
 # 3. Verify
 echo "[3/3] Verifying..."
 sleep 1
-STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://thisminute.org/mainmenu/" 2>/dev/null || echo "failed")
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://forge.thisminute.org/toolshed/" 2>/dev/null || echo "failed")
 echo ""
 if [ "$STATUS" = "200" ]; then
-    echo "=== Live at: https://thisminute.org/mainmenu ==="
+    echo "=== Live at: https://forge.thisminute.org/toolshed ==="
 else
     echo "=== Deploy complete (HTTP $STATUS) ==="
-    echo "Check: https://thisminute.org/mainmenu"
+    echo "Check: https://forge.thisminute.org/toolshed"
 fi

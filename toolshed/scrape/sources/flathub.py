@@ -14,7 +14,7 @@ def fetch_apps():
     """Fetch all Flathub app IDs then fetch details."""
     print("  Fetching Flathub app list...")
     req = urllib.request.Request(FLATHUB_API, headers={
-        "User-Agent": "mainmenu-scraper/1.0",
+        "User-Agent": "toolshed-scraper/1.0",
         "Accept": "application/json",
     })
     try:
@@ -31,7 +31,7 @@ def fetch_app_details(app_id):
     """Fetch details for a single Flathub app."""
     url = f"{FLATHUB_API}/{app_id}"
     req = urllib.request.Request(url, headers={
-        "User-Agent": "mainmenu-scraper/1.0",
+        "User-Agent": "toolshed-scraper/1.0",
         "Accept": "application/json",
     })
     try:

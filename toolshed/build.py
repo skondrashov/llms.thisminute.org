@@ -60,7 +60,7 @@ with open(categories_path, "w", encoding="utf-8") as f:
 
 # --- Output 4: llms.txt (AI agent discovery manifest) ---
 llms_lines = []
-llms_lines.append("# main.menu")
+llms_lines.append("# toolshed")
 llms_lines.append(f"> Universal software directory with {len(entries)} entries across {len(categories)} categories. Structured data for AI agents and developers.")
 llms_lines.append("")
 llms_lines.append("## Endpoints")
@@ -101,7 +101,7 @@ with open(llms_path, "w", encoding="utf-8") as f:
 
 # --- Output 4b: llms-full.txt (complete catalog in plain text) ---
 full_lines = []
-full_lines.append("# main.menu — Full Catalog")
+full_lines.append("# toolshed — Full Catalog")
 full_lines.append(f"> {len(entries)} entries across {len(categories)} categories")
 full_lines.append("")
 
@@ -171,7 +171,7 @@ if os.path.exists(index_path):
         lines = []
         lines.append("")
         lines.append("  <noscript>")
-        lines.append(f"  <h1>Main Menu — Software for Everything</h1>")
+        lines.append(f"  <h1>Toolshed — Software for Everything</h1>")
         lines.append(f"  <p>{len(entries)} entries across {len(categories)} categories.</p>")
         for cat in cats_ordered:
             cat_entries = cats_entries[cat]
@@ -292,20 +292,20 @@ if os.path.exists(index_path):
             {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "Main Menu",
-                "url": "https://thisminute.org/mainmenu",
+                "name": "Toolshed",
+                "url": "https://forge.thisminute.org/toolshed",
                 "description": f"Universal software directory. Browse apps, libraries, protocols, and platforms across {len(categories)}+ categories.",
                 "potentialAction": {
                     "@type": "SearchAction",
-                    "target": "https://thisminute.org/mainmenu/#search={search_term_string}",
+                    "target": "https://forge.thisminute.org/toolshed/#search={search_term_string}",
                     "query-input": "required name=search_term_string",
                 },
             },
             {
                 "@context": "https://schema.org",
                 "@type": "CollectionPage",
-                "name": "Main Menu Software Directory",
-                "url": "https://thisminute.org/mainmenu",
+                "name": "Toolshed Software Directory",
+                "url": "https://forge.thisminute.org/toolshed",
                 "description": f"Curated software directory with {len(entries)} entries across {len(categories)} categories.",
                 "mainEntity": {
                     "@type": "ItemList",

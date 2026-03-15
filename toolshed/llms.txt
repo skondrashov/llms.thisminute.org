@@ -1,4 +1,4 @@
-# main.menu
+# toolshed
 > Universal software directory with 15803 entries across 123 categories. Structured data for AI agents and developers.
 
 ## Endpoints

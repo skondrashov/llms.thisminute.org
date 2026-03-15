@@ -17,7 +17,7 @@ def fetch_landscape():
     """Fetch CNCF Landscape items as JSON."""
     print("  Fetching CNCF Landscape data...")
     req = urllib.request.Request(LANDSCAPE_JSON_URL, headers={
-        "User-Agent": "mainmenu-scraper/1.0",
+        "User-Agent": "toolshed-scraper/1.0",
         "Accept": "application/json",
     })
     try:

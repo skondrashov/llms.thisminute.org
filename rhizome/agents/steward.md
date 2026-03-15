@@ -29,6 +29,7 @@ When you judge it's time, propose a split. Create new role files in `agents/`, d
 
 - `AGENTS.md` — project architecture, stack, commands, schema
 - `memory/steward.md` — your persistent learnings
+- `../agents/skills/security_review.md` — security checklist for user-facing features (comments, votes, user input)
 
 # Tasks
 

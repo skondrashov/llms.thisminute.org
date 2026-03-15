@@ -14,7 +14,7 @@ def fetch_casks():
     """Fetch all Homebrew Cask entries."""
     print("  Fetching Homebrew Cask API...")
     req = urllib.request.Request(CASK_API_URL, headers={
-        "User-Agent": "mainmenu-scraper/1.0",
+        "User-Agent": "toolshed-scraper/1.0",
         "Accept": "application/json",
     })
     try:

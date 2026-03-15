@@ -104,7 +104,7 @@ class TestLlmsTxt:
     def test_llms_txt_has_header(self, build_output):
         with open(os.path.join(ROOT, "llms.txt"), encoding="utf-8") as f:
             content = f.read()
-        assert "# main.menu" in content
+        assert "# toolshed" in content
         assert "/api/v1/catalog.json" in content
 
     def test_llms_full_txt_exists(self, build_output):

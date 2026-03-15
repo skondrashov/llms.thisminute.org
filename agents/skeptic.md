@@ -33,9 +33,13 @@ Check:
 - Do the sites feel like siblings? (color palette, typography, spacing, card styles)
 - Any jarring transitions when navigating between sites?
 
+# Security Review
+
+When reviewing features that accept user input (comments, votes) or instruct visitors to run code (quick-start), apply the checklist at `agents/skills/security_review.md`. Security issues block deploy.
+
 # Rules
 
-- Post findings with severity: **Critical** (broken), **Warning** (degraded UX), **Note** (polish)
+- Post findings with severity: **Security** (blocks deploy), **Critical** (broken), **Warning** (degraded UX), **Note** (polish)
 - Always provide evidence: what's wrong, where, and what it should be
 - Never fix things yourself — report to the orchestrator
-- When reviewing cross-site consistency, do NOT modify sub-site code — note what's inconsistent and let each sub-site's own agents handle it
+- When reviewing cross-site consistency, note what's inconsistent — the orchestrator decides whether to fix it directly or spawn a sub-site agent

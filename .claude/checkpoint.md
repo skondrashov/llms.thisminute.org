@@ -1,55 +1,49 @@
 # Checkpoint — 2026-03-15
 
+## Architecture change
+
+The top-level orchestrator now coordinates the entire repo. Sub-site agent files stay in place but the orchestrator spawns them directly. See `agents/orchestrator.md`.
+
+Files updated: `AGENTS.md`, `agents/orchestrator.md`, `agents/builder.md`, `agents/skeptic.md`.
+
 ## What was done
 
-### Portal page
-- New `index.html` at root — hub with three cards (Forge, Rhizome, Toolshed)
-- Uses semantic landmarks (`<main>`, `<header>`, `<nav>`)
-- Focus-visible styles, unified theme key with system preference detection
+### Session 2 (current)
+- Orchestrator authority expansion (portal → everything)
+- Absorbed sub-site orchestrator memories and context
+- Trimmed orchestrator file post-reflection (roster was aspirational, now lean with pointers)
+- Fixed stale boundary language in builder.md and skeptic.md
+- Forge page: 7 fixes (semantic `<header>`, portal nav link, focus-visible styles, heading hierarchy, tagline element, fixed theme toggle, summary focus)
+- Skeptic review: portal clean, forge warnings all resolved
 
-### DRY pass across all sub-sites
-- Unified localStorage key: `thisminute_theme` (was forge_theme, rhizome_theme, mainmenu_theme)
-- Cross-site nav paths standardized to absolute with trailing slashes
-- `<nav aria-label>` landmarks, focus-visible styles, theme toggle outside nav — all sites
-- Consistent error handling: try-catch on all localStorage reads/writes
-- System preference detection + change listener on all pages including evolution.html
-- Icon button size standardized to 34px (was 36px in rhizome)
+### Session 1 (prior)
+- Portal hub page, DRY pass, toolshed rename, domain fixes
+- Forge role grid, pattern library links, nav/theme upgrades
+- Rhizome evolution case link, field notes trigger, 7 HTML tests
+- Balatro scorer tool (rough draft in toolshed/tools/)
 
-### Toolshed rename
-- "Main Menu" → "Toolshed" across all user-facing text (title, h1, breadcrumbs, noscript, JSON-LD)
-- JSON-LD URL fixed: thisminute.org/mainmenu → forge.thisminute.org/toolshed
-- Cross-site nav labels updated in forge and rhizome
+## Uncommitted changes
 
-### Domain fixes
-- Rhizome og:url and og:image: thisminute.org → forge.thisminute.org
-- Evolution.html links: absolute URLs to thisminute.org → relative paths (/forge/, /rhizome/)
-- Evolution.html: added Plausible analytics (was missing)
+All work from both sessions needs commit + push + deploy.
 
-### Forge page improvements
-- Role grid: 2x2 layout (fixes orphaned 4th card)
-- Pattern Library links to rhizome entries (steward-bootstrap, protocol-forum-product-team, reflection-loop)
-- Nav landmark, focus styles, theme JS upgraded
+## Deferred
 
-### Rhizome improvements
-- Evolution case link fixed: href="evolution" → href="evolution.html"
-- Field notes: added inline "Read the field notes →" trigger near intro blurb
-- 7 new HTML tests (test_html.py): link resolution, trailing slashes, theme key, field notes
+### Portal/Forge (minor polish)
+- Dark-mode card hover shadow barely visible
+- Breakpoint inconsistency: portal 700px vs forge 600px
+- CSS variable naming divergence between portal and forge
+- `--radius`: portal 12px vs forge 10px
+- Theme icon SVG duplication across files
 
-### First executable tool
-- `toolshed/tools/balatro_scorer/` — Balatro first-blind hand evaluator + optimizer
-- 31 tests, CLI + library interface
-- Rough draft — to be refined by domain expert
+### Rhizome
+- Mermaid diagrams hardcoded to dark theme
+- No popstate listener, filter headers not keyboard-accessible
+- Focus trap/initial focus missing
+- Mobile search scrolls away
+- evolution.html missing cross-site nav
+- Large uncommitted diff from prior sessions
 
-### Docs updated
-- AGENTS.md, builder.md reflect new portal architecture
-- Toolshed librarian pass (docs, forum, memory cleanup)
-
-## Deferred (not broken, just polish)
-- Forge/toolshed use `<div class="header">` not semantic `<header>` — minor
-- Mermaid diagrams in rhizome hardcoded to dark theme
-- Theme icon SVG duplication across files (could extract to shared file)
-- evolution.html missing cross-site "Also:" nav (has footer links instead)
-- No og: tags on toolshed
-
-## Deploy
-- Needs commit + push, then deploy
+### Toolshed
+- S38: 50% miscategorization in discovered entries (systemic — biggest open issue)
+- Thin categories: Mobile IDE (11), Flashcards (14), Desktop App (15), HR & People (16)
+- No og: tags, non-semantic `<header>`, 5 dead links

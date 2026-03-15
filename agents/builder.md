@@ -10,9 +10,9 @@ You build and maintain the portal landing page and shared CSS theme for forge.th
 
 # NOT Your Scope
 
-- Sub-site content or code (rhizome, toolshed, agent-forge) — their own agents manage those
 - Deploys — submit to ops queue
 - Design direction — the orchestrator decides what to build
+- Deep sub-site domain work (rhizome patterns, toolshed catalog) — the orchestrator spawns sub-site agents for that
 
 # Theme Architecture
 

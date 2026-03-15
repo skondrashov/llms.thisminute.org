@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""URL health checker for the Main Menu software catalog.
+"""URL health checker for the Toolshed software catalog.
 
 Checks each entry's URL with HTTP HEAD (fallback to GET). Reports:
 - Dead links (4xx/5xx)
@@ -33,8 +33,8 @@ DATA_DIR = os.path.join(ROOT, "data")
 
 # User-Agent to avoid being blocked by servers that reject default Python UA
 USER_AGENT = (
-    "Mozilla/5.0 (compatible; MainMenuBot/1.0; "
-    "+https://thisminute.org/mainmenu)"
+    "Mozilla/5.0 (compatible; ToolshedBot/1.0; "
+    "+https://forge.thisminute.org/toolshed)"
 )
 
 # Default: use standard SSL verification; override with --no-verify-ssl
@@ -212,7 +212,7 @@ def format_result(r):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Check URL health for Main Menu catalog entries"
+        description="Check URL health for Toolshed catalog entries"
     )
     parser.add_argument(
         "--all",

@@ -100,7 +100,7 @@
     section { margin-bottom: 2.5rem; }
 
     section h2 {
-      font-size: 0.75rem;
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -224,7 +224,7 @@
       border-bottom: 1px solid var(--border);
     }
     .cta h2 {
-      font-size: 0.75rem;
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -277,6 +277,33 @@
       border-radius: 2px;
     }
 
+    .header .links a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    a.pattern-item:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .icon-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+    }
+
     .icon-btn {
       width: 34px;
       height: 34px;
@@ -309,29 +336,33 @@
 </head>
 <body>
 
-  <div class="header">
+  <div class="theme-toggle">
+    <button class="icon-btn" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+      <svg id="theme-icon-dark" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none">
+        <path d="M8 1a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 1zm0 11a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 12zm7-4a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 0115 8zM4 8a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 014 8zm8.95-3.54a.5.5 0 010 .71l-.71.71a.5.5 0 11-.71-.71l.71-.71a.5.5 0 01.71 0zM4.46 11.46a.5.5 0 010 .71l-.7.71a.5.5 0 11-.71-.71l.7-.71a.5.5 0 01.71 0zm8.49 1.42a.5.5 0 01-.71 0l-.71-.71a.5.5 0 01.71-.71l.71.71a.5.5 0 010 .71zM4.46 4.54a.5.5 0 01-.71 0l-.7-.71a.5.5 0 11.7-.71l.71.71a.5.5 0 010 .71zM8 4.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" fill="currentColor"/>
+      </svg>
+      <svg id="theme-icon-light" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M6 .278a.77.77 0 01.08.858 7.2 7.2 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.79.79 0 01.81.316.73.73 0 01-.031.893A8.35 8.35 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 016 .278z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+
+  <header class="header">
     <div class="other-projects">
       <nav aria-label="Cross-site navigation" style="display: flex; gap: 0.75rem; align-items: center;">
         <span class="other-projects-label">Also:</span>
+        <a href="/">Portal</a>
         <a href="/rhizome/">Rhizome</a>
         <a href="/toolshed/">Toolshed</a>
       </nav>
-      <button class="icon-btn" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
-        <svg id="theme-icon-dark" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none">
-          <path d="M8 1a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 1zm0 11a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 12zm7-4a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 0115 8zM4 8a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 014 8zm8.95-3.54a.5.5 0 010 .71l-.71.71a.5.5 0 11-.71-.71l.71-.71a.5.5 0 01.71 0zM4.46 11.46a.5.5 0 010 .71l-.7.71a.5.5 0 11-.71-.71l.7-.71a.5.5 0 01.71 0zm8.49 1.42a.5.5 0 01-.71 0l-.71-.71a.5.5 0 01.71-.71l.71.71a.5.5 0 010 .71zM4.46 4.54a.5.5 0 01-.71 0l-.7-.71a.5.5 0 11.7-.71l.71.71a.5.5 0 010 .71zM8 4.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" fill="currentColor"/>
-        </svg>
-        <svg id="theme-icon-light" width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M6 .278a.77.77 0 01.08.858 7.2 7.2 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.79.79 0 01.81.316.73.73 0 01-.031.893A8.35 8.35 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 016 .278z" fill="currentColor"/>
-        </svg>
-      </button>
     </div>
     <h1>AGENT FORGE</h1>
-    <div class="tagline">Audit and upgrade multi-agent systems across your coding projects</div>
+    <p class="tagline">Audit and upgrade multi-agent systems across your coding projects</p>
     <div class="links">
       <a href="https://github.com/skondrashov/agent-forge">GitHub</a>
       <a href="https://en.wikipedia.org/wiki/Agentic_AI">Agentic AI</a>
     </div>
-  </div>
+  </header>
 
   <div class="cta">
     <h2><a href="https://github.com/skondrashov/agent-forge" style="color: var(--accent-text); text-decoration: none;">Quick Start</a></h2>
@@ -339,7 +370,7 @@
       <summary style="cursor: pointer; display: inline-block; max-width: 540px; margin: 0 auto; padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-dim); border-radius: var(--radius); line-height: 1.5; text-align: center;">I understand that I should review the code I'm about to run before I run it.</summary>
       <div style="margin-top: 1rem;">
         <pre><span class="cmd-comment"># Clone next to your projects (or where you'll start new ones)</span>
-git clone --branch v0.2 https://github.com/skondrashov/agent-forge.git
+git clone --branch v0.3 https://github.com/skondrashov/agent-forge.git
 
 <span class="cmd-comment"># Start it up</span>
 cd agent-forge
@@ -417,6 +448,20 @@ claude go</pre>
           <span>A doc-maintenance agent that processes reflection feedback and keeps docs current</span>
         </div>
       </div>
+    </section>
+
+    <section>
+      <h2>Security</h2>
+      <p>When you run Agent Forge, your AI agent reads the role files and patterns in this repo as instructions. That's a supply chain risk &mdash; a compromised prompt file could instruct your agent to exfiltrate data or modify code in harmful ways. We take that seriously.</p>
+      <p><strong>What we have in place:</strong></p>
+      <ul style="text-align: left; max-width: 640px; margin: 0.75rem auto; line-height: 1.7;">
+        <li>Automated security scan on every release: checks all prompt files for network requests, sensitive file access, encoding/eval, system paths outside project scope, and confirmation bypasses</li>
+        <li>Automated leak scan: catches ecosystem-specific data that shouldn't be in a generic template</li>
+        <li>Pinned tag releases &mdash; clone a vetted tag, not <code>main</code></li>
+        <li>Upstream upgrade diffs &mdash; when a new version is available, the forge shows you the diff and asks before applying</li>
+        <li>Role files are plain markdown with no obfuscation &mdash; you can read every instruction your agent will follow</li>
+      </ul>
+      <p>Read the full policy: <a href="https://github.com/skondrashov/agent-forge/blob/main/SECURITY.md">SECURITY.md</a></p>
     </section>
 
   </div>

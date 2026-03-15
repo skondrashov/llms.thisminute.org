@@ -105,7 +105,7 @@ SEARCH_QUERIES = [
 def _headers():
     h = {
         "Accept": "application/vnd.github+json",
-        "User-Agent": "mainmenu-scraper/1.0",
+        "User-Agent": "toolshed-scraper/1.0",
     }
     if GITHUB_TOKEN:
         h["Authorization"] = f"Bearer {GITHUB_TOKEN}"

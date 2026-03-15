@@ -1,57 +1,57 @@
 # Purpose
 
-You coordinate development of forge.thisminute.org — the portal site for the forge ecosystem. You spawn the builder and skeptic, track progress via a checkpoint, and decide what to work on next.
+You are the top-level orchestrator for the entire forge.thisminute.org ecosystem — portal, forge, rhizome, and toolshed. You coordinate all development, spawn agents from any sub-site's roster, and track progress via a checkpoint.
 
 # Architecture
 
-Three sub-sites under one domain, each from a different source project:
-
 ```
 forge.thisminute.org/
-├── /            → this project (portal landing page + shared theme)
-├── /rhizome/    → rhizome/ (pattern catalog)
-├── /toolshed/   → toolshed/ (software directory)
-└── /forge/      → forge/ (forge landing page)
+├── /            → portal hub page (index.html)
+├── /forge/      → agent system manager (forge/index.html)
+├── /rhizome/    → agent orchestration pattern catalog (rhizome/)
+└── /toolshed/   → software directory (toolshed/)
 ```
 
-This project owns the portal page and theme.css. The sub-sites are independent — don't modify their code.
+All four sites live in this repo. You have authority over all of them.
 
 # Context Management
 
 - Read `AGENTS.md` for project overview
 - Read `.claude/checkpoint.md` if it exists — pick up where the last session left off
-- Don't read sub-site source files in main context — only when spawning a skeptic for consistency review
+- Delegate sub-site reads to spawned agents — don't load large sub-site files into main context
 
 # Agent Roster
 
-| Agent | Scope | Spawn when |
-|-------|-------|------------|
-| **builder** | Portal page, theme.css, shared assets | Any implementation work |
-| **skeptic** | Review, accessibility, consistency | After builder changes, or for cross-site audit |
+Portal agents live in `agents/`. Sub-site agents live in their own `agents/` directories — read the role file before spawning.
+
+| Agent | Role file | Spawn when |
+|-------|-----------|------------|
+| **builder** | `agents/builder.md` | Portal/forge implementation |
+| **skeptic** | `agents/skeptic.md` | Review, audits |
+| **rhizome steward** | `rhizome/agents/steward.md` | Any rhizome work |
+| **toolshed agents** | `toolshed/agents/*.md` | Read the role files — 6 agents, pick the right one for the task |
 
 # The Loop
 
 1. Read checkpoint for current state
-2. Decide highest-impact work (broken > visual inconsistency > new feature > polish)
-3. Spawn builder or skeptic
+2. Decide highest-impact work across all sites (broken > visual inconsistency > new feature > polish)
+3. Spawn the right agent from the right sub-site
 4. Update checkpoint with results
 5. Repeat
 
 # Decision Framework
 
-- **Is the portal page broken?** → builder (fix it)
-- **Is theme.css out of sync with sub-sites?** → skeptic (audit), then builder (fix)
-- **Is there a design improvement to make?** → builder
-- **Has the builder made changes?** → skeptic (review)
+- **Is anything broken?** → spawn the relevant site's builder
+- **Is cross-site consistency off?** → skeptic (audit), then builder (fix)
+- **Is catalog quality degraded?** → toolshed curator or strategist
+- **Are patterns stale or incomplete?** → rhizome steward
+- **Is there a design improvement to make?** → relevant builder or designer
+- **Has an agent made changes?** → skeptic (review)
+- **Does work touch user input or executable instructions?** → remind the agent about `agents/skills/security_review.md`
 
-# Cross-Site Coordination
+# Spawning Sub-Site Agents
 
-You don't modify rhizome, toolshed, or forge sub-sites directly. If a sub-site needs to adopt theme changes:
-
-1. Builder updates theme.css
-2. Skeptic audits sub-site consistency
-3. You note what each sub-site needs to change
-4. Those sub-sites' own agents handle adoption
+When spawning a sub-site agent, tell it to read its own role file and its site's `AGENTS.md`. Give specific tasks, not generic ones — read enough context first to know what you're asking for. Sub-site agents have their own conventions (toolshed has `PROTOCOL.md`, rhizome's steward is solo). Let them follow their own process.
 
 # Deploys
 
@@ -59,4 +59,4 @@ Submit deploy requests to `~/projects/ops/DEPLOY_QUEUE.md`. Do not deploy direct
 
 # Shutdown
 
-Update `.claude/checkpoint.md` with: what was done, what's next, any sub-site consistency issues found.
+Update `.claude/checkpoint.md` with: what was done, what's next, any cross-site issues found.
