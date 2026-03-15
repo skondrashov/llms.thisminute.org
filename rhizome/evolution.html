@@ -17,13 +17,13 @@
 
   <style>
     :root {
-      --bg-primary: #0a0a0f;
-      --bg-secondary: #12121a;
+      --bg: #0a0a0f;
+      --bg-raised: #12121a;
       --bg-card: #16161f;
       --accent: #22d3ee;
       --accent-dim: rgba(34, 211, 238, 0.08);
       --accent-border: rgba(34, 211, 238, 0.25);
-      --text-primary: #e4e4ed;
+      --text: #e4e4ed;
       --text-secondary: #9898ad;
       --text-muted: #5e5e73;
       --border: rgba(255, 255, 255, 0.06);
@@ -38,13 +38,13 @@
       color-scheme: dark;
     }
     body.light-mode {
-      --bg-primary: #fafaf9;
-      --bg-secondary: #f5f5f4;
+      --bg: #fafaf9;
+      --bg-raised: #f5f5f4;
       --bg-card: #ffffff;
       --accent: #0891b2;
       --accent-dim: rgba(8, 145, 178, 0.06);
       --accent-border: rgba(8, 145, 178, 0.25);
-      --text-primary: #1c1917;
+      --text: #1c1917;
       --text-secondary: #57534e;
       --text-muted: #a8a29e;
       --border: rgba(0, 0, 0, 0.06);
@@ -61,8 +61,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: var(--bg-primary);
-      color: var(--text-primary);
+      background: var(--bg);
+      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       line-height: 1.7;
       transition: background 0.3s, color 0.3s;
@@ -116,7 +116,7 @@
       justify-content: center;
       border-radius: 50%;
       border: 1px solid var(--border);
-      background: var(--bg-secondary);
+      background: var(--bg-raised);
       color: var(--text-secondary);
       cursor: pointer;
       transition: all 0.15s;
@@ -162,7 +162,7 @@
       height: 7px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 0 3px var(--bg-primary), 0 0 0 4px var(--accent-border);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent-border);
     }
 
     .phase-label {
@@ -244,7 +244,7 @@
     .number-value {
       font-size: 1.2rem;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--text);
     }
     .number-label {
       font-size: 0.7rem;
@@ -288,7 +288,7 @@
       border-bottom: 1px solid var(--border);
       color: var(--text-secondary);
     }
-    td:first-child { color: var(--text-primary); font-weight: 500; }
+    td:first-child { color: var(--text); font-weight: 500; }
 
     /* ─── Closing ─────────────────────────────────────────── */
     .closing {
