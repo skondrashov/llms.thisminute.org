@@ -2456,19 +2456,42 @@
 
     // ─── Keyboard Shortcuts ───────────────────────────────
     const shortcutsOverlay = document.getElementById('shortcuts-overlay');
-    document.getElementById('shortcuts-btn').addEventListener('click', () => {
+    let shortcutsTrigger = null;
+    function openShortcutsOverlay(trigger) {
+      shortcutsTrigger = trigger || document.activeElement;
       shortcutsOverlay.classList.add('visible');
+      shortcutsOverlay.setAttribute('tabindex', '-1');
+      shortcutsOverlay.focus();
+    }
+    function closeShortcutsOverlay() {
+      shortcutsOverlay.classList.remove('visible');
+      if (shortcutsTrigger) { shortcutsTrigger.focus(); shortcutsTrigger = null; }
+    }
+    document.getElementById('shortcuts-btn').addEventListener('click', (e) => {
+      openShortcutsOverlay(e.currentTarget);
     });
 
     const fieldnotesOverlay = document.getElementById('fieldnotes-overlay');
-    document.getElementById('fieldnotes-btn').addEventListener('click', () => {
+    let fieldnotesTrigger = null;
+    function openFieldnotesOverlay(trigger) {
+      fieldnotesTrigger = trigger || document.activeElement;
       fieldnotesOverlay.classList.add('visible');
+      const panel = fieldnotesOverlay.querySelector('.fieldnotes-panel');
+      panel.setAttribute('tabindex', '-1');
+      panel.focus();
+    }
+    function closeFieldnotesOverlay() {
+      fieldnotesOverlay.classList.remove('visible');
+      if (fieldnotesTrigger) { fieldnotesTrigger.focus(); fieldnotesTrigger = null; }
+    }
+    document.getElementById('fieldnotes-btn').addEventListener('click', (e) => {
+      openFieldnotesOverlay(e.currentTarget);
     });
-    document.getElementById('fieldnotes-inline').addEventListener('click', () => {
-      fieldnotesOverlay.classList.add('visible');
+    document.getElementById('fieldnotes-inline').addEventListener('click', (e) => {
+      openFieldnotesOverlay(e.currentTarget);
     });
     fieldnotesOverlay.addEventListener('click', e => {
-      if (e.target === fieldnotesOverlay) fieldnotesOverlay.classList.remove('visible');
+      if (e.target === fieldnotesOverlay) closeFieldnotesOverlay();
     });
 
     document.addEventListener('keydown', e => {
@@ -2477,14 +2500,14 @@
 
       // Close field notes overlay on Escape
       if (fieldnotesOverlay.classList.contains('visible')) {
-        if (e.key === 'Escape') { fieldnotesOverlay.classList.remove('visible'); e.preventDefault(); }
+        if (e.key === 'Escape') { closeFieldnotesOverlay(); e.preventDefault(); }
         return;
       }
 
       // Close shortcuts overlay on any non-modifier key
       if (shortcutsOverlay.classList.contains('visible')) {
         if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
-          shortcutsOverlay.classList.remove('visible');
+          closeShortcutsOverlay();
           e.preventDefault();
         }
         return;
@@ -2532,7 +2555,7 @@
       }
 
       if (e.key === '?') {
-        shortcutsOverlay.classList.add('visible');
+        openShortcutsOverlay();
         return;
       }
 
@@ -2636,19 +2659,22 @@
     }
 
     // ─── Popstate (browser back/forward) ──────────────────
-    window.addEventListener('popstate', () => {
+    window.addEventListener('popstate', async () => {
       handlingPopstate = true;
-      if (location.hash) {
-        const id = location.hash.slice(1);
-        if (state.structures.some(s => s.id === id)) {
-          openDetail(id);
+      try {
+        if (location.hash) {
+          const id = location.hash.slice(1);
+          if (state.structures.some(s => s.id === id)) {
+            await openDetail(id);
+          } else {
+            closeDetail(true);
+          }
         } else {
-          closeDetail(true);
+          if (currentDetailId) closeDetail(true);
         }
-      } else {
-        if (currentDetailId) closeDetail(true);
+      } finally {
+        handlingPopstate = false;
       }
-      handlingPopstate = false;
     });
   </script>
 </body>

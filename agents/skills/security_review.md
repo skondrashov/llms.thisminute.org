@@ -35,7 +35,7 @@ Checklist for reviewing user-facing features across forge.thisminute.org and its
 Any time the site tells a visitor to clone a repo and run a command:
 
 - **Warn before execution.** If the flow involves running an AI agent (`claude`, `cursor`, etc.) that will auto-execute code from the repo, say so explicitly. The visitor should know that running `claude` in a directory means the agent reads and executes instructions from that repo.
-- **Pin to a tagged release.** Never point visitors at `main` — use a versioned tag. Already done (`v0.3`), keep enforcing.
+- **Pin to a tagged release.** Never point visitors at `main` — use a versioned tag. Already done (`v0.4`), keep enforcing.
 - **Link to source.** The clone command should be near a link to the repo so visitors can inspect before running.
 - **Scope the warning.** Something like: "This will clone a repo and start an AI agent that reads instructions from it. Review the repo's CLAUDE.md before running if you want to see what it does."
 

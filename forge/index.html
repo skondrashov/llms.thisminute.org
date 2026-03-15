@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Forge — Multi-Agent System Management</title>
   <meta name="description" content="A template agent system manager that audits and upgrades multi-agent systems across your coding projects.">
+  <meta property="og:title" content="Agent Forge — Multi-Agent System Management">
+  <meta property="og:description" content="A template agent system manager that audits and upgrades multi-agent systems across your coding projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://forge.thisminute.org/forge/">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%94%A5</text></svg>">
   <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js"></script>
 
@@ -22,6 +27,7 @@
       --text-muted: #5e5e73;
       --border: rgba(255, 255, 255, 0.07);
       --border-light: rgba(255, 255, 255, 0.12);
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
       --radius: 10px;
       --radius-sm: 6px;
       color-scheme: dark;
@@ -39,6 +45,7 @@
       --text-muted: #a8a29e;
       --border: rgba(0, 0, 0, 0.08);
       --border-light: rgba(0, 0, 0, 0.14);
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
       color-scheme: light;
     }
 
@@ -57,6 +64,7 @@
     a:hover { text-decoration: underline; }
 
     .header {
+      position: relative;
       padding: 3rem 2rem 1.5rem;
       text-align: center;
       border-bottom: 1px solid var(--border);
@@ -159,7 +167,7 @@
     .role-card:hover {
       border-color: var(--border-light);
       background: var(--bg-card-hover);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      box-shadow: var(--shadow);
     }
     .role-card h3 {
       font-size: 1rem;
@@ -197,7 +205,7 @@
     a.pattern-item:hover {
       border-color: var(--border-light);
       background: var(--bg-card-hover);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      box-shadow: var(--shadow);
       text-decoration: none;
     }
     .pattern-item strong {
@@ -251,7 +259,7 @@
       color: var(--text-muted);
     }
 
-    .header { position: relative; }
+    /* position: relative merged into main .header rule */
     .other-projects {
       position: absolute;
       top: 0.75rem;
@@ -369,14 +377,15 @@
   <div class="cta">
     <h2><a href="https://github.com/skondrashov/agent-forge" style="color: var(--accent-text); text-decoration: none;">Quick Start</a></h2>
     <details>
-      <summary style="cursor: pointer; display: inline-block; max-width: 540px; margin: 0 auto; padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-dim); border-radius: var(--radius); line-height: 1.5; text-align: center;">I understand that I should review the code I'm about to run before I run it.</summary>
+      <summary style="cursor: pointer; display: inline-block; max-width: 540px; margin: 0 auto; padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-dim); border-radius: var(--radius); line-height: 1.5; text-align: center;">This clones a repo and starts an AI agent that reads instructions from it. We run automated security scans on every release &mdash; <a href="#security" style="color: var(--accent-text);">see details</a>.</summary>
       <div style="margin-top: 1rem;">
         <pre><span class="cmd-comment"># Clone next to your projects (or where you'll start new ones)</span>
-git clone --branch v0.3 https://github.com/skondrashov/agent-forge.git
+git clone --branch v0.4 https://github.com/skondrashov/agent-forge.git
 
 <span class="cmd-comment"># Start it up</span>
 cd agent-forge
 claude go</pre>
+        <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted);">Pinned to a tagged release. Review the repo's <a href="https://github.com/skondrashov/agent-forge/blob/v0.4/CLAUDE.md">CLAUDE.md</a> to see what the agent will do.</p>
       </div>
     </details>
   </div>
@@ -452,7 +461,7 @@ claude go</pre>
       </div>
     </section>
 
-    <section>
+    <section id="security">
       <h2>Security</h2>
       <p>When you run Agent Forge, your AI agent reads the role files and patterns in this repo as instructions. That's a supply chain risk &mdash; a compromised prompt file could instruct your agent to exfiltrate data or modify code in harmful ways. We take that seriously.</p>
       <p><strong>What we have in place:</strong></p>

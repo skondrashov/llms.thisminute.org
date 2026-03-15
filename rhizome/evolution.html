@@ -661,7 +661,7 @@
   </nav>
 
   <script>
-    const isLight = (() => { try { return localStorage.getItem('thisminute_theme') === 'light'; } catch { return false; } })();
+    const isLight = (() => { try { const s = localStorage.getItem('thisminute_theme'); if (s) return s === 'light'; } catch {} return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches; })();
     function applyTheme(light) {
       document.body.classList.toggle('light-mode', light);
       document.getElementById('icon-sun').style.display = light ? 'block' : 'none';

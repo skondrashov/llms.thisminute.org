@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forge — thisminute.org</title>
   <meta name="description" content="Agent orchestration patterns, software tools, and system management.">
+  <meta property="og:title" content="Forge — thisminute.org">
+  <meta property="og:description" content="Agent orchestration patterns, software tools, and system management.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://forge.thisminute.org/">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%94%A5</text></svg>">
   <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js"></script>
 
@@ -12,22 +17,35 @@
     :root {
       --bg: #111118;
       --bg-raised: #1a1a24;
+      --bg-card: #1e1e2a;
+      --bg-card-hover: #262636;
+      --accent: #e8672a;
+      --accent-dim: rgba(232, 103, 42, 0.12);
+      --accent-text: #f0944a;
       --text: #e4e4ed;
       --text-secondary: #9898ad;
       --text-muted: #5e5e73;
       --border: rgba(255, 255, 255, 0.07);
       --border-light: rgba(255, 255, 255, 0.12);
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
       --radius: 10px;
+      --radius-sm: 6px;
       color-scheme: dark;
     }
     body.light-mode {
       --bg: #faf8f5;
       --bg-raised: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f5f0eb;
+      --accent: #c2410c;
+      --accent-dim: rgba(194, 65, 12, 0.1);
+      --accent-text: #9a3412;
       --text: #1c1917;
       --text-secondary: #57534e;
       --text-muted: #a8a29e;
       --border: rgba(0, 0, 0, 0.08);
       --border-light: rgba(0, 0, 0, 0.14);
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
       color-scheme: light;
     }
 
@@ -85,7 +103,7 @@
     .site-card:hover {
       border-color: var(--card-accent);
       transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      box-shadow: var(--shadow);
       text-decoration: none;
     }
     .site-card h2 {
