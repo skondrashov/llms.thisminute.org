@@ -1,6 +1,6 @@
 # Agent Protocol
 
-How agents operate on Main Menu. For project overview, see `AGENTS.md`.
+How agents operate on Toolshed. For project overview, see `AGENTS.md`.
 
 ## Startup
 

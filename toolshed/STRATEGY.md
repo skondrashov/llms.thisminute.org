@@ -2,13 +2,13 @@
 
 ## Vision
 
-main.menu is the place you go to find software for anything. Chess apps, terminal emulators, DAWs, VPNs — all browsable in one place with honest descriptions, OS filtering, and direct links. No ads, no sponsored rankings, no bullshit.
+Toolshed is the place you go to find software for anything. Chess apps, terminal emulators, DAWs, VPNs — all browsable in one place with honest descriptions, OS filtering, and direct links. No ads, no sponsored rankings, no bullshit.
 
 **Primary audience**: AI agents and developers. Agents need verified URLs (they hallucinate), structured metadata (JSON with OS/tags/category), and current maintenance status. Humans benefit from honest curation without SEO spam.
 
 **Secondary audience**: Power users and technical decision-makers who want to compare options without wading through SEO-optimized listicles.
 
-**North star**: If an agent or human asks "what's the best X for Y?", main.menu should have a useful, accurate answer with a working link.
+**North star**: If an agent or human asks "what's the best X for Y?", Toolshed should have a useful, accurate answer with a working link.
 
 ## Core Principle: Task-First Categories
 
@@ -58,7 +58,7 @@ The site is functional but visually flat. Every card looks the same. There is no
 
 - **Card redesign**: Add subtle category-colored left borders or top accents to cards so they are visually scannable. Consider small software icons/favicons next to names.
 - **Typography upgrade**: The system font stack is fine but the hierarchy is weak. Increase contrast between card names (bolder, slightly larger) and descriptions. Use a tighter line-height on card names.
-- **Header refinement**: The stat row is good. Add a subtle gradient or animated accent on the "MAIN MENU" title. Consider a brief animated counter on page load.
+- **Header refinement**: The stat row is good. Add a subtle gradient or animated accent on the "TOOLSHED" title. Consider a brief animated counter on page load.
 - **Search UX**: Add keyboard shortcut (Cmd/Ctrl+K) to focus search. Show result count while typing. Add search highlighting in card text. Consider instant category/tag suggestions as you type.
 - **Detail panel**: Add a proper software icon/logo placeholder. Show "Similar software" suggestions at the bottom. Add a "copy link" button. Improve the tag display with better spacing.
 - **Dark/Light mode**: Add a toggle. The current dark theme is good; create a corresponding light theme with warm tones. Persist preference in localStorage.
@@ -85,8 +85,8 @@ The current site renders everything client-side from `data.js`. A crawler or age
   - Add `api/v1/entry/{id}.json` (individual entry lookup — can be pre-generated static files).
 - **`llms.txt`**: Create a manifest file at `/llms.txt` that describes the site purpose, data format, and how to access the catalog. Format:
   ```
-  # main.menu
-  > Universal software directory. 290+ entries across 42 categories.
+  # Toolshed
+  > Universal software directory. 15,000+ entries across 123 categories.
 
   ## API
   - Full catalog: /api/v1/catalog.json
@@ -159,7 +159,7 @@ At 500+ entries with solid metadata, the catalog becomes genuinely useful as a r
 
 - **Automated discovery**: Script that pulls trending repos from GitHub, top packages from PyPI/npm/crates.io, and suggests new entries for curator review.
 - **Community submissions**: Simple GitHub issue template or Google Form where anyone can suggest entries. Curator reviews and adds.
-- **Vertical deep-dives**: Pick 5-10 categories and go deep. For example, "Python Libraries" could have 50+ entries (web frameworks, data science, DevOps, testing, etc.). This makes main.menu the definitive reference for that vertical.
+- **Vertical deep-dives**: Pick 5-10 categories and go deep. For example, "Python Libraries" could have 50+ entries (web frameworks, data science, DevOps, testing, etc.). This makes Toolshed the definitive reference for that vertical.
 
 #### 3B. Static Category Pages
 Generate `/category/{slug}/index.html` for each category. Benefits:
@@ -181,7 +181,7 @@ The site's value proposition is honest curation. Monetization must not compromis
 **Deprioritize**: Ads (ruins the aesthetic and trust), premium content (all data should be free), user accounts (complexity not justified yet).
 
 #### 3D. Agent Integration Protocol
-Define a standard way for agents to interact with main.menu:
+Define a standard way for agents to interact with Toolshed:
 
 - **Discovery**: Agent reads `llms.txt` to understand the site.
 - **Search**: Agent queries `api/v1/catalog.json` and filters locally, or uses `api/v1/search?q=...` if we add server-side search later.
@@ -196,11 +196,11 @@ Define a standard way for agents to interact with main.menu:
 - **Ecosystem maps**: Visual graphs showing how tools relate (e.g., "Python web stack: Django + PostgreSQL + Redis + Celery").
 - **Version tracking**: Monitor release feeds for tracked software. Show "latest version" and "last release date."
 - **User reviews/ratings**: Lightweight — maybe just thumbs up/down or a 1-5 rating. No text reviews (too hard to moderate).
-- **Embeddable widgets**: Let blogs and docs embed a main.menu card for any software entry.
+- **Embeddable widgets**: Let blogs and docs embed a Toolshed card for any software entry.
 
 ---
 
-## Current Priorities (Updated 2026-03-14)
+## Current Priorities (Updated 2026-03-15)
 
 **Context:** 15,803 entries across 123 populated categories (124 in taxonomy). 67 tests passing. Categorization quality improved through 5 rounds of fixes (Cycles 5-7, 10, 13). Quality automation scripts built. JSON-LD structured data shipped. All 5 designer tasks complete.
 

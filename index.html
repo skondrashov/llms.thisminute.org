@@ -184,7 +184,7 @@
   </main>
 
   <script>
-    const savedTheme = localStorage.getItem('thisminute_theme');
+    const savedTheme = (() => { try { return localStorage.getItem('thisminute_theme'); } catch { return null; } })();
     const lightMode = savedTheme ? savedTheme === 'light'
       : window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
     function applyTheme(isLight) {

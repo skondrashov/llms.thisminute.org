@@ -47,7 +47,7 @@ Current recommendations:
 - S3, S4: Resolved (Neofetch replaced, Process Explorer ID fixed)
 
 ### Key insight
-The site has been content-focused (121 -> 290 entries in 4 cycles) but has not addressed its stated primary audience. An agent hitting main.menu gets an empty HTML page. This is the critical gap — all the catalog work is invisible to agents until we add structured data and an API endpoint.
+The site has been content-focused (121 -> 290 entries in 4 cycles) but has not addressed its stated primary audience. An agent hitting the site gets an empty HTML page. This is the critical gap — all the catalog work is invisible to agents until we add structured data and an API endpoint.
 
 ### Post-session updates
 - STRATEGY.md was updated (by orchestrator or another agent) to include "Core Principle: Task-First Categories" — a proposal to restructure language-specific categories (Python Libraries, Rust Crates, etc.) into task-based categories (HTTP Clients, Data Validation, etc.). This is a good idea that aligns with agent thinking patterns. The mapping table is included in STRATEGY.md.

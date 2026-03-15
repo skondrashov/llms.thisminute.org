@@ -7,16 +7,16 @@
 
   <!-- Open Graph / Social Embed -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thisminute.org/rhizome">
+  <meta property="og:url" content="https://forge.thisminute.org/rhizome/">
   <meta property="og:title" content="Rhizome — 200 Ways to Organize">
   <meta property="og:description" content="From pirate democracies and papal conclaves to ant colonies and Formula 1 pit crews — a catalog of every interesting way humans and other organisms have figured out how to coordinate.">
-  <meta property="og:image" content="https://thisminute.org/rhizome/og-image.png">
+  <meta property="og:image" content="https://forge.thisminute.org/rhizome/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Rhizome — 200 Ways to Organize">
   <meta name="twitter:description" content="From pirate democracies and papal conclaves to ant colonies and Formula 1 pit crews — a catalog of every interesting way to coordinate.">
-  <meta name="twitter:image" content="https://thisminute.org/rhizome/og-image.png">
+  <meta name="twitter:image" content="https://forge.thisminute.org/rhizome/og-image.png">
 
   <meta name="description" content="A browsable catalog of 200 organizational patterns across 20 categories — from military hierarchies to jazz ensembles. Each includes roles, communication channels, information flows, and topology diagrams.">
 
@@ -125,8 +125,8 @@
       gap: 0.5rem;
     }
     .icon-btn {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1334,12 +1334,12 @@
       </button>
       <button class="icon-btn" id="shortcuts-btn" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">?</button>
       <button class="icon-btn" id="fieldnotes-btn" title="Field notes from the forge" aria-label="Field notes" style="font-size:0.7rem;letter-spacing:0.03em">notes</button>
-      <a class="icon-btn" href="evolution" title="How one project evolved from solo to 10 agents" aria-label="Evolution case study" style="font-size:0.7rem;letter-spacing:0.03em;text-decoration:none">case</a>
+      <a class="icon-btn" href="evolution.html" title="How one project evolved from solo to 10 agents" aria-label="Evolution case study" style="font-size:0.7rem;letter-spacing:0.03em;text-decoration:none">case</a>
     </div>
     <h1>RHIZOME</h1>
     <p class="subtitle">200 Ways to Organize</p>
     <p class="about">From pirate democracies and papal conclaves to ant colonies and Formula 1 pit crews — a catalog of how humans (and other organisms) have figured out how to coordinate, each one broken down into roles, communication channels, and information flows.</p>
-    <p class="about" style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.85rem;">Originally built as blueprints for AI agent systems. Turns out organizational design is interesting on its own.</p>
+    <p class="about" style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.85rem;">Originally built as blueprints for AI agent systems. Turns out organizational design is interesting on its own. <button id="fieldnotes-inline" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:inherit;font-family:inherit;padding:0;text-decoration:underline;text-underline-offset:2px;">Read the field notes &rarr;</button></p>
     <div class="stats">
       <div class="stat">
         <span class="stat-value" id="total-count">0</span>
@@ -2427,6 +2427,9 @@
 
     const fieldnotesOverlay = document.getElementById('fieldnotes-overlay');
     document.getElementById('fieldnotes-btn').addEventListener('click', () => {
+      fieldnotesOverlay.classList.add('visible');
+    });
+    document.getElementById('fieldnotes-inline').addEventListener('click', () => {
       fieldnotesOverlay.classList.add('visible');
     });
     fieldnotesOverlay.addEventListener('click', e => {

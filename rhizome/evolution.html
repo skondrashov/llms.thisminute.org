@@ -6,11 +6,12 @@
   <title>How These Projects Organized Themselves</title>
 
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://thisminute.org/rhizome/evolution">
+  <meta property="og:url" content="https://forge.thisminute.org/rhizome/evolution">
   <meta property="og:title" content="How These Projects Organized Themselves">
   <meta property="og:description" content="Three projects, three different organizational structures — from a 10-daemon research lab to a single steward catalog. What worked, what broke, and what we learned.">
   <meta name="description" content="How the organizational structures of three real projects evolved — a composable AI research lab, a real-time news map, and this catalog. Including the failures, surprises, and patterns that emerged.">
 
+  <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js"></script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%2322d3ee' stroke-width='4'/><circle cx='50' cy='30' r='6' fill='%2322d3ee'/><circle cx='30' cy='60' r='6' fill='%2322d3ee'/><circle cx='70' cy='60' r='6' fill='%2322d3ee'/><line x1='50' y1='30' x2='30' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='50' y1='30' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='30' y1='60' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/></svg>">
 
   <style>
@@ -629,12 +630,12 @@
 
     <div class="closing">
       <p>This is a living document. All three systems are still evolving.</p>
-      <p style="color: var(--text-muted); font-size: 0.82rem;">The organizational patterns referenced above are from the <a href=".">Rhizome catalog</a> &mdash; 200 coordination patterns drawn from military hierarchies, jazz ensembles, ant colonies, and everything in between. The <a href="https://thisminute.org/forge">Agent Forge</a> is the system that manages these projects.</p>
+      <p style="color: var(--text-muted); font-size: 0.82rem;">The organizational patterns referenced above are from the <a href=".">Rhizome catalog</a> &mdash; 200 coordination patterns drawn from military hierarchies, jazz ensembles, ant colonies, and everything in between. The <a href="/forge/">Agent Forge</a> is the system that manages these projects.</p>
     </div>
   </div>
 
   <div class="page-footer">
-    <a href=".">Rhizome</a> &middot; <a href="https://thisminute.org">thisminute.org</a> &middot; <a href="https://thisminute.org/forge">Agent Forge</a>
+    <a href="/rhizome/">Rhizome</a> &middot; <a href="/">forge.thisminute.org</a> &middot; <a href="/forge/">Agent Forge</a>
   </div>
 
   <script>
@@ -646,6 +647,11 @@
       try { localStorage.setItem('thisminute_theme', light ? 'light' : 'dark'); } catch {}
     }
     applyTheme(isLight);
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
+        try { if (!localStorage.getItem('thisminute_theme')) applyTheme(e.matches); } catch {}
+      });
+    }
     document.getElementById('theme-toggle').addEventListener('click', () => {
       applyTheme(!document.body.classList.contains('light-mode'));
     });
