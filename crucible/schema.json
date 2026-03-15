@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Crucible Entry",
+  "description": "Schema for AI capabilities and project ideas with agent architecture suggestions",
+  "type": "object",
+  "required": ["id", "title", "capability", "problem", "whyAi", "approach", "complexity", "category", "tags", "agentArchitecture"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique kebab-case identifier"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title (max ~60 chars)"
+    },
+    "capability": {
+      "type": "string",
+      "description": "The underlying AI capability this develops (e.g., 'semantic document comparison', 'multi-signal risk synthesis')"
+    },
+    "problem": {
+      "type": "string",
+      "description": "What exists today that's broken, missing, or painful (2-4 sentences)"
+    },
+    "whyAi": {
+      "type": "string",
+      "description": "What makes AI specifically well-suited for this (1-3 sentences)"
+    },
+    "approach": {
+      "type": "string",
+      "description": "Suggested technical direction (2-4 sentences)"
+    },
+    "complexity": {
+      "type": "string",
+      "enum": ["weekend", "week", "month", "multi-month"],
+      "description": "Rough scope estimate"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Developer Tools",
+        "Data & Analytics",
+        "Content & Media",
+        "Education & Learning",
+        "Health & Wellness",
+        "Finance & Legal",
+        "Productivity",
+        "Science & Research",
+        "Gaming",
+        "Social & Community",
+        "Infrastructure",
+        "Creative & Design"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Searchable tags"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["idea", "in-progress", "proven"],
+      "description": "Lifecycle state: idea (nobody has built it), in-progress (someone is working on it), proven (built and validated)"
+    },
+    "validation": {
+      "type": "object",
+      "description": "Evidence that the capability works (populated when status is 'proven')",
+      "properties": {
+        "toolshedId": {
+          "type": "string",
+          "description": "ID of the corresponding toolshed entry"
+        },
+        "benchmarks": {
+          "type": "string",
+          "description": "What was tested and how (e.g., '50 lease pairs, 94% material difference detection')"
+        },
+        "limitations": {
+          "type": "string",
+          "description": "Known failure modes and boundaries"
+        },
+        "provenDate": {
+          "type": "string",
+          "description": "ISO date when validation was completed"
+        }
+      }
+    },
+    "agentArchitecture": {
+      "type": "object",
+      "required": ["coordinationModel", "roles", "rationale"],
+      "properties": {
+        "coordinationModel": {
+          "type": "string",
+          "enum": ["steward", "checkpoint", "protocol-forum"],
+          "description": "Which of the three validated coordination models fits"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["role", "description"],
+            "properties": {
+              "role": { "type": "string", "description": "Machine-readable role identifier" },
+              "description": { "type": "string", "description": "What this agent does" }
+            }
+          }
+        },
+        "patterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Rhizome pattern IDs that apply"
+        },
+        "rationale": {
+          "type": "string",
+          "description": "Why this architecture fits the project (1-2 sentences)"
+        }
+      }
+    }
+  }
+}

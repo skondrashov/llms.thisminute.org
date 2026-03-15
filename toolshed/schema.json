@@ -19,6 +19,25 @@
     "language": {
       "type": "string",
       "enum": ["python", "javascript", "typescript", "rust", "go", "c", "cpp", "java", "ruby", "php", "swift", "kotlin", "csharp", "dart", "elixir", "r", "julia", "lua", "zig", "haskell", "scala", "shell", "perl", "multi"]
+    },
+    "crucibleId": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "ID of the crucible entry this tool was built from (if applicable)"
+    },
+    "validation": {
+      "type": "object",
+      "description": "Evidence that the tool does what it claims (for crucible-originated entries)",
+      "properties": {
+        "benchmarks": {
+          "type": "string",
+          "description": "What was tested and results"
+        },
+        "limitations": {
+          "type": "string",
+          "description": "Known failure modes and boundaries"
+        }
+      }
     }
   }
 }

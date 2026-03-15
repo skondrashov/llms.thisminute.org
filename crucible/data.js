@@ -1,0 +1,295 @@
+window.CRUCIBLE_IDEAS = [
+  {
+    "id": "recipe-scaler-substituter",
+    "title": "Recipe Scaler & Ingredient Substituter",
+    "capability": "Domain-aware numerical reasoning with contextual substitution logic",
+    "problem": "Scaling a recipe from 4 to 7 servings isn't just multiplication — baking ratios change, cooking times shift, and pan sizes matter. And if you're missing an ingredient, generic substitution lists don't account for the specific dish context (yogurt replaces sour cream differently in a cake vs. a marinade).",
+    "whyAi": "AI understands cooking chemistry and context. It knows that doubling a cake recipe needs proportionally less leavening, and that substituting butter with oil changes texture differently in cookies vs. pie crust.",
+    "approach": "Web app. Paste or photograph a recipe. AI parses ingredients and steps, then offers intelligent scaling (with ratio adjustments for baking) and context-aware substitutions. Shows what changes and why. Optional: dietary restriction mode (make this dairy-free, reduce sodium).",
+    "complexity": "weekend",
+    "category": "Content & Media",
+    "tags": [
+      "cooking",
+      "recipes",
+      "substitution",
+      "scaling"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "steward",
+      "roles": [
+        {
+          "role": "steward",
+          "description": "Parses recipes, handles scaling math, generates substitutions, and serves the web UI. Tiny scope — one page, one workflow."
+        }
+      ],
+      "patterns": [
+        "steward-bootstrap"
+      ],
+      "rationale": "Weekend project with a single page and a single workflow. Steward is the only sensible choice — anything more would be over-engineering."
+    }
+  },
+  {
+    "id": "codebase-migration-planner",
+    "title": "Codebase Migration Planner",
+    "capability": "Large-scale pattern recognition and dependency-aware transformation planning",
+    "problem": "Migrating a codebase between frameworks or language versions (React class → hooks, Python 2 → 3, Express → Fastify) requires understanding every file, mapping old patterns to new ones, and sequencing changes so nothing breaks mid-migration. Teams either do it all at once (risky) or piecemeal over months (inconsistent).",
+    "whyAi": "AI can read an entire codebase, identify every instance of a pattern, and generate a migration plan with dependency ordering. It can also estimate effort per file based on complexity, which humans are bad at across hundreds of files.",
+    "approach": "Point it at a repo and specify the migration (e.g., 'class components → hooks'). AI scans all files, catalogs instances of the old pattern, maps dependencies between them, and produces a sequenced migration plan: which files to change first, what each change looks like, estimated effort per batch. Optional: generate the actual migration PRs.",
+    "complexity": "month",
+    "category": "Developer Tools",
+    "tags": [
+      "migration",
+      "refactoring",
+      "codebase",
+      "planning",
+      "automation"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "protocol-forum",
+      "roles": [
+        {
+          "role": "orchestrator",
+          "description": "Manages the scanning and planning process. Sequences agent work."
+        },
+        {
+          "role": "builder",
+          "description": "Implements the scanner, pattern matcher, and plan generator."
+        },
+        {
+          "role": "strategist",
+          "description": "Designs the migration sequencing algorithm. Handles dependency analysis and batching logic."
+        },
+        {
+          "role": "skeptic",
+          "description": "Tests edge cases: circular dependencies, files that use both old and new patterns, generated code, vendored dependencies."
+        },
+        {
+          "role": "librarian",
+          "description": "Maintains the pattern mapping catalog (old pattern → new pattern) and cleans the forum as the project grows."
+        }
+      ],
+      "patterns": [
+        "protocol-forum-product-team"
+      ],
+      "rationale": "Multi-domain problem (parsing, dependency analysis, planning, code generation) that benefits from persistent forum discussion. The strategist and skeptic need to debate sequencing tradeoffs across sessions."
+    }
+  },
+  {
+    "id": "git-commit-archaeology",
+    "title": "Git Commit Archaeology Tool",
+    "capability": "Historical narrative synthesis from fragmented version control data",
+    "problem": "Git blame tells you who changed a line, but not why. The commit message says 'fix bug' and the PR was merged 2 years ago by someone who left. Understanding why code is the way it is requires excavating through dozens of commits, PRs, and issues — a process that takes hours for a single function.",
+    "whyAi": "AI can read the full history of a code region — every commit, PR description, linked issue, review comment — and synthesize a narrative. It turns hours of manual archaeology into a 30-second query.",
+    "approach": "CLI tool or editor extension. Select a code region, AI traces its history through git log, finds associated PRs and issues via commit messages and GitHub API, reads review comments, and produces a narrative: 'This function was introduced in PR #234 to handle timezone edge cases after incident INC-567. It was refactored in #301 to improve performance, and the current shape reflects a compromise between the original author and reviewer.'",
+    "complexity": "week",
+    "category": "Developer Tools",
+    "tags": [
+      "git",
+      "history",
+      "code-understanding",
+      "cli",
+      "editor-extension"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "steward",
+      "roles": [
+        {
+          "role": "steward",
+          "description": "Handles git history traversal, GitHub API integration, narrative synthesis, and CLI/editor output. Single agent because the workflow is linear: gather history → synthesize → present."
+        }
+      ],
+      "patterns": [
+        "steward-bootstrap"
+      ],
+      "rationale": "Focused read-only tool with a linear workflow. No design debates or iterative refinement needed — it either produces a good narrative or it doesn't. Steward can iterate on prompt quality without needing a team."
+    }
+  },
+  {
+    "id": "dependency-health-scorer",
+    "title": "Open Source Dependency Health Scorer",
+    "capability": "Multi-signal risk synthesis from heterogeneous data sources",
+    "problem": "Every project depends on dozens of open source packages, but nobody checks whether those packages are healthy. A critical library might have one maintainer, no tests, or a history of slow security patches. You only find out when something breaks.",
+    "whyAi": "AI can synthesize signals that are individually weak but collectively meaningful: commit frequency, bus factor, issue response time, CVE history, documentation quality. Humans can't realistically audit 200 dependencies manually.",
+    "approach": "CLI tool or web UI. Takes a package manifest (package.json, requirements.txt, Cargo.toml), resolves the full dependency tree, then scores each dependency on maintainer health, security posture, and community activity. Pulls data from GitHub API, npm/PyPI registries, and CVE databases. Produces a dashboard with risk-ranked dependencies.",
+    "complexity": "month",
+    "category": "Developer Tools",
+    "tags": [
+      "security",
+      "dependencies",
+      "open-source",
+      "risk",
+      "cli"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "checkpoint",
+      "roles": [
+        {
+          "role": "orchestrator",
+          "description": "Coordinates the build-test-iterate cycle. Decides which data sources to integrate next."
+        },
+        {
+          "role": "builder",
+          "description": "Implements scrapers for package registries, GitHub API integration, scoring algorithms, and the output dashboard."
+        },
+        {
+          "role": "analyst",
+          "description": "Designs and validates the scoring model. Reviews false positives/negatives in health scores."
+        },
+        {
+          "role": "skeptic",
+          "description": "Questions scoring methodology. Tests edge cases: archived repos, monorepos, vendored deps, forks."
+        }
+      ],
+      "patterns": [
+        "checkpoint-cycle-development"
+      ],
+      "rationale": "Multiple data sources and a scoring model that needs iterative refinement. Checkpoint cycles let the team build incrementally — add one registry at a time, validate scores, adjust weights."
+    }
+  },
+  {
+    "id": "lease-clause-comparator",
+    "title": "Lease Clause Comparator",
+    "capability": "Semantic document comparison with structured clause extraction",
+    "problem": "Comparing two lease agreements requires reading 30+ pages of dense legalese and mentally tracking which clauses differ. Tenants and small landlords miss important differences — early termination penalties, maintenance obligations, liability shifts — because the documents are long and the language is deliberately opaque.",
+    "whyAi": "LLMs excel at parsing dense natural language and producing structured comparisons. The task is read-heavy with clear success criteria: did you catch every material difference?",
+    "approach": "Upload two PDFs. AI extracts clauses, normalizes them into a standard taxonomy (rent, deposit, maintenance, termination, etc.), then produces a side-by-side diff with severity flags for clauses that materially differ. Static site with client-side PDF parsing and API calls to Claude.",
+    "complexity": "week",
+    "category": "Finance & Legal",
+    "tags": [
+      "legal",
+      "documents",
+      "comparison",
+      "pdf"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "steward",
+      "roles": [
+        {
+          "role": "steward",
+          "description": "Handles PDF ingestion, clause extraction, comparison logic, and UI. Single agent because the scope is focused — one input type, one output type, one workflow."
+        }
+      ],
+      "patterns": [
+        "steward-bootstrap"
+      ],
+      "rationale": "Focused tool with a single workflow. A steward handles everything and only splits roles if the clause taxonomy grows complex enough to need a specialist."
+    }
+  },
+  {
+    "id": "personal-knowledge-graph",
+    "title": "Local-First Personal Knowledge Graph",
+    "capability": "Semantic relationship discovery across heterogeneous text sources",
+    "problem": "You read articles, save bookmarks, highlight passages, take notes — and none of it connects. Search finds exact matches but not conceptual links. Six months later you can't find the thing you read about distributed consensus because you filed it under 'databases' and you're searching for 'consistency'.",
+    "whyAi": "AI understands semantic relationships, not just keywords. It can link a note about 'eventual consistency' to a bookmark about 'CRDTs' to a highlight from a distributed systems paper — connections you'd never make with full-text search.",
+    "approach": "Local-first app (Electron or Tauri). Import from browser bookmarks, Kindle highlights, markdown notes, PDF annotations. AI builds a graph: nodes are concepts, edges are relationships. Browse visually or query in natural language ('what do I know about consensus mechanisms?'). All data stays local — AI runs via API but raw data never leaves the machine.",
+    "complexity": "multi-month",
+    "category": "Productivity",
+    "tags": [
+      "knowledge-management",
+      "local-first",
+      "graph",
+      "search",
+      "notes"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "protocol-forum",
+      "roles": [
+        {
+          "role": "orchestrator",
+          "description": "Coordinates across the import pipeline, graph engine, and UI. Manages priorities and sprint planning."
+        },
+        {
+          "role": "builder",
+          "description": "Implements importers, graph storage, and the query engine."
+        },
+        {
+          "role": "designer",
+          "description": "Designs the graph visualization and query UX. Ensures the visual browser is actually useful, not just pretty."
+        },
+        {
+          "role": "strategist",
+          "description": "Defines the ontology — how concepts relate, what counts as a meaningful edge. Designs the AI prompt pipeline for link extraction."
+        },
+        {
+          "role": "skeptic",
+          "description": "Tests graph quality. Looks for false connections, missing links, and performance issues as the graph grows."
+        }
+      ],
+      "patterns": [
+        "protocol-forum-product-team"
+      ],
+      "rationale": "Complex multi-domain project (data ingestion, AI pipeline, graph storage, visualization) that will evolve over months. Protocol+forum gives the team persistent context and a forum for design debates."
+    }
+  },
+  {
+    "id": "meeting-to-actions",
+    "title": "Meeting Transcript → Action Items Pipeline",
+    "capability": "Structured information extraction from unstructured conversation",
+    "problem": "After every meeting, someone writes up action items by hand. They miss things, get owners wrong, and the list sits in a doc nobody checks. The meeting itself already contained all the information — it just wasn't extracted.",
+    "whyAi": "Transcription models + LLMs can go from audio to structured data. The task requires understanding context (who said what, what counts as a commitment vs. speculation) which is exactly where language models shine.",
+    "approach": "Audio file or live mic → Whisper transcription → Claude extracts action items with owner, deadline, and confidence score → pushes to task tracker (Linear, GitHub Issues, Todoist). Web app with a simple upload flow. Optional: real-time mode that streams action items during the meeting.",
+    "complexity": "week",
+    "category": "Productivity",
+    "tags": [
+      "meetings",
+      "transcription",
+      "automation",
+      "task-management"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "steward",
+      "roles": [
+        {
+          "role": "steward",
+          "description": "Manages the full pipeline: audio ingestion, transcription, extraction, and task tracker integration. Single agent because the pipeline is linear with no branching decisions."
+        }
+      ],
+      "patterns": [
+        "steward-bootstrap"
+      ],
+      "rationale": "Linear pipeline with clear input/output at each stage. A steward handles it end-to-end. If integration with multiple task trackers grows complex, a builder role can split off."
+    }
+  },
+  {
+    "id": "research-paper-debate",
+    "title": "Research Paper Debate Simulator",
+    "capability": "Multi-perspective critical analysis with adversarial reasoning",
+    "problem": "Reading a research paper alone means accepting its claims at face value unless you happen to know the field well enough to spot weaknesses. Peer review catches some issues but takes months and happens behind closed doors.",
+    "whyAi": "AI can role-play domain experts with different perspectives — a statistician questioning the methodology, a practitioner questioning real-world applicability, a competing researcher questioning the novelty. Multiple viewpoints surface issues a single reader would miss.",
+    "approach": "Upload a paper. AI spawns 3-5 agents with different expert perspectives who debate the paper's claims, methodology, and conclusions. Each agent argues from their domain expertise. The user watches the debate and can ask follow-up questions to any panelist. Output: a structured critique with confidence levels.",
+    "complexity": "week",
+    "category": "Science & Research",
+    "tags": [
+      "papers",
+      "peer-review",
+      "debate",
+      "multi-agent",
+      "education"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "checkpoint",
+      "roles": [
+        {
+          "role": "orchestrator",
+          "description": "Sets up the debate, assigns expert perspectives, moderates turns, and compiles the final critique."
+        },
+        {
+          "role": "builder",
+          "description": "Implements the PDF parser, debate engine, and UI for watching/interacting with the debate."
+        },
+        {
+          "role": "analyst",
+          "description": "Designs the expert perspective assignment — which viewpoints to spawn for a given paper's field and methodology."
+        },
+        {
+          "role": "skeptic",
+          "description": "Meta-tests the debate quality. Do the AI experts actually disagree meaningfully, or do they converge on shallow critiques?"
+        }
+      ],
+      "patterns": [
+        "checkpoint-cycle-development"
+      ],
+      "rationale": "The debate engine needs iterative refinement — the quality of expert perspectives and debate dynamics will improve over cycles. Checkpoint model fits because each iteration produces a testable artifact (a debate transcript to evaluate)."
+    }
+  }
+];

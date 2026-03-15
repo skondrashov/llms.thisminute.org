@@ -20,8 +20,8 @@
 
   <meta name="description" content="A browsable catalog of 200 organizational patterns across 20 categories — from military hierarchies to jazz ensembles. Each includes roles, communication channels, information flows, and topology diagrams.">
 
-  <!-- Analytics -->
-  <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js"></script>
+  <!-- Analytics — SRI omitted: Plausible is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
+  <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%2322d3ee' stroke-width='4'/><circle cx='50' cy='30' r='6' fill='%2322d3ee'/><circle cx='30' cy='60' r='6' fill='%2322d3ee'/><circle cx='70' cy='60' r='6' fill='%2322d3ee'/><line x1='50' y1='30' x2='30' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='50' y1='30' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='30' y1='60' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/></svg>">
 
@@ -434,6 +434,10 @@
       border-color: var(--accent);
       background: var(--accent-dim);
       color: var(--accent);
+    }
+    .similar-chip:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
 
     /* ─── Vote Badge on Cards ──────────────────────────────── */
@@ -1464,7 +1468,9 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
+          integrity="sha384-WmdflGW9aGfoBdHc4rRyWzYuAjEmDwMdGdiPNacbwfGKxBW/SO6guzuQ76qjnSlr"
+          crossorigin="anonymous"></script>
   <script src="data.js"></script>
   <script>
     // ─── Mermaid Init ─────────────────────────────────────
@@ -1590,7 +1596,7 @@
     function highlightText(text, query) {
       if (!query) return esc(text);
       const escaped = esc(text);
-      const qEsc = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const qEsc = esc(query).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       return escaped.replace(new RegExp(`(${qEsc})`, 'gi'), '<mark>$1</mark>');
     }
 
@@ -2304,9 +2310,17 @@
         });
       });
 
-      // Wire up similar-chip clicks
+      // Wire up similar-chip clicks + keyboard accessibility
       detail.querySelectorAll('.similar-chip').forEach(chip => {
+        chip.setAttribute('tabindex', '0');
+        chip.setAttribute('role', 'button');
         chip.addEventListener('click', () => openDetail(chip.dataset.id));
+        chip.addEventListener('keydown', ev => {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            openDetail(chip.dataset.id);
+          }
+        });
       });
 
       // Wire up close / download / copy / nav

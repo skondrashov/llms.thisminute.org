@@ -8,7 +8,19 @@ Files updated: `AGENTS.md`, `agents/orchestrator.md`, `agents/builder.md`, `agen
 
 ## What was done
 
-### Session 4 (current)
+### Session 5 (current)
+
+Forge is actively developing — things are in flux. Reviewed and fixed what's stable.
+
+- **Skeptic review** of all uncommitted changes: 1 security, 6 warning, 5 note — fixed 4 items:
+  - Crucible: escaped `idea.id` in `data-id` attribute (defense-in-depth XSS prevention)
+  - Crucible: added `aria-pressed` to filter toggle buttons
+  - Toolshed schema: added `^[a-z0-9-]+$` pattern to `crucibleId` field
+  - Note: `pipeline/bellows.py` with `os.system()` was removed by forge before fix was applied
+- Verified: mermaid SRI hash valid, focus trap correct, highlightText XSS fix correct
+- Verified: crucible build.py produces 8 ideas, 5 categories, 3 coordination models
+
+### Session 4 (prior)
 - 3 new executable tools: contrast_checker, cron_parser, license_checker (277 tests passing)
   - Skeptic review caught: hardcoded test paths, missing `__future__` import, undocumented AND semantics — all fixed
 - Cross-site og: meta tags added (portal, forge, toolshed)
@@ -42,26 +54,32 @@ Files updated: `AGENTS.md`, `agents/orchestrator.md`, `agents/builder.md`, `agen
 
 ## Uncommitted changes
 
-None — all committed. Deploy queued.
+Significant — forge is actively developing. Changes span:
+- Portal: new vision statement, crucible card, 2-col grid, updated meta/tagline
+- Forge: Plausible crossorigin
+- Rhizome: mermaid SRI pinned to @10.9.1, highlightText XSS fix, similar-chip keyboard a11y
+- Toolshed: focus trap, focus-visible styles, similar-item keyboard a11y, crucibleId schema field
+- Evolution: Plausible crossorigin
+- Crucible (new sub-site): 8 seed ideas, filterable UI, build script, schema
 
 ## In progress
 
-- S38 miscategorization: curator agent was investigating catalog data quality (50% miscat in discovered entries). Agent was running at session end — results not yet merged. Next session should check the worktree branch `worktree-agent-a9345a0f` for results.
+- Forge is actively developing — pipeline/bellows.py and agents/bellows.md appeared and were removed during this session. Expect further changes.
+- S38 worktree branch `worktree-agent-a9345a0f` no longer exists — results likely merged or abandoned.
 
 ## Deferred
 
-### Security (from skeptic review)
-- External scripts without SRI: mermaid CDN (`@10` — should pin version + add integrity), Plausible analytics
-- Toolshed detail panel: no focus trap (rhizome has one, toolshed doesn't)
+### Skeptic S5 findings (not yet fixed)
+- Crucible: missing sibling nav links (Rhizome, Toolshed, Agent Forge) — breaks cross-site nav pattern
+- bellows.py: if it returns, needs `subprocess.run()` instead of `os.system()`, and schema validation on JSON input
+- bellows.py: `--publish` writes TODO placeholders into source data
 
-### DRY / code cleanliness (from skeptic review)
+### DRY / code cleanliness (pre-existing)
 - Toolshed: Fisher-Yates shuffle duplicated 3x — extract to helper
 - Toolshed: getFilteredEntries/getSearchResults duplicate sort logic — extract shared sortResults()
-- Toolshed: many interactive elements lack :focus-visible styles
-- Rhizome: highlightText regex matches raw query against HTML-escaped text (functional bug for & < > searches)
 - Cross-site: CSS variable naming — rhizome uses --bg-primary/--text-primary convention vs --bg/--text everywhere else
-- Cross-site: theme icon SVGs verified identical (acceptable duplication for self-contained files)
+- Cross-site: theme toggle logic copy-pasted across 6 files (worse with crucible added)
 
 ### Catalog
-- S38 miscategorization (pending — see "In progress" above)
+- S38 miscategorization status unknown (worktree gone)
 - Thin categories: Mobile IDE (11), Flashcards (14), Desktop App (15), HR & People (16)
