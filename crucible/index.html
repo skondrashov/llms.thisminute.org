@@ -289,6 +289,35 @@
       border-color: var(--border-light);
       color: var(--text);
     }
+    .other-projects {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 10;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      font-size: 0.7rem;
+    }
+    .other-projects-label {
+      color: var(--text-muted);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .other-projects a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .other-projects a:hover {
+      color: var(--accent-text);
+    }
+    .other-projects a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
     .search-box:focus-visible, .filter-btn:focus-visible, .idea-card:focus-visible, .icon-btn:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
@@ -304,6 +333,7 @@
       .container { padding: 1rem; }
       .header h1 { font-size: 1.5rem; }
       .controls { flex-direction: column; }
+      .other-projects { position: static; justify-content: center; margin-bottom: 0.5rem; }
     }
   </style>
 </head>
@@ -321,6 +351,12 @@
   </div>
 
   <main class="container">
+    <nav class="other-projects" aria-label="Cross-site navigation">
+      <span class="other-projects-label">Also:</span>
+      <a href="/rhizome/">Rhizome</a>
+      <a href="/toolshed/">Toolshed</a>
+      <a href="/forge/">Agent Forge</a>
+    </nav>
     <header class="header">
       <h1>CRUCIBLE <a href="/">FORGE</a></h1>
       <p class="tagline">What to get good at. What to create. Be the bellows.</p>
