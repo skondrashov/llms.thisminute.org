@@ -4,6 +4,11 @@
  *   --bg, --bg-raised, --bg-card, --bg-card-hover
  *   --accent, --accent-dim, --accent-text
  * This file provides everything else.
+ *
+ * REQUIRED: every page must include this inline script immediately after <body>
+ * to prevent theme flash on navigation:
+ *
+ *   <body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&matchMedia('(prefers-color-scheme:light)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
  */
 
 /* --- Reset --- */

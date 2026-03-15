@@ -346,12 +346,12 @@
     }
   </style>
 </head>
-<body>
+<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&matchMedia('(prefers-color-scheme:light)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
 
   <div class="forge-theme-toggle"></div>
 
   <header class="header forge-header">
-    <h1><a href="/" style="color:inherit;text-decoration:none">FORGE</a></h1>
+    <h1>FORGE <a href="/">FORGE</a></h1>
     <p class="tagline">Audit and upgrade multi-agent systems across your coding projects</p>
     <div class="links">
       <a href="https://github.com/skondrashov/agent-forge">GitHub</a>
