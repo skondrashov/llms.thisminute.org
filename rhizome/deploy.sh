@@ -25,7 +25,7 @@ python "$SCRIPT_DIR/build.py"
 
 # 2. Upload static files to server
 echo "[2/4] Uploading static files..."
-gcloud compute scp "$SCRIPT_DIR/index.html" "$SCRIPT_DIR/data.js" "$INSTANCE:$REMOTE_DIR/" --zone="$ZONE"
+gcloud compute scp "$SCRIPT_DIR/index.html" "$SCRIPT_DIR/evolution.html" "$SCRIPT_DIR/data.js" "$INSTANCE:$REMOTE_DIR/" --zone="$ZONE"
 
 # 3. Deploy API (if requested)
 if $DEPLOY_API; then
