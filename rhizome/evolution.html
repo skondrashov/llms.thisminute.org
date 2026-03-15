@@ -308,6 +308,24 @@
     }
     .page-footer a { color: var(--text-secondary); }
 
+    .other-projects {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      align-items: center;
+      padding: 1rem 2rem;
+      font-size: 0.7rem;
+    }
+    .other-projects-label {
+      color: var(--text-muted);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .other-projects a { color: var(--text-secondary); }
+    .other-projects a:hover { color: var(--accent); }
+    .other-projects a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
     /* ─── Responsive ──────────────────────────────────────── */
     @media (max-width: 600px) {
       .page-header h1 { font-size: 1.4rem; }
@@ -634,9 +652,13 @@
     </div>
   </div>
 
-  <div class="page-footer">
-    <a href="/rhizome/">Rhizome</a> &middot; <a href="/">forge.thisminute.org</a> &middot; <a href="/forge/">Agent Forge</a>
-  </div>
+  <nav class="other-projects" aria-label="Cross-site navigation">
+    <span class="other-projects-label">Also:</span>
+    <a href="/">Portal</a>
+    <a href="/rhizome/">Rhizome</a>
+    <a href="/forge/">Agent Forge</a>
+    <a href="/toolshed/">Toolshed</a>
+  </nav>
 
   <script>
     const isLight = (() => { try { return localStorage.getItem('thisminute_theme') === 'light'; } catch { return false; } })();

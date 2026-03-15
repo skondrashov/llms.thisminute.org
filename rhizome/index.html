@@ -46,7 +46,7 @@
       --border-focus: var(--accent);
       --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
-      --radius: 12px;
+      --radius: 10px;
       --radius-sm: 8px;
       --success: #4ade80;
       --danger: #f87171;
@@ -1263,7 +1263,7 @@
       .grid { grid-template-columns: 1fr; padding: 1rem; }
       .detail { width: 100%; border-left: none; }
       .detail-body { grid-template-columns: 1fr; }
-      .controls { padding: 1rem; position: static; }
+      .controls { padding: 1rem; position: sticky; }
       .sw-grid { grid-template-columns: 1fr; }
       .back-to-top { bottom: 1rem; right: 1rem; }
       .mobile-filter-bar {
@@ -1372,7 +1372,7 @@
       <span class="result-count" id="result-count"></span>
     </div>
     <div class="filter-panel expanded" id="structure-panel">
-      <div class="filter-panel-header" id="structure-panel-header">
+      <div class="filter-panel-header" id="structure-panel-header" role="button" tabindex="0" aria-expanded="true">
         <span class="filter-panel-title">Structure <span class="filter-panel-active-label" id="structure-active-label"></span></span>
         <span class="filter-panel-chevron">&#9654;</span>
       </div>
@@ -1381,7 +1381,7 @@
       </div></div>
     </div>
     <div class="filter-panel" id="category-panel">
-      <div class="filter-panel-header" id="category-panel-header">
+      <div class="filter-panel-header" id="category-panel-header" role="button" tabindex="0" aria-expanded="false">
         <span class="filter-panel-title">Category <span class="filter-panel-active-label" id="category-active-label"></span></span>
         <span class="filter-panel-chevron">&#9654;</span>
       </div>
@@ -1468,11 +1468,20 @@
   <script src="data.js"></script>
   <script>
     // ─── Mermaid Init ─────────────────────────────────────
-    if (typeof mermaid !== 'undefined') {
+    function initMermaid() {
+      if (typeof mermaid === 'undefined') return;
+      const isLight = document.body.classList.contains('light-mode');
       mermaid.initialize({
         startOnLoad: false,
-        theme: 'dark',
-        themeVariables: {
+        theme: isLight ? 'default' : 'dark',
+        themeVariables: isLight ? {
+          primaryColor: '#ffffff',
+          primaryTextColor: '#0f172a',
+          primaryBorderColor: '#0891b2',
+          lineColor: '#475569',
+          secondaryColor: '#f1f5f9',
+          tertiaryColor: '#f8fafc'
+        } : {
           primaryColor: '#1a1d2e',
           primaryTextColor: '#e2e8f0',
           primaryBorderColor: '#22d3ee',
@@ -1482,6 +1491,7 @@
         }
       });
     }
+    initMermaid();
 
     // ─── Constants ────────────────────────────────────────
     const HIERARCHY_COLORS = {
@@ -1629,6 +1639,7 @@
       document.getElementById('theme-icon-dark').style.display = state.lightMode ? 'block' : 'none';
       document.getElementById('theme-icon-light').style.display = state.lightMode ? 'none' : 'block';
       try { localStorage.setItem('thisminute_theme', state.lightMode ? 'light' : 'dark'); } catch {}
+      initMermaid();
     }
     applyTheme();
 
@@ -1854,11 +1865,29 @@
     }
 
     // Wire up panel expand/collapse
+    function togglePanel(headerId, panelId) {
+      const panel = document.getElementById(panelId);
+      const header = document.getElementById(headerId);
+      panel.classList.toggle('expanded');
+      header.setAttribute('aria-expanded', panel.classList.contains('expanded'));
+    }
     document.getElementById('structure-panel-header').addEventListener('click', () => {
-      document.getElementById('structure-panel').classList.toggle('expanded');
+      togglePanel('structure-panel-header', 'structure-panel');
+    });
+    document.getElementById('structure-panel-header').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        togglePanel('structure-panel-header', 'structure-panel');
+      }
     });
     document.getElementById('category-panel-header').addEventListener('click', () => {
-      document.getElementById('category-panel').classList.toggle('expanded');
+      togglePanel('category-panel-header', 'category-panel');
+    });
+    document.getElementById('category-panel-header').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        togglePanel('category-panel-header', 'category-panel');
+      }
     });
 
     // ─── Vote Data Loading ──────────────────────────────────
@@ -2087,6 +2116,8 @@
       </div>`;
     }
 
+    let handlingPopstate = false;
+
     async function openDetail(id) {
       const s = state.structures.find(x => x.id === id);
       if (!s) return;
@@ -2253,7 +2284,11 @@
       detail.scrollTop = 0;
       detail.classList.add('active');
       overlay.classList.add('active');
-      history.replaceState(null, '', '#' + s.id);
+      if (handlingPopstate) {
+        history.replaceState(null, '', '#' + s.id);
+      } else {
+        history.pushState(null, '', '#' + s.id);
+      }
 
       // Focus management: trap focus in drawer
       enableFocusTrap(detail);
@@ -2388,13 +2423,13 @@
       }
     }
 
-    function closeDetail() {
+    function closeDetail(skipHistory) {
       const detail = document.getElementById('detail');
       disableFocusTrap(detail);
       detail.classList.remove('active');
       document.getElementById('overlay').classList.remove('active');
       currentDetailId = null;
-      history.replaceState(null, '', location.pathname);
+      if (!skipHistory) history.replaceState(null, '', location.pathname);
     }
 
     // ─── Search ───────────────────────────────────────────
@@ -2599,6 +2634,22 @@
         openDetail(id);
       }
     }
+
+    // ─── Popstate (browser back/forward) ──────────────────
+    window.addEventListener('popstate', () => {
+      handlingPopstate = true;
+      if (location.hash) {
+        const id = location.hash.slice(1);
+        if (state.structures.some(s => s.id === id)) {
+          openDetail(id);
+        } else {
+          closeDetail(true);
+        }
+      } else {
+        if (currentDetailId) closeDetail(true);
+      }
+      handlingPopstate = false;
+    });
   </script>
 </body>
 </html>
