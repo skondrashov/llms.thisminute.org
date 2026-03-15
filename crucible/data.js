@@ -26,7 +26,8 @@ window.CRUCIBLE_IDEAS = [
         "steward-bootstrap"
       ],
       "rationale": "Weekend project with a single page and a single workflow. Steward is the only sensible choice — anything more would be over-engineering."
-    }
+    },
+    "status": "in-progress"
   },
   {
     "id": "codebase-migration-planner",
@@ -72,7 +73,8 @@ window.CRUCIBLE_IDEAS = [
         "protocol-forum-product-team"
       ],
       "rationale": "Multi-domain problem (parsing, dependency analysis, planning, code generation) that benefits from persistent forum discussion. The strategist and skeptic need to debate sequencing tradeoffs across sessions."
-    }
+    },
+    "status": "idea"
   },
   {
     "id": "git-commit-archaeology",
@@ -102,7 +104,8 @@ window.CRUCIBLE_IDEAS = [
         "steward-bootstrap"
       ],
       "rationale": "Focused read-only tool with a linear workflow. No design debates or iterative refinement needed — it either produces a good narrative or it doesn't. Steward can iterate on prompt quality without needing a team."
-    }
+    },
+    "status": "idea"
   },
   {
     "id": "dependency-health-scorer",
@@ -144,7 +147,8 @@ window.CRUCIBLE_IDEAS = [
         "checkpoint-cycle-development"
       ],
       "rationale": "Multiple data sources and a scoring model that needs iterative refinement. Checkpoint cycles let the team build incrementally — add one registry at a time, validate scores, adjust weights."
-    }
+    },
+    "status": "idea"
   },
   {
     "id": "lease-clause-comparator",
@@ -173,7 +177,8 @@ window.CRUCIBLE_IDEAS = [
         "steward-bootstrap"
       ],
       "rationale": "Focused tool with a single workflow. A steward handles everything and only splits roles if the clause taxonomy grows complex enough to need a specialist."
-    }
+    },
+    "status": "idea"
   },
   {
     "id": "personal-knowledge-graph",
@@ -219,7 +224,8 @@ window.CRUCIBLE_IDEAS = [
         "protocol-forum-product-team"
       ],
       "rationale": "Complex multi-domain project (data ingestion, AI pipeline, graph storage, visualization) that will evolve over months. Protocol+forum gives the team persistent context and a forum for design debates."
-    }
+    },
+    "status": "idea"
   },
   {
     "id": "meeting-to-actions",
@@ -248,7 +254,8 @@ window.CRUCIBLE_IDEAS = [
         "steward-bootstrap"
       ],
       "rationale": "Linear pipeline with clear input/output at each stage. A steward handles it end-to-end. If integration with multiple task trackers grows complex, a builder role can split off."
-    }
+    },
+    "status": "idea"
   },
   {
     "id": "research-paper-debate",
@@ -290,6 +297,7 @@ window.CRUCIBLE_IDEAS = [
         "checkpoint-cycle-development"
       ],
       "rationale": "The debate engine needs iterative refinement — the quality of expert perspectives and debate dynamics will improve over cycles. Checkpoint model fits because each iteration produces a testable artifact (a debate transcript to evaluate)."
-    }
+    },
+    "status": "idea"
   }
 ];

@@ -13,6 +13,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%94%A5</text></svg>">
   <!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
   <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/shared/forge.css">
 
   <style>
     :root {
@@ -103,7 +104,7 @@
     .content {
       max-width: 860px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 2rem 2rem 50vh;
     }
 
     section { margin-bottom: 2.5rem; }
@@ -347,27 +348,10 @@
 </head>
 <body>
 
-  <div class="theme-toggle">
-    <button class="icon-btn" id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
-      <svg id="theme-icon-dark" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none">
-        <path d="M8 1a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 1zm0 11a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 12zm7-4a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 0115 8zM4 8a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 014 8zm8.95-3.54a.5.5 0 010 .71l-.71.71a.5.5 0 11-.71-.71l.71-.71a.5.5 0 01.71 0zM4.46 11.46a.5.5 0 010 .71l-.7.71a.5.5 0 11-.71-.71l.7-.71a.5.5 0 01.71 0zm8.49 1.42a.5.5 0 01-.71 0l-.71-.71a.5.5 0 01.71-.71l.71.71a.5.5 0 010 .71zM4.46 4.54a.5.5 0 01-.71 0l-.7-.71a.5.5 0 11.7-.71l.71.71a.5.5 0 010 .71zM8 4.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" fill="currentColor"/>
-      </svg>
-      <svg id="theme-icon-light" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M6 .278a.77.77 0 01.08.858 7.2 7.2 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.79.79 0 01.81.316.73.73 0 01-.031.893A8.35 8.35 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 016 .278z" fill="currentColor"/>
-      </svg>
-    </button>
-  </div>
+  <div class="forge-theme-toggle"></div>
 
-  <header class="header">
-    <div class="other-projects">
-      <nav aria-label="Cross-site navigation" style="display: flex; gap: 0.75rem; align-items: center;">
-        <span class="other-projects-label">Also:</span>
-        <a href="/">Portal</a>
-        <a href="/rhizome/">Rhizome</a>
-        <a href="/toolshed/">Toolshed</a>
-      </nav>
-    </div>
-    <h1>AGENT FORGE</h1>
+  <header class="header forge-header">
+    <h1><a href="/" style="color:inherit;text-decoration:none">FORGE</a></h1>
     <p class="tagline">Audit and upgrade multi-agent systems across your coding projects</p>
     <div class="links">
       <a href="https://github.com/skondrashov/agent-forge">GitHub</a>
@@ -478,26 +462,7 @@ claude go</pre>
 
   </div>
 
-  <script>
-    const savedTheme = (() => { try { return localStorage.getItem('thisminute_theme'); } catch { return null; } })();
-    const lightMode = savedTheme ? savedTheme === 'light'
-      : window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-    function applyTheme(isLight) {
-      document.body.classList.toggle('light-mode', isLight);
-      document.getElementById('theme-icon-dark').style.display = isLight ? 'block' : 'none';
-      document.getElementById('theme-icon-light').style.display = isLight ? 'none' : 'block';
-      try { localStorage.setItem('thisminute_theme', isLight ? 'light' : 'dark'); } catch {}
-    }
-    applyTheme(lightMode);
-    if (window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-        try { if (!localStorage.getItem('thisminute_theme')) applyTheme(e.matches); } catch {}
-      });
-    }
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      applyTheme(!document.body.classList.contains('light-mode'));
-    });
-  </script>
+  <script src="/shared/forge.js"></script>
 
 </body>
 </html>

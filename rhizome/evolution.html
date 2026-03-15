@@ -8,13 +8,14 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://forge.thisminute.org/rhizome/evolution">
   <meta property="og:title" content="How These Projects Organized Themselves">
-  <meta property="og:description" content="Three projects, three different organizational structures — from a 10-daemon research lab to a single steward catalog. What worked, what broke, and what we learned.">
-  <meta name="description" content="How the organizational structures of three real projects evolved — a composable AI research lab, a real-time news map, and this catalog. Including the failures, surprises, and patterns that emerged.">
+  <meta property="og:description" content="Nine projects, three coordination models, ~44 agents. From a 10-daemon research lab to a forge that watches them all. What worked, what broke, and what we learned.">
+  <meta name="description" content="How the organizational structures of nine real agent-driven projects evolved — from protocol+forum to checkpoint cycles to single-steward bootstraps. Including the failures, surprises, and three coordination models that emerged.">
 
   <!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
   <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%2322d3ee' stroke-width='4'/><circle cx='50' cy='30' r='6' fill='%2322d3ee'/><circle cx='30' cy='60' r='6' fill='%2322d3ee'/><circle cx='70' cy='60' r='6' fill='%2322d3ee'/><line x1='50' y1='30' x2='30' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='50' y1='30' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='30' y1='60' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/></svg>">
 
+  <link rel="stylesheet" href="/shared/forge.css">
   <style>
     :root {
       --bg: #0a0a0f;
@@ -23,19 +24,12 @@
       --accent: #22d3ee;
       --accent-dim: rgba(34, 211, 238, 0.08);
       --accent-border: rgba(34, 211, 238, 0.25);
-      --text: #e4e4ed;
-      --text-secondary: #9898ad;
-      --text-muted: #5e5e73;
-      --border: rgba(255, 255, 255, 0.06);
-      --border-light: rgba(255, 255, 255, 0.10);
       --red: #f87171;
       --red-dim: rgba(248, 113, 113, 0.08);
       --amber: #fbbf24;
       --amber-dim: rgba(251, 191, 36, 0.08);
       --green: #4ade80;
       --green-dim: rgba(74, 222, 128, 0.08);
-      --radius: 10px;
-      color-scheme: dark;
     }
     body.light-mode {
       --bg: #fafaf9;
@@ -44,28 +38,16 @@
       --accent: #0891b2;
       --accent-dim: rgba(8, 145, 178, 0.06);
       --accent-border: rgba(8, 145, 178, 0.25);
-      --text: #1c1917;
-      --text-secondary: #57534e;
-      --text-muted: #a8a29e;
-      --border: rgba(0, 0, 0, 0.06);
-      --border-light: rgba(0, 0, 0, 0.10);
       --red: #dc2626;
       --red-dim: rgba(220, 38, 38, 0.06);
       --amber: #d97706;
       --amber-dim: rgba(217, 119, 6, 0.06);
       --green: #16a34a;
       --green-dim: rgba(22, 163, 74, 0.06);
-      color-scheme: light;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      line-height: 1.7;
-      transition: background 0.3s, color 0.3s;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -107,23 +89,6 @@
       position: absolute;
       top: 0.75rem;
       right: 1rem;
-    }
-    .icon-btn {
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--bg-raised);
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .icon-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
     }
 
     /* ─── Content ─────────────────────────────────────────── */
@@ -309,23 +274,6 @@
     }
     .page-footer a { color: var(--text-secondary); }
 
-    .other-projects {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      align-items: center;
-      padding: 1rem 2rem;
-      font-size: 0.7rem;
-    }
-    .other-projects-label {
-      color: var(--text-muted);
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .other-projects a { color: var(--text-secondary); }
-    .other-projects a:hover { color: var(--accent); }
-    .other-projects a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 
     /* ─── Responsive ──────────────────────────────────────── */
     @media (max-width: 600px) {
@@ -340,15 +288,12 @@
 
   <div class="page-header" style="position: relative;">
     <div class="header-actions">
-      <button class="icon-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle light/dark mode">
-        <svg id="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:none"><path d="M8 1a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 1zm0 11a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1A.5.5 0 018 12zm7-4a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 0115 8zM4 8a.5.5 0 01-.5.5h-1a.5.5 0 010-1h1A.5.5 0 014 8zm8.95-3.54a.5.5 0 010 .71l-.71.71a.5.5 0 11-.71-.71l.71-.71a.5.5 0 01.71 0zM4.46 11.46a.5.5 0 010 .71l-.7.71a.5.5 0 11-.71-.71l.7-.71a.5.5 0 01.71 0zm8.49 1.42a.5.5 0 01-.71 0l-.71-.71a.5.5 0 01.71-.71l.71.71a.5.5 0 010 .71zM4.46 4.54a.5.5 0 01-.71 0l-.7-.71a.5.5 0 11.7-.71l.71.71a.5.5 0 010 .71zM8 4.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/></svg>
-        <svg id="icon-moon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M6 .278a.77.77 0 01.08.858 7.2 7.2 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.79.79 0 01.81.316.73.73 0 01-.031.893A8.35 8.35 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 016 .278z"/></svg>
-      </button>
+      <div class="forge-theme-toggle" style="position:static"></div>
     </div>
     <a class="back" href=".">&larr; Rhizome</a>
     <h1>How These Projects Organized Themselves</h1>
-    <p class="intro">Three projects, three organizational structures &mdash; from a 10-daemon research lab that generated 8,753 lines of forum in a single day, to a catalog that works fine with one agent and no coordination protocol. What actually happened.</p>
-    <p class="meta">February&ndash;March 2026 &middot; Ongoing</p>
+    <p class="intro">Nine projects, three coordination models, ~44 agents &mdash; from a 10-daemon research lab that generated 8,753 lines of forum in a single day, to a catalog that works fine with one agent, to a forge that watches them all and extracts what works. What actually happened.</p>
+    <p class="meta">February&ndash;March 2026 &middot; Ongoing &middot; Now tracking 9 projects, ~44 agents</p>
   </div>
 
   <div class="content">
@@ -568,6 +513,35 @@
         </div>
       </div>
 
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Week 3+</div>
+        <h2>Security & Scale</h2>
+        <p>An 11th agent: security. Not because of an incident &mdash; because ops added an infra-layer security agent and the two needed to not overlap. thisminute's security agent owns app-layer concerns (XSS, comment/vote hardening, SSRF protection, rate limiting). ops owns infra-layer (nginx, firewall, SSH, SSL/TLS). Two projects, two agents, one security model.</p>
+        <div class="roster">
+          <span class="roster-agent">orchestrator</span>
+          <span class="roster-agent">builder</span>
+          <span class="roster-agent">tester</span>
+          <span class="roster-agent">strategist</span>
+          <span class="roster-agent">skeptic</span>
+          <span class="roster-agent">deployer</span>
+          <span class="roster-agent">economist</span>
+          <span class="roster-agent">designer</span>
+          <span class="roster-agent">librarian</span>
+          <span class="roster-agent">feedback</span>
+          <span class="roster-agent new">security</span>
+        </div>
+        <p>Phase 4.5 shipped: map color themes (domain/classic/mono/heat/neon), redesigned world-picker, share button, auto-cycling tour mode. 95 RSS feeds plus 13 structured data APIs. The forum peaked at 1,008 lines in that early session, but the librarian keeps it around 400 now. The test suite hit 710.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">11</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">95</div><div class="number-label">RSS feeds</div></div>
+            <div class="number-item"><div class="number-value">710</div><div class="number-label">tests</div></div>
+            <div class="number-item"><div class="number-value">444</div><div class="number-label">forum lines (steady)</div></div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /timeline thisminute -->
 
     <!-- ═══════════════════════════════════════════════════════ -->
@@ -576,7 +550,7 @@
 
     <div class="summary-section">
       <h2>Project 3: rhizome</h2>
-      <p style="color: var(--text-secondary); font-size: 0.88rem;"><a href=".">This catalog.</a> 200 organizational patterns. One steward agent, no forum, no protocol file. The right amount of structure for a browsable catalog turns out to be almost none.</p>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;"><a href=".">This catalog.</a> 205 organizational patterns, 7 curated from real ecosystem usage. One steward agent, no forum, no protocol file. The right amount of structure for a browsable catalog turns out to be almost none.</p>
     </div>
 
     <div class="timeline">
@@ -593,17 +567,171 @@
         <div class="callout callout-numbers">
           <div class="numbers-grid">
             <div class="number-item"><div class="number-value">1</div><div class="number-label">agent</div></div>
-            <div class="number-item"><div class="number-value">200</div><div class="number-label">patterns</div></div>
+            <div class="number-item"><div class="number-value">205</div><div class="number-label">patterns</div></div>
             <div class="number-item"><div class="number-value">92</div><div class="number-label">tests</div></div>
             <div class="number-item"><div class="number-value">0</div><div class="number-label">forum lines</div></div>
           </div>
         </div>
         <div class="callout callout-pattern">
-          Rhizome pattern: none, really. It's one agent. The interesting thing is that it works.
+          Rhizome pattern: none, really. It's one agent. The interesting thing is that it works &mdash; and that 7 of its patterns now come from watching the other projects organize themselves.
         </div>
       </div>
 
     </div><!-- /timeline rhizome -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- TOOLSHED -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div class="summary-section">
+      <h2>Project 4: toolshed</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">A software directory that catalogs 15,803 tools across 124 categories. Originally called "mainmenu." The first project to adopt thisminute's protocol+forum model from scratch rather than inheriting it &mdash; proof that the pattern transfers.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 2</div>
+        <h2>Full Protocol from Day One</h2>
+        <p>Seven agents, a PROTOCOL.md, and a forum. Builder, curator, designer, librarian, orchestrator, skeptic, strategist. The roles were modeled on thisminute's post-growth roster, minus the domain-specific ones (no deployer, economist, or feedback &mdash; a static directory doesn't need them).</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">builder</span>
+          <span class="roster-agent new">curator</span>
+          <span class="roster-agent new">designer</span>
+          <span class="roster-agent new">strategist</span>
+          <span class="roster-agent new">skeptic</span>
+          <span class="roster-agent new">librarian</span>
+        </div>
+        <p>Data aggregation from Homebrew, awesome-lists, and CNCF via scraping pipelines. Build script generates a 1MB+ data.js for client-side filtering. 67 tests for categorization, data validation, and taxonomy integrity.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">7</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">15,803</div><div class="number-label">tools cataloged</div></div>
+            <div class="number-item"><div class="number-value">124</div><div class="number-label">categories</div></div>
+            <div class="number-item"><div class="number-value">91</div><div class="number-label">forum lines (healthy)</div></div>
+          </div>
+        </div>
+        <p>The interesting thing: the forum is at 91 lines and stable. thisminute's forum hit 1,008 lines in its first big session. toolshed never had that spike because the librarian was there from the start, not added as a fix. The lesson shipped before the problem.</p>
+        <div class="callout callout-pattern">
+          Rhizome patterns: <a href="./#airline-hub-spoke-ops">Orchestrated</a> (no single orchestrator, but protocol-mediated) + <a href="./#debate-tournament">Adversarial</a> (skeptic reviews strategy proposals). The protocol+forum model is now a documented, transferable pattern.
+        </div>
+      </div>
+
+    </div><!-- /timeline toolshed -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- BALATRO -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div class="summary-section">
+      <h2>Project 5: balatro</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">An autopilot mod for the card game Balatro. The project that validated the checkpoint model &mdash; disposable per-cycle agents, no forum, no protocol, just a checkpoint file as the source of truth.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 1</div>
+        <h2>Checkpoint Cycles</h2>
+        <p>Nine agents: orchestrator, mod-builder, bot-builder, mcp-engineer, play-operator, analyst, overlay-dev, cycle, skeptic. Each cycle: agents spawn, read the checkpoint, do their work, update the checkpoint, shut down. No forum &mdash; the checkpoint IS the coordination mechanism. No protocol &mdash; the cycle IS the protocol.</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">mod-builder</span>
+          <span class="roster-agent new">bot-builder</span>
+          <span class="roster-agent new">mcp-engineer</span>
+          <span class="roster-agent new">play-operator</span>
+          <span class="roster-agent new">analyst</span>
+          <span class="roster-agent new">overlay-dev</span>
+          <span class="roster-agent new">cycle</span>
+          <span class="roster-agent new">skeptic</span>
+        </div>
+        <p>13 cycles in, and the memory system told the real story. The project started with 1 memory file. By cycle 13 it had 8 &mdash; scoring math, cost feedback, learning loops, strategy notes. Nobody told the agents to write memory files. They started doing it because the checkpoint kept losing context between cycles.</p>
+        <div class="callout callout-broke">
+          <strong>What surprised:</strong> Memory adoption was organic and self-reinforcing. Agents that wrote memories performed better in later cycles, so more agents started writing memories. 1&rarr;8 files in ~10 cycles, without any instruction to do so.
+        </div>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">9</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">13</div><div class="number-label">cycles</div></div>
+            <div class="number-item"><div class="number-value">8</div><div class="number-label">memory files</div></div>
+            <div class="number-item"><div class="number-value">25/25</div><div class="number-label">MCP tests</div></div>
+          </div>
+        </div>
+        <div class="callout callout-pattern">
+          The checkpoint model is being validated here before extraction into the <a href="/forge/">Agent Forge</a> template library. Target: cycle 100 before formalizing the pattern.
+        </div>
+      </div>
+
+    </div><!-- /timeline balatro -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- OPS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div class="summary-section">
+      <h2>Project 6: ops</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">Infrastructure management for the entire ecosystem. nginx, deployment queues, healthchecks, SSL. The steward pattern's first real growth event: one agent became two.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 1</div>
+        <h2>Steward Grows a Role</h2>
+        <p>ops started as a single steward &mdash; one agent managing deploys, nginx config, and healthchecks. Then thisminute needed app-layer security review, and it became clear that security concerns split cleanly into two layers: application (XSS, SSRF, rate limiting) and infrastructure (firewall, SSH, TLS).</p>
+        <p>The steward didn't absorb both. Instead, a security agent was added &mdash; the first organic role split in the steward model. The steward's role file had always included instructions for when to split ("your memory covers 3+ unrelated domains"). Infrastructure + security hit that threshold.</p>
+        <div class="roster">
+          <span class="roster-agent">steward</span>
+          <span class="roster-agent new">security</span>
+        </div>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">2</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">102</div><div class="number-label">deploy queue lines</div></div>
+          </div>
+        </div>
+        <div class="callout callout-pattern">
+          This is the steward pattern working as designed: start minimal, grow when the work demands it. The split criteria were baked into the role file from day one &mdash; they just hadn't been triggered until now.
+        </div>
+      </div>
+
+    </div><!-- /timeline ops -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- THE FORGE -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div class="summary-section">
+      <h2>The Meta-Project: the Forge</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">At some point there were enough projects that someone needed to watch them all. The <a href="/forge/">Forge</a> emerged as a meta-project &mdash; not coordinating the projects (they coordinate themselves), but auditing their organizational health and extracting patterns from what works.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 2</div>
+        <h2>Audit &amp; Propagate</h2>
+        <p>The forgemaster runs an audit cycle: scan every project's agent system, identify gaps, update the pattern library, and apply targeted upgrades. 23 cycles so far across 8 active projects. It tracks maturity progression &mdash; from "minimal" (steward-only) through "established+" (full protocol+forum) &mdash; and flags when a project's documentation lags behind its actual architecture.</p>
+        <p>The real output isn't the audits. It's the pattern library: 7 validated patterns extracted from live projects and shipped as reusable templates. Challenge loops, steward bootstraps, checkpoint cycles, forum maintenance, section indexes for navigating huge files. Each pattern earned its place by working in production, not by being theoretically appealing.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">23</div><div class="number-label">audit cycles</div></div>
+            <div class="number-item"><div class="number-value">8</div><div class="number-label">projects monitored</div></div>
+            <div class="number-item"><div class="number-value">7</div><div class="number-label">validated patterns</div></div>
+            <div class="number-item"><div class="number-value">~44</div><div class="number-label">total agents</div></div>
+          </div>
+        </div>
+        <div class="callout callout-broke">
+          <strong>What surprised:</strong> The forge doesn't coordinate. It observes. Each project runs its own coordination model. The forge just watches what works, writes it down, and makes it available to new projects. That's it. The temptation to build a central coordinator was strong, and resisting it was the right call.
+        </div>
+      </div>
+
+    </div><!-- /timeline forge -->
 
     <!-- ═══════════════════════════════════════════════════════ -->
     <!-- WHAT WE LEARNED -->
@@ -615,15 +743,37 @@
         <thead>
           <tr>
             <th>Project</th>
-            <th>Peak Agents</th>
-            <th>Forum?</th>
+            <th>Agents</th>
+            <th>Model</th>
             <th>What It Taught Us</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>agi</td><td>10 &rarr; 7</td><td>8,753 lines/day</td><td>Premature structure costs more than no structure. Police, coach, and editor produced overhead, not output.</td></tr>
-          <tr><td>thisminute</td><td>5 &rarr; 10</td><td>1,008 lines/session</td><td>Grow into complexity rather than starting with it. The skeptic was the most important addition.</td></tr>
-          <tr><td>rhizome</td><td>1</td><td>None</td><td>Not every project needs coordination. A catalog is not a news platform.</td></tr>
+          <tr><td>agi</td><td>10 &rarr; 7</td><td>Protocol + Forum</td><td>Premature structure costs more than no structure. Police, coach, and editor produced overhead, not output.</td></tr>
+          <tr><td>thisminute</td><td>5 &rarr; 11</td><td>Protocol + Forum</td><td>Grow into complexity rather than starting with it. The skeptic was the most important addition.</td></tr>
+          <tr><td>rhizome</td><td>1</td><td>Steward</td><td>Not every project needs coordination. A catalog is not a news platform.</td></tr>
+          <tr><td>toolshed</td><td>7</td><td>Protocol + Forum</td><td>The pattern transfers. A librarian from day one prevents the forum explosion.</td></tr>
+          <tr><td>balatro</td><td>9</td><td>Checkpoint</td><td>Disposable agents + persistent checkpoint = rapid iteration. Memory adoption is organic.</td></tr>
+          <tr><td>ops</td><td>1 &rarr; 2</td><td>Steward</td><td>The steward pattern's growth triggers work. One agent becomes two when the domains diverge.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="summary-section">
+      <h2>Three Models</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">The ecosystem converged on three coordination models. Not by design &mdash; by natural selection. Each emerged from a different project's constraints and then proved transferable.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Used By</th>
+            <th>When It Fits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Protocol + Forum</td><td>thisminute (11), toolshed (7), agi (7)</td><td>Steady-state products with multiple domains. Agents persist between sessions. Forum is the evidence ledger; protocol defines the startup sequence. Needs a librarian or the forum grows without bound.</td></tr>
+          <tr><td>Checkpoint</td><td>balatro (9), sts2 (9)</td><td>Rapid build-test-fix iteration. Agents are disposable &mdash; they spawn, read the checkpoint, work, update it, and shut down. No forum, no protocol. The cycle IS the protocol.</td></tr>
+          <tr><td>Steward</td><td>rhizome (1), ops (2), bellows (1)</td><td>Small scope or bootstrap projects. One agent owns everything and knows when to split. Minimal coordination overhead. The split criteria are baked into the role file.</td></tr>
         </tbody>
       </table>
     </div>
@@ -638,47 +788,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>More agents = more capability</td><td>agi started with 10 and consolidated to 7 in a day. The eliminated roles (police, coach, editor) generated noise. thisminute grew from 5 to 10 because each role was needed. rhizome never needed more than 1.</td></tr>
-          <tr><td>The forum is the coordination mechanism</td><td>Forums grow without bound. agi: 8,753 lines in a day. thisminute: 1,008 lines in a session. Every shared-context pattern needs a maintenance agent, and the maintenance cost is inseparable from the pattern.</td></tr>
-          <tr><td>The skeptic is a nice-to-have</td><td>In agi, the skeptic invalidated ALL Go results (broken oracle). In thisminute, it caught 10&ndash;100x inflated numbers. The adversarial dynamic is load-bearing in both projects.</td></tr>
+          <tr><td>More agents = more capability</td><td>agi started with 10 and consolidated to 7 in a day. The eliminated roles (police, coach, editor) generated noise. thisminute grew from 5 to 11 because each role was needed. rhizome never needed more than 1.</td></tr>
+          <tr><td>The forum is the coordination mechanism</td><td>Forums grow without bound. agi: 8,753 lines in a day. thisminute: 1,008 lines in a session. Every shared-context pattern needs a maintenance agent, and the maintenance cost is inseparable from the pattern. toolshed shipped the librarian on day one and never had the spike.</td></tr>
+          <tr><td>The skeptic is a nice-to-have</td><td>In agi, the skeptic invalidated ALL Go results (broken oracle). In thisminute, it caught 10&ndash;100x inflated numbers. The adversarial dynamic is load-bearing in every project that has one.</td></tr>
           <tr><td>Organizational structure should be designed up front</td><td>agi over-designed and had to consolidate. thisminute inherited and grew. rhizome never needed to grow. The right amount of structure depends on the project, not on a template.</td></tr>
-          <tr><td>10 agents need 10 memory files</td><td>agi: 7 agents, 7 memory files (research needs memory). thisminute: 10 agents, 6 memory files. rhizome: 1 agent, 1 memory file. Memory adoption lags behind everything else.</td></tr>
+          <tr><td>There's one right coordination model</td><td>There are at least three. Protocol+forum for steady-state products, checkpoint for rapid iteration, steward for small scope. Each emerged from a project's constraints. Applying the wrong model wastes effort &mdash; rhizome doesn't need a forum, balatro doesn't need a protocol.</td></tr>
+          <tr><td>Memory needs to be mandated</td><td>balatro went from 1 to 8 memory files in ~10 cycles with zero instruction. Agents that wrote memories performed better, so more agents started writing memories. The incentive is self-reinforcing when the checkpoint keeps losing context.</td></tr>
+          <tr><td>You need a central coordinator</td><td>The forge watches, it doesn't coordinate. Each project runs its own model. The temptation to build a hub that dispatches work across projects was strong. Resisting it was right &mdash; the projects don't share runtime state, so a coordinator would just be overhead.</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="closing">
-      <p>This is a living document. All three systems are still evolving.</p>
-      <p style="color: var(--text-muted); font-size: 0.82rem;">The organizational patterns referenced above are from the <a href=".">Rhizome catalog</a> &mdash; 200 coordination patterns drawn from military hierarchies, jazz ensembles, ant colonies, and everything in between. The <a href="/forge/">Agent Forge</a> is the system that manages these projects.</p>
+      <p>This is a living document. All nine systems are still evolving. balatro is heading toward cycle 100, where the checkpoint pattern gets formally extracted. bellows and recipe-scaler-substituter are testing whether the steward bootstrap can scaffold brand-new projects from an ideas database. The forge is still learning what to watch for.</p>
+      <p style="color: var(--text-muted); font-size: 0.82rem;">The organizational patterns referenced above are from the <a href=".">Rhizome catalog</a> &mdash; 205 coordination patterns drawn from military hierarchies, jazz ensembles, ant colonies, and everything in between, plus 7 curated from this ecosystem's own experience. The <a href="/forge/">Agent Forge</a> is the system that watches these projects and extracts what works into reusable templates.</p>
     </div>
   </div>
 
-  <nav class="other-projects" aria-label="Cross-site navigation">
-    <span class="other-projects-label">Also:</span>
-    <a href="/">Portal</a>
-    <a href="/rhizome/">Rhizome</a>
-    <a href="/forge/">Agent Forge</a>
-    <a href="/toolshed/">Toolshed</a>
-  </nav>
 
-  <script>
-    const isLight = (() => { try { const s = localStorage.getItem('thisminute_theme'); if (s) return s === 'light'; } catch {} return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches; })();
-    function applyTheme(light) {
-      document.body.classList.toggle('light-mode', light);
-      document.getElementById('icon-sun').style.display = light ? 'block' : 'none';
-      document.getElementById('icon-moon').style.display = light ? 'none' : 'block';
-      try { localStorage.setItem('thisminute_theme', light ? 'light' : 'dark'); } catch {}
-    }
-    applyTheme(isLight);
-    if (window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-        try { if (!localStorage.getItem('thisminute_theme')) applyTheme(e.matches); } catch {}
-      });
-    }
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      applyTheme(!document.body.classList.contains('light-mode'));
-    });
-  </script>
 
+  <script src="/shared/forge.js"></script>
 </body>
 </html>
