@@ -539,10 +539,16 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "glob", "patterns", "gitignore", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/glob-pattern-tester/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "221 tests passing. Parses glob patterns into structured components, matches paths against patterns in 3 flavors (Unix, gitignore, fnmatch), explains patterns in plain English, handles *, **, ?, character classes, brace expansion, .gitignore negation/anchoring/dir-only markers. CLI commands: test, explain, match, parse, gitignore.",
+      "limitations": "Pure offline tool with no external dependencies. Docker .dockerignore and GitHub Actions glob flavors not yet implemented as separate modes."
+    },
     "complexity": "weekend",
     "capability": "Multi-flavor glob pattern testing, explanation, and cross-flavor translation",
-    "approach": "Pure Python CLI. Implements glob matching for 5 flavors. Tests patterns against user-provided paths. Explains each pattern component. Translates between flavors, flagging behavioral differences.",
+    "approach": "Pure Python CLI. Implements glob matching for 3 flavors (Unix, gitignore, fnmatch). Tests patterns against user-provided paths. Explains each pattern component. Parses .gitignore files with full semantics (negation, anchoring, directory markers).",
     "agentArchitecture": { "model": "steward", "roles": ["steward"] },
     "triage": {
       "impact": "medium",
