@@ -442,10 +442,16 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "escaping", "encoding", "web", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/escape-converter/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "1,428 tests passing. Covers 9 formats (URL, HTML, Unicode escape, JSON, C escape, XML, base64, hex, octal). Full round-trip encode/decode fidelity. Auto-detection with confidence scores. Double-encoding detection for URL and HTML.",
+      "limitations": "Pure offline tool with no external dependencies. Regex and shell escaping not yet implemented as separate formats (covered by shell-escape-quoter)."
+    },
     "complexity": "weekend",
     "capability": "Multi-format escape/unescape conversion with double-encoding detection",
-    "approach": "Pure Python CLI. Implements escape/unescape for HTML (all named entities), URL (percent encoding), JSON, Unicode (\\u, \\x, \\U), regex, and shell. Detects and unravels double-escaped strings.",
+    "approach": "Pure Python CLI. Implements escape/unescape for HTML (all named entities), URL (percent encoding), JSON, Unicode (\\u, \\x, \\U), C escapes, XML, base64, hex, and octal. Detects and unravels double-escaped strings.",
     "agentArchitecture": { "model": "steward", "roles": ["steward"] },
     "triage": {
       "impact": "high",
