@@ -789,6 +789,199 @@
     "source": "https://github.com/earthly/earthly"
   },
   {
+    "id": "rush",
+    "name": "Rush",
+    "description": "Scalable monorepo manager by Microsoft for JavaScript/TypeScript projects. Handles installs, builds, and publishing across many packages.",
+    "url": "https://rushjs.io",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "monorepo",
+      "microsoft",
+      "javascript",
+      "publishing",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/rushstack",
+    "language": "typescript"
+  },
+  {
+    "id": "bit",
+    "name": "Bit",
+    "description": "Component-driven development platform. Build, version, and share independent components across projects and teams.",
+    "url": "https://bit.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "components",
+      "monorepo",
+      "composable",
+      "collaboration",
+      "open-source"
+    ],
+    "source": "https://github.com/teambit/bit"
+  },
+  {
+    "id": "grunt",
+    "name": "Grunt",
+    "description": "JavaScript task runner with a large plugin ecosystem. Automates repetitive tasks like minification, linting, and testing via configuration.",
+    "url": "https://gruntjs.com",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "javascript",
+      "plugins",
+      "automation",
+      "open-source"
+    ],
+    "source": "https://github.com/gruntjs/grunt",
+    "language": "javascript"
+  },
+  {
+    "id": "xmake",
+    "name": "xmake",
+    "description": "Cross-platform build utility based on Lua. Handles C/C++ compilation with integrated package management and simple syntax.",
+    "url": "https://xmake.io",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "lua",
+      "c-cpp",
+      "package-management",
+      "open-source"
+    ],
+    "source": "https://github.com/xmake-io/xmake",
+    "language": "lua"
+  },
+  {
+    "id": "mise",
+    "name": "mise",
+    "description": "Polyglot dev tool manager combining version management, environment variables, and task running. Replaces asdf, nvm, and direnv.",
+    "url": "https://mise.jdx.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "version-manager",
+      "environment",
+      "polyglot",
+      "open-source"
+    ],
+    "source": "https://github.com/jdx/mise",
+    "language": "rust"
+  },
+  {
+    "id": "dagger",
+    "name": "Dagger",
+    "description": "Programmable CI/CD engine that runs pipelines in containers. Define builds in real code instead of YAML, runs locally or in CI.",
+    "url": "https://dagger.io",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "containers",
+      "programmable",
+      "reproducible",
+      "open-source"
+    ],
+    "source": "https://github.com/dagger/dagger",
+    "language": "go"
+  },
+  {
+    "id": "mage",
+    "name": "Mage",
+    "description": "Make/Rake-like build tool using Go. Write build targets as plain Go functions, no special syntax or YAML needed.",
+    "url": "https://magefile.org",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-tool",
+      "go",
+      "task-runner",
+      "open-source"
+    ],
+    "source": "https://github.com/magefile/mage",
+    "language": "go"
+  },
+  {
+    "id": "mask",
+    "name": "Mask",
+    "description": "CLI task runner defined by a simple markdown file. Tasks are documented and executable in the same maskfile.md document.",
+    "url": "https://github.com/jacobdeichert/mask",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "markdown",
+      "documentation",
+      "open-source"
+    ],
+    "source": "https://github.com/jacobdeichert/mask",
+    "language": "rust"
+  },
+  {
+    "id": "please",
+    "name": "Please Build",
+    "description": "Cross-language build system emphasizing performance, extensibility, and correctness. Hermetic builds with fine-grained caching.",
+    "url": "https://please.build",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "hermetic",
+      "multi-language",
+      "caching",
+      "open-source"
+    ],
+    "source": "https://github.com/thought-machine/please",
+    "language": "go"
+  },
+  {
     "id": "terraform",
     "name": "Terraform",
     "description": "Infrastructure as code tool by HashiCorp. Declarative HCL configs to provision and manage cloud resources.",
