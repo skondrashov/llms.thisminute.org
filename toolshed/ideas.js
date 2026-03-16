@@ -243,10 +243,17 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "permissions", "unix", "security", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/chmod-calculator/",
+    "language": "python",
+    "validation": {
+      "tests": 5227,
+      "benchmarks": "5,227 tests passing. Round-trip conversion verified for all 4,096 basic modes (000-777) and all special bit combinations (0o0000-0o7777). CLI commands: convert, explain, query, common.",
+      "limitations": "No umask calculation yet. No dangerous-permission warnings. Pure stdlib Python, zero external dependencies."
+    },
     "complexity": "weekend",
     "capability": "Bidirectional permission format conversion with security analysis",
-    "approach": "Pure Python CLI. Converts between octal, symbolic, and English. Handles special bits (setuid/setgid/sticky). Computes effective permissions from umask. Flags dangerous patterns.",
+    "approach": "Pure Python CLI. Converts between octal, symbolic, and English. Handles special bits (setuid/setgid/sticky). Reverse queries ('who can write?'). Curated common presets.",
     "agentArchitecture": { "model": "steward", "roles": ["steward"] },
     "triage": {
       "impact": "high",
@@ -306,10 +313,16 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "env", "configuration", "validation", "devops", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/env-validator/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "512 tests passing. Type validation for 9 types (string, int, float, bool, url, email, port, path, enum). Full .env parser handles quotes, multiline, comments, export prefix, interpolation, BOM, CRLF. Template generation with type inference. File diff comparison.",
+      "limitations": "URL validation only accepts http/https schemes. Path existence checking is optional. Enum matching is case-sensitive."
+    },
     "complexity": "weekend",
     "capability": "Environment file validation against template with type and placeholder detection",
-    "approach": "Pure Python CLI. Parses .env and .env.example, diffs keys, detects placeholder patterns via regex, infers expected types from example values, reports mismatches and missing vars.",
+    "approach": "Pure Python CLI. Parses .env and .env.template, diffs keys, validates types (int, bool, float, url, email, port, path, enum), infers types for template generation, reports mismatches and missing vars.",
     "agentArchitecture": { "model": "steward", "roles": ["steward"] },
     "triage": {
       "impact": "high",
