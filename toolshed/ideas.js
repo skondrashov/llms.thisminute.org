@@ -1,6 +1,10 @@
 /* Ideas from the former Crucible sub-site, merged into Toolshed.
  * These are tools/capabilities that need building, not existing software.
- * Appended to window.SOFTWARE so they appear alongside regular entries. */
+ * Appended to window.SOFTWARE so they appear alongside regular entries.
+ *
+ * FORGE SUBMISSIONS: Append new entries only. Do not modify existing entries,
+ * change triage scores, or re-add retired ideas. Triage is owned by the
+ * orchestrator/curator, not the forge. */
 (window.SOFTWARE = window.SOFTWARE || []).push(
   {
     "id": "lease-clause-comparator",
@@ -139,60 +143,6 @@
     }
   },
   {
-    "id": "meeting-to-actions",
-    "name": "Meeting Transcript to Action Items Pipeline",
-    "description": "Audio file or live mic to Whisper transcription to Claude-extracted action items with owner, deadline, and confidence score. Pushes to task trackers (Linear, GitHub Issues, Todoist). The meeting already contained all the information — it just wasn't extracted.",
-    "url": "",
-    "category": "Productivity",
-    "os": ["windows", "macos", "linux"],
-    "pricing": "free",
-    "tags": ["idea", "meetings", "transcription", "automation", "task-management"],
-    "status": "submitted",
-    "projectPath": "~/projects/singularity/meeting-to-actions/",
-    "language": "typescript",
-    "validation": {
-      "benchmarks": "74 tests passing. Audio ingestion, Whisper transcription, action item extraction with owner/deadline/confidence, task tracker integration (Linear, GitHub Issues, Todoist).",
-      "limitations": "Requires Whisper for transcription and Claude API key for extraction. Real-time streaming mode is optional and not yet validated."
-    },
-    "complexity": "week",
-    "capability": "Structured information extraction from unstructured conversation",
-    "approach": "Audio upload or live mic, Whisper transcription, Claude extracts action items with owner/deadline/confidence, pushes to task tracker. Web app with simple upload flow.",
-    "agentArchitecture": { "model": "steward", "roles": ["steward"] },
-    "triage": {
-      "impact": "high",
-      "buildability": "straightforward",
-      "alternatives": "partial",
-      "alternatives_note": "Otter.ai, Fireflies.ai, and Fellow do meeting transcription and action items but are SaaS-only, closed-source, and expensive. No local-first or open-source alternative extracts structured action items with confidence scores and pushes to multiple task trackers."
-    }
-  },
-  {
-    "id": "personal-knowledge-graph",
-    "name": "Local-First Personal Knowledge Graph",
-    "description": "Import from browser bookmarks, Kindle highlights, markdown notes, PDF annotations. AI builds a concept graph with semantic relationships — not just keywords. Browse visually or query in natural language. All data stays local.",
-    "url": "",
-    "category": "Productivity",
-    "os": ["windows", "macos", "linux", "web"],
-    "pricing": "free",
-    "tags": ["idea", "knowledge-management", "local-first", "graph", "search", "notes"],
-    "status": "submitted",
-    "projectPath": "~/projects/singularity/personal-knowledge-graph/",
-    "language": "typescript",
-    "validation": {
-      "benchmarks": "51 tests passing. Graph builder verified with real imports.",
-      "limitations": "Requires Claude API key for semantic relationship extraction. Large document collections may require batched processing."
-    },
-    "complexity": "multi-month",
-    "capability": "Semantic relationship discovery across heterogeneous text sources",
-    "approach": "Local-first app (Electron or Tauri). Import from browser bookmarks, Kindle highlights, markdown notes, PDF annotations. AI builds a graph: nodes are concepts, edges are relationships. Browse visually or query in natural language.",
-    "agentArchitecture": { "model": "protocol-forum", "roles": ["orchestrator", "builder", "designer", "strategist", "skeptic"] },
-    "triage": {
-      "impact": "high",
-      "buildability": "hard",
-      "alternatives": "partial",
-      "alternatives_note": "Obsidian, Roam, and Logseq offer graph views of notes but require manual linking. No tool automatically discovers semantic relationships across heterogeneous sources (bookmarks, highlights, PDFs, notes) with AI."
-    }
-  },
-  {
     "id": "regex-explainer-tester",
     "name": "Regex Explainer & Tester",
     "description": "Parse a regex into its AST, explain each part in plain English, test against sample strings, and flag pitfalls like catastrophic backtracking, unescaped dots, or missing anchors. Regex is the #1 thing LLMs get wrong — this tool gets it right every time.",
@@ -283,7 +233,13 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "datetime", "formatting", "cross-language", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/datetime-format-translator/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "798 tests passing. Covers all 7 systems (Python, JavaScript/date-fns, Go, Java, C#/.NET, Ruby, moment.js) with cross-system conversion via canonical intermediate representation. CLI commands: convert, list, explain, example. Round-trip verification across all 42 system pairs.",
+      "limitations": "Pure offline tool with no external dependencies. AM/PM case distinction lost through Python (only has %p). Go reference-time disambiguation is greedy longest-match."
+    },
     "complexity": "weekend",
     "capability": "Cross-language date format translation and inference from example strings",
     "approach": "Pure Python CLI. Maps tokens between Python strftime, Java SimpleDateFormat, Go reference time, moment.js, and .NET format strings. Infers format by parsing example date strings against known patterns.",
