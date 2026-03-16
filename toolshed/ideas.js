@@ -566,7 +566,13 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "markdown", "formatting", "tables", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/markdown-table-formatter/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "212 tests passing. Parses GFM pipe tables including broken/malformed ones (missing pipes, inconsistent columns, escaped pipes). Formats with Unicode-aware column width (CJK wide chars). Auto-detects numeric columns for right-alignment. Sorts by column with auto-detection of numeric vs alphabetical. Converts between markdown, CSV, TSV, JSON, and HTML with round-trip fidelity. CLI commands: format, sort, convert, check.",
+      "limitations": "Pure offline tool with no external dependencies. HTML parsing uses regex (not a full HTML parser). Multi-line cell content not supported."
+    },
     "complexity": "weekend",
     "capability": "Markdown table alignment, format conversion, and content-aware column formatting",
     "approach": "Pure Python CLI. Parses pipe tables, aligns columns with padding, auto-detects alignment from content types, converts to/from CSV/TSV/HTML. Handles Unicode wide characters for correct alignment.",
