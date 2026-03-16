@@ -35,10 +35,16 @@
     "description": "Score every dependency in a project on maintainer health, security posture, and community activity. Takes a package manifest, resolves the full tree, pulls data from GitHub, registries, and CVE databases.",
     "url": "",
     "category": "Code Coverage & Quality",
-    "os": [],
+    "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "security", "dependencies", "open-source", "risk", "cli"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/dependency-health-scorer/",
+    "language": "typescript",
+    "validation": {
+      "benchmarks": "74 tests passing. Average health score 87 on own dependencies. Multi-signal risk synthesis from GitHub API, npm/PyPI registries, and CVE databases.",
+      "limitations": "Requires GitHub API token for maintainer health data. CVE database queries require network access."
+    },
     "complexity": "month",
     "capability": "Multi-signal risk synthesis from heterogeneous data sources",
     "approach": "CLI or web UI. Resolves dependency tree from package.json/requirements.txt/Cargo.toml, scores each dep, produces a risk-ranked dashboard.",

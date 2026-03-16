@@ -72,7 +72,9 @@
       ],
       "rationale": "Multiple data sources and a scoring model that needs iterative refinement. Checkpoint cycles let the team build incrementally — add one registry at a time, validate scores, adjust weights."
     },
-    "status": "idea"
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/dependency-health-scorer/",
+    "submittedDate": "2026-03-16"
   },
   {
     "id": "meeting-to-actions",
