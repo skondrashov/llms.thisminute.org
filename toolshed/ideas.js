@@ -577,5 +577,32 @@
       "alternatives": "partial",
       "alternatives_note": "VS Code and editor extensions auto-format tables but are not CLI-callable. prettytable (Python) generates tables but doesn't parse/reformat existing markdown. No CLI round-trips markdown tables with alignment."
     }
+  },
+  {
+    "id": "mime-type-oracle",
+    "name": "MIME Type Oracle",
+    "description": "Look up MIME types by extension and vice versa. Show associated programs, RFC references, whether it's binary/text, compressible, common aliases. Handles edge cases like .ts (TypeScript vs MPEG transport stream).",
+    "url": "",
+    "category": "CLI Tools",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["idea", "cli", "mime", "content-type", "file-extension", "precision-tool"],
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/mime-type-oracle/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "211 project tests, 191 toolshed tests. Comprehensive MIME database with 120+ entries. Bidirectional lookup, alias resolution, ambiguous extension detection, keyword search.",
+      "limitations": "Static database — does not query system MIME mappings or IANA registry at runtime. Custom/vendor MIME types not in the database will not be found."
+    },
+    "complexity": "weekend",
+    "capability": "Bidirectional MIME type lookup with rich metadata and ambiguous extension handling",
+    "approach": "Pure Python CLI. Built-in database of 120+ MIME types with RFC refs, binary/text classification, compressibility, aliases, and associated programs. Handles ambiguous extensions like .ts by returning all interpretations.",
+    "agentArchitecture": { "model": "steward", "roles": ["steward"] },
+    "triage": {
+      "impact": "medium",
+      "buildability": "straightforward",
+      "alternatives": "partial",
+      "alternatives_note": "Python's mimetypes module maps extensions but has no metadata (no RFCs, no binary/text, no compressibility, no programs). The file command identifies files but is Unix-only and not structured. No CLI tool combines bidirectional lookup with rich metadata and ambiguous extension handling."
+    }
   }
 );
