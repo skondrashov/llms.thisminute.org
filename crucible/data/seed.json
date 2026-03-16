@@ -313,5 +313,38 @@
     "status": "submitted",
     "projectPath": "~/projects/singularity/research-paper-debate/",
     "submittedDate": "2026-03-16"
+  },
+  {
+    "id": "chmod-calculator",
+    "title": "Chmod Calculator",
+    "capability": "Bidirectional permission format conversion with security analysis",
+    "problem": "Every deployment script and Dockerfile needs chmod, but converting between numeric (755), symbolic (rwxr-xr-x), and human-readable descriptions is error-prone. Special bits (setuid, setgid, sticky) make it worse. Web calculators exist but nothing is callable from CLI or by agents.",
+    "whyAi": "Not AI-dependent — this is a precision tool. Deterministic conversion between formats with exhaustive test coverage. Useful as a callable utility for agents writing deployment scripts.",
+    "approach": "Pure Python CLI. Converts between octal, symbolic, and English. Handles special bits. Supports reverse queries ('who can write?'). Curated presets for common modes. Zero external dependencies.",
+    "complexity": "weekend",
+    "category": "CLI Tools",
+    "tags": [
+      "cli",
+      "permissions",
+      "unix",
+      "security",
+      "precision-tool"
+    ],
+    "agentArchitecture": {
+      "coordinationModel": "steward",
+      "roles": [
+        {
+          "role": "steward",
+          "description": "Handles all conversion logic, query parsing, and CLI output. Single agent because the scope is focused — deterministic format conversion with no branching decisions."
+        }
+      ],
+      "patterns": [
+        "steward-bootstrap"
+      ],
+      "rationale": "Precision tool with deterministic logic. No AI needed, no iterative refinement. A steward handles everything."
+    },
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/chmod-calculator/",
+    "submittedDate": "2026-03-16"
   }
 ]
