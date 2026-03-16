@@ -397,16 +397,22 @@
   {
     "id": "sql-type-mapper",
     "name": "SQL Type Mapper",
-    "description": "Map column types across PostgreSQL, MySQL, SQLite, and SQL Server. Show equivalences (PostgreSQL SERIAL = MySQL AUTO_INCREMENT), size differences (VARCHAR(n) max varies), and migration warnings (SQLite has no native DATE). Every database migration needs this lookup.",
+    "description": "Map column types across PostgreSQL, MySQL, SQLite, SQL Server, and Oracle. Show equivalences (PostgreSQL SERIAL = MySQL AUTO_INCREMENT), size differences (VARCHAR(n) max varies), and migration warnings (SQLite has no native DATE, Oracle DATE includes time). Every database migration needs this lookup.",
     "url": "",
     "category": "CLI Tools",
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "sql", "database", "migration", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/sql-type-mapper/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "595 tests passing. Covers all 20 dialect pairs (5 dialects), alias resolution, parameterized types, unsigned modifiers, array types, and 30+ documented gotchas. CLI supports map, list, compare, and gotchas commands with table/json/markdown output.",
+      "limitations": "Pure offline tool with no external dependencies. Type registry is comprehensive but not exhaustive for vendor-specific extensions. Gotcha matching is heuristic-based."
+    },
     "complexity": "weekend",
     "capability": "Cross-database SQL type mapping with equivalences, size limits, and migration warnings",
-    "approach": "Pure Python CLI. Embeds a type compatibility matrix across 4 databases. Maps types bidirectionally, flags lossy conversions, shows auto-increment and sequence equivalences, warns about NULL/default behavior differences.",
+    "approach": "Pure Python CLI. Embeds a type compatibility matrix across 5 databases. Maps types bidirectionally, flags lossy conversions, shows auto-increment and sequence equivalences, warns about NULL/default behavior differences.",
     "agentArchitecture": { "model": "steward", "roles": ["steward"] },
     "triage": {
       "impact": "high",
