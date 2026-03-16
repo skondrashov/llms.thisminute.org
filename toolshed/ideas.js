@@ -201,7 +201,13 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "regex", "validation", "developer-tools", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/regex-explainer-tester/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "445 tests passing. Parses regex via sre_parse AST, explains all standard constructs in plain English, tests against strings with full/partial match detection, extracts capture groups, and provides step-by-step match debugging. CLI commands: explain, test, groups, debug.",
+      "limitations": "Pure offline tool with no external dependencies. Explanation covers standard Python regex constructs; vendor-specific extensions not supported."
+    },
     "complexity": "weekend",
     "capability": "Regex AST parsing, explanation, validation, and pitfall detection via Python sre_parse",
     "approach": "Pure Python CLI. Uses sre_parse for AST, walks the tree to generate plain-English explanations, tests against user-provided strings, runs static analysis for common pitfalls.",
@@ -478,10 +484,16 @@
     "os": ["windows", "macos", "linux"],
     "pricing": "free",
     "tags": ["idea", "cli", "csv", "data", "parsing", "precision-tool"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/csv-dialect-detector/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "361 tests passing. Multi-signal delimiter detection (comma, tab, semicolon, pipe, colon), encoding detection (UTF-8, UTF-8 BOM, UTF-16, Latin-1, CP1252), fixed-width fallback, header inference, code generation (csv.reader and pandas), and dialect conversion. CLI commands: analyze, preview, code, convert.",
+      "limitations": "Pure offline tool with no external dependencies. Fixed-width detection uses heuristic column boundary analysis. Encoding detection without chardet relies on BOM and byte-pattern heuristics."
+    },
     "complexity": "weekend",
     "capability": "CSV format detection with delimiter, encoding, and header inference",
-    "approach": "Pure Python CLI. Uses csv.Sniffer as starting point, adds encoding detection, line ending analysis, header inference via type consistency heuristics, and column count validation. Shows a formatted preview.",
+    "approach": "Pure Python CLI. Multi-hypothesis scoring of delimiter candidates using frequency analysis and structural consistency. Adds encoding detection, line ending analysis, header inference via type consistency heuristics, and column count validation. Shows a formatted preview.",
     "agentArchitecture": { "model": "steward", "roles": ["steward"] },
     "triage": {
       "impact": "high",
