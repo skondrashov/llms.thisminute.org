@@ -202,7 +202,7 @@ Define a standard way for agents to interact with Toolshed:
 
 ## Current Priorities (Updated 2026-03-16)
 
-**Context:** 15,939 entries across 123 populated categories (124 in taxonomy). 67 tests passing. Forge UI integration complete (view tabs, multi-dimensional filtering, forge pipeline visualization, covered/unique distinction). Thin categories addressed (Cycles 15-16, 20, 22, 28, 30, 38, 40, 43 curator). 3 forge ideas remaining, 22 built.
+**Context:** 15,954 entries across 123 populated categories (124 in taxonomy). 67 tests passing. Forge UI integration complete (view tabs, multi-dimensional filtering, forge pipeline visualization, covered/unique distinction). Thin categories addressed (Cycles 15-16, 20, 22, 28, 30, 38, 40, 43, 45, 48-49, 52 curator). 3 forge ideas remaining, 22 built.
 
 ### Priority 0: Idea Triage Must Stay Current (CURATOR)
 
@@ -227,7 +227,7 @@ Every idea in `ideas.js` must have a `triage` object with `impact`, `buildabilit
 
 ### Priority 2: Discovered Entry Quality (BUILDER/CURATOR -- ongoing)
 
-- S38: Random sample shows ~50% miscategorization in discovered entries. **Mitigated**: `build.py --strict` excludes Tier 3, unmatched, and category-disagreement discovered entries (15,939 → 6,970). Default build unchanged. S72 fix implemented (tuple return with category agreement filter). S73 fix applied (Tier 2 best-match tracking aligned with `categorize()`).
+- S38: Random sample shows ~50% miscategorization in discovered entries. **Mitigated**: `build.py --strict` excludes Tier 3, unmatched, and category-disagreement discovered entries (15,954 → 6,997). Default build unchanged. S72 fix implemented (tuple return with category agreement filter). S73 fix applied (Tier 2 best-match tracking aligned with `categorize()`).
 - Options for further improvement: better section maps, LLM-assisted categorization, `get_confidence_tier()` category-agreement filtering.
 
 ### Priority 3: Script Quality Improvements (BUILDER -- low)
@@ -256,10 +256,10 @@ Every idea in `ideas.js` must have a `triage` object with `impact`, `buildabilit
 - Fixed 4 duplicate entries, 5 URL collisions, 3 dead domains removed
 
 **Agent Discoverability (Cycles 4, 14):**
-- `api/v1/catalog.json` -- 15,939 entries
+- `api/v1/catalog.json` -- 15,954 entries
 - `llms.txt` and `llms-full.txt`
-- Noscript HTML fallback -- 15,939 entries
-- JSON-LD structured data -- 1,350 sampled entries, 538.3 KB
+- Noscript HTML fallback -- 15,954 entries
+- JSON-LD structured data -- 1,386 sampled entries, 552.9 KB
 - Tree drill-down navigation
 
 **Design Polish (Cycles 1-2):**
@@ -305,6 +305,10 @@ Every idea in `ideas.js` must have a `triage` object with `impact`, `buildabilit
 - Curator Cycle 38: Compression & Archiving baseline (7 curated, 1 discovered removed)
 - Curator Cycle 40: Networking baseline (7 curated, 2 discovered removed)
 - Curator Cycle 43: CLI Frameworks + Frontend Frameworks expansion (12 curated, 5 discovered removed)
+- Curator Cycle 45: Text Processing + Game Engines expansion (13 curated, 4 discovered removed)
+- Curator Cycle 48: Video Editing expansion (6 curated, 3 discovered removed)
+- Curator Cycle 49: Backend Frameworks expansion (7 curated, 8 discovered removed)
+- Curator Cycle 52: Image Processing + Cross-Platform Frameworks expansion (12 curated, 7 discovered removed)
 
 ## Deprioritized
 

@@ -692,6 +692,160 @@
     "language": "typescript"
   },
   {
+    "id": "actix-web",
+    "name": "Actix Web",
+    "description": "Powerful, pragmatic, and extremely fast web framework for Rust. Type-safe, async, with built-in HTTP/2 and WebSocket support.",
+    "url": "https://actix.rs",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "async",
+      "fast",
+      "web-framework",
+      "open-source"
+    ],
+    "source": "https://github.com/actix/actix-web",
+    "language": "rust"
+  },
+  {
+    "id": "phoenix",
+    "name": "Phoenix",
+    "description": "Elixir web framework for real-time apps. Channels for WebSockets, LiveView for interactive UIs, runs on the Erlang VM.",
+    "url": "https://www.phoenixframework.org",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "elixir",
+      "real-time",
+      "channels",
+      "liveview",
+      "open-source"
+    ],
+    "source": "https://github.com/phoenixframework/phoenix",
+    "language": "elixir"
+  },
+  {
+    "id": "spring-boot",
+    "name": "Spring Boot",
+    "description": "Java framework for production-grade Spring applications. Auto-configuration, embedded servers, and opinionated defaults.",
+    "url": "https://spring.io/projects/spring-boot",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "java",
+      "enterprise",
+      "spring",
+      "microservices",
+      "open-source"
+    ],
+    "source": "https://github.com/spring-projects/spring-boot",
+    "language": "java"
+  },
+  {
+    "id": "laravel",
+    "name": "Laravel",
+    "description": "PHP web framework with elegant syntax. Routing, ORM, queues, auth, and testing built in. Large ecosystem of first-party packages.",
+    "url": "https://laravel.com",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "php",
+      "fullstack",
+      "orm",
+      "eloquent",
+      "open-source"
+    ],
+    "source": "https://github.com/laravel/laravel",
+    "language": "php"
+  },
+  {
+    "id": "nestjs",
+    "name": "NestJS",
+    "description": "Progressive Node.js framework with TypeScript. Angular-inspired architecture with modules, dependency injection, and decorators.",
+    "url": "https://nestjs.com",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "typescript",
+      "nodejs",
+      "microservices",
+      "dependency-injection",
+      "open-source"
+    ],
+    "source": "https://github.com/nestjs/nest",
+    "language": "typescript"
+  },
+  {
+    "id": "koa",
+    "name": "Koa",
+    "description": "Next-generation Node.js web framework by the Express team. Smaller, more expressive, async/await-native middleware stack.",
+    "url": "https://koajs.com",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "nodejs",
+      "javascript",
+      "middleware",
+      "async",
+      "open-source"
+    ],
+    "source": "https://github.com/koajs/koa",
+    "language": "javascript"
+  },
+  {
+    "id": "rocket",
+    "name": "Rocket",
+    "description": "Rust web framework focused on ease of use, expressiveness, and speed. Type-safe routing, built-in templating, and testing tools.",
+    "url": "https://rocket.rs",
+    "category": "Backend Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "rust",
+      "web-framework",
+      "type-safe",
+      "ergonomic",
+      "open-source"
+    ],
+    "source": "https://github.com/rwf2/Rocket",
+    "language": "rust"
+  },
+  {
     "id": "fresh",
     "name": "Fresh",
     "description": "Next-gen web framework for Deno. Island-based architecture with zero JS shipped to the client by default.",

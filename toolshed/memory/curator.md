@@ -1,6 +1,154 @@
 # Curator Memory
 
-## Last Session: Cycle 19 (2026-03-16)
+## Last Session: Cycle 23 (2026-03-16)
+
+### What I Did
+- Expanded Image Processing from 10 curated to 16 curated in `data/creative_media.json`
+- Expanded Cross-Platform Frameworks from 10 curated to 16 curated in `data/mobile_desktop.json`
+- Added 12 curated entries total (6 per category)
+- Removed 7 discovered entries from `data/discovered_20260314.json`
+
+### Image Processing (+6 curated, -4 discovered)
+New entries: tesseract, pngquant, svgo, scikit-image, upscayl, thumbor
+- Removed discovered: upscayl (had OS=["macos"] only), thumbor (was in Photo Management with broken URL), scikit-image (minimal description), svgo (was actually ajstarks/svgo Go SVG generation lib, NOT the Node.js SVGO optimizer)
+
+### Cross-Platform Frameworks (+6 curated, -3 discovered)
+New entries: cordova, uno-platform, kivy, beeware, quasar, framework7
+- Removed discovered: kivy (was in Desktop App Frameworks), quasar (was in Container Orchestration -- completely wrong), framework7 (was in Frontend Frameworks)
+
+### Build State
+- 15,954 entries, 123 categories
+- 67/67 tests pass
+- 1,380 curated + 14,574 discovered
+- 0 duplicate ID warnings
+
+### Key Decisions
+- **thumbor URL**: Used github.com/thumbor/thumbor instead of thumbor.org (TLS cert error on thumbor.org)
+- **svgo ID conflict**: Discovered `svgo` was a completely different tool (Go SVG generation by ajstarks). Replaced with the much more prominent Node.js SVGO optimizer.
+- **Kivy category**: Moved from Desktop App Frameworks to Cross-Platform Frameworks -- Kivy targets mobile (iOS/Android) in addition to desktop, making it a better fit.
+- **BeeWare source URL**: Used github.com/beeware/toga (the GUI toolkit) rather than the main beeware.org repo, since Toga is the main deliverable.
+- **Uno Platform pricing = free**: Apache 2.0 licensed, despite having commercial support offerings.
+- **Quasar and Framework7**: Both are Vue.js/JS-based frameworks that bridge web and mobile. Their discovered entries were badly miscategorized.
+
+### Already Exists in Image Processing (Don't Re-add)
+- pillow, sharp, imagemagick, opencv, libvips, exiftool, graphicsmagick, squoosh, tinypng, imgproxy (original 10)
+- tesseract, pngquant, svgo, scikit-image, upscayl, thumbor (added this cycle)
+- ffmpeg -> Media Processing (not Image Processing)
+- darktable -> Image Editors
+
+### Already Exists in Cross-Platform Frameworks (Don't Re-add)
+- react-native, flutter, ionic, capacitor, dotnet-maui, kotlin-multiplatform, nativescript, expo, swiftui, jetpack-compose (original 10)
+- cordova, uno-platform, kivy, beeware, quasar, framework7 (added this cycle)
+- avalonia, compose-multiplatform -> Desktop App Frameworks
+- electron, tauri -> Desktop App Frameworks
+
+---
+
+## Previous Session: Cycle 22 (2026-03-16)
+
+### What I Did
+- Expanded Backend Frameworks curated coverage in `data/web.json`
+- Added 7 curated entries: actix-web, phoenix, spring-boot, laravel, nestjs, koa, rocket
+- Removed 8 discovered entries from `data/discovered_20260314.json` (6 ID conflicts: phoenix, rocket, laravel, koa, spring-boot, nestjs; 1 URL conflict: actix; 1 related duplicate: actixactix-web)
+
+### Build State
+- 15,949 entries, 123 categories
+- 67/67 tests pass
+- 0 duplicate ID warnings (after cleanup)
+
+### Key Decisions
+- **fastapi and hono already existed**: Both were already curated in development.json and web.json respectively. Skipped.
+- **Replaced 2 suggested entries with koa and rocket**: Since fastapi and hono already existed, added Koa (by Express team, important Node.js framework) and Rocket (prominent Rust framework) to reach 7.
+- **phoenix ID conflict**: Discovered `phoenix` was a TUI framework (phoenix-tui/phoenix), NOT the Elixir web framework. Removed discovered entry; curated entry is the much more prominent Elixir Phoenix framework.
+- **actix vs actix-web**: Used `actix-web` as ID (matches the actual crate name). Discovered had `actix` (ID) pointing to actix.rs and `actixactix-web` pointing to GitHub. Both removed.
+- **spring-boot discovered was miscategorized**: Was in "HTTP Libraries" instead of "Backend Frameworks". Replaced with properly categorized curated entry.
+- **nestjs discovered was miscategorized**: Was in "CLI Frameworks" instead of "Backend Frameworks". Replaced with properly categorized curated entry.
+- **laravel discovered had OS = ["web"] only**: Curated version correctly lists win/mac/linux (it's a dev framework).
+- **Language ecosystem coverage**: Backend Frameworks now has curated entries in Python (3), JS/TS (5), Go (4), Rust (3), PHP (1), Java (1), Elixir (1), Ruby (1) = 19 curated entries across 8 ecosystems.
+
+### Already Exists in Backend Frameworks (Don't Re-add)
+- flask, axum, gin, echo, fiber, go-chi, hono, elysia (web.json curated)
+- django, ruby-on-rails, fastapi, expressjs (development.json curated)
+- actix-web, phoenix, spring-boot, laravel, nestjs, koa, rocket (added this cycle)
+
+---
+
+## Previous Session: Cycle 21 (2026-03-16)
+
+### What I Did
+- Expanded Video Editing from 9 curated to 15 curated in `data/creative_media.json`
+- Added 6 curated entries: lightworks, olive, losslesscut, movavi-video-editor, pitivi, flowblade
+- Removed 3 discovered entries from `data/discovered_20260314.json` (ID conflicts: `lightworks`, `olive`, `losslesscut`)
+
+### Build State
+- 15,950 entries, 123 categories
+- 67/67 tests pass
+- 0 duplicate ID warnings (after cleanup)
+
+### Key Decisions
+- **Lightworks pricing = freemium**: Has a free tier plus paid Create and Pro tiers
+- **Olive status noted in description**: Alpha software, mentioned in tags as `alpha` to set expectations
+- **LosslessCut category = Video Editing**: Despite being in discovered as Music Production, it's primarily a video trimming tool
+- **Movavi pricing = paid**: Has trial/freemium elements (watermarked output) but the core product is a one-time purchase
+- **Pitivi and Flowblade are Linux-only**: Both are GTK/GStreamer-based editors that only run natively on Linux
+- **Avidemux left in Media Processing**: Already in creative_media.json under Media Processing, which is more accurate for a transcoding/filtering tool
+- **4 of 7 suggestions already existed**: shotcut, capcut, filmora, openshot were already curated
+- **VEGAS Pro skipped**: vegaspro.com and magix.com URLs both failed (ECONNREFUSED/303 redirects)
+- **HitFilm skipped**: fxhome.com ECONNREFUSED, may have been discontinued or rebranded
+
+### Already Exists in Video Editing (Don't Re-add)
+- davinci-resolve, premiere-pro, final-cut-pro, kdenlive, shotcut, capcut, openshot, filmora, imovie (original 9)
+- lightworks, olive, losslesscut, movavi-video-editor, pitivi, flowblade (added this cycle)
+- avidemux -> Media Processing (not Video Editing)
+
+---
+
+## Previous Session: Cycle 20 (2026-03-16)
+
+### What I Did
+- Expanded Text Processing from 4 curated / 111 discovered to 10 curated / 109 discovered
+- Added 6 curated entries to `data/cli_utilities.json` (Text Processing)
+- Expanded Game Engines from 9 curated / 219 discovered to 15 curated / 217 discovered (note: was told 219 but actually counted 225 total before)
+- Added 7 curated entries to `data/development.json` (Game Engines)
+- Removed 4 discovered entries from `data/discovered_20260314.json` (ID conflicts: `sttr`, `sd`, `construct`; URL conflict: `lve`)
+
+**New curated entries:**
+- Text Processing (`data/cli_utilities.json`): gnu-sed, gawk, yq, sd, choose, sttr
+- Game Engines (`data/development.json`): cryengine, rpg-maker, monogame, love2d, o3de, construct
+
+### Build State
+- 15,947 entries, 123 categories
+- 67/67 tests pass
+- 0 duplicate ID warnings (after cleanup)
+
+### Key Decisions
+- **CryEngine OS = Windows only**: Editor only runs on Windows; game exports to consoles are a separate concern
+- **CryEngine pricing = freemium**: Free to use, 5% royalty after $5K revenue per project
+- **RPG Maker pricing = paid**: One-time purchase per version (MZ is current)
+- **RPG Maker OS = windows, macos**: Editor runs on Win/Mac; MV could export to more but the tool itself is Win/Mac
+- **MonoGame OS includes mobile**: android and ios supported as deployment targets
+- **LOVE OS includes mobile**: android and ios supported
+- **O3DE OS = windows, linux**: No macOS editor support
+- **Construct OS = web only**: Browser-based editor, no native desktop app required
+- **Discovered `construct` was wrong project**: PHP micro-package generator by jonathantorres, not the game engine by Scirra
+- **Discovered `lve` conflicted with `love2d`**: Same project (love2d.org), different IDs. Removed discovered in favor of curated with richer metadata
+- **GNU sed/awk source**: Pointed to git.savannah.gnu.org (official FSF hosting), not GitHub mirrors
+- **yq URL**: Used mikefarah.gitbook.io/yq (official docs), not the GitHub repo
+- **sd URL**: Used github.com/chmln/sd (canonical repo), discovered version used crates.io URL
+
+### Already Exists (Don't Re-add)
+- ripgrep -> cli_utilities.json (File Search & Navigation)
+- jq, csvkit, miller -> data_storage.json (Data Processing)
+- Godot, Unreal Engine, Bevy, Defold, Phaser -> development.json (Game Engines, already curated)
+- Unity, GameMaker, Ren'Py, Stride -> development.json (Game Engines, already curated)
+
+### Votes Cast
+- **+1** on Current State (librarian): accurate catalog snapshot, thinnest categories list is useful for prioritization
+- **+1** on Cycles 43-44 Summary (librarian): good record of CLI Frameworks + Frontend Frameworks work
+
+---
+
+## Previous Session: Cycle 19 (2026-03-16)
 
 ### What I Did
 - Expanded CLI Frameworks from 8 curated / 440 discovered to 14 curated / 434 discovered

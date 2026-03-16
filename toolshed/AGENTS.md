@@ -58,8 +58,8 @@ Plus `alternatives_note` (free text) naming the specific tools and what gap rema
 
 ## Current State
 
-- 15,939 entries across 123 populated categories (124 in taxonomy) in 22 top-level groups
-- 1,343 curated + 14,596 discovered entries + 25 forge ideas across 22 data files
+- 15,954 entries across 123 populated categories (124 in taxonomy) in 22 top-level groups
+- 1,380 curated + 14,574 discovered entries + 25 forge ideas across 22 data files
 - 67 tests passing (test_categorize, test_data, test_taxonomy)
 - **View Tabs**: All / Catalog / Requests / Built by Forge — browse the forge pipeline
 - **Multi-dimensional filtering**: OS, pricing (free/freemium/paid/subscription), language, tags
@@ -75,7 +75,7 @@ Plus `alternatives_note` (free text) naming the specific tools and what gap rema
 - Detail panel with triage section (for ideas), validation (for built), "See Also", "Copy Link", clickable tags
 - Mobile: floating "Categories" button with bottom-sheet taxonomy panel (<=900px)
 - API endpoint at api/v1/catalog.json, llms.txt for agent discovery
-- JSON-LD structured data (schema.org SoftwareApplication, 1,350 sampled entries, 538.3 KB)
+- JSON-LD structured data (schema.org SoftwareApplication, 1,386 sampled entries, 552.9 KB)
 - Noscript fallback with full catalog HTML
 - Live at https://thisminute.org/toolshed
 - Cross-links to sister projects (Rhizome, Agent Forge) in header
@@ -89,7 +89,7 @@ To request a deploy: add an entry to `~/projects/ops/DEPLOY_QUEUE.md` with scope
 ## Commands
 
 - **Build**: `python build.py`
-- **Build (strict)**: `python build.py --strict` (excludes Tier 3, unmatched, and category-disagreement discovered entries — 15,939 → 6,970)
+- **Build (strict)**: `python build.py --strict` (excludes Tier 3, unmatched, and category-disagreement discovered entries — 15,954 → 6,997)
 - **Scrape**: `python -m scrape` (default: awesome,homebrew,cncf sources)
 - **Dry-run scrape**: `python -m scrape --dry-run`
 - **Test**: `python -m pytest tests/ -v` (67 tests)

@@ -1,5 +1,5 @@
 # toolshed
-> Universal software directory with 15947 entries across 123 categories. Structured data for AI agents and developers.
+> Universal software directory with 15954 entries across 123 categories. Structured data for AI agents and developers.
 
 ## Endpoints
 - Full catalog (JSON): /api/v1/catalog.json
@@ -21,20 +21,20 @@ OS: windows | macos | linux | web | ios | android
 ## Categories
 - iOS UI Components: 700
 - Static Analysis: 533
-- CLI Frameworks: 452
+- CLI Frameworks: 451
 - Databases: 404
 - Testing Frameworks: 349
-- Image Processing: 338
-- Frontend Frameworks: 337
+- Image Processing: 341
+- Frontend Frameworks: 336
 - Networking: 334
-- Cross-Platform Frameworks: 304
-- Container Orchestration: 302
-- Video Editing: 286
+- Cross-Platform Frameworks: 309
+- Container Orchestration: 301
+- Video Editing: 290
 - Communication: 285
 - Data Validation & Serialization: 275
-- Music Production: 273
+- Music Production: 272
 - Game Engines: 233
-- Backend Frameworks: 216
+- Backend Frameworks: 219
 - Version Control: 208
 - Data Pipelines: 207
 - Media Players: 207
@@ -81,13 +81,13 @@ OS: windows | macos | linux | web | ios | android
 - Terminal Emulators: 115
 - Learning Platforms: 114
 - Cloud Storage: 113
-- HTTP Libraries: 113
+- HTTP Libraries: 112
 - Scientific Computing: 112
 - Email: 110
 - Data Analysis: 108
 - Calendar & Scheduling: 96
 - Static Site Generators: 84
-- Photo Management: 82
+- Photo Management: 81
 - Caching: 80
 - RSS Readers: 80
 - Blockchain & Web3: 78
@@ -114,7 +114,7 @@ OS: windows | macos | linux | web | ios | android
 - Social Media Clients: 47
 - Diagramming & Whiteboard: 46
 - Screenshot & Annotation: 46
-- Terminal UI: 46
+- Terminal UI: 45
 - Code Coverage & Quality: 42
 - CRM & Sales: 41
 - Math & Numerics: 40
@@ -133,10 +133,10 @@ OS: windows | macos | linux | web | ios | android
 - APIs & Services: 27
 - Chess: 27
 - HR & People: 27
-- Desktop App Frameworks: 26
 - Flashcards & Study: 26
 - Secrets Management: 26
 - Vector Databases: 26
+- Desktop App Frameworks: 25
 - Mobile IDE & Tools: 25
 - Statistical Tools: 25
 - Task Runners & Monorepos: 25

@@ -215,6 +215,142 @@
     "language": "kotlin"
   },
   {
+    "id": "cordova",
+    "name": "Apache Cordova",
+    "description": "Wrap HTML/JS apps in native containers for iOS and Android. Access device APIs via plugins. Apache-licensed.",
+    "url": "https://cordova.apache.org",
+    "category": "Cross-Platform Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "hybrid",
+      "mobile",
+      "web-tech",
+      "plugins",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/cordova",
+    "language": "javascript"
+  },
+  {
+    "id": "uno-platform",
+    "name": "Uno Platform",
+    "description": "Build cross-platform apps for mobile, web, desktop, and embedded with C# and XAML. Single codebase, native performance.",
+    "url": "https://platform.uno",
+    "category": "Cross-Platform Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "csharp",
+      "xaml",
+      "dotnet",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/unoplatform/uno",
+    "language": "csharp"
+  },
+  {
+    "id": "kivy",
+    "name": "Kivy",
+    "description": "Python framework for building cross-platform GUI apps. Runs on Windows, macOS, Linux, iOS, and Android with a custom UI toolkit.",
+    "url": "https://kivy.org",
+    "category": "Cross-Platform Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "ios",
+      "android"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "gui",
+      "mobile",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/kivy/kivy",
+    "language": "python"
+  },
+  {
+    "id": "beeware",
+    "name": "BeeWare",
+    "description": "Write Python apps and deploy them on iOS, Android, Windows, macOS, Linux, and web with native UIs. BSD-licensed.",
+    "url": "https://beeware.org",
+    "category": "Cross-Platform Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux",
+      "ios",
+      "android"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "native-ui",
+      "mobile",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/beeware/toga",
+    "language": "python"
+  },
+  {
+    "id": "quasar",
+    "name": "Quasar Framework",
+    "description": "Vue.js framework for building SPAs, PWAs, mobile apps, and desktop apps from one codebase. 70+ Material Design components.",
+    "url": "https://quasar.dev",
+    "category": "Cross-Platform Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vue",
+      "mobile",
+      "pwa",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/quasarframework/quasar",
+    "language": "javascript"
+  },
+  {
+    "id": "framework7",
+    "name": "Framework7",
+    "description": "Build mobile, desktop, and web apps with native look and feel. Works with vanilla JS, Vue, React, or Svelte.",
+    "url": "https://framework7.io",
+    "category": "Cross-Platform Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "mobile",
+      "native-look",
+      "pwa",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/framework7io/framework7",
+    "language": "javascript"
+  },
+  {
     "id": "android-studio",
     "name": "Android Studio",
     "description": "Official IDE for Android development by Google. Emulator, layout editor, profiling tools, and Gradle build system.",

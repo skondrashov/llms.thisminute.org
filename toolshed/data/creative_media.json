@@ -360,6 +360,119 @@
     ]
   },
   {
+    "id": "lightworks",
+    "name": "Lightworks",
+    "description": "Professional NLE with a free tier. Used on Hollywood films like Pulp Fiction and The King's Speech.",
+    "url": "https://www.lwks.com",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "professional",
+      "nle",
+      "free-tier",
+      "film"
+    ]
+  },
+  {
+    "id": "olive",
+    "name": "Olive",
+    "description": "Free, open-source non-linear video editor in alpha. GPU-accelerated rendering and node-based compositing.",
+    "url": "https://www.olivevideoeditor.org",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "nle",
+      "gpu-accelerated",
+      "alpha"
+    ],
+    "source": "https://github.com/olive-editor/olive"
+  },
+  {
+    "id": "losslesscut",
+    "name": "LosslessCut",
+    "description": "Fast, lossless video/audio trimming and cutting tool built on FFmpeg. No re-encoding required.",
+    "url": "https://github.com/mifi/lossless-cut",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "lossless",
+      "trimming",
+      "ffmpeg",
+      "open-source"
+    ],
+    "source": "https://github.com/mifi/lossless-cut"
+  },
+  {
+    "id": "movavi-video-editor",
+    "name": "Movavi Video Editor",
+    "description": "Consumer video editor with drag-and-drop timeline, transitions, filters, and AI-powered features like background removal.",
+    "url": "https://www.movavi.com/video-editor/",
+    "category": "Video Editing",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "beginner-friendly",
+      "drag-and-drop",
+      "ai-features",
+      "transitions"
+    ]
+  },
+  {
+    "id": "pitivi",
+    "name": "Pitivi",
+    "description": "Free, open-source video editor for Linux built on GStreamer. Clean interface focused on simplicity.",
+    "url": "https://www.pitivi.org",
+    "category": "Video Editing",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "gstreamer",
+      "linux",
+      "beginner-friendly"
+    ],
+    "source": "https://gitlab.gnome.org/GNOME/pitivi"
+  },
+  {
+    "id": "flowblade",
+    "name": "Flowblade",
+    "description": "Free, open-source multitrack non-linear video editor for Linux. Fast workflow with G'MIC filtering support.",
+    "url": "https://jliljebl.github.io/flowblade/",
+    "category": "Video Editing",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "open-source",
+      "multitrack",
+      "linux",
+      "gmic"
+    ],
+    "source": "https://github.com/jliljebl/flowblade"
+  },
+  {
     "id": "photoshop",
     "name": "Adobe Photoshop",
     "description": "The image editor. Raster graphics, photo manipulation, compositing, digital painting — the industry standard.",
@@ -1741,6 +1854,137 @@
     ],
     "source": "https://github.com/imgproxy/imgproxy",
     "language": "go"
+  },
+  {
+    "id": "tesseract",
+    "name": "Tesseract OCR",
+    "description": "Open-source OCR engine maintained by Google. Extracts text from images in 100+ languages with high accuracy.",
+    "url": "https://github.com/tesseract-ocr/tesseract",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ocr",
+      "text-extraction",
+      "machine-learning",
+      "open-source"
+    ],
+    "source": "https://github.com/tesseract-ocr/tesseract",
+    "language": "cpp"
+  },
+  {
+    "id": "pngquant",
+    "name": "pngquant",
+    "description": "Lossy PNG compression tool. Reduces file sizes significantly while preserving transparency and visual quality.",
+    "url": "https://pngquant.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "compression",
+      "png",
+      "optimization",
+      "cli",
+      "open-source"
+    ],
+    "source": "https://github.com/kornelski/pngquant",
+    "language": "rust"
+  },
+  {
+    "id": "svgo",
+    "name": "SVGO",
+    "description": "Node.js tool for optimizing SVG files. Removes unnecessary metadata, comments, and redundant attributes to shrink file size.",
+    "url": "https://svgo.dev",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "svg",
+      "optimization",
+      "cli",
+      "node",
+      "open-source"
+    ],
+    "source": "https://github.com/svg/svgo",
+    "language": "javascript"
+  },
+  {
+    "id": "scikit-image",
+    "name": "scikit-image",
+    "description": "Python image processing library built on NumPy. Filtering, segmentation, feature detection, and morphology algorithms.",
+    "url": "https://scikit-image.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "scientific",
+      "computer-vision",
+      "numpy",
+      "open-source"
+    ],
+    "source": "https://github.com/scikit-image/scikit-image",
+    "language": "python"
+  },
+  {
+    "id": "upscayl",
+    "name": "Upscayl",
+    "description": "Free, open-source AI image upscaler. Enhance resolution up to 16x on desktop with multiple upscaling models.",
+    "url": "https://upscayl.org",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ai",
+      "upscaling",
+      "enhancement",
+      "desktop",
+      "open-source"
+    ],
+    "source": "https://github.com/upscayl/upscayl",
+    "language": "typescript"
+  },
+  {
+    "id": "thumbor",
+    "name": "Thumbor",
+    "description": "Smart image processing HTTP server. On-demand cropping, resizing, filters, and AI-powered face detection for thumbnails.",
+    "url": "https://github.com/thumbor/thumbor",
+    "category": "Image Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "server",
+      "thumbnails",
+      "on-the-fly",
+      "face-detection",
+      "open-source"
+    ],
+    "source": "https://github.com/thumbor/thumbor",
+    "language": "python"
   },
   {
     "id": "gstreamer",
