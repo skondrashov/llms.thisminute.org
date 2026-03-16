@@ -65,7 +65,14 @@
     "os": [],
     "pricing": "free",
     "tags": ["idea", "migration", "refactoring", "codebase", "planning", "automation"],
-    "status": "idea",
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/codebase-migration-planner/",
+    "language": "typescript",
+    "os": ["windows", "macos", "linux"],
+    "validation": {
+      "benchmarks": "93 tests passing. Scans repos for migration patterns, catalogs instances, maps dependencies, and produces sequenced migration plans with effort estimates per batch.",
+      "limitations": "Requires Claude API key for pattern recognition and plan generation. Large monorepos may require chunked scanning."
+    },
     "complexity": "month",
     "capability": "Large-scale pattern recognition and dependency-aware transformation planning",
     "approach": "Scan repo, catalog old-pattern instances, map dependencies, sequence changes so nothing breaks mid-migration. Optional: generate the actual PRs.",
