@@ -718,5 +718,32 @@
       "alternatives": "partial",
       "alternatives_note": "scipy.stats is the standard Python library for statistical tests. R provides comprehensive statistical computing. No agent-callable tool interface exists. The value: Claude frequently makes errors on complex statistical calculations — this gives it exact computation as a tool."
     }
+  },
+  {
+    "id": "numerical-methods",
+    "name": "Numerical Methods",
+    "description": "Agent skill for numerical computation: root finding (bisection, Newton, secant, Brent), integration (trapezoidal, Simpson, Gauss-Legendre, adaptive Simpson, Romberg), ODE solvers (Euler, RK4, adaptive Dormand-Prince RK45), interpolation (Lagrange, Newton divided differences, cubic spline), and differentiation (finite differences, Richardson extrapolation, gradient). Gives Claude iterative computation capabilities for continuous mathematics that can't be done inline.",
+    "url": "",
+    "category": "Math & Numerics",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["idea", "numerical-methods", "calculus", "ode", "interpolation", "agent-skill"],
+    "status": "submitted",
+    "projectPath": "~/projects/singularity/numerical-methods/",
+    "language": "python",
+    "validation": {
+      "benchmarks": "100 benchmarks passing across 5 categories (Roots: 22, Integration: 22, ODE: 22, Interpolation: 17, Differentiation: 19). 33 external validation tests: Lambert W function root, Gaussian integral (sqrt(pi)/2), semicircle area (pi/2), logistic and Bernoulli ODEs, Lotka-Volterra conservation, Runge phenomenon demonstration, sin/exp reconstruction via cubic splines, power rule derivatives for n=1..6, Rosenbrock gradient. All pass.",
+      "limitations": "Pure Python — adequate precision (12+ digits via Romberg/Richardson/RK45) but slower than C/Fortran implementations for large-scale problems. RK45 adaptive solver handles stiff-ish problems but is not a true stiff solver (no implicit methods). Matrix operations in multiple regression limited to ~50 predictors."
+    },
+    "complexity": "weekend",
+    "capability": "Iterative numerical algorithms that Claude cannot execute inline — root finding iterations, quadrature evaluations, ODE time-stepping, spline coefficient computation",
+    "approach": "Pure Python, zero external dependencies. Dormand-Prince RK45 with full Butcher tableau, Gauss-Legendre with hardcoded nodes/weights for n=1..10, Thomas algorithm for tridiagonal spline systems, Richardson extrapolation tables for high-order derivatives.",
+    "agentArchitecture": { "model": "steward", "roles": ["analyst"] },
+    "triage": {
+      "impact": "high",
+      "buildability": "straightforward",
+      "alternatives": "partial",
+      "alternatives_note": "SciPy provides comprehensive numerical methods (optimize, integrate, interpolate, linalg). No agent-callable tool interface exists. The value: Claude can describe these algorithms but cannot execute 100 iterations of Newton's method or step through an ODE solver inline."
+    }
   }
 );
