@@ -682,5 +682,75 @@
       "open-source"
     ],
     "source": "https://github.com/burtonator/polar-bookshelf"
+  },
+  {
+    "id": "cards-ankiapp",
+    "name": "AnkiApp",
+    "description": "Cross-platform flashcard app with cloud sync. Supports images, audio, and LaTeX. Not affiliated with Anki but uses similar SRS concepts.",
+    "url": "https://www.ankiapp.com",
+    "category": "Flashcards & Study",
+    "os": ["windows", "macos", "web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["flashcards", "spaced-repetition", "cloud-sync", "cross-platform"]
+  },
+  {
+    "id": "scholarcy",
+    "name": "Scholarcy",
+    "description": "AI-powered article summarizer that creates flashcards from research papers and textbooks. Extracts key concepts, figures, and references.",
+    "url": "https://www.scholarcy.com",
+    "category": "Flashcards & Study",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["ai-generated", "research-papers", "summaries", "flashcards", "academic"]
+  },
+  {
+    "id": "wisdolia",
+    "name": "Wisdolia",
+    "description": "AI flashcard generator for students. Browser extension creates questions from lecture slides, articles, and YouTube videos automatically.",
+    "url": "https://www.wisdolia.com",
+    "category": "Flashcards & Study",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["ai-generated", "browser-extension", "lecture-slides", "flashcards"]
+  },
+  {
+    "id": "zorbi",
+    "name": "Zorbi",
+    "description": "AI flashcard app that generates spaced repetition cards from PDFs, notes, and highlights. Integrates with Notion and Readwise.",
+    "url": "https://zorbi.app",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["ai-generated", "spaced-repetition", "pdf", "notion", "readwise"]
+  },
+  {
+    "id": "cards-app",
+    "name": "Cards",
+    "description": "Simple iOS flashcard app with iCloud sync and Siri integration. Markdown support, study reminders, and import from CSV and Quizlet.",
+    "url": "https://cards.lanking.io",
+    "category": "Flashcards & Study",
+    "os": ["ios", "macos"],
+    "pricing": "freemium",
+    "tags": ["flashcards", "ios", "icloud-sync", "siri", "markdown"]
+  },
+  {
+    "id": "chegg-prep",
+    "name": "Chegg Prep",
+    "description": "Free flashcard tool from Chegg. Create, share, and study flashcard sets. Includes practice mode and millions of community-created decks.",
+    "url": "https://www.chegg.com/flashcards",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios", "android"],
+    "pricing": "free",
+    "tags": ["flashcards", "community", "study", "free", "sharing"]
+  },
+  {
+    "id": "cram",
+    "name": "Cram",
+    "description": "Flashcard platform with memorize mode, test mode, and game mode. Import from Quizlet. Over 200 million cards created since 2001.",
+    "url": "https://www.cram.com",
+    "category": "Flashcards & Study",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["flashcards", "study-modes", "quizlet-import", "community"]
   }
 ]

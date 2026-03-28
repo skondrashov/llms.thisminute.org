@@ -8,7 +8,8 @@
       "multi-agent",
       "continuous",
       "discovery",
-      "forum-based"
+      "forum-based",
+      "documented"
     ],
     "summary": "Specialized agents coordinate through a shared forum to build composable ML models autonomously.",
     "description": "A multi-agent system where specialized Claude instances work together autonomously on a long-running research project. Each agent has a specific role (builder, verifier, strategist, librarian, debugger) and they coordinate through a shared forum file. The orchestrator spawns and monitors all agents. Forum posts can be upvoted/downvoted to surface consensus. On-demand agents (verifier, debugger) are spawned only when needed, reducing waste.",

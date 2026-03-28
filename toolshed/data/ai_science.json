@@ -1201,6 +1201,140 @@
     "language": "java"
   },
   {
+    "id": "altair-rapidminer",
+    "name": "Altair RapidMiner",
+    "description": "Data analytics and AI platform (formerly RapidMiner, now part of Altair). Drag-and-drop workflows, predictive analytics, and generative AI applications.",
+    "url": "https://altair.com/altair-rapidminer",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "data-science",
+      "visual-workflow",
+      "predictive-analytics",
+      "machine-learning",
+      "ai-platform"
+    ],
+    "language": "java"
+  },
+  {
+    "id": "knime-analytics",
+    "name": "KNIME",
+    "description": "Open-source data analytics platform with a visual node-based workflow editor. 2000+ integrations for ETL, statistics, and ML.",
+    "url": "https://www.knime.com",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "data-analytics",
+      "visual-workflow",
+      "etl",
+      "open-source"
+    ],
+    "source": "https://github.com/knime/knime-core",
+    "language": "java"
+  },
+  {
+    "id": "graphpad-prism",
+    "name": "GraphPad Prism",
+    "description": "Biostatistics and graphing software for scientific research. Curve fitting, survival analysis, and publication-quality figures.",
+    "url": "https://www.graphpad.com",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "biostatistics",
+      "graphing",
+      "scientific",
+      "curve-fitting"
+    ]
+  },
+  {
+    "id": "xlstat",
+    "name": "XLSTAT",
+    "description": "Statistical add-in for Microsoft Excel. 250+ statistical tools including PCA, ANOVA, regression, and survival analysis.",
+    "url": "https://www.xlstat.com",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos"
+    ],
+    "pricing": "subscription",
+    "tags": [
+      "excel",
+      "statistics",
+      "add-in",
+      "pca"
+    ]
+  },
+  {
+    "id": "ncss-stats",
+    "name": "NCSS",
+    "description": "Statistical analysis software with 200+ procedures including power analysis, DOE, and survival analysis. Built-in documentation for each test.",
+    "url": "https://www.ncss.com",
+    "category": "Statistical Tools",
+    "os": [
+      "windows"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "statistics",
+      "power-analysis",
+      "doe",
+      "survival-analysis"
+    ]
+  },
+  {
+    "id": "pingouin",
+    "name": "Pingouin",
+    "description": "Python library for statistical testing built on pandas. T-tests, ANOVA, correlation, regression, and effect sizes with clean one-line syntax.",
+    "url": "https://pingouin-stats.org",
+    "category": "Statistical Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "statistics",
+      "hypothesis-testing",
+      "pandas",
+      "open-source"
+    ],
+    "source": "https://github.com/raphaelvallat/pingouin",
+    "language": "python"
+  },
+  {
+    "id": "genstat",
+    "name": "GenStat",
+    "description": "Statistical software for agricultural and biological research. ANOVA, mixed models, spatial analysis, and experimental design tools.",
+    "url": "https://vsni.co.uk/software/genstat",
+    "category": "Statistical Tools",
+    "os": [
+      "windows"
+    ],
+    "pricing": "paid",
+    "tags": [
+      "agriculture",
+      "biometrics",
+      "experimental-design",
+      "mixed-models"
+    ]
+  },
+  {
     "id": "spacy-nlp",
     "name": "spaCy",
     "description": "Industrial-strength NLP library for Python. Fast tokenization, NER, POS tagging, dependency parsing, and pipeline components.",

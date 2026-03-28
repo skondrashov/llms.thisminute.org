@@ -25,8 +25,8 @@ This tool checks seven security header categories:
   5. Referrer-Policy — Validates against spec, flags dangerous policies
      (unsafe-url), handles fallback lists.
 
-  6. Permissions-Policy — Validates directive syntax, flags sensitive
-     permissions with wildcards, detects deprecated Feature-Policy.
+  6. Permissions-Policy — Checks header presence, detects deprecated
+     Feature-Policy.
 
   7. CORS — Checks for wildcard origins, null origin (critical),
      credentials+wildcard violations (forbidden by spec), dangerous
@@ -496,9 +496,6 @@ def analyze_headers(headers: dict[str, str]) -> dict:
 
     # Score
     total = sum(s["score"] for s in statuses.values())
-    max_score = sum(10 if k not in ("CSP", "HSTS") else (30 if k == "CSP" else 20)
-                    for k in statuses if not (k == "CORS" and not statuses[k].get("present")))
-    # Recompute max properly
     max_score = 0
     weights = {"CSP": 30, "HSTS": 20, "XFO": 10, "XCTO": 10, "RP": 10, "PP": 10, "CORS": 10}
     for k in statuses:

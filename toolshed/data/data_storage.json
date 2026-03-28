@@ -2211,6 +2211,88 @@
     "language": "python"
   },
   {
+    "id": "scann",
+    "name": "ScaNN",
+    "description": "Google Research library for scalable nearest neighbor search. Quantization-aware training and asymmetric hashing for high recall at high throughput.",
+    "url": "https://github.com/google-research/google-research/tree/master/scann",
+    "category": "Vector Databases",
+    "os": ["linux"],
+    "pricing": "free",
+    "tags": ["ann", "google", "quantization", "high-throughput", "open-source"],
+    "source": "https://github.com/google-research/google-research/tree/master/scann",
+    "language": "cpp"
+  },
+  {
+    "id": "nmslib",
+    "name": "NMSLIB",
+    "description": "Non-Metric Space Library for nearest neighbor search. Supports arbitrary distance functions, HNSW and SW-Graph algorithms, with Python bindings.",
+    "url": "https://github.com/nmslib/nmslib",
+    "category": "Vector Databases",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["ann", "non-metric", "hnsw", "python", "open-source"],
+    "source": "https://github.com/nmslib/nmslib",
+    "language": "cpp"
+  },
+  {
+    "id": "elasticsearch-vector",
+    "name": "Elasticsearch Vector Search",
+    "description": "Vector search capability built into Elasticsearch. kNN queries on dense_vector fields with HNSW indexing alongside traditional full-text search.",
+    "url": "https://www.elastic.co/elasticsearch/vector-database",
+    "category": "Vector Databases",
+    "os": ["windows", "macos", "linux", "web"],
+    "pricing": "freemium",
+    "tags": ["vector-search", "elasticsearch", "knn", "hybrid-search", "enterprise"],
+    "source": "https://github.com/elastic/elasticsearch",
+    "language": "java"
+  },
+  {
+    "id": "voyageai",
+    "name": "Voyage AI",
+    "description": "Embedding API optimized for retrieval quality. Domain-specific embedding models for code, legal, finance, and multilingual content.",
+    "url": "https://www.voyageai.com",
+    "category": "Vector Databases",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["embeddings", "retrieval", "domain-specific", "api", "rag"]
+  },
+  {
+    "id": "txtai",
+    "name": "txtai",
+    "description": "All-in-one embeddings database for semantic search, LLM orchestration, and language model workflows. Built on FAISS with Python API.",
+    "url": "https://github.com/neuml/txtai",
+    "category": "Vector Databases",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["vector-search", "semantic-search", "llm", "python", "open-source"],
+    "source": "https://github.com/neuml/txtai",
+    "language": "python"
+  },
+  {
+    "id": "pgvecto-rs",
+    "name": "pgvecto.rs",
+    "description": "PostgreSQL extension for vector similarity search written in Rust. Supports HNSW and IVF indexing with SIMD acceleration.",
+    "url": "https://github.com/tensorchord/pgvecto.rs",
+    "category": "Vector Databases",
+    "os": ["linux", "macos"],
+    "pricing": "free",
+    "tags": ["postgresql", "vector-search", "rust", "hnsw", "open-source"],
+    "source": "https://github.com/tensorchord/pgvecto.rs",
+    "language": "rust"
+  },
+  {
+    "id": "redis-vector",
+    "name": "Redis Vector Search",
+    "description": "Vector similarity search in Redis via the RediSearch module. HNSW and flat indexes for real-time vector queries alongside key-value operations.",
+    "url": "https://redis.io/docs/latest/develop/interact/search-and-query/advanced-concepts/vectors/",
+    "category": "Vector Databases",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "freemium",
+    "tags": ["vector-search", "redis", "real-time", "in-memory", "hybrid-search"],
+    "source": "https://github.com/RediSearch/RediSearch",
+    "language": "c"
+  },
+  {
     "id": "csvkit",
     "name": "csvkit",
     "description": "Python CLI suite for working with CSV files. Includes csvstat, csvsql, csvlook, csvgrep, csvjoin, in2csv, and more for slicing, querying, and converting tabular data.",

@@ -7,7 +7,8 @@
       "swarm-intelligence",
       "indirect-communication",
       "emergent-behavior",
-      "environment-mediated"
+      "environment-mediated",
+      "documented"
     ],
     "summary": "Agents never speak directly; all coordination happens by modifying a shared environment.",
     "description": "Inspired by ant colonies and termite mounds, agents communicate exclusively by leaving traces in a shared workspace. No agent sends messages to another; instead, each reads the environment, performs work, and deposits artifacts that alter the landscape for others. Coordination emerges without any agent understanding the global plan. The environment itself becomes the communication medium, the memory, and the coordination protocol.",
@@ -1494,7 +1495,8 @@
       "self-modification",
       "meta-learning",
       "recursive",
-      "bootstrapping"
+      "bootstrapping",
+      "documented"
     ],
     "summary": "Agents can propose and implement modifications to their own orchestration structure.",
     "description": "The most meta pattern possible: agents can observe their own organizational structure, identify inefficiencies, propose structural modifications, and implement them -- recursively. A Meta-Architect agent analyzes system performance and proposes structural changes (new roles, modified communication channels, different memory architectures). A Safety Validator ensures proposed modifications don't violate core invariants. A Rollback Controller maintains checkpoints so failed modifications can be reversed. The system literally rewrites its own organizational chart based on empirical performance. A Convergence Monitor watches for improvement plateaus and modification cycles (A->B->A loops).",

@@ -23,6 +23,8 @@
         },
         { "name": "HTTP Libraries", "categories": ["HTTP Libraries"] },
         { "name": "Scraping & Parsing", "categories": ["Web Scraping & Parsing"] },
+        { "name": "Browser Automation", "categories": ["Browser Automation"] },
+        { "name": "Browser Extensions", "categories": ["Browser Extensions & Userscripts"] },
         { "name": "Real-time", "categories": ["Real-time Communication"] },
         { "name": "Static Site Generators", "categories": ["Static Site Generators"] },
         { "name": "Content Management", "categories": ["Content Management Systems"] },
@@ -222,6 +224,7 @@
         { "name": "Auth & Identity", "categories": ["Auth & Identity"] },
         { "name": "Secrets Management", "categories": ["Secrets Management"] },
         { "name": "Security Scanning", "categories": ["Security Scanning"] },
+        { "name": "Reverse Engineering", "categories": ["Reverse Engineering"] },
         { "name": "Encryption & Privacy", "categories": ["Encryption & Privacy Tools"] }
       ]
     },
@@ -245,7 +248,25 @@
       "name": "Games",
       "children": [
         { "name": "Chess", "categories": ["Chess"] },
-        { "name": "Game Engines", "categories": ["Game Engines"] }
+        { "name": "Game Engines", "categories": ["Game Engines"] },
+        { "name": "Game Modding", "categories": ["Game Modding"] },
+        { "name": "Emulators", "categories": ["Emulators"] }
+      ]
+    },
+    {
+      "name": "Creative & Interactive",
+      "children": [
+        { "name": "Creative Coding", "categories": ["Creative Coding"] },
+        { "name": "Audio Programming", "categories": ["Audio Programming"] },
+        { "name": "Graphics Programming", "categories": ["Graphics Programming"] },
+        { "name": "3D Printing", "categories": ["3D Printing"] }
+      ]
+    },
+    {
+      "name": "Geospatial & Robotics",
+      "children": [
+        { "name": "GIS & Mapping", "categories": ["GIS & Mapping"] },
+        { "name": "Robotics", "categories": ["Robotics"] }
       ]
     },
     {

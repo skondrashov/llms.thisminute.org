@@ -1,0 +1,124 @@
+[
+  {
+    "id": "tampermonkey",
+    "name": "Tampermonkey",
+    "description": "Userscript manager for Chrome, Edge, Firefox, Safari, and Opera. Run custom scripts to modify and enhance web pages.",
+    "url": "https://www.tampermonkey.net",
+    "category": "Browser Extensions & Userscripts",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "userscripts",
+      "browser-extension",
+      "customization",
+      "greasemonkey"
+    ]
+  },
+  {
+    "id": "violentmonkey",
+    "name": "Violentmonkey",
+    "description": "Open-source userscript manager for Chrome, Firefox, and Edge. Lightweight alternative to Tampermonkey.",
+    "url": "https://violentmonkey.github.io",
+    "category": "Browser Extensions & Userscripts",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "userscripts",
+      "browser-extension",
+      "open-source"
+    ],
+    "source": "https://github.com/violentmonkey/violentmonkey"
+  },
+  {
+    "id": "web-ext",
+    "name": "web-ext",
+    "description": "Mozilla CLI tool for building, running, and testing WebExtensions. Live-reload during development and linting.",
+    "url": "https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/",
+    "category": "Browser Extensions & Userscripts",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "webextensions",
+      "firefox",
+      "mozilla",
+      "open-source"
+    ],
+    "source": "https://github.com/mozilla/web-ext",
+    "language": "javascript"
+  },
+  {
+    "id": "plasmo",
+    "name": "Plasmo",
+    "description": "Framework for building browser extensions. React/Vue/Svelte support, auto-permissions, and one-click publishing.",
+    "url": "https://www.plasmo.com",
+    "category": "Browser Extensions & Userscripts",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "browser-extension",
+      "framework",
+      "react",
+      "typescript",
+      "open-source"
+    ],
+    "source": "https://github.com/PlasmoHQ/plasmo",
+    "language": "typescript"
+  },
+  {
+    "id": "splash",
+    "name": "Splash",
+    "description": "Lightweight scriptable browser as a service with an HTTP API. JavaScript rendering for web scraping pipelines.",
+    "url": "https://splash.readthedocs.io",
+    "category": "Browser Automation",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "headless-browser",
+      "rendering",
+      "http-api",
+      "scraping",
+      "open-source"
+    ],
+    "source": "https://github.com/scrapinghub/splash",
+    "language": "python"
+  },
+  {
+    "id": "browserless",
+    "name": "browserless",
+    "description": "Headless browsers deployed in Docker for automation at scale. REST and WebSocket APIs for Chrome and Firefox.",
+    "url": "https://www.browserless.io",
+    "category": "Browser Automation",
+    "os": [
+      "linux",
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "headless-browser",
+      "docker",
+      "automation",
+      "scraping",
+      "open-source"
+    ],
+    "source": "https://github.com/browserless/browserless"
+  }
+]

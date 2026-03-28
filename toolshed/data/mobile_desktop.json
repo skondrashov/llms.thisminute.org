@@ -707,6 +707,138 @@
     ]
   },
   {
+    "id": "dcoder",
+    "name": "Dcoder",
+    "description": "Mobile IDE supporting 50+ programming languages. Cloud compiler, code snippets library, and coding challenges.",
+    "url": "https://dcoder.tech",
+    "category": "Mobile IDE & Tools",
+    "os": ["ios", "android"],
+    "pricing": "freemium",
+    "tags": ["mobile-ide", "multi-language", "cloud-compiler", "coding"]
+  },
+  {
+    "id": "termius-mobile",
+    "name": "Termius",
+    "description": "SSH, SFTP, and Telnet client with cross-device sync. Encrypted vault for credentials and snippet sharing across teams.",
+    "url": "https://www.termius.com",
+    "category": "Mobile IDE & Tools",
+    "os": ["windows", "macos", "linux", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["ssh", "sftp", "terminal", "mobile", "sync"]
+  },
+  {
+    "id": "ish-shell",
+    "name": "iSH",
+    "description": "Linux shell environment for iOS using x86 emulation. Run Alpine Linux commands, install packages with apk, all on iPhone or iPad.",
+    "url": "https://ish.app",
+    "category": "Mobile IDE & Tools",
+    "os": ["ios"],
+    "pricing": "free",
+    "tags": ["linux", "shell", "emulation", "ios", "open-source"],
+    "source": "https://github.com/ish-app/ish"
+  },
+  {
+    "id": "a-shell",
+    "name": "a-Shell",
+    "description": "Full Unix shell on iOS with Python, Lua, JavaScript, C, and TeX. File system access, Shortcuts integration, and SSH.",
+    "url": "https://holzschu.github.io/a-Shell_iOS",
+    "category": "Mobile IDE & Tools",
+    "os": ["ios"],
+    "pricing": "free",
+    "tags": ["shell", "ios", "python", "unix", "open-source"],
+    "source": "https://github.com/holzschu/a-shell"
+  },
+  {
+    "id": "spck-editor",
+    "name": "Spck Editor",
+    "description": "Mobile code editor for HTML, CSS, and JavaScript with live preview. Git integration, Emmet support, and offline capable.",
+    "url": "https://spck.io",
+    "category": "Mobile IDE & Tools",
+    "os": ["android"],
+    "pricing": "freemium",
+    "tags": ["code-editor", "web-dev", "git", "mobile", "live-preview"]
+  },
+  {
+    "id": "sololearn",
+    "name": "SoloLearn",
+    "description": "Learn to code with bite-sized lessons and an in-app code playground. Supports Python, JavaScript, C++, Java, and more.",
+    "url": "https://www.sololearn.com",
+    "category": "Mobile IDE & Tools",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["learn-to-code", "playground", "mobile", "courses"]
+  },
+  {
+    "id": "replit-mobile",
+    "name": "Replit Mobile",
+    "description": "Full cloud IDE on mobile. Write, run, and deploy code in 50+ languages from your phone with real-time collaboration.",
+    "url": "https://replit.com/mobile",
+    "category": "Mobile IDE & Tools",
+    "os": ["ios", "android"],
+    "pricing": "freemium",
+    "tags": ["cloud-ide", "mobile", "collaboration", "multi-language", "deploy"]
+  },
+  {
+    "id": "mimo",
+    "name": "Mimo",
+    "description": "Learn to code through gamified lessons on mobile. Structured paths for Python, JavaScript, HTML/CSS, and SQL.",
+    "url": "https://mimo.org",
+    "category": "Mobile IDE & Tools",
+    "os": ["ios", "android"],
+    "pricing": "freemium",
+    "tags": ["learn-to-code", "gamified", "mobile", "courses"]
+  },
+  {
+    "id": "codespace-mobile",
+    "name": "GitHub Codespaces",
+    "description": "Full VS Code environment in the cloud, accessible from mobile browsers. Instant dev environments with configurable compute.",
+    "url": "https://github.com/features/codespaces",
+    "category": "Mobile IDE & Tools",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["cloud-ide", "vscode", "github", "dev-environment"]
+  },
+  {
+    "id": "play-js",
+    "name": "CodeSandbox for iOS (Play.js)",
+    "description": "Native JavaScript and TypeScript IDE for iPhone and iPad, formerly Play.js. React, Vue, Next.js templates, Git client, and real code autocompletion.",
+    "url": "https://codesandbox.io/ios",
+    "category": "Mobile IDE & Tools",
+    "os": ["ios"],
+    "pricing": "paid",
+    "tags": ["javascript", "typescript", "ios", "node", "react-native"]
+  },
+  {
+    "id": "swift-playgrounds",
+    "name": "Swift Playgrounds",
+    "description": "Apple's app for learning Swift interactively on iPad and Mac. Build real apps directly and submit to the App Store.",
+    "url": "https://www.apple.com/swift/playgrounds",
+    "category": "Mobile IDE & Tools",
+    "os": ["ios", "macos"],
+    "pricing": "free",
+    "tags": ["swift", "apple", "learn-to-code", "interactive", "ipad"]
+  },
+  {
+    "id": "bitrise",
+    "name": "Bitrise",
+    "description": "Mobile-first CI/CD platform. Automate builds, tests, and deployments for iOS and Android with 300+ integrations.",
+    "url": "https://www.bitrise.io",
+    "category": "Mobile IDE & Tools",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["ci-cd", "mobile", "automation", "ios", "android"]
+  },
+  {
+    "id": "codemagic",
+    "name": "Codemagic",
+    "description": "CI/CD built for mobile app teams. Native Flutter, React Native, and native iOS/Android support with automatic code signing.",
+    "url": "https://codemagic.io",
+    "category": "Mobile IDE & Tools",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["ci-cd", "mobile", "flutter", "code-signing"]
+  },
+  {
     "id": "electron",
     "name": "Electron",
     "description": "Build cross-platform desktop apps with JavaScript, HTML, and CSS. Powers VS Code, Slack, Discord, and many more.",
@@ -1200,5 +1332,155 @@
       "desktop",
       "native-engine"
     ]
+  },
+  {
+    "id": "nw-js",
+    "name": "NW.js",
+    "description": "Build desktop apps with web technologies using Node.js and Chromium. Full Node.js API access from the DOM, formerly node-webkit.",
+    "url": "https://nwjs.io",
+    "category": "Desktop App Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "javascript",
+      "desktop",
+      "chromium",
+      "node",
+      "open-source"
+    ],
+    "language": "cpp"
+  },
+  {
+    "id": "lazarus-ide",
+    "name": "Lazarus",
+    "description": "Free Delphi-compatible cross-platform IDE using Free Pascal. Visual form designer, rapid application development for Windows, macOS, and Linux.",
+    "url": "https://www.lazarus-ide.org",
+    "category": "Desktop App Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "pascal",
+      "rad",
+      "visual-designer",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://gitlab.com/freepascal.org/lazarus/lazarus"
+  },
+  {
+    "id": "fltk-toolkit",
+    "name": "FLTK",
+    "description": "Fast Light Toolkit for building cross-platform GUIs in C++. Small footprint, simple API, and self-contained with no external dependencies.",
+    "url": "https://www.fltk.org",
+    "category": "Desktop App Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cpp",
+      "lightweight",
+      "gui",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/fltk/fltk",
+    "language": "cpp"
+  },
+  {
+    "id": "pyqt-desktop",
+    "name": "PyQt",
+    "description": "Python bindings for Qt. Build full-featured desktop apps with Python using Qt widgets, QtQuick, and the entire Qt ecosystem.",
+    "url": "https://riverbankcomputing.com/software/pyqt",
+    "category": "Desktop App Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "python",
+      "qt",
+      "gui",
+      "cross-platform"
+    ],
+    "language": "python"
+  },
+  {
+    "id": "pyside-qt",
+    "name": "PySide (Qt for Python)",
+    "description": "Official Python bindings for Qt, LGPL-licensed. Same API surface as PyQt with a more permissive license for commercial use.",
+    "url": "https://doc.qt.io/qtforpython-6",
+    "category": "Desktop App Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "python",
+      "qt",
+      "gui",
+      "lgpl",
+      "open-source"
+    ],
+    "source": "https://code.qt.io/cgit/pyside/pyside-setup.git",
+    "language": "python"
+  },
+  {
+    "id": "nuklear-gui",
+    "name": "Nuklear",
+    "description": "Minimal-state immediate-mode GUI toolkit in C. Single-header library, no dependencies, suitable for games and embedded tools.",
+    "url": "https://github.com/Immediate-Mode-UI/Nuklear",
+    "category": "Desktop App Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "c",
+      "immediate-mode",
+      "gui",
+      "single-header",
+      "open-source"
+    ],
+    "source": "https://github.com/Immediate-Mode-UI/Nuklear",
+    "language": "c"
+  },
+  {
+    "id": "cef-framework",
+    "name": "Chromium Embedded Framework",
+    "description": "Embed a Chromium-based browser in native desktop applications. Used by Spotify, Steam, and many commercial apps for web-based UIs.",
+    "url": "https://github.com/chromiumembedded/cef",
+    "category": "Desktop App Frameworks",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "chromium",
+      "embedding",
+      "webview",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/chromiumembedded/cef",
+    "language": "cpp"
   }
 ]

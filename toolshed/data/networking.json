@@ -295,6 +295,107 @@
     "source": "https://github.com/element-hq/element-call"
   },
   {
+    "id": "riverside-fm",
+    "name": "Riverside.fm",
+    "description": "Studio-quality remote recording for podcasts and video. Records locally on each participant's device for best quality.",
+    "url": "https://riverside.fm",
+    "category": "Video Conferencing",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["recording", "podcast", "studio-quality", "remote"]
+  },
+  {
+    "id": "streamyard",
+    "name": "StreamYard",
+    "description": "Browser-based live streaming studio. Multistream to YouTube, Facebook, LinkedIn, and more with guests, overlays, and branding.",
+    "url": "https://streamyard.com",
+    "category": "Video Conferencing",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["live-streaming", "multistream", "browser-based", "branding"]
+  },
+  {
+    "id": "bigbluebutton",
+    "name": "BigBlueButton",
+    "description": "Open-source web conferencing for online learning. Whiteboard, breakout rooms, polling, and shared notes. Self-hostable.",
+    "url": "https://bigbluebutton.org",
+    "category": "Video Conferencing",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["video", "education", "whiteboard", "self-hosted", "open-source"],
+    "source": "https://github.com/bigbluebutton/bigbluebutton"
+  },
+  {
+    "id": "livestorm",
+    "name": "Livestorm",
+    "description": "Browser-based video engagement platform for webinars, meetings, and virtual events. Built-in registration and analytics.",
+    "url": "https://livestorm.co",
+    "category": "Video Conferencing",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["webinars", "virtual-events", "analytics", "registration"]
+  },
+  {
+    "id": "ringcentral-events",
+    "name": "RingCentral Events",
+    "description": "AI-powered virtual and hybrid event platform, formerly Hopin. Branded registration, analytics, mobile app, and support for webinars, conferences, and onsite events.",
+    "url": "https://www.ringcentral.com/rc-events.html",
+    "category": "Video Conferencing",
+    "os": ["web"],
+    "pricing": "subscription",
+    "tags": ["virtual-events", "conferences", "hybrid-events", "ai-powered"]
+  },
+  {
+    "id": "amazon-chime",
+    "name": "Amazon Chime",
+    "description": "AWS video conferencing service. Meetings, chat, and business calling with pay-per-use pricing and SDK for embedding.",
+    "url": "https://aws.amazon.com/chime",
+    "category": "Video Conferencing",
+    "os": ["windows", "macos", "web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["video", "meetings", "aws", "sdk", "enterprise"]
+  },
+  {
+    "id": "pexip",
+    "name": "Pexip",
+    "description": "Enterprise video conferencing platform with interoperability across Teams, Google Meet, and traditional room systems.",
+    "url": "https://www.pexip.com",
+    "category": "Video Conferencing",
+    "os": ["web", "windows", "macos", "ios", "android"],
+    "pricing": "subscription",
+    "tags": ["video", "enterprise", "interoperability", "self-hosted"]
+  },
+  {
+    "id": "100ms",
+    "name": "100ms",
+    "description": "Video conferencing infrastructure with SDKs for building custom video apps. Low latency, recording, and live streaming APIs.",
+    "url": "https://www.100ms.live",
+    "category": "Video Conferencing",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["webrtc", "api", "sdk", "live-streaming", "infrastructure"]
+  },
+  {
+    "id": "eyeson",
+    "name": "Eyeson",
+    "description": "Video conferencing API with a single composited video stream. One stream regardless of participants, reducing bandwidth.",
+    "url": "https://www.eyeson.com",
+    "category": "Video Conferencing",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["api", "video", "compositing", "low-bandwidth"]
+  },
+  {
+    "id": "vonage-video",
+    "name": "Vonage Video API",
+    "description": "Programmable video API (formerly TokBox/OpenTok). WebRTC-based with SDKs for web, iOS, Android, and server-side.",
+    "url": "https://www.vonage.com/communications-apis/video",
+    "category": "Video Conferencing",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["webrtc", "api", "sdk", "embeddable"]
+  },
+  {
     "id": "mxtoolbox",
     "name": "MXToolbox",
     "description": "Web-based DNS and email diagnostics suite. SPF, DKIM, and DMARC validators, MX lookup, blacklist checks, and SMTP testing.",

@@ -3,8 +3,18 @@
     "id": "forge-audit-propagate-cycle",
     "name": "Forge Audit-Propagate Cycle",
     "category": "Agile & Software",
-    "hierarchyTypes": ["orchestrated", "pipeline"],
-    "tags": ["meta-management", "audit", "pattern-propagation", "multi-project", "self-improving"],
+    "hierarchyTypes": [
+      "orchestrated",
+      "pipeline"
+    ],
+    "tags": [
+      "meta-management",
+      "audit",
+      "pattern-propagation",
+      "multi-project",
+      "self-improving",
+      "documented"
+    ],
     "summary": "A meta-agent system that scans, audits, and upgrades other projects' agent systems against a shared pattern library.",
     "description": "Four specialized roles cycle through audit-and-upgrade passes across a portfolio of projects. The forgemaster coordinates, the assayer scans for gaps, the smith applies upgrades, and the keeper maintains the pattern library. Each cycle produces a gap analysis that prioritizes work across all managed projects. Patterns flow upward from real usage into the shared library, then back down to other projects — a self-improving loop.",
     "realWorldExample": "thisminute-forge manages 8 projects (thisminute, mainmenu, rhizome, ops, sts2, balatro, forge.thisminute.org, agent-forge). Over 13 audit cycles, it cleaned 900+ line forums, retired dead patterns (messages/), added librarian roles, bootstrapped steward agents, and propagated improvements back to the template library.",
@@ -51,12 +61,20 @@
       {
         "name": "Audit Log",
         "type": "log",
-        "participants": ["forgemaster", "assayer", "smith", "keeper"]
+        "participants": [
+          "forgemaster",
+          "assayer",
+          "smith",
+          "keeper"
+        ]
       },
       {
         "name": "Pattern Library",
         "type": "document",
-        "participants": ["keeper", "forgemaster"]
+        "participants": [
+          "keeper",
+          "forgemaster"
+        ]
       }
     ],
     "memoryArchitecture": {
@@ -74,11 +92,21 @@
     "id": "checkpoint-cycle-development",
     "name": "Checkpoint Cycle Development",
     "category": "Agile & Software",
-    "hierarchyTypes": ["chain-of-command", "pipeline"],
-    "tags": ["checkpoint", "iteration", "build-test-fix", "disposable-agents", "context-protection"],
+    "hierarchyTypes": [
+      "chain-of-command",
+      "pipeline"
+    ],
+    "tags": [
+      "checkpoint",
+      "iteration",
+      "build-test-fix",
+      "disposable-agents",
+      "context-protection",
+      "documented"
+    ],
     "summary": "An orchestrator coordinates rapid build-test-fix iterations through disposable cycle agents, using a checkpoint file as the sole source of truth.",
     "description": "The orchestrator never reads source code directly — it reads a checkpoint file, spawns a cycle agent with a targeted task, receives a short summary back, and updates the checkpoint. Cycle agents are disposable workers that do one fix per spawn. Specialist agents (mod-builder, bot-builder, etc.) handle domain-specific work. The checkpoint accumulates what works, what doesn't, and what to never do, creating institutional memory without forum overhead.",
-    "realWorldExample": "sts2 (Slay the Spire 2 autopilot mod) ran 37 cycles over multiple sessions. The checkpoint tracked 9 working features, 3 blockers, and 5 'never do' rules. Each cycle agent read the checkpoint, made one fix, tested it, and returned a ≤20 line summary. The orchestrator never touched the 4100-line core file directly.",
+    "realWorldExample": "Replit Agent evolved from a simple ReAct loop to a multi-agent architecture with manager, editor, and verifier roles running plan-execute-verify cycles. sts2 (Slay the Spire 2 autopilot mod) ran 37 checkpoint cycles over multiple sessions, tracking features, blockers, and 'never do' rules.",
     "whenToUse": "Rapid iteration projects where you're grinding through a bug list or building incrementally. Best when the codebase has a single hot path and work is sequential rather than parallel.",
     "strengths": [
       "Context protection — orchestrator stays lightweight, never bloated by source code",
@@ -119,7 +147,11 @@
       {
         "name": "Checkpoint",
         "type": "document",
-        "participants": ["orchestrator", "cycle", "specialist"]
+        "participants": [
+          "orchestrator",
+          "cycle",
+          "specialist"
+        ]
       }
     ],
     "memoryArchitecture": {
@@ -136,8 +168,19 @@
     "id": "protocol-forum-product-team",
     "name": "Protocol-Forum Product Team",
     "category": "Agile & Software",
-    "hierarchyTypes": ["orchestrated", "mesh"],
-    "tags": ["protocol", "forum", "multi-agent", "librarian", "inter-agent-communication", "product-development"],
+    "hierarchyTypes": [
+      "orchestrated",
+      "mesh"
+    ],
+    "tags": [
+      "protocol",
+      "forum",
+      "multi-agent",
+      "librarian",
+      "inter-agent-communication",
+      "product-development",
+      "documented"
+    ],
     "summary": "A multi-agent product team coordinated by shared protocol and forum, with a librarian preventing documentation decay.",
     "description": "All agents follow a shared startup protocol (read role, check timestamp, read architecture, scan forum, do work, report, update memory, reflect). The forum is the sole inter-agent communication channel — agents post findings, vote on proposals, and build on each other's work. A librarian agent prevents the forum from ballooning by archiving resolved threads. Without a librarian, forums grow from 50 to 900+ lines in a single session.",
     "realWorldExample": "thisminute (10 agents) and mainmenu (7 agents) both use this pattern. thisminute's forum grew from 51 to 621 lines in one active session before the librarian cleaned it. mainmenu hit 904 lines before the forge added a librarian role. After librarian adoption, both stabilized under 200 lines. An inter-agent messages/ directory was tried and retired — the forum was sufficient.",
@@ -222,8 +265,20 @@
     "id": "game-autopilot-stack",
     "name": "Game Autopilot Stack",
     "category": "Technology & Engineering",
-    "hierarchyTypes": ["orchestrated", "pipeline"],
-    "tags": ["game-ai", "modding", "streaming", "three-process", "mcp", "llm-integration", "twitch"],
+    "hierarchyTypes": [
+      "orchestrated",
+      "pipeline"
+    ],
+    "tags": [
+      "game-ai",
+      "modding",
+      "streaming",
+      "three-process",
+      "mcp",
+      "llm-integration",
+      "twitch",
+      "documented"
+    ],
     "summary": "Three-process architecture (game mod, external bot, streaming overlay) with 9 specialized agents for building an LLM-powered game-playing system.",
     "description": "A game mod reads state and executes actions inside the game process. An external bot connects via IPC protocol, makes decisions using LLM + hardcoded heuristics, and learns from runs. A streaming overlay shows reasoning to a Twitch audience. Nine agents cover the full development surface: orchestrator coordinates, domain specialists build each component, an analyst handles prompt engineering, an operator runs self-play sessions, and a skeptic reviews cross-component consistency.",
     "realWorldExample": "sts2 (Slay the Spire 2) uses a C#/Godot mod communicating via named pipes with a .NET bot, overlaid on OBS. The mod handles 40-60% of decisions via hardcoded fast-path (no LLM), the bot uses Claude for complex decisions with prompt caching (90% cost reduction), and a learning system evolves strategy across runs with confidence-tiered notes. Balatro adapts the same architecture with Lua/Steamodded mod and TCP transport.",
@@ -301,12 +356,25 @@
       {
         "name": "Checkpoint",
         "type": "document",
-        "participants": ["orchestrator", "cycle", "mod-builder", "bot-builder", "mcp-engineer", "analyst", "play-operator", "overlay-dev", "skeptic"]
+        "participants": [
+          "orchestrator",
+          "cycle",
+          "mod-builder",
+          "bot-builder",
+          "mcp-engineer",
+          "analyst",
+          "play-operator",
+          "overlay-dev",
+          "skeptic"
+        ]
       },
       {
         "name": "Run Journals",
         "type": "log",
-        "participants": ["play-operator", "analyst"]
+        "participants": [
+          "play-operator",
+          "analyst"
+        ]
       }
     ],
     "memoryArchitecture": {
@@ -326,8 +394,17 @@
     "id": "steward-bootstrap",
     "name": "Steward Bootstrap",
     "category": "Agile & Software",
-    "hierarchyTypes": ["swarm"],
-    "tags": ["bootstrap", "single-agent", "organic-growth", "self-managing", "minimal-overhead"],
+    "hierarchyTypes": [
+      "swarm"
+    ],
+    "tags": [
+      "bootstrap",
+      "single-agent",
+      "organic-growth",
+      "self-managing",
+      "minimal-overhead",
+      "documented"
+    ],
     "summary": "A single steward agent handles all work for a small project, self-manages its context, and proposes role splits when complexity demands it.",
     "description": "Instead of designing a multi-agent system upfront, start with one steward who knows the conventions (role files, memory, growth path) and does everything. The steward manages its own context cleanup, maintains a single memory file, and monitors whether it's context-switching too heavily across unrelated domains. When it judges the time is right, it proposes a split — not because a template says to, but because the work has grown enough to justify it. The value is the bootstrap prompt that teaches ecosystem conventions, making the project self-sufficient from day one.",
     "realWorldExample": "rhizome (agent pattern catalog) runs with a single steward handling frontend, data curation, API, build pipeline, and deployment. After its first real session, the steward produced well-structured memory covering bug fixes, accessibility improvements, and data quality work across all domains. After months of use, it still hasn't proposed a role split — correctly, given the project's scope. ops (deployment infrastructure) also uses a steward, managing cross-project deployment queues and health monitoring.",
@@ -357,7 +434,9 @@
       {
         "name": "Steward Memory",
         "type": "log",
-        "participants": ["steward"]
+        "participants": [
+          "steward"
+        ]
       }
     ],
     "memoryArchitecture": {
@@ -373,8 +452,21 @@
     "id": "agent-ecosystem-federation",
     "name": "Agent Ecosystem Federation",
     "category": "Agile & Software",
-    "hierarchyTypes": ["federated", "orchestrated", "pipeline"],
-    "tags": ["ecosystem", "federation", "meta-management", "multi-project", "shared-services", "pattern-evolution", "governance"],
+    "hierarchyTypes": [
+      "federated",
+      "orchestrated",
+      "pipeline"
+    ],
+    "tags": [
+      "ecosystem",
+      "federation",
+      "meta-management",
+      "multi-project",
+      "shared-services",
+      "pattern-evolution",
+      "governance",
+      "documented"
+    ],
     "summary": "Autonomous projects with different internal agent structures, governed by a shared forge, serviced by shared ops, with patterns flowing through a catalog and template library.",
     "description": "Multiple projects coexist in an ecosystem, each choosing its own internal coordination model (protocol+forum, checkpoint cycles, or single steward) based on its needs. A forge meta-manages all agent systems — scanning for gaps, propagating upgrades, and maintaining consistency without imposing uniformity. An ops steward provides cross-project deployment as a shared service. A pattern catalog captures what actually works in practice, and a template library provides starting points for new projects. Patterns flow upward from real usage into the catalog, get extracted into templates, and seed new projects — a living knowledge system.",
     "realWorldExample": "The thisminute ecosystem runs 8 projects: thisminute (10 agents, protocol+forum), mainmenu (7 agents, protocol+forum), sts2 (9 agents, checkpoint), balatro (9 agents, checkpoint), rhizome (1 steward), ops (1 steward), forge.thisminute.org (3 agents, checkpoint), and agent-forge (4 template roles). The forge has run 13 audit cycles, during which it cleaned forums across projects, retired the messages/ pattern ecosystem-wide, bootstrapped steward agents, added librarian roles, and extracted 6 validated patterns into the catalog. Ops handles deployment queues for all projects. The template library seeded balatro's entire agent system from sts2's proven structure in one session.",
@@ -429,17 +521,26 @@
       {
         "name": "Audit Log",
         "type": "log",
-        "participants": ["forge"]
+        "participants": [
+          "forge"
+        ]
       },
       {
         "name": "Deploy Queue",
         "type": "queue",
-        "participants": ["ops-steward", "product-team"]
+        "participants": [
+          "ops-steward",
+          "product-team"
+        ]
       },
       {
         "name": "Pattern Library",
         "type": "document",
-        "participants": ["forge", "template-library", "pattern-catalog"]
+        "participants": [
+          "forge",
+          "template-library",
+          "pattern-catalog"
+        ]
       }
     ],
     "memoryArchitecture": {

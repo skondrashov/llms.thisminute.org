@@ -1,6 +1,154 @@
 # Curator Memory
 
-## Last Session: Cycle 70 (2026-03-16)
+## Last Session: 2026-03-21
+
+### What I Did
+- Created new category: Game Modding (+23 curated entries in `data/game_modding.json`)
+- Added Game Modding leaf to taxonomy.json under Games group (now 125 leaf categories)
+- Removed duplicate discovered `openmw` from `data/discovered_20260314.json`
+- Covers: Balatro (2), Minecraft (5), Skyrim/Bethesda (5), Stardew Valley (1), RimWorld (1), Terraria (1), Unity (3), Unreal (1), Other (4)
+- Build: 16,074 entries, 124 populated categories, 23 data files, no warnings
+
+## Previous Session: Cycle 76 (2026-03-18)
+
+### What Was Done
+- Expanded HR & People from 27 to 32 in `data/enterprise.json` (+5 curated)
+- Expanded Chess from 27 to 32 in `data/internet_comms.json` (+5 curated)
+- Expanded APIs & Services from 27 to 34 in `data/web.json` (+7 curated)
+- Removed 2 stale/duplicate discovered entries from `data/discovered_20260314.json`
+
+### HR & People (+5 curated)
+New entries: sap-successfactors, ukg-pro, paycor, leapsome, globe-hr
+- SAP SuccessFactors and UKG Pro fill the enterprise HCM gap (10,000+ customers, Gartner Leaders)
+- Paycor serves 30,000+ mid-market businesses; was acquired by Paychex in 2025 but still operates independently
+- Leapsome is people enablement (performance/OKRs/engagement) -- different focus from HRIS platforms
+- G-P (Globalization Partners) is global employer of record, similar to Deel/Oyster/Remote but larger (180+ countries, $4.2B valuation)
+
+### Chess (+5 curated)
+New entries: komodo-dragon, hiarcs-chess-explorer, tarrasch-chess-gui, decodechess, ethereal-chess
+- Komodo Dragon is the main commercial competitor to Stockfish -- World Computer Chess Champion with NNUE
+- HIARCS is the classic (since 1991) -- used by Anand and Kasparov for preparation
+- Tarrasch is a simple open-source Windows GUI -- good entry-level alternative to heavy tools like ChessBase
+- DecodeChess explains engine moves in natural language -- unique AI-powered angle
+- Ethereal is a strong open-source UCI engine, serves as reference implementation for engine authors
+- **Dropped candidates**: chess24 (shut down Jan 2024 after Chess.com acquisition), houdini-chess (name conflicts with SideFX Houdini 3D software already in catalog)
+
+### APIs & Services (+7 curated, -2 discovered)
+New entries: cloudinary, upstash, convex, courier-notifications, nylas, liveblocks, inngest
+- Removed discovered: inngest (Data Pipelines, duplicate ID), n1 (Email, stale -- N1 mail app discontinued, URL now Nylas API)
+- Cloudinary is the dominant media API -- no existing entry despite being well-known
+- Upstash fills serverless Redis gap (edge/serverless-friendly, HTTP-based API)
+- Convex is open-source reactive backend -- different from Firebase/Supabase (TypeScript-native, ACID)
+- Courier is multichannel notifications -- different from Pusher (which is realtime messaging, already in catalog)
+- Nylas unifies email/calendar APIs across providers -- unique abstraction layer
+- Liveblocks is realtime collaboration infrastructure (cursors, presence, CRDTs)
+- Inngest is event-driven function orchestration -- fills gap between simple queues and full workflow engines
+- **Considered but skipped**: Auth0, Clerk, Sentry, Algolia, Postman, Pusher, Railway, Render -- all already in catalog under other categories
+
+### Build results
+- 16,052 entries (1,555 curated + 14,497 discovered), 67 tests passing
+
+### Learnings
+- Always check for name conflicts across all curated files (not just ID conflicts) -- Houdini chess engine has same name as Houdini 3D/VFX
+- chess24.com is a dead URL (shut down Jan 2024) -- web search verification caught this before it went in
+- N1 mail client -> Nylas Mail -> Nylas API company is a common pivot pattern; discovered entries with old product URLs pointing to new company pages are confusing
+- HR category is heavily subscription/web-based -- almost no open-source options in this space
+- APIs & Services category is all web-based by nature -- consider whether platform-specific SDKs should expand OS tags
+
+---
+
+## Previous Session: Cycle 75 (2026-03-16)
+
+### What I Did
+- Expanded Flashcards & Study from 26 to 32 in `data/education.json` (+7 curated)
+- Expanded Secrets Management from 26 to 30 in `data/security.json` (+7 curated)
+- Expanded Vector Databases from 26 to 31 in `data/data_storage.json` (+7 curated)
+- Removed 6 miscategorized/duplicate discovered entries from `data/discovered_20260314.json`
+
+### Flashcards & Study (+7 curated, -1 discovered)
+New entries: cards-ankiapp, scholarcy, wisdolia, zorbi, cards-app, chegg-prep, cram
+- Removed discovered: algoapp (duplicate URL with curated cards-ankiapp, both ankiapp.com)
+- Used `cards-ankiapp` ID since `ankiapp` is a different product from `anki`
+- AI-generation tools (Scholarcy, Wisdolia, Zorbi) are the growth area in flashcards -- all freemium web-based
+
+### Secrets Management (+7 curated, -3 discovered)
+New entries: cyberark-pam, 1password-secrets-automation, delinea-secret-server, beyond-trust-pm, secretive, hcp-vault-secrets, berglas
+- Removed discovered: secretive (duplicate URL with curated entry), key-codes (was "Secrets Management" but displays key codes), kindle-previewer (was "Secrets Management" but previews ebooks)
+- Enterprise PAM (CyberArk, Delinea, BeyondTrust) fills a real gap -- these are the big 3 in privileged access management
+- Secretive is macOS-only (Secure Enclave) -- discovered entry had wrong OS (windows/macos/linux)
+
+### Vector Databases (+7 curated, -2 discovered)
+New entries: scann, nmslib, elasticsearch-vector, voyageai, txtai, pgvecto-rs, redis-vector
+- Removed discovered: spamsieve (was "Vector Databases" but is a spam filter), x-swiftformat (was "Vector Databases" but is a code formatter)
+- Dropped typesense-vector candidate: Typesense already exists as `typesense` in Search Engines (duplicate URL caught by tests)
+- Added established platforms with vector extensions (Elasticsearch, Redis) alongside dedicated vector tools
+- pgvecto.rs is the Rust alternative to pgvector -- both are PostgreSQL extensions
+
+### Build results
+- 16,040 entries (1,540 curated + 14,500 discovered), 67 tests passing
+
+---
+
+## Previous Session: Cycle 74 (2026-03-16)
+
+### What I Did
+- Expanded Mobile IDE & Tools from 25 to 36 in `data/mobile_desktop.json` (+13 curated)
+- Expanded Task Runners & Monorepos from 25 to 35 in `data/devops_infra.json` (+10 curated)
+- Expanded Video Conferencing from 25 to 37 in `data/networking.json` (+12 curated)
+- Removed 8 miscategorized/duplicate discovered entries from `data/discovered_20260314.json`
+
+### Mobile IDE & Tools (+13 curated, -3 discovered)
+New entries: dcoder, termius-mobile, ish-shell, a-shell, spck-editor, sololearn, replit-mobile, mimo, codespace-mobile, play-js, swift-playgrounds, bitrise, codemagic
+- Removed discovered: bitrise (duplicate URL), codemagic (duplicate URL), termius (was "Terminal Emulators", same URL)
+- Used `termius-mobile` ID to distinguish from discovered `termius` entry
+- Dropped `loom-video` candidate mid-test: Loom already in catalog as `loom` in Screen Recording / Streaming (duplicate name + URL caught by tests)
+- Mobile CI/CD tools (Bitrise, Codemagic) are web-based dashboards -- os: ["web"]
+- iOS shell tools (iSH, a-Shell) are free open-source -- good diversity against commercial entries
+
+### Task Runners & Monorepos (+10 curated, -3 discovered)
+New entries: xc-runner, invoke-python, nox-session, scons-build, tox-python, npm-run-all, wireit, changesets, pnpm-workspace, rake
+- Removed discovered: scons (was "Build Tools"), invoke (was "Shell Environments"), xc (was "Build Tools")
+- Used suffixed IDs (`xc-runner`, `invoke-python`, `nox-session`, `scons-build`, `tox-python`) to avoid collisions with discovered entries
+- Note: `wireit` source URL may need verification (github repo ownership may have changed)
+
+### Video Conferencing (+12 curated, -2 discovered)
+New entries: riverside-fm, streamyard, around, bigbluebutton, livestorm, hopin, amazon-chime, pexip, 100ms, eyeson, vonage-video, bluejeans
+- Removed discovered: bigbluebutton (was "Communication"), riverside-studio (was "Video Editing", same URL)
+- Many discovered Video Conferencing entries are severely miscategorized (motion.tools, gfile, Moltin, indico, OpenSlides, pretalx) -- not removed since they don't conflict with curated entries, but worth flagging
+- Video API/infrastructure entries (100ms, Eyeson, Vonage) complement LiveKit and Daily which were already curated
+
+### Build State
+- 16,025 entries, 123 categories
+- 67/67 tests pass
+- 1,519 curated + 14,506 discovered
+- JSON-LD: 1,523 sampled entries, 609.3 KB
+
+### Key Decisions
+- **Always run tests before posting**: loom-video and riverside-fm caught by duplicate URL/name tests. Always verify after adding entries.
+- **Suffixed IDs pattern continues**: `xc-runner`, `invoke-python`, etc. follow the same pattern as Cycle 73.
+- **Discovered removal justified when**: curated entry has same URL + discovered entry has wrong category.
+- **Cross-file URL collisions**: Loom exists in `creative_media.json` as Screen Recording -- must check ALL data files, not just the target file, for URL/name conflicts.
+- **Discovered Video Conferencing is badly polluted**: 17 discovered entries include event management, file transfer, and e-commerce tools. Flagged for future cleanup.
+
+## Previous Session: Cycle 73 (2026-03-16)
+
+### What I Did
+- Expanded Media Processing from 23 to 33 in `data/creative_media.json` (+10 curated)
+- Expanded Desktop App Frameworks from 25 to 32 in `data/mobile_desktop.json` (+7 curated)
+- Expanded Statistical Tools from 25 to 32 in `data/ai_science.json` (+7 curated, 1 dropped)
+- Removed 5 miscategorized discovered entries from `data/discovered_20260314.json`
+
+### Build State (Cycle 73)
+- 15,998 entries, 123 categories
+- 67/67 tests pass
+- 1,484 curated + 14,514 discovered
+
+### Key Decisions (Cycle 73)
+- **SciPy duplicate avoided**: SciPy already in catalog as `scipy` (Scientific Computing). Don't re-add with different ID for Statistical Tools.
+- **Suffixed IDs for discovered conflicts**: When discovered entries have the same ID but wrong category, use descriptive suffixes.
+- **Build file ordering matters**: Files sorted alphabetically. `discovered_20260314.json` loads before curated files, so discovered IDs block curated entries with same IDs.
+
+## Previous Session: Cycle 70 (2026-03-16)
 
 ### What I Did
 - Expanded Note Taking from 11 to 17 curated entries in `data/productivity.json`

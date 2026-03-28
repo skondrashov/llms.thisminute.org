@@ -1,5 +1,5 @@
 # toolshed
-> Universal software directory with 15979 entries across 123 categories. Structured data for AI agents and developers.
+> Universal software directory with 16135 entries across 134 categories. Structured data for AI agents and developers.
 
 ## Endpoints
 - Full catalog (JSON): /api/v1/catalog.json
@@ -21,24 +21,24 @@ OS: windows | macos | linux | web | ios | android
 ## Categories
 - iOS UI Components: 700
 - Static Analysis: 530
-- CLI Frameworks: 450
+- CLI Frameworks: 449
 - Databases: 408
 - Testing Frameworks: 351
 - Image Processing: 341
 - Frontend Frameworks: 336
-- Networking: 334
+- Networking: 335
 - Cross-Platform Frameworks: 309
 - Container Orchestration: 307
-- Video Editing: 290
-- Communication: 285
+- Video Editing: 289
+- Communication: 284
 - Music Production: 278
 - Data Validation & Serialization: 276
-- Game Engines: 233
+- Game Engines: 232
 - Backend Frameworks: 219
 - Version Control: 208
-- Data Pipelines: 207
 - Media Players: 207
-- Async & Concurrency: 206
+- Data Pipelines: 206
+- Async & Concurrency: 205
 - API Clients: 195
 - CI/CD Tools: 193
 - Logging & Diagnostics: 191
@@ -46,45 +46,45 @@ OS: windows | macos | linux | web | ios | android
 - Configuration: 185
 - Backup & Sync: 183
 - Encryption & Privacy Tools: 183
+- Monitoring & Metrics: 183
 - Security Scanning: 183
 - AI/ML Libraries: 181
-- Monitoring & Metrics: 181
 - Note Taking: 181
-- Programming Languages: 179
+- Programming Languages: 178
 - UI/UX Design Tools: 178
-- Content Management Systems: 174
+- Content Management Systems: 173
 - Utilities: 167
 - Launcher & Productivity Utils: 161
-- Accounting & Finance: 159
-- Code Editors: 157
+- Accounting & Finance: 158
+- Code Editors: 156
 - iOS Networking & Data: 153
 - Documentation Tools: 150
-- Embedded & IoT: 146
+- Embedded & IoT: 147
 - System Utilities: 144
 - Auth & Identity: 143
 - PDF Tools: 143
 - Web Scraping & Parsing: 140
-- Build Tools: 139
 - File Managers: 139
-- 3D & CAD: 133
+- Build Tools: 137
+- 3D & CAD: 130
 - Screen Recording / Streaming: 129
 - Fonts & Typography: 128
 - ORMs: 127
 - Search Engines: 122
 - Real-time Communication: 121
 - Password Managers: 119
-- Text Processing: 119
 - Office Suites: 118
+- Text Processing: 118
 - Operating Systems: 117
 - Window Managers: 117
 - Package Managers: 116
-- Terminal Emulators: 115
 - HTTP Libraries: 114
+- Terminal Emulators: 114
 - Cloud Storage: 113
-- Learning Platforms: 113
 - Scientific Computing: 112
-- Email: 110
-- Data Analysis: 108
+- Data Analysis: 111
+- Learning Platforms: 111
+- Email: 109
 - Calendar & Scheduling: 96
 - Static Site Generators: 84
 - Photo Management: 81
@@ -93,7 +93,7 @@ OS: windows | macos | linux | web | ios | android
 - Blockchain & Web3: 78
 - Document Conversion: 77
 - Date & Time: 76
-- Virtualization: 76
+- Virtualization: 75
 - Clipboard Managers: 71
 - UI Automation & E2E Testing: 71
 - Cloud SDKs & CLIs: 69
@@ -120,28 +120,39 @@ OS: windows | macos | linux | web | ios | android
 - Math & Numerics: 40
 - Log Management: 39
 - Formatters: 37
-- Shell Environments: 37
+- Mobile IDE & Tools: 36
+- Shell Environments: 36
 - Vector & Illustration: 36
+- Task Runners & Monorepos: 35
+- Video Conferencing: 35
+- APIs & Services: 34
 - Compression & Archiving: 34
 - Database Migrations: 34
 - Infrastructure as Code: 33
+- Media Processing: 33
+- Chess: 32
+- Desktop App Frameworks: 32
+- Flashcards & Study: 32
+- HR & People: 32
+- Statistical Tools: 32
+- Vector Databases: 31
 - Error Handling: 30
+- Secrets Management: 30
 - API Documentation: 29
 - Database Tools: 29
 - AI Assistants: 28
 - File Search & Navigation: 28
-- APIs & Services: 27
-- Chess: 27
-- HR & People: 27
-- Flashcards & Study: 26
-- Secrets Management: 26
-- Vector Databases: 26
-- Desktop App Frameworks: 25
-- Mobile IDE & Tools: 25
-- Statistical Tools: 25
-- Task Runners & Monorepos: 25
-- Video Conferencing: 25
-- Media Processing: 23
+- Game Modding: 23
+- GIS & Mapping: 12
+- Creative Coding: 9
+- Audio Programming: 8
+- Graphics Programming: 7
+- Robotics: 7
+- 3D Printing: 5
+- Browser Extensions & Userscripts: 4
+- Reverse Engineering: 4
+- Emulators: 3
+- Browser Automation: 2
 
 ## Querying
 Download /api/v1/catalog.json and filter by:

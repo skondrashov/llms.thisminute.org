@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rhizome — 200 Ways to Organize</title>
+  <title>Rhizome — Organizational Structure Catalog</title>
 
   <!-- Open Graph / Social Embed -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://forge.thisminute.org/rhizome/">
-  <meta property="og:title" content="Rhizome — 200 Ways to Organize">
+  <meta property="og:title" content="Rhizome — Organizational Structure Catalog">
   <meta property="og:description" content="From pirate democracies and papal conclaves to ant colonies and Formula 1 pit crews — a catalog of every interesting way humans and other organisms have figured out how to coordinate.">
   <meta property="og:image" content="https://forge.thisminute.org/rhizome/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Rhizome — 200 Ways to Organize">
+  <meta name="twitter:title" content="Rhizome — Organizational Structure Catalog">
   <meta name="twitter:description" content="From pirate democracies and papal conclaves to ant colonies and Formula 1 pit crews — a catalog of every interesting way to coordinate.">
   <meta name="twitter:image" content="https://forge.thisminute.org/rhizome/og-image.png">
 
@@ -192,20 +192,33 @@
       flex-shrink: 0;
     }
     /* ─── Filter Panels (Topology + Category) ────────────── */
-    .filter-panel {
+    .filter-row {
+      display: flex;
+      gap: 0.5rem;
       max-width: 1100px;
       margin: 0 auto 0.5rem;
+    }
+    .filter-panel {
+      position: relative;
+      flex: 1;
+      min-width: 0;
     }
     .filter-panel-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.5rem 0;
+      padding: 0.5rem 0.75rem;
       cursor: pointer;
       user-select: none;
       transition: color var(--transition-fast);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-raised);
     }
-    .filter-panel-header:hover { color: var(--accent); }
+    .filter-panel-header:hover {
+      color: var(--accent);
+      border-color: var(--border-light);
+    }
     .filter-panel-title {
       font-size: 0.8rem;
       font-weight: 600;
@@ -233,22 +246,37 @@
     .filter-panel.expanded .filter-panel-chevron {
       transform: rotate(90deg);
     }
+    .filter-panel.expanded .filter-panel-header {
+      border-color: var(--border-light);
+    }
     .filter-panel-body {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows var(--transition-med);
+      display: none;
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      margin-top: 0.25rem;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background: var(--bg-raised);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      padding: 0.5rem;
+    }
+    body.light-mode .filter-panel-body {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
     .filter-panel.expanded .filter-panel-body {
-      grid-template-rows: 1fr;
+      display: block;
     }
     .filter-panel-inner {
-      overflow: hidden;
+      overflow: visible;
     }
     .filter-tiles {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 0.5rem;
-      padding: 0.25rem 0 0.75rem;
+      width: max-content;
+      min-width: 100%;
     }
     .filter-tile {
       padding: 0.65rem 0.75rem;
@@ -300,6 +328,27 @@
     }
     .filter-tile-all .filter-tile-name { color: var(--text-secondary); }
     .filter-tile-all.active .filter-tile-name { color: var(--accent); }
+
+    /* ─── Filter Descriptions ────────────────────────────── */
+    .filter-descriptions {
+      margin-top: -0.25rem;
+      margin-bottom: 0.25rem !important;
+      gap: 0.5rem;
+    }
+    .filter-desc {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+      padding: 0 0.25rem;
+      min-height: 1.1em;
+    }
+    .filter-desc:empty { visibility: hidden; }
+    @media (max-width: 768px) {
+      .filter-row { flex-direction: column; }
+      .filter-panel-body { position: static; box-shadow: none; border: none; margin-top: 0; }
+    }
 
     .toolbar {
       display: flex;
@@ -1258,9 +1307,7 @@
       <a class="icon-btn" href="evolution.html" title="How one project evolved from solo to 10 agents" aria-label="Evolution case study" style="font-size:0.7rem;letter-spacing:0.03em;text-decoration:none">case</a>
     </div>
     <h1>RHIZOME <a href="/">FORGE</a></h1>
-    <p class="subtitle">200 Ways to Organize</p>
-    <p class="about">From pirate democracies and papal conclaves to ant colonies and Formula 1 pit crews — a catalog of how humans (and other organisms) have figured out how to coordinate, each one broken down into roles, communication channels, and information flows.</p>
-    <p class="about" style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.85rem;">Originally built as blueprints for AI agent systems. Turns out organizational design is interesting on its own. <button id="fieldnotes-inline" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:inherit;font-family:inherit;padding:0;text-decoration:underline;text-underline-offset:2px;">Read the field notes &rarr;</button></p>
+    <p class="about" style="font-size: 1.05rem; max-width: 640px; margin: 0.75rem auto 0;">A catalog of organizational structures — from nature, human institutions, computer science, and LLM agent frameworks — broken down into roles, communication channels, and information flows. <button id="fieldnotes-inline" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:inherit;font-family:inherit;padding:0;text-decoration:underline;text-underline-offset:2px;">Field notes &rarr;</button></p>
     <div class="stats">
       <div class="stat">
         <span class="stat-value" id="total-count">0</span>
@@ -1292,29 +1339,45 @@
       </div>
       <span class="result-count" id="result-count"></span>
     </div>
-    <div class="filter-panel expanded" id="structure-panel">
-      <div class="filter-panel-header" id="structure-panel-header" role="button" tabindex="0" aria-expanded="true">
-        <span class="filter-panel-title">Structure <span class="filter-panel-active-label" id="structure-active-label"></span></span>
-        <span class="filter-panel-chevron">&#9654;</span>
+    <div class="filter-row">
+      <div class="filter-panel" id="domain-panel">
+        <div class="filter-panel-header" id="domain-panel-header" role="button" tabindex="0" aria-expanded="false">
+          <span class="filter-panel-title">Origin <span class="filter-panel-active-label" id="domain-active-label"></span></span>
+          <span class="filter-panel-chevron">&#9654;</span>
+        </div>
+        <div class="filter-panel-body"><div class="filter-panel-inner">
+          <div class="filter-tiles" id="domain-tiles"></div>
+        </div></div>
       </div>
-      <div class="filter-panel-body"><div class="filter-panel-inner">
-        <div class="filter-tiles" id="structure-tiles"></div>
-      </div></div>
+      <div class="filter-panel" id="structure-panel">
+        <div class="filter-panel-header" id="structure-panel-header" role="button" tabindex="0" aria-expanded="false">
+          <span class="filter-panel-title">Structure <span class="filter-panel-active-label" id="structure-active-label"></span></span>
+          <span class="filter-panel-chevron">&#9654;</span>
+        </div>
+        <div class="filter-panel-body"><div class="filter-panel-inner">
+          <div class="filter-tiles" id="structure-tiles"></div>
+        </div></div>
+      </div>
+      <div class="filter-panel" id="category-panel">
+        <div class="filter-panel-header" id="category-panel-header" role="button" tabindex="0" aria-expanded="false">
+          <span class="filter-panel-title">Field <span class="filter-panel-active-label" id="category-active-label"></span></span>
+          <span class="filter-panel-chevron">&#9654;</span>
+        </div>
+        <div class="filter-panel-body"><div class="filter-panel-inner">
+          <div class="filter-tiles" id="category-tiles"></div>
+        </div></div>
+      </div>
     </div>
-    <div class="filter-panel" id="category-panel">
-      <div class="filter-panel-header" id="category-panel-header" role="button" tabindex="0" aria-expanded="false">
-        <span class="filter-panel-title">Category <span class="filter-panel-active-label" id="category-active-label"></span></span>
-        <span class="filter-panel-chevron">&#9654;</span>
-      </div>
-      <div class="filter-panel-body"><div class="filter-panel-inner">
-        <div class="filter-tiles" id="category-tiles"></div>
-      </div></div>
+    <div class="filter-row filter-descriptions">
+      <div class="filter-desc" id="domain-desc"></div>
+      <div class="filter-desc" id="structure-desc"></div>
+      <div class="filter-desc" id="category-desc"></div>
     </div>
     <div class="toolbar">
       <span class="sort-label">Sort:</span>
       <button id="sort-name">A-Z</button>
       <button id="sort-agents">Most Roles</button>
-      <button id="sort-category" class="active">Category</button>
+      <button id="sort-category" class="active">Field</button>
       <button id="sort-structure">Structure</button>
       <button id="sort-votes">Most Voted</button>
       <button id="sort-trending">Trending</button>
@@ -1475,6 +1538,7 @@
       structures: window.STRUCTURES || [],
       activeCategory: null,
       activeStructuralClass: null,
+      activeDomain: null,
       searchQuery: '',
       sortBy: 'category',
       focusedCardIndex: -1,
@@ -1731,6 +1795,7 @@
         state.activeCategory = val;
         renderCategories();
         updateCategoryLabel();
+        updateFilterDescriptions();
         renderGrid();
         syncMobileCategories();
       });
@@ -1770,6 +1835,7 @@
         state.activeStructuralClass = val;
         renderStructureTiles();
         updateStructureLabel();
+        updateFilterDescriptions();
         renderGrid();
         syncMobileCategories();
       });
@@ -1780,13 +1846,49 @@
       updateFilterLabel('structure-active-label', state.activeStructuralClass, SC_COLORS, SC_LABELS);
     }
 
-    // Wire up panel expand/collapse
+    // Wire up panel expand/collapse (close siblings, only one open at a time)
+    const PANEL_IDS = ['domain-panel', 'structure-panel', 'category-panel'];
     function togglePanel(headerId, panelId) {
       const panel = document.getElementById(panelId);
       const header = document.getElementById(headerId);
-      panel.classList.toggle('expanded');
-      header.setAttribute('aria-expanded', panel.classList.contains('expanded'));
+      const opening = !panel.classList.contains('expanded');
+      // Close all panels
+      PANEL_IDS.forEach(id => {
+        const p = document.getElementById(id);
+        const h = document.getElementById(id + '-header');
+        p.classList.remove('expanded');
+        h.setAttribute('aria-expanded', 'false');
+      });
+      // Open the clicked one if it was closed
+      if (opening) {
+        panel.classList.add('expanded');
+        header.setAttribute('aria-expanded', 'true');
+        // Position the dropdown body just below the header
+        const rect = header.getBoundingClientRect();
+        const body = panel.querySelector('.filter-panel-body');
+        body.style.top = (rect.bottom + 4) + 'px';
+      }
     }
+    // Click outside closes all dropdowns
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.filter-panel')) {
+        PANEL_IDS.forEach(id => {
+          const p = document.getElementById(id);
+          const h = document.getElementById(id + '-header');
+          p.classList.remove('expanded');
+          h.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+    document.getElementById('domain-panel-header').addEventListener('click', () => {
+      togglePanel('domain-panel-header', 'domain-panel');
+    });
+    document.getElementById('domain-panel-header').addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        togglePanel('domain-panel-header', 'domain-panel');
+      }
+    });
     document.getElementById('structure-panel-header').addEventListener('click', () => {
       togglePanel('structure-panel-header', 'structure-panel');
     });
@@ -1870,6 +1972,7 @@
     // ─── Filtering & Sorting ──────────────────────────────
     function getFiltered() {
       let results = state.structures.filter(s => {
+        if (state.activeDomain && getDomain(s) !== state.activeDomain) return false;
         if (state.activeCategory && s.category !== state.activeCategory) return false;
         if (state.activeStructuralClass && s.structuralClass !== state.activeStructuralClass) return false;
         if (state.searchQuery) {
@@ -1935,11 +2038,14 @@
       const countEl = document.getElementById('result-count');
 
       // Update result count
-      if (state.searchQuery || state.activeCategory || state.activeStructuralClass) {
+      if (state.searchQuery || state.activeCategory || state.activeStructuralClass || state.activeDomain) {
         countEl.textContent = `${filtered.length} of ${state.structures.length}`;
       } else {
         countEl.textContent = '';
       }
+
+      // Keep domain tile counts in sync
+      renderDomainTiles();
 
       if (!filtered.length) {
         grid.innerHTML = `<div class="empty-state">
@@ -2007,13 +2113,123 @@
       state.focusedCardIndex = -1;
     }
 
+    // ─── Domain mapping ──────────────────────────────────
+    const DOMAIN_MAP = {
+      'Nature-Inspired': 'natural',
+      'Network Topologies': 'computational',
+      'Agile & Software': 'computational',
+      'Technology & Engineering': 'agentic',
+      'Novel & Experimental': 'agentic'
+    };
+    function getDomain(s) {
+      return DOMAIN_MAP[s.category] || 'organizational';
+    }
+    const DOMAIN_COLORS = {
+      'natural': '#4ade80',
+      'organizational': '#f59e0b',
+      'computational': '#22d3ee',
+      'agentic': '#a78bfa'
+    };
+    const DOMAIN_LABELS = {
+      'natural': 'Natural',
+      'organizational': 'Organizational',
+      'computational': 'Computational',
+      'agentic': 'Agentic'
+    };
+
+    function getDomainCounts() {
+      const counts = {};
+      state.structures.forEach(s => {
+        const d = getDomain(s);
+        counts[d] = (counts[d] || 0) + 1;
+      });
+      // Fixed order
+      return ['agentic', 'organizational', 'computational', 'natural'].map(d => [d, counts[d] || 0]);
+    }
+
+    function renderDomainTiles() {
+      const container = document.getElementById('domain-tiles');
+      container.innerHTML = buildFilterTiles(getDomainCounts(), state.activeDomain, 'domain', DOMAIN_COLORS, DOMAIN_LABELS);
+      wireFilterTiles(container, 'domain', val => {
+        state.activeDomain = val;
+        renderDomainTiles();
+        updateDomainLabel();
+        updateFilterDescriptions();
+        renderGrid();
+        syncMobileCategories();
+      });
+      updateDomainLabel();
+    }
+
+    function updateDomainLabel() {
+      updateFilterLabel('domain-active-label', state.activeDomain, DOMAIN_COLORS, DOMAIN_LABELS);
+    }
+
+    // ─── Filter Descriptions ──────────────────────────────
+    const DOMAIN_DESCRIPTIONS = {
+      'natural': 'Patterns observed in biological systems — ant colonies, neural networks, flocking, root systems. No designer; coordination emerges from simple local rules.',
+      'organizational': 'Patterns from human institutions — military command chains, corporate hierarchies, judicial systems, religious orders. Designed for people, refined over centuries.',
+      'computational': 'Patterns from computer science and software engineering — network topologies, agile workflows, distributed systems. Designed for machines and processes.',
+      'agentic': 'Patterns designed explicitly for LLM agent orchestration — graph workflows, role-play pairs, plan-code-verify loops. Built for the specific constraints and capabilities of language models.'
+    };
+    const SC_DESCRIPTIONS = {
+      'hub-and-spoke': 'A central coordinator dispatches work to peripheral specialists and synthesizes their results.',
+      'strict-hierarchy': 'Multi-layered tree with authority flowing down and reporting flowing up.',
+      'mentor-apprentice': 'Knowledge transfer relationship with gradually increasing autonomy.',
+      'peer-ensemble': 'Small group of equals with fluid leadership and shared decision-making.',
+      'assembly-pipeline': 'Sequential stages where each transforms an artifact before passing it forward.',
+      'compartmented-cells': 'Isolated groups connected only through intermediaries for security or independence.',
+      'federation-of-sovereigns': 'Autonomous subgroups that coordinate through bridges and liaisons.',
+      'democratic-assembly': 'All agents participate as equals in collective decision-making.',
+      'adversarial-arena': 'Competing agents evaluated by a neutral judge or objective function.',
+      'swarm-stigmergy': 'Many simple agents coordinating indirectly through environmental signals.',
+      'triage-and-dispatch': 'A gatekeeper classifies incoming work and routes it to the right specialist.',
+      'dual-key-safeguard': 'Multiple agents must concur before high-stakes actions proceed.',
+      'creative-atelier': 'A vision-holder directs specialized departments toward a creative goal.',
+      'market-ecosystem': 'Agents interact through bidding, trading, and reputation mechanisms.',
+      'cyclic-renewal': 'Agents rotate through phases or roles with knowledge transfer between cycles.'
+    };
+    const CATEGORY_DESCRIPTIONS = {
+      'Military & Defense': 'Command structures from armed forces — strict rank, clear authority, rapid escalation.',
+      'Corporate & Business': 'Organizational patterns from companies — boards, divisions, matrix management.',
+      'Government & Political': 'Governance structures — legislatures, bureaucracies, federal systems.',
+      'Academic & Research': 'University and lab structures — departments, peer review, tenure tracks.',
+      'Creative & Arts': 'Patterns from studios, orchestras, and creative teams — directors, ensembles, workshops.',
+      'Medical & Emergency': 'Hospital and emergency response hierarchies — triage, incident command, care teams.',
+      'Historical & Traditional': 'Ancient and traditional organizational forms — guilds, tribes, monastic orders.',
+      'Nature-Inspired': 'Structures modeled on biological systems — colonies, flocks, ecosystems.',
+      'Network Topologies': 'Patterns from network architecture — mesh, star, ring, bus topologies.',
+      'Agile & Software': 'Software development patterns — sprints, standups, DevOps pipelines.',
+      'Social & Community': 'Community and social movement structures — cooperatives, collectives, movements.',
+      'Novel & Experimental': 'Theoretical or emerging patterns not yet widely adopted.',
+      'Religious & Spiritual': 'Structures from religious organizations — parishes, monasteries, councils.',
+      'Legal & Judicial': 'Court systems, legal hierarchies, adversarial proceedings.',
+      'Education & Training': 'Classroom, mentorship, and training structures.',
+      'Intelligence & Espionage': 'Compartmented cells, handler networks, need-to-know hierarchies.',
+      'Maritime & Aviation': 'Ship and aircraft crew structures — bridge teams, cockpit resource management.',
+      'Sports & Competition': 'Team structures, coaching hierarchies, tournament formats.',
+      'Media & Communications': 'Newsroom, broadcast, and editorial structures.',
+      'Technology & Engineering': 'Engineering team patterns and AI-native agent architectures.'
+    };
+    function updateFilterDescriptionss() {
+      document.getElementById('domain-desc').textContent =
+        state.activeDomain ? (DOMAIN_DESCRIPTIONS[state.activeDomain] || '') : '';
+      document.getElementById('structure-desc').textContent =
+        state.activeStructuralClass ? (SC_DESCRIPTIONS[state.activeStructuralClass] || '') : '';
+      document.getElementById('category-desc').textContent =
+        state.activeCategory ? (CATEGORY_DESCRIPTIONS[state.activeCategory] || '') : '';
+    }
+
     function clearFilters() {
       state.searchQuery = '';
       state.activeCategory = null;
       state.activeStructuralClass = null;
+      state.activeDomain = null;
       document.getElementById('search').value = '';
+      renderDomainTiles();
       renderCategories();
       renderStructureTiles();
+      updateFilterDescriptions();
       renderGrid();
     }
 
@@ -2441,7 +2657,7 @@
       if (e.key === 'Escape') {
         if (document.getElementById('detail').classList.contains('active')) {
           closeDetail();
-        } else if (state.searchQuery || state.activeCategory || state.activeStructuralClass) {
+        } else if (state.searchQuery || state.activeCategory || state.activeStructuralClass || state.activeDomain) {
           clearFilters();
         } else if (isInput) {
           e.target.blur();
@@ -2533,11 +2749,19 @@
     const mobilePanelEl = document.getElementById('mobile-filter-panel');
 
     function syncMobileCategories() {
-      let html = `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:0.25rem">Structure</div>`;
+      let html = `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:0.25rem">Origin</div>`;
+      html += buildFilterTiles(getDomainCounts(), state.activeDomain, 'domain', DOMAIN_COLORS, DOMAIN_LABELS);
+      html += `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin:0.75rem 0 0.25rem;border-top:1px solid var(--border);padding-top:0.75rem">Structure</div>`;
       html += buildFilterTiles(getStructuralClassCounts(), state.activeStructuralClass, 'sc', SC_COLORS, SC_LABELS);
-      html += `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin:0.75rem 0 0.25rem;border-top:1px solid var(--border);padding-top:0.75rem">Category</div>`;
+      html += `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin:0.75rem 0 0.25rem;border-top:1px solid var(--border);padding-top:0.75rem">Field</div>`;
       html += buildFilterTiles(getCategories(), state.activeCategory, 'category', CATEGORY_COLORS);
       mobilePanelEl.innerHTML = html;
+      wireFilterTiles(mobilePanelEl, 'domain', val => {
+        state.activeDomain = val;
+        renderDomainTiles();
+        renderGrid();
+        mobileBar.classList.remove('open');
+      });
       wireFilterTiles(mobilePanelEl, 'sc', val => {
         state.activeStructuralClass = val;
         renderStructureTiles();
@@ -2567,6 +2791,7 @@
 
     // ─── Init ─────────────────────────────────────────────
     renderStats();
+    renderDomainTiles();
     renderCategories();
     renderStructureTiles();
     renderGrid();

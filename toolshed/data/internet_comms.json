@@ -760,6 +760,58 @@
     "tags": ["database", "openings", "puzzles", "training"]
   },
   {
+    "id": "komodo-dragon",
+    "name": "Komodo Dragon",
+    "description": "Top-tier chess engine combining neural network and traditional evaluation. World Computer Chess Champion with a human-like positional style.",
+    "url": "https://komodochess.com",
+    "category": "Chess",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "paid",
+    "tags": ["engine", "neural-network", "analysis", "champion"]
+  },
+  {
+    "id": "hiarcs-chess-explorer",
+    "name": "HIARCS Chess Explorer",
+    "description": "Chess database and analysis software with the multi-time World Champion HIARCS engine. Used by Vishy Anand and Garry Kasparov for preparation.",
+    "url": "https://www.hiarcs.com",
+    "category": "Chess",
+    "os": ["windows", "macos"],
+    "pricing": "paid",
+    "tags": ["database", "analysis", "engine", "professional"]
+  },
+  {
+    "id": "tarrasch-chess-gui",
+    "name": "Tarrasch",
+    "description": "Simple, portable desktop chess workbench. Edit PGN files, play against UCI engines, and analyze positions. Open-source C++ application.",
+    "url": "https://github.com/billforsternz/tarrasch-chess-gui",
+    "category": "Chess",
+    "os": ["windows"],
+    "pricing": "free",
+    "tags": ["gui", "pgn", "analysis", "open-source"],
+    "source": "https://github.com/billforsternz/tarrasch-chess-gui"
+  },
+  {
+    "id": "decodechess",
+    "name": "DecodeChess",
+    "description": "AI chess analysis that explains engine moves in plain language. Shows threats, plans, piece functions, and positional concepts using Stockfish NNUE.",
+    "url": "https://decodechess.com",
+    "category": "Chess",
+    "os": ["web", "ios", "android"],
+    "pricing": "freemium",
+    "tags": ["analysis", "ai", "explanations", "learning"]
+  },
+  {
+    "id": "ethereal-chess",
+    "name": "Ethereal",
+    "description": "Strong open-source UCI chess engine. Combines traditional evaluation with NNUE, serving as both competitive engine and reference for engine authors.",
+    "url": "https://github.com/AndyGrant/Ethereal",
+    "category": "Chess",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["engine", "nnue", "uci", "open-source"],
+    "source": "https://github.com/AndyGrant/Ethereal"
+  },
+  {
     "id": "tixati",
     "name": "Tixati",
     "description": "Lightweight BitTorrent client with detailed bandwidth management. No ads, DHT, and advanced per-torrent settings.",

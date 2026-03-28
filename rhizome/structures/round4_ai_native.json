@@ -7,11 +7,12 @@
       "context-management",
       "summarization",
       "token-efficiency",
-      "sequential-handoff"
+      "sequential-handoff",
+      "documented"
     ],
     "summary": "Agents pass compressed context like a relay baton when approaching token limits.",
     "description": "When an agent's context window fills up during a long-running task, it compresses its working state into a structured summary and hands it to a fresh agent. The receiving agent has a full, empty context window and continues the work. Each handoff is a lossy compression event, so the relay protocol includes a priority schema that preserves critical state (decisions made, constraints discovered, dead ends) while discarding low-value tokens (verbose reasoning, failed attempts). The pattern turns an inherent limitation of LLMs -- finite context -- into a feature that forces periodic distillation of knowledge.",
-    "realWorldExample": "Claude Code's context rollover system, where a long coding session summarizes progress and active goals into a compact memo that bootstraps the next context window seamlessly.",
+    "realWorldExample": "Claude Code's context rollover system summarizes progress and active goals into a compact memo that bootstraps the next context window. Anthropic's multi-agent research system spawns fresh subagents with clean contexts while maintaining continuity through careful handoffs when context limits approach. Microsoft's Azure SRE agents use progressive disclosure -- starting with a compact incident summary, then expanding into detailed file sessions only when needed, keeping working context small while durable state persists across agent lifetimes. Google ADK's context engineering separates durable state (persisted facts, user preferences) from working context (current reasoning chain), so relay handoffs preserve the durable layer while discarding the ephemeral working context.",
     "whenToUse": "When tasks exceed any single context window, when long-running sessions accumulate stale or contradictory context, or when periodic forced summarization actually improves output quality by pruning noise.",
     "strengths": [
       "Enables arbitrarily long tasks despite finite context windows",
@@ -103,11 +104,12 @@
       "sampling-diversity",
       "ensemble-method",
       "temperature-control",
-      "voting"
+      "voting",
+      "documented"
     ],
     "summary": "Same prompt at different temperatures produces diverse candidates; a cold judge selects the best.",
     "description": "Multiple agents receive identical prompts but operate at different temperature settings, creating a gradient from deterministic (near-zero temperature) to highly creative (high temperature). Low-temperature agents produce safe, conventional outputs. High-temperature agents produce surprising, occasionally brilliant, occasionally nonsensical outputs. A judge agent operating at very low temperature evaluates all candidates against explicit criteria and selects or synthesizes the best result. This exploits the fact that LLM temperature is a unique knob with no human analogue -- it literally controls the entropy of thought.",
-    "realWorldExample": "Google DeepMind's AlphaCode generates thousands of code solutions with high sampling temperature, then clusters and ranks them with deterministic evaluation to find correct programs that greedy decoding would never produce.",
+    "realWorldExample": "Google DeepMind's AlphaCode generates thousands of code solutions with high sampling temperature, then clusters and ranks them with deterministic evaluation. Best-of-N sampling is now standard in production LLM systems, including Anthropic's and OpenAI's inference pipelines.",
     "whenToUse": "When the problem rewards creative solutions but also demands correctness, when you suspect the greedy/obvious answer is suboptimal, or when you need reliable novelty on demand.",
     "strengths": [
       "Systematically explores the creativity-reliability tradeoff in a single pass",
@@ -193,11 +195,12 @@
       "state-management",
       "parallel-exploration",
       "rollback",
-      "branching"
+      "branching",
+      "documented"
     ],
     "summary": "Agents checkpoint state, branch into parallel explorations, and merge the winning branch.",
     "description": "An agent working on a complex task periodically saves its full state -- context, decisions, artifacts -- as a checkpoint. At decision points with high uncertainty, the system forks into parallel branches, each exploring a different path from the same checkpoint. Branches run independently and are evaluated against success criteria. The best branch is promoted while others are discarded, or valuable discoveries from losing branches are cherry-picked back. This is version control for thought, and it only makes sense because AI agent state is serializable in a way that human cognition is not.",
-    "realWorldExample": "Devin and similar AI coding agents that save workspace snapshots before attempting risky refactors, branching into multiple implementation strategies and keeping whichever one passes tests.",
+    "realWorldExample": "Devin (Cognition) saves workspace snapshots before attempting risky refactors, branching into multiple implementation strategies and keeping whichever passes tests. Replit Agent creates checkpoints as it works so users can roll back to any previous state. GitHub Copilot's agent mode maintains workspace state for rollback during multi-file edits. Temporal's durable execution framework, integrated with OpenAI's agent SDK, enables agents to survive crashes, rate limits, and infrastructure failures by persisting workflow state at every step -- the agent resumes exactly where it left off, turning transient failures into transparent checkpoints rather than terminal errors.",
     "whenToUse": "When decisions are high-stakes and partially irreversible, when you cannot evaluate a strategy without committing significant compute to it, or when the solution space has multiple promising but mutually exclusive directions.",
     "strengths": [
       "Eliminates the cost of bad decisions -- you can always roll back to the checkpoint",
@@ -290,11 +293,12 @@
       "tool-use",
       "specialization",
       "routing",
-      "capability-based"
+      "capability-based",
+      "documented"
     ],
     "summary": "Agents specialize in specific tools and a router dispatches subtasks to the right specialist.",
     "description": "Each agent in the ring is fine-tuned or prompted to excel with a specific tool category: one masters code execution, another web search, another mathematical computation, another file manipulation. A lightweight router agent analyzes incoming tasks, decomposes them into tool-requiring subtasks, and dispatches each to the appropriate specialist. Specialists return results to the router, which assembles the final output. This pattern exploits the empirical finding that LLMs perform better when focused on one tool at a time rather than juggling many tools simultaneously, and it mirrors how system prompts and few-shot examples can create deep tool expertise.",
-    "realWorldExample": "Microsoft AutoGen's group chat pattern where a code executor agent, a web researcher agent, and a planner agent each handle their domain, coordinated by a manager agent that routes requests.",
+    "realWorldExample": "OpenAI Swarm's handoff pattern gives agents transfer_to_XXX functions to route requests to specialist agents. Semantic Kernel's handoff orchestration dynamically passes control between agents based on capability. Claude Code's tool specialist system routes coding, search, and file operations to focused sub-agents. ANTI-LESSON: Microsoft's Azure SRE team found that 100 narrow tool-specialist agents failed in production -- agents couldn't compose across tool boundaries. They pivoted to fewer generalist agents with broad tools (az cli, kubectl) and saw dramatically better results, discovering that tool specialization works only when tasks cleanly decompose into single-tool subtasks.",
     "whenToUse": "When tasks require multiple tool types, when tool-specific prompting significantly improves accuracy, or when you want to update or swap individual tool specialists without rebuilding the whole system.",
     "strengths": [
       "Each specialist's prompt is optimized for one tool, maximizing tool-use accuracy",
@@ -399,11 +403,12 @@
       "safety",
       "alignment",
       "red-teaming",
-      "constitutional"
+      "constitutional",
+      "documented"
     ],
     "summary": "A constitution agent enforces principles, a red-team attacks outputs, and a reviser fixes issues.",
     "description": "Three agents form a governance layer over any generative process. The constitution agent holds an explicit set of principles and reviews all outputs for violations. The red-team agent adversarially probes outputs for subtle failures -- edge cases, implicit biases, factual errors, safety violations -- that constitutional review might miss. The reviser agent takes flagged outputs and rewrites them to satisfy both the constitutional principles and the red-team's concerns while preserving the original intent. This pattern is native to AI because the agents can literally evaluate against a formal principle document with a consistency that humans cannot maintain, and the red-team agent can be prompted to adopt adversarial personas that would be psychologically difficult for human reviewers.",
-    "realWorldExample": "Anthropic's Constitutional AI training process where a model critiques its own outputs against a set of principles, then revises to comply, creating a self-improving alignment loop.",
+    "realWorldExample": "Anthropic's Constitutional AI uses a set of principles to self-critique and revise model outputs. McKinsey/QuantumBlack's ARK framework embeds this pattern in production agent systems: every output from every agent is validated by a dedicated Critic Agent against an explicit definition-of-done document -- the critic has veto authority and forces regeneration until all criteria pass, making the constitution enforceable rather than advisory.",
     "whenToUse": "When outputs must meet strict safety, accuracy, or policy requirements, when you need adversarial robustness testing on every output, or when building trust in AI systems through verifiable compliance.",
     "strengths": [
       "Explicit principles make governance auditable and debuggable",
@@ -497,11 +502,12 @@
       "sequential-processing",
       "artifact-building",
       "chain-of-thought",
-      "pipeline"
+      "pipeline",
+      "documented"
     ],
     "summary": "Each agent adds a layer of transformation to a growing artifact passed sequentially down the line.",
     "description": "A sequence of specialized agents each performs one transformation on a growing artifact. The first agent generates a rough draft, the second adds structure, the third enriches with examples, the fourth polishes style, the fifth verifies facts. Each agent sees only the current state of the artifact and its specific transformation instructions -- not the original prompt or previous agents' reasoning. This mirrors manufacturing assembly lines but for language artifacts, and it works because each agent's context window is filled only with the artifact and its specialty prompt, maximizing the attention budget for its specific task. The pattern is AI-native because each station can be a different model chosen for its transformation strength.",
-    "realWorldExample": "LangChain's sequential chains where a research agent gathers information, a drafting agent writes prose, an editing agent refines, and a formatting agent produces the final document.",
+    "realWorldExample": "LangChain's sequential chains and LCEL pipelines pass artifacts through ordered steps (research, draft, edit, format). Google ADK's SequentialAgent orchestrates steps in a fixed pipeline where each agent's output feeds the next. LlamaIndex Workflows provides an event-driven, async-first pipeline engine for chaining multi-step AI processes. ChatDev's chat chain breaks software development into sequential phase pairs.",
     "whenToUse": "When the final artifact requires multiple distinct skill types, when no single prompt can reliably produce the end product, or when you want to swap individual transformation stages independently.",
     "strengths": [
       "Each agent's context is focused entirely on its transformation, maximizing quality",
@@ -596,11 +602,12 @@
       "retrieval-augmented",
       "separation-of-concerns",
       "knowledge-management",
-      "grounded-reasoning"
+      "grounded-reasoning",
+      "documented"
     ],
     "summary": "A retrieval agent finds relevant context while an analyst agent reasons over it, cleanly separated.",
     "description": "The system splits the RAG pipeline into two distinct agent roles. The librarian agent specializes in retrieval: given a query, it searches vector stores, databases, documents, and the web, then curates and ranks the most relevant passages. The analyst agent specializes in reasoning: it receives only the curated context and the original question, then produces a grounded answer. Neither agent does the other's job. This separation is AI-native because it addresses a fundamental tension in LLM prompting -- retrieval quality and reasoning quality compete for the same context window space. By splitting them, each agent's full context budget serves its specialty.",
-    "realWorldExample": "Perplexity AI's architecture where a retrieval system finds and ranks web sources independently of the language model that synthesizes them into a coherent answer with citations.",
+    "realWorldExample": "Perplexity AI separates retrieval (finding and ranking web sources) from synthesis (the language model producing coherent answers with citations). LlamaIndex's core architecture is built around this split, with retrievers and response synthesizers as distinct components. Amazon Bedrock's knowledge base agents separate document retrieval from reasoning.",
     "whenToUse": "When answers must be grounded in specific documents or data, when retrieval quality is as important as reasoning quality, or when you want to swap retrieval strategies without touching the reasoning layer.",
     "strengths": [
       "Each agent's full context window serves its specialty, improving both retrieval and reasoning",
@@ -687,11 +694,12 @@
       "iterative-refinement",
       "adversarial-cooperation",
       "tight-loop",
-      "quality-ratchet"
+      "quality-ratchet",
+      "documented"
     ],
     "summary": "A generator proposes, a critic evaluates, and the generator revises in a tight refinement loop.",
     "description": "Two agents form a tight iterative loop. The generator produces an output, then the critic identifies specific flaws, gaps, or improvement opportunities with detailed, actionable feedback. The generator revises its output based on the critique, and the cycle repeats until the critic finds no further issues or a maximum iteration count is reached. This is AI-native because the critic can be prompted with evaluation rubrics that create superhuman consistency in quality assessment, and the loop termination can be automated based on the critic's diminishing feedback signal. Unlike human feedback loops, there is zero ego, zero communication friction, and the loop can run at machine speed.",
-    "realWorldExample": "OpenAI's RLHF process at inference time: models like o1 internally generate, evaluate, and refine reasoning steps before producing a final answer, essentially running a critic-generator loop within a single forward pass.",
+    "realWorldExample": "Reflexion (Shinn et al.) demonstrated that LLM agents using a generate-critique-revise loop significantly outperformed single-pass agents. McKinsey/QuantumBlack's ARK framework uses a separate Critic Agent that evaluates every output against a definition-of-done checklist -- the critic has explicit pass/fail authority and can force regeneration until all criteria are met. Elastic's observability agents chain a SearchAgent, AnalyserAgent, and ReflectionAgent, where the reflection agent scores output quality on a 0-1 scale and loops back to the search agent if the score falls below 0.8. OpenAI's RLHF process runs a critic-generator loop internally during inference in models like o1.",
     "whenToUse": "When first-draft quality is reliably improvable through feedback, when the evaluation criteria are well-defined, or when you need to reach a specific quality threshold and can afford iterative compute.",
     "strengths": [
       "Monotonically improves output quality with each iteration up to the critic's limit",
@@ -772,11 +780,12 @@
       "heterogeneous-models",
       "aggregation",
       "diversity",
-      "synthesis"
+      "synthesis",
+      "documented"
     ],
     "summary": "Diverse specialist agents with different strengths produce outputs that an aggregator synthesizes.",
     "description": "Multiple agents with genuinely different capabilities -- different base models, different fine-tuning, different system prompts, different tool access -- each process the same input. Their outputs are fed to an aggregator agent that synthesizes the best elements from each into a single response. Unlike simple voting, the aggregator performs intelligent fusion: it might take the factual claims from the most accurate model, the writing style from the most eloquent, the code from the best programmer, and the reasoning structure from the best logician. This is native to AI because agents can be trivially diversified along dimensions that are hard for humans: model architecture, training data, temperature, and prompting strategy.",
-    "realWorldExample": "Together AI's 'Mixture of Agents' paper demonstrated that combining outputs from Llama, Qwen, and Mistral through an aggregator LLM outperformed all individual models, including GPT-4, on benchmarks.",
+    "realWorldExample": "Together AI's Mixture of Agents paper demonstrated that combining outputs from Llama, Qwen, and Mistral through an aggregator LLM outperformed all individual models, including GPT-4, on benchmarks. Google ADK's ParallelAgent and Semantic Kernel's concurrent orchestration pattern implement this at the framework level. Google DeepMind's systematic evaluation of 180 multi-agent configurations found centralized MoA architectures achieved 80.9% improvement on parallelizable tasks, but suffered 39-70% degradation on sequential reasoning tasks -- establishing that mixture-of-agents is powerful but topology-sensitive, not a universal improvement.",
     "whenToUse": "When no single model excels at all aspects of the task, when you have access to diverse models with complementary strengths, or when the aggregation cost is justified by the quality improvement.",
     "strengths": [
       "Exceeds the capability of any individual model by combining complementary strengths",
@@ -868,11 +877,12 @@
       "map-reduce",
       "summarization",
       "large-document",
-      "tree-structure"
+      "tree-structure",
+      "documented"
     ],
     "summary": "Leaf agents process document chunks, parent agents merge summaries up a tree to a root synthesis.",
     "description": "For processing documents that exceed any single context window, the input is split into chunks assigned to leaf agents. Each leaf produces a summary of its chunk. Parent agents at the next level receive summaries from their children and merge them into higher-level summaries. This continues up the tree until a root agent produces the final synthesis. The tree structure is AI-native because it directly addresses the context window constraint: no agent ever needs to hold more than a few summaries in context, yet the system processes arbitrarily large inputs. The branching factor and tree depth can be tuned to optimize the compression-quality tradeoff at each level.",
-    "realWorldExample": "LangChain's MapReduceDocumentsChain splits large documents into chunks, summarizes each independently, then progressively combines summaries until a single coherent summary remains.",
+    "realWorldExample": "LangChain's MapReduceDocumentsChain splits large documents into chunks, summarizes each independently, then progressively combines summaries until a single coherent summary remains. This pattern is fundamental to RAG systems handling documents that exceed context windows.",
     "whenToUse": "When inputs far exceed any single context window, when summarization quality degrades with chunk size, or when you need to process a corpus of documents into a unified synthesis.",
     "strengths": [
       "Processes arbitrarily large inputs regardless of context window size",
@@ -955,11 +965,12 @@
       "adversarial",
       "argumentation",
       "truth-seeking",
-      "dual-process"
+      "dual-process",
+      "documented"
     ],
     "summary": "Two agents argue opposing positions on a question; a judge evaluates the arguments for truth.",
     "description": "Two debater agents are assigned opposing positions on a question. Each presents arguments, rebuts the other's claims, and provides evidence for their position across multiple rounds. A judge agent, who may be less capable than the debaters, evaluates the arguments to determine which position is better supported. This pattern is AI-native because it leverages a key insight from AI safety research: it is easier to judge between two well-argued positions than to independently arrive at the correct answer. The debaters' adversarial pressure forces each side to expose the other's weaknesses, making the judge's job tractable even for hard questions. Both debaters can be the same model -- the diversity comes from the assigned positions, not model differences.",
-    "realWorldExample": "Irving et al.'s 'AI Safety via Debate' paper from OpenAI proposed this as an alignment technique: two AI debaters argue before a human judge, with the theoretical property that truth-telling is the optimal strategy in the debate game.",
+    "realWorldExample": "Irving et al.'s 'AI Safety via Debate' paper from OpenAI proposed this as an alignment technique. CAMEL-AI's role-playing framework implements structured two-agent debates with inception prompting. ChatArena provides multi-agent language game environments where agents argue in structured formats. Multi-Agent Debate (MAD) frameworks inspired by Society of Mind show consistent improvements over single-agent reasoning.",
     "whenToUse": "When the correct answer is hard to determine directly but easy to evaluate when well-argued, when you need to surface hidden assumptions or counterarguments, or when a less capable judge needs to oversee more capable agents.",
     "strengths": [
       "Adversarial pressure forces both sides to address weaknesses rather than hide them",
@@ -1054,11 +1065,12 @@
       "tree-search",
       "exploration-exploitation",
       "rollout",
-      "planning"
+      "planning",
+      "documented"
     ],
     "summary": "Agents explore a solution tree like MCTS: select, expand, simulate, and backpropagate value.",
     "description": "The solution space is modeled as a tree where each node represents a partial solution and each edge represents a decision. Agents perform the four MCTS phases: a selector agent uses UCB-style scoring to pick the most promising unexplored node, an expander agent generates possible next steps from that node, simulator agents do rapid low-quality rollouts to estimate the value of each expansion, and a backpropagator updates value estimates up the tree. This is profoundly AI-native because LLMs can both generate the tree expansions (what are the possible next steps?) and perform the rollouts (if we commit to this direction, how does it play out?) -- two tasks that in classical MCTS require a domain-specific simulator. The LLM IS the simulator.",
-    "realWorldExample": "OpenAI's o1 and o3 models internally use tree search over reasoning steps, exploring multiple reasoning chains and selecting the most promising ones, effectively implementing MCTS over thought space.",
+    "realWorldExample": "OpenAI's o1 and o3 models internally use tree search over reasoning steps, exploring multiple reasoning chains and selecting the most promising ones, effectively implementing MCTS over thought space. Tree-of-Thought prompting by Yao et al. externalizes this pattern across multiple LLM calls.",
     "whenToUse": "When the problem has a large solution space with sequential decisions, when you can evaluate partial solutions, or when greedy left-to-right generation misses solutions that require exploring unpromising-looking intermediate steps.",
     "strengths": [
       "Systematically balances exploration of new ideas with exploitation of promising ones",
@@ -1153,11 +1165,12 @@
       "metacognition",
       "self-improvement",
       "introspection",
-      "single-agent-multi-pass"
+      "single-agent-multi-pass",
+      "documented"
     ],
     "summary": "An agent generates, reflects on its own output to find flaws, then regenerates with self-awareness.",
     "description": "A single agent runs in multiple passes with distinct modes. In generation mode, it produces an output. In reflection mode, it re-reads its output with a critical lens, explicitly identifying logical errors, unsupported claims, missing considerations, and style issues. In regeneration mode, it rewrites the output incorporating its self-critique. This pattern is AI-native in a deep sense: it exploits the asymmetry between generation and evaluation that is empirically observed in LLMs. Models are often better at spotting errors in text than avoiding them during generation. By explicitly separating the generation and evaluation mindsets through distinct prompts, the same model operates at a higher effective capability. The reflection step makes the implicit quality gap between 'writing mode' and 'reading mode' exploitable.",
-    "realWorldExample": "Reflexion by Shinn et al. demonstrated that LLM agents that reflect on failed attempts and maintain a memory of what went wrong significantly outperform agents that simply retry, achieving state-of-the-art on HumanEval and ALFWorld.",
+    "realWorldExample": "Reflexion by Shinn et al. demonstrated that LLM agents reflecting on failed attempts with a memory of what went wrong significantly outperform agents that simply retry. DSPy's optimization framework runs iterative prompt refinement loops where output quality is measured and prompts are automatically revised. Anthropic's multi-agent research system uses agents that summarize completed work phases before spawning fresh subagents.",
     "whenToUse": "When single-pass generation consistently has identifiable flaws, when the same model can reliably evaluate what it cannot reliably generate, or when you want metacognitive improvement without requiring a separate critic model.",
     "strengths": [
       "Requires only a single model, making it the cheapest multi-pass quality improvement",
@@ -1244,11 +1257,12 @@
       "persona-simulation",
       "perspective-diversity",
       "synthetic-committee",
-      "role-prompting"
+      "role-prompting",
+      "documented"
     ],
     "summary": "A single model adopts diverse personas to generate perspectives, then a meta-agent synthesizes them.",
     "description": "The same base model is prompted to adopt radically different personas -- a skeptical scientist, an enthusiastic entrepreneur, a cautious ethicist, a pragmatic engineer -- each processing the same input. Each persona genuinely shifts the model's attention patterns, priors, and reasoning style, producing outputs that differ not just in surface framing but in substantive conclusions. A meta-agent then reads all persona outputs and synthesizes a balanced response that integrates the best insights from each perspective. This is purely AI-native because no human can genuinely adopt a completely different knowledge base and reasoning style on demand, but persona prompting demonstrably shifts LLM behavior in deep ways. The diversity is not theatrical -- it is a real computational phenomenon arising from how role prompts modulate the model's latent space.",
-    "realWorldExample": "Society of Mind prompting technique from Microsoft Research, where GPT-4 is prompted as multiple cognitive agents (a planner, a coder, a reviewer) within a single context, producing outputs that substantially differ based on the assigned cognitive role.",
+    "realWorldExample": "Microsoft AutoGen's group chat pattern assembles multiple named agents (coder, reviewer, planner) that converse in a shared thread with a chat manager selecting speakers. Society of Mind prompting from Microsoft Research has GPT-4 simulate multiple cognitive agents within a single context. CrewAI's role-based teams assign Manager, Worker, and Researcher personas that collaborate on tasks.",
     "whenToUse": "When you want diverse perspectives but cannot afford multiple model instances, when the problem benefits from multiple disciplinary viewpoints, or when you need to stress-test a decision from opposing value systems.",
     "strengths": [
       "Generates genuine perspective diversity from a single model at minimal cost",
@@ -1342,11 +1356,12 @@
       "resource-allocation",
       "economic-constraints",
       "adaptive-compute",
-      "cost-optimization"
+      "cost-optimization",
+      "documented"
     ],
     "summary": "Agents bid tokens from a fixed budget on subtasks; a market allocator assigns compute where it matters most.",
     "description": "A fixed token budget is allocated across a team of agents using market-like mechanisms. Each agent can bid for additional tokens based on the perceived difficulty of its subtask. Easy subtasks get minimal token budgets (short, concise responses). Hard subtasks get large budgets (detailed, thorough analysis). A market allocator agent monitors bids, evaluates historical difficulty patterns, and distributes the budget. Agents that consistently produce good results with fewer tokens earn priority in future allocations. This is uniquely AI-native because token consumption directly maps to compute cost and output quality in a way that has no analog in human labor -- you cannot meaningfully tell a human expert to 'use fewer thoughts' on an easy problem, but you can literally set an LLM's max_tokens parameter.",
-    "realWorldExample": "Adaptive compute mechanisms in Mixture-of-Experts models like Switch Transformer route tokens through different numbers of expert layers based on input difficulty, spending more compute on harder tokens.",
+    "realWorldExample": "Mixture-of-Experts models like Switch Transformer route tokens through different numbers of expert layers based on input difficulty. Adaptive compute mechanisms allocate more inference budget to harder problems. Google's Gemini models use variable compute allocation internally.",
     "whenToUse": "When operating under strict cost constraints, when tasks have highly variable difficulty, or when you want the system to autonomously learn the right amount of compute for each subtask type.",
     "strengths": [
       "Automatically allocates more compute to harder problems and less to easy ones",

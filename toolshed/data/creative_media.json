@@ -2319,5 +2319,216 @@
       "conversion",
       "ffmpeg-based"
     ]
+  },
+  {
+    "id": "mlt-framework",
+    "name": "MLT Framework",
+    "description": "Open-source multimedia framework for video editing. Powers Shotcut, Kdenlive, and other editors with a producer/consumer pipeline.",
+    "url": "https://www.mltframework.org",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "video-editing",
+      "framework",
+      "pipeline",
+      "open-source"
+    ],
+    "source": "https://github.com/mltframework/mlt",
+    "language": "c"
+  },
+  {
+    "id": "libav",
+    "name": "Libav",
+    "description": "Collection of libraries for processing multimedia content. Fork of FFmpeg with independent development of codecs and formats.",
+    "url": "https://libav.org",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "codec",
+      "multimedia",
+      "library",
+      "open-source"
+    ],
+    "source": "https://github.com/libav/libav",
+    "language": "c"
+  },
+  {
+    "id": "opus-codec",
+    "name": "Opus",
+    "description": "Open, royalty-free audio codec for interactive speech and music. Low latency, high quality, and standardized by IETF as RFC 6716.",
+    "url": "https://opus-codec.org",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "audio",
+      "codec",
+      "low-latency",
+      "open-source"
+    ],
+    "source": "https://gitlab.xiph.org/xiph/opus",
+    "language": "c"
+  },
+  {
+    "id": "flac-codec",
+    "name": "FLAC",
+    "description": "Free lossless audio codec that compresses audio to 50-70% of original size. Reference encoder, decoder, and metadata editor included.",
+    "url": "https://xiph.org/flac",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "audio",
+      "lossless",
+      "codec",
+      "open-source"
+    ],
+    "source": "https://github.com/xiph/flac",
+    "language": "c"
+  },
+  {
+    "id": "lame-mp3",
+    "name": "LAME",
+    "description": "High-quality MP3 encoder widely regarded as the best free MP3 encoder. Used by most software for MP3 encoding.",
+    "url": "https://lame.sourceforge.io",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "audio",
+      "mp3",
+      "encoder",
+      "open-source"
+    ],
+    "source": "https://sourceforge.net/projects/lame/",
+    "language": "c"
+  },
+  {
+    "id": "streamlink",
+    "name": "Streamlink",
+    "description": "CLI tool for extracting streams from live streaming services and piping them to a video player. Supports Twitch, YouTube, and more.",
+    "url": "https://streamlink.github.io",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "streaming",
+      "live-video",
+      "open-source"
+    ],
+    "source": "https://github.com/streamlink/streamlink",
+    "language": "python"
+  },
+  {
+    "id": "gallery-dl",
+    "name": "gallery-dl",
+    "description": "CLI tool for downloading image galleries and collections from 100+ sites including Pixiv, Danbooru, and DeviantArt.",
+    "url": "https://github.com/mikf/gallery-dl",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cli",
+      "image-download",
+      "scraping",
+      "open-source"
+    ],
+    "source": "https://github.com/mikf/gallery-dl",
+    "language": "python"
+  },
+  {
+    "id": "atomicparsley",
+    "name": "AtomicParsley",
+    "description": "CLI tool for reading and setting metadata in MPEG-4 files. Add artwork, tags, and chapter markers to MP4 and M4A files.",
+    "url": "https://github.com/wez/atomicparsley",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "metadata",
+      "mp4",
+      "tagging",
+      "cli",
+      "open-source"
+    ],
+    "source": "https://github.com/wez/atomicparsley",
+    "language": "cpp"
+  },
+  {
+    "id": "mediaconch",
+    "name": "MediaConch",
+    "description": "Conformance checker for audiovisual files. Validates Matroska, FFV1, and LPCM against archival specifications and custom policies.",
+    "url": "https://mediaarea.net/MediaConch",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "conformance",
+      "archival",
+      "validation",
+      "open-source"
+    ],
+    "source": "https://github.com/MediaArea/MediaConch_SourceCode",
+    "language": "cpp"
+  },
+  {
+    "id": "vapoursynth",
+    "name": "VapourSynth",
+    "description": "Video processing framework with a Python-based scripting interface. Successor to AviSynth for frame-level video manipulation.",
+    "url": "https://www.vapoursynth.com",
+    "category": "Media Processing",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "video",
+      "scripting",
+      "frame-processing",
+      "open-source"
+    ],
+    "source": "https://github.com/vapoursynth/vapoursynth",
+    "language": "c"
   }
 ]

@@ -202,7 +202,7 @@ Define a standard way for agents to interact with Toolshed:
 
 ## Current Priorities (Updated 2026-03-16)
 
-**Context:** 15,979 entries across 123 populated categories (124 in taxonomy). 67 tests passing. Forge UI integration complete (view tabs, multi-dimensional filtering, forge pipeline visualization, covered/unique distinction). Thin categories addressed (Cycles 15-16, 20, 22, 28, 30, 38, 40, 43, 45, 48-49, 52, 55, 57, 60, 63, 65, 70 curator). 3 forge ideas remaining, 22 built.
+**Context:** 16,037 entries across 123 populated categories (124 in taxonomy). 67 tests passing. Forge UI integration complete (view tabs, multi-dimensional filtering, forge pipeline visualization, covered/unique distinction). Thin categories addressed (Cycles 15-16, 20, 22, 28, 30, 38, 40, 43, 45, 48-49, 52, 55, 57, 60, 63, 65, 70, 73-75 curator). 3 forge ideas remaining, 22 built.
 
 ### Priority 0: Idea Triage Must Stay Current (CURATOR)
 
@@ -214,20 +214,13 @@ Every idea in `ideas.js` must have a `triage` object with `impact`, `buildabilit
 
 | Category | Count | Notes |
 |---|---|---|
-| Media Processing | 23 | Thinnest remaining |
-| Desktop App Frameworks | 25 | |
-| Mobile IDE & Tools | 25 | |
-| Statistical Tools | 25 | |
-| Task Runners & Monorepos | 25 | |
-| Video Conferencing | 25 | |
-| Flashcards & Study | 26 | |
-| Secrets Management | 26 | |
-| Vector Databases | 26 | |
+| APIs & Services | 27 | |
+| Chess | 27 | |
 | HR & People | 27 | |
 
 ### Priority 2: Discovered Entry Quality (BUILDER/CURATOR -- ongoing)
 
-- S38: Random sample shows ~50% miscategorization in discovered entries. **Mitigated**: `build.py --strict` excludes Tier 3, unmatched, and category-disagreement discovered entries (15,979 → 7,047). Default build unchanged. S72 fix implemented (tuple return with category agreement filter). S73 fix applied (Tier 2 best-match tracking aligned with `categorize()`).
+- S38: Random sample shows ~50% miscategorization in discovered entries. **Mitigated**: `build.py --strict` excludes Tier 3, unmatched, and category-disagreement discovered entries (16,037 → 7,047). Default build unchanged. S72 fix implemented (tuple return with category agreement filter). S73 fix applied (Tier 2 best-match tracking aligned with `categorize()`).
 - Options for further improvement: better section maps, LLM-assisted categorization, `get_confidence_tier()` category-agreement filtering.
 
 ### Priority 3: Script Quality Improvements (BUILDER -- low)
@@ -256,10 +249,10 @@ Every idea in `ideas.js` must have a `triage` object with `impact`, `buildabilit
 - Fixed 4 duplicate entries, 5 URL collisions, 3 dead domains removed
 
 **Agent Discoverability (Cycles 4, 14):**
-- `api/v1/catalog.json` -- 15,962 entries
+- `api/v1/catalog.json` -- 15,979 entries
 - `llms.txt` and `llms-full.txt`
-- Noscript HTML fallback -- 15,962 entries
-- JSON-LD structured data -- 1,427 sampled entries, 569.4 KB
+- Noscript HTML fallback -- 15,979 entries
+- JSON-LD structured data -- 1,464 sampled entries, 584.9 KB
 - Tree drill-down navigation
 
 **Design Polish (Cycles 1-2):**

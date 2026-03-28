@@ -915,6 +915,80 @@
     ]
   },
   {
+    "id": "cyberark-pam",
+    "name": "CyberArk PAM",
+    "description": "Enterprise privileged access management platform. Vault-based credential storage, session recording, and automated password rotation for critical systems.",
+    "url": "https://www.cyberark.com/products/privileged-access-manager",
+    "category": "Secrets Management",
+    "os": ["windows", "linux", "web"],
+    "pricing": "subscription",
+    "tags": ["enterprise", "pam", "privileged-access", "session-recording", "rotation"]
+  },
+  {
+    "id": "1password-secrets-automation",
+    "name": "1Password Secrets Automation",
+    "description": "Programmatic access to 1Password vaults via Connect Server. REST API and SDKs for injecting secrets into apps and infrastructure.",
+    "url": "https://developer.1password.com/docs/connect",
+    "category": "Secrets Management",
+    "os": ["windows", "macos", "linux", "web"],
+    "pricing": "subscription",
+    "tags": ["1password", "api", "secrets-injection", "sdk", "automation"]
+  },
+  {
+    "id": "delinea-secret-server",
+    "name": "Delinea Secret Server",
+    "description": "Enterprise vault for storing and managing privileged credentials. Discovery, rotation, and session monitoring for IT infrastructure secrets.",
+    "url": "https://delinea.com/products/secret-server",
+    "category": "Secrets Management",
+    "os": ["windows", "web"],
+    "pricing": "subscription",
+    "tags": ["enterprise", "pam", "vault", "discovery", "rotation"]
+  },
+  {
+    "id": "beyond-trust-pm",
+    "name": "BeyondTrust Password Safe",
+    "description": "Automated privileged password and session management. Discovers, manages, and audits privileged credentials across the enterprise.",
+    "url": "https://www.beyondtrust.com/password-safe",
+    "category": "Secrets Management",
+    "os": ["windows", "linux", "web"],
+    "pricing": "subscription",
+    "tags": ["enterprise", "pam", "password-management", "audit", "discovery"]
+  },
+  {
+    "id": "secretive",
+    "name": "Secretive",
+    "description": "macOS app that stores SSH keys in the Secure Enclave. Keys never leave the hardware, shown as smart card identities to SSH.",
+    "url": "https://github.com/maxgoedjen/secretive",
+    "category": "Secrets Management",
+    "os": ["macos"],
+    "pricing": "free",
+    "tags": ["ssh-keys", "secure-enclave", "macos", "hardware-backed", "open-source"],
+    "source": "https://github.com/maxgoedjen/secretive",
+    "language": "swift"
+  },
+  {
+    "id": "hcp-vault-secrets",
+    "name": "HCP Vault Secrets",
+    "description": "HashiCorp Cloud-managed secrets service. Centralized secrets with dynamic credentials, sync to AWS/GCP/Azure, and no infrastructure to manage.",
+    "url": "https://developer.hashicorp.com/hcp/docs/vault-secrets",
+    "category": "Secrets Management",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["hashicorp", "managed", "dynamic-secrets", "multi-cloud", "saas"]
+  },
+  {
+    "id": "berglas",
+    "name": "Berglas",
+    "description": "CLI tool for managing secrets on Google Cloud. Wraps Secret Manager and Cloud KMS with create, access, update, and delete commands.",
+    "url": "https://github.com/GoogleCloudPlatform/berglas",
+    "category": "Secrets Management",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["gcp", "cli", "secret-manager", "kms", "open-source"],
+    "source": "https://github.com/GoogleCloudPlatform/berglas",
+    "language": "go"
+  },
+  {
     "id": "snyk",
     "name": "Snyk",
     "description": "Developer security platform that finds and fixes vulnerabilities in code, dependencies, containers, and infrastructure as code.",

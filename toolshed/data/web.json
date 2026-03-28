@@ -1552,6 +1552,78 @@
     "source": "https://github.com/pingdotgg/uploadthing"
   },
   {
+    "id": "cloudinary",
+    "name": "Cloudinary",
+    "description": "Image and video API for upload, storage, transformation, optimization, and CDN delivery. Automates the entire media asset lifecycle.",
+    "url": "https://cloudinary.com",
+    "category": "APIs & Services",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["images", "video", "cdn", "media", "api"]
+  },
+  {
+    "id": "upstash",
+    "name": "Upstash",
+    "description": "Serverless Redis and messaging platform. HTTP-based API for edge and serverless environments with per-request pricing.",
+    "url": "https://upstash.com",
+    "category": "APIs & Services",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["redis", "serverless", "edge", "messaging", "api"]
+  },
+  {
+    "id": "convex",
+    "name": "Convex",
+    "description": "Reactive backend platform where queries are TypeScript functions. ACID-compliant database with realtime subscriptions and automatic caching.",
+    "url": "https://www.convex.dev",
+    "category": "APIs & Services",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["backend-as-a-service", "reactive", "typescript", "realtime", "database"],
+    "source": "https://github.com/get-convex/convex-backend"
+  },
+  {
+    "id": "courier-notifications",
+    "name": "Courier",
+    "description": "Multichannel notification API. Send email, push, SMS, in-app, and chat from one API with routing, failover, and retries.",
+    "url": "https://www.courier.com",
+    "category": "APIs & Services",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["notifications", "email", "sms", "push", "api"]
+  },
+  {
+    "id": "nylas",
+    "name": "Nylas",
+    "description": "Unified email, calendar, and contacts API. Integrates with Gmail, Outlook, Exchange, and 250+ providers through one abstraction layer.",
+    "url": "https://www.nylas.com",
+    "category": "APIs & Services",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["email", "calendar", "api", "integration", "communications"]
+  },
+  {
+    "id": "liveblocks",
+    "name": "Liveblocks",
+    "description": "Realtime collaboration API with presence, cursors, and conflict-free data types. Pre-built React components for multiplayer features.",
+    "url": "https://liveblocks.io",
+    "category": "APIs & Services",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["realtime", "collaboration", "multiplayer", "react", "api"]
+  },
+  {
+    "id": "inngest",
+    "name": "Inngest",
+    "description": "Event-driven serverless function orchestration. Retries, scheduling, fan-out, and step functions without managing queues or workers.",
+    "url": "https://www.inngest.com",
+    "category": "APIs & Services",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["event-driven", "serverless", "queues", "orchestration", "api"],
+    "source": "https://github.com/inngest/inngest"
+  },
+  {
     "id": "hugo",
     "name": "Hugo",
     "description": "Blazing-fast static site generator written in Go. Builds thousands of pages in seconds with flexible templating.",
