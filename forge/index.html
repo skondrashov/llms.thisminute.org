@@ -362,7 +362,23 @@ claude go</pre>
     </section>
 
     <section class="how-it-works">
-      <h2>How It Works</h2>
+      <h2>Getting Started</h2>
+      <ol>
+        <li><strong>Run the forge</strong> &mdash; clone this repo, run <code>claude go</code>. The forgemaster scans your projects and sets up agent systems: an <code>AGENTS.md</code>, role files, and memory. This is a one-time setup step.</li>
+        <li><strong>Open your project</strong> &mdash; once the forge has set up your project, go there and start a new Claude instance. Say <code>go</code>, <code>start</code>, or just describe what you need. The agent reads its role files and knows what to do.</li>
+        <li><strong>Talk to one agent</strong> &mdash; your project will have an orchestrator (often called a steward). This is the only agent you talk to directly. You do three things with it:
+          <ul style="margin-top: 0.5rem; list-style: disc; padding-left: 1.25rem;">
+            <li><strong>Spawn an agent</strong> &mdash; tell it to run a role. "Run the builder to add a login page." The spawned agent gets a fresh context window with only what it needs, does the work, and reports back. This is how you keep context clean instead of one conversation accumulating everything.</li>
+            <li><strong>Create a role</strong> &mdash; describe a new kind of agent you need. "I need a role that handles database migrations." The orchestrator writes the role file; now you can spawn it anytime.</li>
+            <li><strong>Ask a question</strong> &mdash; anything that doesn't need a dedicated agent. "What changed since yesterday?" "Why is this test failing?" The orchestrator answers directly.</li>
+          </ul>
+        </li>
+        <li><strong>Ctrl+B</strong> &mdash; if the orchestrator is busy with a long-running task, press <strong>Ctrl+B</strong> to start a parallel conversation without waiting for it to finish.</li>
+      </ol>
+    </section>
+
+    <section class="how-it-works">
+      <h2>The Audit Cycle</h2>
       <ol>
         <li><strong>Audit</strong> &mdash; scans every registered project's agent system</li>
         <li><strong>Review</strong> &mdash; compares against the pattern library, ranks by priority</li>
