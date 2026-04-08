@@ -337,6 +337,14 @@
     "role-based-agent-permissions": "strict-hierarchy",
     "world-model-agent": "hub-and-spoke",
     "agent-compiler-target": "assembly-pipeline",
-    "adversarial-curriculum-learning": "adversarial-arena"
+    "adversarial-curriculum-learning": "adversarial-arena",
+    "protocol-split-a2a-mcp": "federation-of-sovereigns",
+    "event-driven-production-stack": "hub-and-spoke",
+    "corporate-hierarchy-budget": "strict-hierarchy",
+    "memory-distillation-pipeline": "assembly-pipeline",
+    "metacognitive-self-improvement": "cyclic-renewal",
+    "experiential-heuristic-library": "assembly-pipeline",
+    "fractal-modularity": "hub-and-spoke",
+    "diversity-preserving-ensemble": "peer-ensemble"
   }
 }

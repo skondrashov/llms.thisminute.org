@@ -1,5 +1,5 @@
 # toolshed
-> Universal software directory with 16135 entries across 134 categories. Structured data for AI agents and developers.
+> Universal software directory with 16143 entries across 139 categories. Structured data for AI agents and developers.
 
 ## Endpoints
 - Full catalog (JSON): /api/v1/catalog.json
@@ -20,7 +20,7 @@ OS: windows | macos | linux | web | ios | android
 
 ## Categories
 - iOS UI Components: 700
-- Static Analysis: 530
+- Static Analysis: 529
 - CLI Frameworks: 449
 - Databases: 408
 - Testing Frameworks: 351
@@ -43,11 +43,11 @@ OS: windows | macos | linux | web | ios | android
 - CI/CD Tools: 193
 - Logging & Diagnostics: 191
 - Project Management: 189
-- Configuration: 185
+- Configuration: 184
+- Security Scanning: 184
 - Backup & Sync: 183
 - Encryption & Privacy Tools: 183
 - Monitoring & Metrics: 183
-- Security Scanning: 183
 - AI/ML Libraries: 181
 - Note Taking: 181
 - Programming Languages: 178
@@ -76,14 +76,14 @@ OS: windows | macos | linux | web | ios | android
 - Office Suites: 118
 - Text Processing: 118
 - Operating Systems: 117
+- Package Managers: 117
 - Window Managers: 117
-- Package Managers: 116
+- Terminal Emulators: 115
 - HTTP Libraries: 114
-- Terminal Emulators: 114
 - Cloud Storage: 113
 - Scientific Computing: 112
 - Data Analysis: 111
-- Learning Platforms: 111
+- Learning Platforms: 110
 - Email: 109
 - Calendar & Scheduling: 96
 - Static Site Generators: 84
@@ -149,10 +149,15 @@ OS: windows | macos | linux | web | ios | android
 - Graphics Programming: 7
 - Robotics: 7
 - 3D Printing: 5
+- AI Coding Agents: 4
 - Browser Extensions & Userscripts: 4
 - Reverse Engineering: 4
 - Emulators: 3
 - Browser Automation: 2
+- API Testing: 1
+- Code Quality: 1
+- Dev Environments: 1
+- DevOps Agents: 1
 
 ## Querying
 Download /api/v1/catalog.json and filter by:
