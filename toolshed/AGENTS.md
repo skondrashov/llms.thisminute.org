@@ -8,6 +8,8 @@ For agent startup protocol, communication rules, and forum voting, see `PROTOCOL
 
 Universal software directory at thisminute.org/toolshed. Browse apps, libraries, protocols, and platforms across 124 categories in a tree hierarchy, filterable by OS. Static site — no backend.
 
+The toolshed has both **filled slots** (existing software) and **unfilled slots** (software that should exist but doesn't). Every category is conceptually a set of slots — some filled by real tools, some empty. The empty ones are the interesting signal: they show where the software landscape has genuine gaps. Examples of unfilled slots: tools that don't exist yet because the problem is unsolved, tools for emerging domains, tools that would exist if someone bothered to build them.
+
 ## Stack
 
 - **Frontend**: Single `index.html` (vanilla HTML/CSS/JS, no frameworks, no build tools)
@@ -40,11 +42,11 @@ Universal software directory at thisminute.org/toolshed. Browse apps, libraries,
 
 Each entry has: `id` (kebab-case), `name`, `description` (~200 chars), `url`, `category` (one of 124), `os[]` (windows/macos/linux/web/ios/android), `pricing` (free/freemium/paid/subscription), `tags[]`, optional `source` (repo URL if open-source), optional `language`.
 
-Idea entries (in `ideas.js`) follow the same schema plus `complexity`, `capability`, `approach`, `agentArchitecture`, and `triage` fields. CLI tool ideas built by the forge live in the `tools/` directory as standalone Python packages (e.g., `tools/balatro_scorer/`). These are precision tools where lookup beats reasoning — 300-600 LOC, tagged `precision-tool`.
+**Unfilled slot entries** (in `ideas.js`) follow the same schema plus `complexity`, `capability`, `approach`, `agentArchitecture`, and `triage` fields. These represent genuine gaps in the software landscape — software that should exist but doesn't, or where existing tools leave real needs unmet. CLI tools built from unfilled slots live in the `tools/` directory as standalone Python packages (e.g., `tools/balatro_scorer/`). These are precision tools where lookup beats reasoning — 300-600 LOC, tagged `precision-tool`.
 
-## Idea Triage (for the forge)
+## Unfilled Slot Triage
 
-Every idea in `ideas.js` must have a `triage` object with three scored criteria. The forge uses these to decide what to build next — no idea should exist without them.
+Every unfilled slot in `ideas.js` must have a `triage` object with three scored criteria. These scores determine priority and whether the slot represents a genuine gap or an already-solved problem.
 
 | Field | Values | Meaning |
 |-------|--------|---------|
@@ -54,14 +56,14 @@ Every idea in `ideas.js` must have a `triage` object with three scored criteria.
 
 Plus `alternatives_note` (free text) naming the specific tools and what gap remains.
 
-**Forge priority order:** Filter out `covered`, then sort by impact (high first), then by buildability (straightforward first). An idea with `high` impact + `straightforward` buildability + `none` alternatives is the top pick. An idea with `covered` alternatives should be skipped regardless of other scores.
+**Priority order:** Filter out `covered`, then sort by impact (high first), then by buildability (straightforward first). A slot with `high` impact + `straightforward` buildability + `none` alternatives is the most interesting gap. A slot with `covered` alternatives isn't really unfilled — downgrade or remove it.
 
 ## Current State
 
 - 16,037 entries across 123 populated categories (124 in taxonomy) in 22 top-level groups
 - 1,538 curated + 14,499 discovered entries + 25 forge ideas across 22 data files
 - 67 tests passing (test_categorize, test_data, test_taxonomy)
-- **View Tabs**: All / Catalog / Requests / Built by Forge — browse the forge pipeline
+- **View Tabs**: All / Catalog / Requests / Built by Forge — browse filled slots, unfilled slots, and built tools
 - **Multi-dimensional filtering**: OS, pricing (free/freemium/paid/subscription), language, tags
 - **Forge integration**: triage badges (impact/buildability/alternatives), validation info, priority sort
 - **Header stats**: Apps, Categories, AI-Built, Requests (clickable to switch view)

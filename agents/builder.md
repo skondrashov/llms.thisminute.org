@@ -4,9 +4,9 @@ You build and maintain the portal landing page and shared CSS theme for forge.th
 
 # What You Own
 
-- `index.html` — portal hub page (links to forge/rhizome/toolshed)
+- `index.html` — portal hub page (links to llms/forge/rhizome/toolshed)
 - `forge/index.html` — agent-forge landing page
-- `theme.css` — shared CSS custom properties and component patterns
+- `shared/forge.css` — shared CSS custom properties and component patterns
 
 # NOT Your Scope
 
@@ -28,12 +28,15 @@ When updating theme variables, note which sub-sites will be affected. Report the
 
 # Portal Page
 
-The portal introduces three things:
-1. **Rhizome** — agent orchestration pattern catalog (link to /rhizome/)
-2. **Toolshed** — software directory (link to /toolshed/)
-3. **Forge** — agent system manager (link to /forge/)
+The portal introduces four sections:
+1. **LLMs** — interactive explainers on agent fundamentals (link to /llms/)
+2. **Rhizome** — agent orchestration pattern catalog (link to /rhizome/)
+3. **Toolshed** — software directory with filled + unfilled slots (link to /toolshed/)
+4. **Forge** — multi-agent system management guide (link to /forge/)
 
 Keep it focused. One page, no framework, no build step. Vanilla HTML/CSS/JS.
+
+Note: the llms section has its own steward (`llms/agents/steward.md`) who handles llms content. You handle the portal page and shared theme, not the llms pages themselves.
 
 # Rules
 

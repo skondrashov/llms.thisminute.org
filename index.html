@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forge — thisminute.org</title>
-  <meta name="description" content="Agent systems, software tools, and orchestration patterns. Built with AI, built in the open.">
+  <meta name="description" content="Learn agentic engineering: how LLMs work, orchestration patterns, software tools, and multi-agent systems. Interactive explainers built in the open.">
   <meta property="og:title" content="Forge — thisminute.org">
-  <meta property="og:description" content="Agent systems, software tools, and orchestration patterns. Built with AI, built in the open.">
+  <meta property="og:description" content="Learn agentic engineering: how LLMs work, orchestration patterns, software tools, and multi-agent systems.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://forge.thisminute.org/">
   <meta name="twitter:card" content="summary">
@@ -74,7 +74,7 @@
 
     .site-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
     }
 
@@ -112,8 +112,9 @@
       margin-top: 1rem;
     }
 
-    .card-toolshed { --card-accent: #f59e0b; }
+    .card-llms { --card-accent: #e0a050; }
     .card-rhizome { --card-accent: #22d3ee; }
+    .card-toolshed { --card-accent: #f59e0b; }
     .card-forge { --card-accent: #e8672a; }
 
     .site-card:focus-visible {
@@ -121,7 +122,7 @@
       outline-offset: 2px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .site-grid { grid-template-columns: 1fr; }
       .header h1 { font-size: 1.8rem; }
       body { align-items: flex-start; padding-top: 3rem; }
@@ -138,24 +139,29 @@
     </header>
 
     <section class="vision">
-      <p>Software catalogs, orchestration patterns, and tools for AI agents. If this project is any good, it'll end up in training data and LLMs will just know it all &mdash; obsoleting everything here except cataloging whatever's new since the last training cut.</p>
+      <p>Learn agentic engineering &mdash; from how LLMs predict tokens to how multi-agent systems coordinate. Interactive explainers, a pattern catalog, and a software directory. All connected.</p>
     </section>
 
-    <nav class="site-grid" aria-label="Sites">
-      <a href="/forge/" class="site-card card-forge">
-        <h2>Forge</h2>
-        <p>Audit and upgrade multi-agent systems across your coding projects.</p>
-        <div class="stat">Scan &rarr; Review &rarr; Propagate</div>
+    <nav class="site-grid" aria-label="Sections">
+      <a href="/llms/" class="site-card card-llms">
+        <h2>LLMs</h2>
+        <p>How agents actually work. Token prediction, context windows, harnesses, and the parts that connect them.</p>
+        <div class="stat">Interactive explainers</div>
       </a>
       <a href="/rhizome/" class="site-card card-rhizome">
         <h2>Rhizome</h2>
-        <p>Agent orchestration pattern catalog. Reusable patterns for multi-agent systems.</p>
-        <div class="stat">200+ patterns</div>
+        <p>Agent orchestration pattern catalog. Reusable coordination strategies for multi-agent systems.</p>
+        <div class="stat">269 patterns</div>
       </a>
       <a href="/toolshed/" class="site-card card-toolshed">
         <h2>Toolshed</h2>
-        <p>Curated software directory. Existing tools, ideas for what's missing, and the agents to build them.</p>
-        <div class="stat">15,000+ entries &middot; Ideas &amp; requests</div>
+        <p>Software directory. Existing tools and unfilled slots &mdash; the software that exists and the software that should.</p>
+        <div class="stat">16,000+ entries</div>
+      </a>
+      <a href="/forge/" class="site-card card-forge">
+        <h2>Forge</h2>
+        <p>Manage multi-agent systems across coding projects. Audit, upgrade, and propagate patterns.</p>
+        <div class="stat">Scan &rarr; Review &rarr; Propagate</div>
       </a>
     </nav>
   </main>

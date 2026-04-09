@@ -1,10 +1,24 @@
-# Checkpoint — 2026-03-22
+# Checkpoint — 2026-04-09
 
-## Architecture change
+## Architecture change (2026-04-09)
 
-The top-level orchestrator now coordinates the entire repo. Sub-site agent files stay in place but the orchestrator spawns them directly. See `agents/orchestrator.md`.
+**Major reorganization**: forge.thisminute.org is now an agentic engineering education site with five sections: LLMs, Forge, Rhizome, Toolshed, and Portal. Previously it was a portal linking three sub-sites.
 
-Files updated: `AGENTS.md`, `agents/orchestrator.md`, `agents/builder.md`, `agents/skeptic.md`.
+Key changes:
+- `llms/` section added — interactive explainers on LLM fundamentals (copied from llms.thisminute.org, adapted paths)
+- `llms/` gets its own steward agent (`llms/agents/steward.md`)
+- Portal index.html redesigned: 2x2 grid with LLMs, Rhizome, Toolshed, Forge. Vision updated to "agentic engineering education."
+- Toolshed "unfilled slots" concept formalized — ideas/requests renamed to "unfilled slots" in agent docs
+- crucible/ fully absorbed (was already redirecting to toolshed; now conceptually replaced by unfilled slots)
+- All agent files updated: AGENTS.md, orchestrator.md, builder.md, skeptic.md reflect unified site
+- singularity-forge retired in the forge registry (premise was wrong — software gaps don't exist at scale)
+
+Files created: `llms/index.html`, `llms/llm/index.html`, `llms/CLAUDE.md`, `llms/AGENTS.md`, `llms/agents/steward.md`
+Files updated: `index.html`, `AGENTS.md`, `agents/orchestrator.md`, `agents/builder.md`, `agents/skeptic.md`, `toolshed/AGENTS.md`, `toolshed/agents/curator.md`
+
+## Previous architecture change (2026-03-22)
+
+The top-level orchestrator coordinates the entire repo. Sub-site agent files stay in place but the orchestrator spawns them directly. See `agents/orchestrator.md`.
 
 ## What was done
 
@@ -143,17 +157,19 @@ Session 7+8+9 combined:
 
 ## In progress
 
-- Forge is actively developing — pipeline and bellows work handled by thisminute-forge. Don't touch `pipeline/` or `agents/bellows.md`.
+- llms section has 2 pages live, 2 planned (Harness, Context)
+- llms pages use their own visual language (dark-only, Instrument Serif + JetBrains Mono) — not yet integrated with shared/forge.css theme
 
 ## Deferred
 
-### bellows (forge's domain)
-- bellows.py: if it returns, needs `subprocess.run()` instead of `os.system()`, and schema validation on JSON input
-
 ### DRY / code cleanliness (remaining)
-- ~~Cross-site: theme toggle logic~~ — RESOLVED in session 8 (all pages use shared forge.css/forge.js)
 - No `hashchange` listener in toolshed for same-page `#id` links (moot until entries use `crucibleId`)
+- llms section doesn't use shared/forge.css — has its own inline styles. Eventually should adopt the shared theme or at least share variables.
 
 ### Catalog
 - TimescaleDB URL redirect to tigerdata.com — curator should update when stable
 - ~~Remaining thin categories: APIs & Services (27), Chess (27), HR & People (27)~~ — RESOLVED in session 9 (all ≥30)
+
+### Retired
+- bellows: replaced by singularity-forge, which was itself retired 2026-04-09
+- crucible: absorbed into toolshed as "unfilled slots"

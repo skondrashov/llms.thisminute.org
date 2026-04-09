@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomy of an Agent — forge.thisminute.org</title>
+<meta name="description" content="The five parts of agentic engineering: LLM, context, orchestration, harness, and tools. Interactive explainer.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%E2%9A%99</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #07090e;
+  --surface: #0b0f18;
+  --border: #151d2e;
+  --border-hover: #1f2b42;
+  --text: #b8c4d6;
+  --text-bright: #dce4f0;
+  --text-dim: #4a5878;
+  --text-muted: #2a3550;
+  --line: #151d2e;
+
+  --c-orch: #a78bfa;
+  --c-harness: #34d399;
+  --c-llm: #e0a050;
+  --c-ctx: #6bb8e0;
+  --c-tools: #e8879c;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header --- */
+.hero {
+  text-align: center;
+  padding: 72px 24px 24px;
+}
+.site-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+.site-label a { color: inherit; text-decoration: none; }
+.site-label a:hover { color: var(--text-dim); }
+.hero h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text-bright);
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.tagline {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* --- Diagram --- */
+.diagram {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px 60px;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tier {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.tier--trio {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  width: 100%;
+}
+
+/* --- Nodes --- */
+.node {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 20px 24px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: all 0.2s ease;
+  max-width: 380px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.node::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--node-c);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.node:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.35), 0 0 20px color-mix(in srgb, var(--node-c) 8%, transparent);
+}
+.node:hover::before { opacity: 1; }
+
+.node-icon {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  color: var(--node-c);
+  display: block;
+  margin-bottom: 8px;
+}
+.node-name {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--node-c);
+  margin-bottom: 6px;
+}
+.node-desc {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+.node-hint {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.node:hover .node-hint { color: var(--text-dim); }
+.node-hint.soon { font-style: italic; }
+
+.node--orch    { --node-c: var(--c-orch); }
+.node--harness { --node-c: var(--c-harness); }
+.node--llm     { --node-c: var(--c-llm); }
+.node--ctx     { --node-c: var(--c-ctx); }
+.node--tools   { --node-c: var(--c-tools); }
+
+/* --- Connectors --- */
+.vline {
+  width: 1px;
+  height: 40px;
+  background: var(--line);
+  position: relative;
+}
+.vline::after {
+  content: '';
+  position: absolute;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  left: -2px;
+  animation: flow-down 2.5s ease-in-out infinite;
+}
+@keyframes flow-down {
+  0%   { top: -4px; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: calc(100% - 1px); opacity: 0; }
+}
+
+.branch {
+  width: 100%;
+  height: 44px;
+  position: relative;
+}
+.branch-stem {
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 22px;
+  background: var(--line);
+}
+.branch-bar {
+  position: absolute;
+  top: 22px;
+  height: 1px;
+  background: var(--line);
+  /* align with grid column centers: 1/6, 3/6, 5/6 of trio width */
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+}
+.branch-legs {
+  position: absolute;
+  top: 22px;
+  left: calc(100% / 6);
+  right: calc(100% / 6);
+  height: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+.branch-leg {
+  width: 1px;
+  height: 100%;
+  background: var(--line);
+}
+
+/* --- Intro --- */
+.intro-block {
+  max-width: 520px;
+  margin: 48px auto 0;
+  text-align: center;
+  padding: 0 24px;
+}
+.intro-block p {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 32px 24px 40px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+footer a { color: var(--text-dim); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .tier--trio {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .branch { display: none; }
+  .tier--trio::before {
+    display: none;
+  }
+  .node { max-width: none; }
+  .hero { padding-top: 48px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="site-label"><a href="/">forge.thisminute.org</a> / llms</p>
+  <h1>Anatomy of an Agent</h1>
+  <p class="tagline">An AI agent is not one thing &mdash; it&rsquo;s an architecture. These are its parts.</p>
+</header>
+
+<main class="diagram">
+
+  <!-- Orchestration -->
+  <div class="tier">
+    <a href="/rhizome/" class="node node--orch">
+      <span class="node-icon">&#x21bb;</span>
+      <span class="node-name">Orchestration</span>
+      <span class="node-desc">The strategy governing what the agent does next &mdash; loops, branches, delegation, and recovery.</span>
+      <span class="node-hint">explore the rhizome &rarr;</span>
+    </a>
+  </div>
+
+  <div class="vline"></div>
+
+  <!-- Harness -->
+  <div class="tier">
+    <a href="#" class="node node--harness">
+      <span class="node-icon">&lt;/&gt;</span>
+      <span class="node-name">Harness</span>
+      <span class="node-desc">The runtime that connects everything &mdash; calls the model, manages context, routes tool results, handles errors.</span>
+      <span class="node-hint soon">coming soon</span>
+    </a>
+  </div>
+
+  <div class="branch">
+    <div class="branch-stem"></div>
+    <div class="branch-bar"></div>
+    <div class="branch-legs">
+      <div class="branch-leg"></div>
+      <div class="branch-leg"></div>
+      <div class="branch-leg"></div>
+    </div>
+  </div>
+
+  <!-- LLM, Context, Tools -->
+  <div class="tier tier--trio">
+    <a href="/llms/llm/" class="node node--llm">
+      <span class="node-icon">&#x192;(x)</span>
+      <span class="node-name">LLM</span>
+      <span class="node-desc">A stateless function. Reads tokens in, writes one token out. That&rsquo;s it.</span>
+      <span class="node-hint">there is no memory &rarr;</span>
+    </a>
+    <a href="#" class="node node--ctx">
+      <span class="node-icon">[ &hellip; ]</span>
+      <span class="node-name">Context</span>
+      <span class="node-desc">The token window the model sees &mdash; the only &ldquo;memory&rdquo; it has. Everything in, nothing retained.</span>
+      <span class="node-hint soon">coming soon</span>
+    </a>
+    <a href="/toolshed/" class="node node--tools">
+      <span class="node-icon">&gt;_</span>
+      <span class="node-name">Tools</span>
+      <span class="node-desc">The capabilities a model can&rsquo;t have alone &mdash; code execution, web access, file systems, APIs.</span>
+      <span class="node-hint">explore the toolshed &rarr;</span>
+    </a>
+  </div>
+
+</main>
+
+<div class="intro-block">
+  <p>Each part is distinct. The LLM predicts tokens. The context shapes what it predicts. The tools let it act on the world. The harness ties them together. The orchestration strategy decides what happens next.</p>
+  <p>Click any component to learn more.</p>
+</div>
+
+<footer>
+  Part of <a href="/">forge.thisminute.org</a>
+</footer>
+
+</body>
+</html>

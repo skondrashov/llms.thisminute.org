@@ -21,17 +21,19 @@ You review the portal page and shared theme for quality, and audit visual consis
 - No hardcoded colors or sizes that should be variables
 - Specificity kept low so sub-sites can override cleanly
 
-## Cross-Site Consistency
+## Cross-Section Consistency
 
-When asked to audit consistency, read the sub-site HTML/CSS:
+When asked to audit consistency, read the section HTML/CSS:
+- `llms/index.html`
 - `rhizome/index.html`
 - `toolshed/index.html`
 
 Check:
-- Are sub-sites referencing theme.css?
+- Are sections referencing shared/forge.css?
 - Are they using the shared variables or hardcoding their own values?
-- Do the sites feel like siblings? (color palette, typography, spacing, card styles)
-- Any jarring transitions when navigating between sites?
+- Do the sections feel like siblings? (color palette, typography, spacing, card styles)
+- Any jarring transitions when navigating between sections?
+- Note: llms has its own visual language (dark-only, Instrument Serif + JetBrains Mono) that predates the shared theme. Flag inconsistencies but don't force shared theme adoption if the llms aesthetic works.
 
 # Security Review
 
