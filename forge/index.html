@@ -16,67 +16,47 @@
   <link rel="stylesheet" href="/shared/forge.css">
 
   <style>
-    /* Site-specific color overrides (shared vars come from forge.css) */
-    :root {
-      --bg: #111118;
-      --bg-raised: #1a1a24;
-      --bg-card: #1e1e2a;
-      --bg-card-hover: #262636;
-      --accent: #e8672a;
-      --accent-dim: rgba(232, 103, 42, 0.12);
-      --accent-text: #f0944a;
-    }
-    body.light-mode {
-      --bg: #faf8f5;
-      --bg-raised: #ffffff;
-      --bg-card: #ffffff;
-      --bg-card-hover: #f5f0eb;
-      --accent: #c2410c;
-      --accent-dim: rgba(194, 65, 12, 0.1);
-      --accent-text: #9a3412;
-    }
+    /* Forge inherits palette + typography from shared/forge.css. */
 
     body {
-      background: var(--bg);
       min-height: 100vh;
     }
-
-    a { color: var(--accent-text); text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
     .header {
       position: relative;
       padding: 3rem 2rem 1.5rem;
       text-align: center;
-      border-bottom: 1px solid var(--border);
     }
     .header h1 {
-      font-size: 2.25rem;
-      font-weight: 300;
-      letter-spacing: 0.2em;
+      font-size: 2.75rem;
+      font-weight: 500;
+      letter-spacing: 0;
       color: var(--accent);
     }
     .header .tagline {
       color: var(--text-secondary);
-      font-size: 0.95rem;
-      margin-top: 0.25rem;
+      font-size: 1rem;
+      margin-top: 0.35rem;
     }
     .header .links {
-      margin-top: 1rem;
+      margin-top: 1.25rem;
       display: flex;
-      gap: 1.5rem;
+      gap: 1rem;
       justify-content: center;
       font-size: 0.85rem;
     }
     .header .links a {
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--border-light);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      color: var(--text-secondary);
+      transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
     }
     .header .links a:hover {
       border-color: var(--accent);
       background: var(--accent-dim);
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -89,11 +69,10 @@
     section { margin-bottom: 2.5rem; }
 
     section h2 {
-      font-size: 1.1rem;
+      font-size: 1.35rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-text);
+      letter-spacing: 0;
+      color: var(--accent);
       margin-bottom: 1rem;
     }
 
@@ -120,12 +99,12 @@
       position: absolute;
       left: -0.75rem;
       top: 0.65rem;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.6rem;
+      height: 1.6rem;
       border-radius: 50%;
       background: var(--accent-dim);
-      color: var(--accent-text);
-      font-size: 0.75rem;
+      color: var(--accent);
+      font-size: 0.8rem;
       font-weight: 600;
       display: flex;
       align-items: center;
@@ -142,18 +121,19 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.25rem;
-      transition: border-color 0.2s, background 0.2s;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+      transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
     }
     .role-card:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-      box-shadow: var(--shadow);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
     }
     .role-card h3 {
-      font-size: 1rem;
+      font-size: 1.15rem;
       font-weight: 600;
-      color: var(--accent-text);
+      color: var(--accent);
       margin-bottom: 0.35rem;
     }
     .role-card .role-origin {
@@ -176,17 +156,17 @@
       display: flex;
       gap: 1rem;
       align-items: baseline;
-      padding: 0.75rem 1rem;
+      padding: 0.9rem 1.1rem;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
+      box-shadow: var(--shadow);
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
     }
     a.pattern-item:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-      box-shadow: var(--shadow);
+      border-color: var(--accent);
+      transform: translateY(-1px);
       text-decoration: none;
     }
     .pattern-item strong {
@@ -201,35 +181,34 @@
     }
 
     code {
-      background: var(--bg-raised);
+      background: var(--bg-inset);
       border: 1px solid var(--border);
-      padding: 0.15rem 0.4rem;
+      padding: 0.15rem 0.45rem;
       border-radius: var(--radius-sm);
       font-size: 0.85em;
-      color: var(--accent-text);
+      color: var(--accent);
+      font-family: var(--font-mono);
     }
 
     .cta {
       text-align: center;
       padding: 2rem;
-      border-bottom: 1px solid var(--border);
     }
     .cta h2 {
-      font-size: 1.1rem;
+      font-size: 1.35rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-text);
+      letter-spacing: 0;
+      color: var(--accent);
       margin-bottom: 1rem;
     }
     .cta pre {
       display: inline-block;
       text-align: left;
-      background: var(--bg-raised);
+      background: var(--bg-inset);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.25rem 1.75rem;
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: 0.85rem;
       line-height: 1.7;
       color: var(--text);
@@ -260,7 +239,7 @@
       color: var(--text-secondary);
     }
     .other-projects a:hover {
-      color: var(--accent-text);
+      color: var(--accent);
     }
     .other-projects a:focus-visible {
       outline: 2px solid var(--accent);
@@ -288,33 +267,6 @@
       outline-offset: 2px;
     }
 
-    .theme-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 10;
-    }
-
-    .icon-btn {
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--bg-raised);
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.15s ease;
-      font-size: 1rem;
-    }
-    .icon-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-dim);
-    }
-
     @media (max-width: 600px) {
       .header h1 { font-size: 1.6rem; }
       .content { padding: 1.5rem 1rem; }
@@ -325,12 +277,12 @@
     }
   </style>
 </head>
-<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&matchMedia('(prefers-color-scheme:light)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
 
   <div class="forge-theme-toggle"></div>
 
   <header class="header forge-header">
-    <h1>FORGE <a href="/">FORGE</a></h1>
+    <h1>Forge <a href="/">&larr; LLMs</a></h1>
     <p class="tagline">Audit and upgrade multi-agent systems across your coding projects</p>
     <div class="links">
       <a href="https://github.com/skondrashov/agent-forge">GitHub</a>
@@ -340,9 +292,9 @@
 
   <div class="cta">
     <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">First time here? <a href="https://github.com/skondrashov/agent-forge#readme">Read the README</a> before running anything.</p>
-    <h2><a href="https://github.com/skondrashov/agent-forge" style="color: var(--accent-text); text-decoration: none;">Quick Start</a></h2>
+    <h2><a href="https://github.com/skondrashov/agent-forge" style="color: var(--accent); text-decoration: none;">Quick Start</a></h2>
     <details>
-      <summary style="cursor: pointer; display: inline-block; max-width: 540px; margin: 0 auto; padding: 0.75rem 1.25rem; font-size: 0.85rem; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-dim); border-radius: var(--radius); line-height: 1.5; text-align: center;">This clones a repo and starts an AI agent that reads instructions from it. We run automated security scans on every release &mdash; <a href="#security" style="color: var(--accent-text);">see details</a>.</summary>
+      <summary style="cursor: pointer; display: inline-block; max-width: 540px; margin: 0 auto; padding: 0.85rem 1.35rem; font-size: 0.9rem; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-muted); border-radius: var(--radius); line-height: 1.5; text-align: center;">This clones a repo and starts an AI agent that reads instructions from it. We run automated security scans on every release, <a href="#security" style="color: var(--accent);">see details</a>.</summary>
       <div style="margin-top: 1rem;">
         <pre><span class="cmd-comment"># Clone next to your projects (or where you'll start new ones)</span>
 git clone --branch v0.4 https://github.com/skondrashov/agent-forge.git
@@ -359,7 +311,8 @@ claude go</pre>
 
     <section>
       <h2>What It Is</h2>
-      <p>Agent Forge is a template agent system manager. You register your projects, and the forge scans them against a pattern library, identifies gaps, and propagates best practices &mdash; one project at a time.</p>
+      <p>Agent Forge is a template agent system manager. You register your projects, and the forge scans them against a pattern library, identifies gaps, and propagates best practices, one project at a time.</p>
+      <p style="margin-top:0.85rem;color:var(--text-secondary);font-size:0.93rem;">The honest framing, though, is that the forge is just <strong>context</strong>. Role files, protocol docs, memory scaffolding, patterns the orchestrator can spawn against. There is no special software here. If this pattern of preloading an agent with a bunch of carefully written context turns out to be durably useful (and so far it does), the major harness vendors will eventually ship their own version of something like it as the default context their harness comes with. That is a good outcome, not a threat. The forge's job is to stay one step ahead of whatever the harnesses ship natively, and to make it easy to see what is worth adopting back.</p>
     </section>
 
     <section class="how-it-works">
@@ -417,17 +370,17 @@ claude go</pre>
 
     <section>
       <h2>Pattern Library</h2>
-      <p>The forge scans against patterns from <a href="/rhizome/">Rhizome</a>, the agent orchestration pattern catalog.</p>
+      <p>The forge scans against patterns from the <a href="/orchestration/">Orchestration</a> catalog.</p>
       <div class="pattern-list">
-        <a href="/rhizome/#steward-bootstrap" class="pattern-item">
+        <a href="/orchestration/#steward-bootstrap" class="pattern-item">
           <strong>Steward</strong>
           <span>One agent, one memory file. The right default for almost every project.</span>
         </a>
-        <a href="/rhizome/#protocol-forum-product-team" class="pattern-item">
+        <a href="/orchestration/#protocol-forum-product-team" class="pattern-item">
           <strong>Startup Protocol</strong>
           <span>Standalone PROTOCOL.md with timestamps, forum voting, and ref doc routing</span>
         </a>
-        <a href="/rhizome/#reflection-loop" class="pattern-item">
+        <a href="/orchestration/#reflection-loop" class="pattern-item">
           <strong>Shutdown Reflection</strong>
           <span>Agents evaluate their context at session end; feedback fixes the docs</span>
         </a>

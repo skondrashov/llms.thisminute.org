@@ -9,7 +9,8 @@
       var s = localStorage.getItem(THEME_KEY);
       if (s) return s;
     } catch (e) {}
-    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    // Default to light unless system explicitly prefers dark.
+    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
   }
 
   function applyTheme(theme) {
@@ -43,8 +44,8 @@
   applyTheme(getTheme());
 
   if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function (e) {
-      try { if (!localStorage.getItem(THEME_KEY)) applyTheme(e.matches ? 'light' : 'dark'); } catch (err) {}
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      try { if (!localStorage.getItem(THEME_KEY)) applyTheme(e.matches ? 'dark' : 'light'); } catch (err) {}
     });
   }
 

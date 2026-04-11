@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How These Projects Organized Themselves</title>
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://forge.thisminute.org/orchestration/evolution">
+  <meta property="og:title" content="How These Projects Organized Themselves">
+  <meta property="og:description" content="Twelve projects, three coordination models, ~58 agents, two forges. From a 10-daemon research lab to a forge that watches them all — and a second forge that builds what's missing. What worked, what broke, and what we learned.">
+  <meta name="description" content="How the organizational structures of twelve real agent-driven projects evolved — from protocol+forum to checkpoint cycles to single-steward bootstraps to chained forges. Including the failures, surprises, and three coordination models that emerged.">
+
+  <!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
+  <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%2322d3ee' stroke-width='4'/><circle cx='50' cy='30' r='6' fill='%2322d3ee'/><circle cx='30' cy='60' r='6' fill='%2322d3ee'/><circle cx='70' cy='60' r='6' fill='%2322d3ee'/><line x1='50' y1='30' x2='30' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='50' y1='30' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='30' y1='60' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/></svg>">
+
+  <link rel="stylesheet" href="/shared/forge.css">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-raised: #12121a;
+      --bg-card: #16161f;
+      --accent: #22d3ee;
+      --accent-dim: rgba(34, 211, 238, 0.08);
+      --accent-border: rgba(34, 211, 238, 0.25);
+      --red: #f87171;
+      --red-dim: rgba(248, 113, 113, 0.08);
+      --amber: #fbbf24;
+      --amber-dim: rgba(251, 191, 36, 0.08);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.08);
+    }
+    body.light-mode {
+      --bg: #fafaf9;
+      --bg-raised: #f5f5f4;
+      --bg-card: #ffffff;
+      --accent: #0891b2;
+      --accent-dim: rgba(8, 145, 178, 0.06);
+      --accent-border: rgba(8, 145, 178, 0.25);
+      --red: #dc2626;
+      --red-dim: rgba(220, 38, 38, 0.06);
+      --amber: #d97706;
+      --amber-dim: rgba(217, 119, 6, 0.06);
+      --green: #16a34a;
+      --green-dim: rgba(22, 163, 74, 0.06);
+    }
+
+    body {
+      background: var(--bg);
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ─── Header ──────────────────────────────────────────── */
+    .page-header {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header .back {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .page-header h1 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.3;
+    }
+    .page-header .intro {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      max-width: 560px;
+      margin: 1rem auto 0;
+    }
+    .page-header .meta {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .header-actions {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    /* ─── Layout ─────────────────────────────────────────── */
+    .evo-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ─── Sidebar ────────────────────────────────────────── */
+    .evo-sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 240px;
+      flex-shrink: 0;
+      overflow-y: auto;
+      padding: 2rem 1rem;
+      border-right: 1px solid var(--border);
+    }
+    .evo-nav {
+      position: relative;
+      padding-left: 1rem;
+    }
+    .evo-nav::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border-light);
+    }
+    .evo-nav-item {
+      display: block;
+      position: relative;
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .evo-nav-item:hover { color: var(--text-secondary); text-decoration: none; }
+    .evo-nav-item.active { color: var(--accent); }
+    .evo-nav-dot {
+      position: absolute;
+      left: -0.25rem;
+      top: 0.7rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border-light);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .evo-nav-item.active .evo-nav-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent-border);
+    }
+    .evo-nav-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .evo-nav-summary {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+    .evo-nav-item.active .evo-nav-summary { color: var(--text-secondary); }
+    .evo-nav-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 0.75rem 0 0.75rem 1.25rem;
+    }
+
+    /* ─── Content ─────────────────────────────────────────── */
+    .content {
+      flex: 1;
+      min-width: 0;
+      max-width: 800px;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* ─── Timeline ────────────────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border-light);
+    }
+
+    .phase {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+    .phase:last-child { margin-bottom: 0; }
+
+    .phase-marker {
+      position: absolute;
+      left: -2rem;
+      top: 0.15rem;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--accent-border);
+    }
+
+    .phase-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .phase h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .phase p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ─── Roster ──────────────────────────────────────────── */
+    .roster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0.75rem 0;
+    }
+    .roster-agent {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .roster-agent.new {
+      background: var(--green-dim);
+      border-color: rgba(74, 222, 128, 0.25);
+      color: var(--green);
+    }
+
+    /* ─── Callouts ────────────────────────────────────────── */
+    .callout {
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      margin: 0.75rem 0;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    .callout-broke {
+      background: var(--red-dim);
+      border-left: 3px solid var(--red);
+      color: var(--text-secondary);
+    }
+    .callout-broke strong { color: var(--red); }
+    .callout-numbers {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+    .callout-pattern {
+      background: var(--accent-dim);
+      border-left: 3px solid var(--accent);
+    }
+    .callout-pattern a { font-weight: 500; }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.5rem;
+    }
+    .number-item {
+      text-align: center;
+      padding: 0.4rem;
+    }
+    .number-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .number-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── Summary Table ───────────────────────────────────── */
+    .summary-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .summary-section h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    td:first-child { color: var(--text); font-weight: 500; }
+
+    /* ─── Closing ─────────────────────────────────────────── */
+    .closing {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+    }
+    .closing p { margin-bottom: 0.75rem; }
+
+    .page-footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+    .page-footer a { color: var(--text-secondary); }
+
+
+    /* ─── Responsive ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .evo-sidebar { display: none; }
+      .evo-layout { display: block; }
+      .content { max-width: 740px; margin: 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .page-header h1 { font-size: 1.4rem; }
+      .content { padding: 1.5rem 1rem 3rem; }
+      .timeline { padding-left: 1.5rem; }
+      .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&matchMedia('(prefers-color-scheme:light)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+
+  <div class="page-header" style="position: relative;">
+    <div class="header-actions">
+      <div class="forge-theme-toggle" style="position:static"></div>
+      <a class="icon-btn" href="." title="Back to Orchestration" aria-label="Close" style="font-size:1rem;text-decoration:none">&times;</a>
+    </div>
+    <h1>How These Projects Organized Themselves</h1>
+    <p class="intro">Building projects was how we learned to work with agents. Each one was an experiment in organization &mdash; what roles to create, how to coordinate them, when to add structure and when to leave it alone. The lessons accumulated: later projects started better because earlier ones had figured out what didn't work.</p>
+    <p class="meta">February&ndash;March 2026 &middot; Ongoing &middot; Now tracking 9 projects, ~44 agents</p>
+  </div>
+
+  <div class="evo-layout">
+    <aside class="evo-sidebar">
+      <nav class="evo-nav" aria-label="Project timeline">
+        <a href="#evo-agi" class="evo-nav-item" data-target="evo-agi">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">agi</span>
+          <span class="evo-nav-summary">10&rarr;7 agents, placed on hold</span>
+        </a>
+        <a href="#evo-thisminute" class="evo-nav-item" data-target="evo-thisminute">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">thisminute</span>
+          <span class="evo-nav-summary">5&rarr;10 agents, grew organically</span>
+        </a>
+        <a href="#evo-orchestration" class="evo-nav-item" data-target="evo-orchestration">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">orchestration</span>
+          <span class="evo-nav-summary">1 agent, no protocol</span>
+        </a>
+        <a href="#evo-toolshed" class="evo-nav-item" data-target="evo-toolshed">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">toolshed</span>
+          <span class="evo-nav-summary">7 agents, full protocol day one</span>
+        </a>
+        <a href="#evo-sts2" class="evo-nav-item" data-target="evo-sts2">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">sts2</span>
+          <span class="evo-nav-summary">9 agents, architecture pivot</span>
+        </a>
+        <a href="#evo-balatro" class="evo-nav-item" data-target="evo-balatro">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">balatro</span>
+          <span class="evo-nav-summary">9 agents, checkpoint cycles</span>
+        </a>
+        <a href="#evo-rts" class="evo-nav-item" data-target="evo-rts">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">rts</span>
+          <span class="evo-nav-summary">7 agents, protocol+forum for games</span>
+        </a>
+        <a href="#evo-ops" class="evo-nav-item" data-target="evo-ops">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">ops</span>
+          <span class="evo-nav-summary">1&rarr;2 agents, steward split</span>
+        </a>
+        <a href="#evo-forge" class="evo-nav-item" data-target="evo-forge">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">forge</span>
+          <span class="evo-nav-summary">4 agents, audit+propagate</span>
+        </a>
+        <a href="#evo-singularity" class="evo-nav-item" data-target="evo-singularity">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">singularity-forge</span>
+          <span class="evo-nav-summary">4 agents, chained forge</span>
+        </a>
+        <a href="#evo-transfer" class="evo-nav-item" data-target="evo-transfer">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">How Lessons Transfer</span>
+        </a>
+        <div class="evo-nav-sep"></div>
+        <a href="#evo-ecosystem" class="evo-nav-item" data-target="evo-ecosystem">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">The Ecosystem</span>
+          <span class="evo-nav-summary">all projects, both forges</span>
+        </a>
+        <a href="#evo-arc" class="evo-nav-item" data-target="evo-arc">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">The Arc</span>
+        </a>
+        <a href="#evo-models" class="evo-nav-item" data-target="evo-models">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">Four Models</span>
+        </a>
+        <a href="#evo-lessons" class="evo-nav-item" data-target="evo-lessons">
+          <span class="evo-nav-dot"></span>
+          <span class="evo-nav-label">Lessons</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="content">
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- AGI -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-agi" class="summary-section" style="border-top: none; margin-top: 0; padding-top: 0;">
+      <h2>Project 1: agi</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">The hypothesis: build general intelligence from small, specialized transformer models composed in a directed acyclic graph. Board games as testbeds, eventually expanding to 20+ task domains. The first project ever built with Claude as the primary engineer. What mattered wasn't whether the hypothesis panned out &mdash; it didn't &mdash; but the sheer speed and scale of what an agent team could build, and the organizational lessons that shaped every project after it.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Feb 1, 2026</div>
+        <h2>The 10-Daemon Era</h2>
+        <p>The project launched with 10 agents (called "daemons"): trainer, scientist, architect, tester, moderator, curator, editor, coach, police, orchestrator. A forum was set up from day one with threaded discussions and mandatory voting.</p>
+        <p>Within hours, the system was generating at industrial scale. The coach tracked zoo membership obsessively (77&rarr;84&rarr;91&rarr;98 models in a day). The police filed enforcement reports every cycle. The curator maintained count reconciliations. The agents built a full training pipeline, model zoo, evaluation harness, and experiment tracking system &mdash; all in the first 24 hours.</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">trainer</span>
+          <span class="roster-agent new">scientist</span>
+          <span class="roster-agent new">architect</span>
+          <span class="roster-agent new">tester</span>
+          <span class="roster-agent new">moderator</span>
+          <span class="roster-agent new">curator</span>
+          <span class="roster-agent new">editor</span>
+          <span class="roster-agent new">coach</span>
+          <span class="roster-agent new">police</span>
+        </div>
+        <div class="callout callout-broke">
+          <strong>What broke:</strong> The four failed roles (police, coach, editor, curator) were all oversight functions &mdash; auditing, reviewing, enforcing &mdash; added before there was anything to oversee. The lesson: monitoring roles need something to monitor. The forum hit 8,753 lines in one day, mostly these roles talking to each other. Consolidated to 6 agents that evening.
+        </div>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">10</div><div class="number-label">daemons</div></div>
+            <div class="number-item"><div class="number-value">8,753</div><div class="number-label">forum lines (1 day)</div></div>
+            <div class="number-item"><div class="number-value">106</div><div class="number-label">zoo members</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Feb 2, evening</div>
+        <h2>The Great Consolidation</h2>
+        <p>Trainer became builder. Scientist+architect became strategist. Tester+moderator became verifier. Curator+editor+coach became librarian. Police was eliminated. "Daemon" became "agent."</p>
+        <div class="roster">
+          <span class="roster-agent">orchestrator</span>
+          <span class="roster-agent new">builder</span>
+          <span class="roster-agent new">strategist</span>
+          <span class="roster-agent new">verifier</span>
+          <span class="roster-agent new">librarian</span>
+        </div>
+        <p>Then the skeptic was added, prompted by the human asking "Why are we using minimax for Go at all?" The skeptic immediately invalidated multiple claims: all Go results were built on a broken minimax oracle. "6500% improvement" was cherry-picked. "70% zero-shot transfer" was false. The Feynman quote was embedded in its role file: "The first principle is that you must not fool yourself."</p>
+        <p>The verifier role existed but couldn't catch this &mdash; it was testing against the oracle, so a broken oracle produced "passing" tests. The skeptic's value was questioning the setup itself, not just the outputs. This distinction (checking results vs. challenging assumptions) became a pattern: every later project with a skeptic benefited from it.</p>
+        <div class="roster">
+          <span class="roster-agent">orchestrator</span>
+          <span class="roster-agent">builder</span>
+          <span class="roster-agent">strategist</span>
+          <span class="roster-agent">verifier</span>
+          <span class="roster-agent">librarian</span>
+          <span class="roster-agent new">skeptic</span>
+          <span class="roster-agent new">debugger</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Feb 3&ndash;10</div>
+        <h2>Scale and Dead Ends</h2>
+        <p>The agent team built at a pace that would have taken a solo developer weeks. A complete AlphaZero pipeline for Go-5x5 (self-play, MCTS, training loops), ONNX model export, a Rust inference engine, a 20+ domain task taxonomy, and hundreds of trained models &mdash; all within days. But the results kept hitting walls.</p>
+        <p>Go-5x5 training plateaued at 42 AlphaZero cycles with 14 cycles of regression. The debugger found three bugs in the TicTacToe pipeline alone. Adding perfectly accurate domain features to Go models actually <em>hurt</em> performance. The team abandoned weeks of work to go back and prove the basics.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">7</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">100+</div><div class="number-label">trained models</div></div>
+            <div class="number-item"><div class="number-value">20+</div><div class="number-label">task domains</div></div>
+            <div class="number-item"><div class="number-value">1</div><div class="number-label">git commit</div></div>
+          </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.82rem;">The project was never properly versioned. All history lives in file timestamps, forum archives, and agent memory files rather than git.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Feb 10+</div>
+        <h2>Placed on Hold</h2>
+        <p>The composable-intelligence hypothesis ran into two problems. Networks are better at learning compositional structure internally than having it imposed externally &mdash; the DAG of specialists was solving a problem that end-to-end training already handles. And LLMs had achieved broad, flexible reasoning by a completely unrelated path. The research question was answered, just not by this project.</p>
+        <p>The project was placed on hold so more promising ideas could be explored. The organizational lessons &mdash; consolidation from 10 to 7 agents, the skeptic catching bad results, the forum scaling problem &mdash; carried forward into every project that followed, starting with <a href="#evo-thisminute">thisminute</a>.</p>
+        <div class="callout callout-pattern">
+          Orchestration pattern: <a href="./#meta-learning-zoo">Meta-Learning Zoo</a> &mdash; specialized sub-groups coordinating through shared experiment logs. The adversarial dynamic (skeptic invalidating claims) was load-bearing from the start.
+        </div>
+      </div>
+
+    </div><!-- /timeline agi -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- THISMINUTE -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-thisminute" class="summary-section">
+      <h2>Project 2: thisminute</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;"><a href="https://thisminute.org">thisminute.org</a> is a real-time global news map. It was created by taking the agi project's agent system and saying "model a new project after this." The organizational structure was inherited, not designed from scratch.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Early March</div>
+        <h2>Solo Build</h2>
+        <p>Four rounds of iterative development before agents. Globe projection, keyword categorization, geocoding, trending detection. The project worked but had outgrown what one context window could hold.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">542</div><div class="number-label">stories</div></div>
+            <div class="number-item"><div class="number-value">16</div><div class="number-label">RSS sources</div></div>
+            <div class="number-item"><div class="number-value">17</div><div class="number-label">tests</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Week 1</div>
+        <h2>Inherited Structure</h2>
+        <p>Five roles modeled after agi's post-consolidation team: builder, tester, strategist, skeptic, orchestrator. LLM extraction via Claude Haiku replaced keyword categorization. Event clustering and narrative synthesis via Sonnet.</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">builder</span>
+          <span class="roster-agent new">tester</span>
+          <span class="roster-agent new">strategist</span>
+          <span class="roster-agent new">skeptic</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Week 1, day 5</div>
+        <h2>The GDELT Crisis</h2>
+        <p>GDELT was sampled at 7%. The underlying dataset grew 10x without anyone noticing, yielding 45,000 stories/day instead of 100. Events bloated to 25,000. The crisis revealed three domains of work that hadn't existed before: getting code onto the VM reliably (deployer), tracking LLM spend as volume scaled (economist), and making the UI work for multiple data types (designer). Each role was added because the work split into a new domain &mdash; not because someone planned a roster ahead of time.</p>
+        <div class="roster">
+          <span class="roster-agent">orchestrator</span>
+          <span class="roster-agent">builder</span>
+          <span class="roster-agent">tester</span>
+          <span class="roster-agent">strategist</span>
+          <span class="roster-agent">skeptic</span>
+          <span class="roster-agent new">deployer</span>
+          <span class="roster-agent new">economist</span>
+          <span class="roster-agent new">designer</span>
+        </div>
+        <p>After the fix (sample rate 7%&rarr;0.3%), the orchestrator ran 20+ cycles overnight and shipped 4 versions: world-switching UX, sports feeds, entertainment feeds, prompt caching.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">45K&rarr;4.2K</div><div class="number-label">stories/day</div></div>
+            <div class="number-item"><div class="number-value">60%&rarr;98%</div><div class="number-label">extraction rate</div></div>
+            <div class="number-item"><div class="number-value">74</div><div class="number-label">RSS feeds</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Week 2</div>
+        <h2>Domain Specialization</h2>
+        <p>The narrative analyzer only understood geopolitical news. Fix: separate analysis per domain (news, sports, entertainment, positive), each with its own Sonnet prompt, quality criteria, and event caps. A 5th domain (curious/human-interest) followed.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Week 2, day 3</div>
+        <h2>Forum Maintenance</h2>
+        <p>Librarian added as the 9th agent &mdash; the forum had hit 1,008 lines in one session. Around the same time, the strategist proposed 13 audience segments and 8 presets. The skeptic flagged that the numbers were inflated 10&ndash;100x, 2 of 3 "immediate" items were already built, and time estimates were 2&ndash;3x too low.</p>
+        <p>Without the adversarial check, the team would have planned a sprint against fabricated numbers. The strategist wasn't lying &mdash; it was doing its job (proposing ambitious plans). The skeptic's job was to pressure-test them. This dynamic &mdash; proposal + challenge &mdash; turned out to be more reliable than having any single agent try to be both creative and critical.</p>
+        <div class="roster">
+          <span class="roster-agent">orchestrator</span>
+          <span class="roster-agent">builder</span>
+          <span class="roster-agent">tester</span>
+          <span class="roster-agent">strategist</span>
+          <span class="roster-agent">skeptic</span>
+          <span class="roster-agent">deployer</span>
+          <span class="roster-agent">economist</span>
+          <span class="roster-agent">designer</span>
+          <span class="roster-agent new">librarian</span>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Week 2, day 5</div>
+        <h2>Inference Feeds</h2>
+        <p>Statistical inference feeds &mdash; events from sensor data, not news. USGS earthquakes, NOAA weather, NASA events, disaster alerts, WHO outbreaks, space launches. Pre-built extraction dicts skip the LLM entirely. A 10th agent added for user feedback.</p>
+        <div class="roster">
+          <span class="roster-agent">orchestrator</span>
+          <span class="roster-agent">builder</span>
+          <span class="roster-agent">tester</span>
+          <span class="roster-agent">strategist</span>
+          <span class="roster-agent">skeptic</span>
+          <span class="roster-agent">deployer</span>
+          <span class="roster-agent">economist</span>
+          <span class="roster-agent">designer</span>
+          <span class="roster-agent">librarian</span>
+          <span class="roster-agent new">feedback</span>
+        </div>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">10</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">9</div><div class="number-label">data sources</div></div>
+            <div class="number-item"><div class="number-value">351</div><div class="number-label">tests</div></div>
+            <div class="number-item"><div class="number-value">$10.92</div><div class="number-label">per day (LLM)</div></div>
+          </div>
+        </div>
+        <div class="callout callout-pattern">
+          Orchestration patterns: <a href="./#airline-hub-spoke-ops">Orchestrated</a> (hub-and-spoke) + <a href="./#prompt-chain-assembly-line">Pipeline</a> (scrape&rarr;extract&rarr;cluster&rarr;analyze) + <a href="./#conglomerate-holding">Federated</a> (domain autonomy, source adapters) + <a href="./#debate-tournament">Adversarial</a> (skeptic review loops).
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Week 3+</div>
+        <h2>Security & Scale</h2>
+        <p>An 11th agent: security. Not because of an incident &mdash; because ops added an infra-layer security agent and the two needed to not overlap. thisminute's security agent owns app-layer concerns (XSS, comment/vote hardening, SSRF protection, rate limiting). ops owns infra-layer (nginx, firewall, SSH, SSL/TLS). Two projects, two agents, one security model.</p>
+        <div class="roster">
+          <span class="roster-agent">orchestrator</span>
+          <span class="roster-agent">builder</span>
+          <span class="roster-agent">tester</span>
+          <span class="roster-agent">strategist</span>
+          <span class="roster-agent">skeptic</span>
+          <span class="roster-agent">deployer</span>
+          <span class="roster-agent">economist</span>
+          <span class="roster-agent">designer</span>
+          <span class="roster-agent">librarian</span>
+          <span class="roster-agent">feedback</span>
+          <span class="roster-agent new">security</span>
+        </div>
+        <p>Phase 4.5 shipped: map color themes (domain/classic/mono/heat/neon), redesigned world-picker, share button, auto-cycling tour mode. 95 RSS feeds plus 13 structured data APIs. The forum peaked at 1,008 lines in that early session, but the librarian keeps it around 400 now. The test suite hit 710.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">11</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">95</div><div class="number-label">RSS feeds</div></div>
+            <div class="number-item"><div class="number-value">710</div><div class="number-label">tests</div></div>
+            <div class="number-item"><div class="number-value">444</div><div class="number-label">forum lines (steady)</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline thisminute -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- ORCHESTRATION -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-orchestration" class="summary-section">
+      <h2>Project 3: orchestration</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;"><a href=".">This catalog.</a> 205 organizational patterns, 7 curated from real ecosystem usage. One steward agent, no forum, no protocol file. The right amount of structure for a browsable catalog turns out to be almost none.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 2</div>
+        <h2>One Steward</h2>
+        <p>A single agent handles everything: frontend, data curation, API work, build pipeline, accessibility, deploy coordination. It maintains one memory file. There's no forum because there's nobody to discuss things with. No protocol because there's no startup sequence to formalize.</p>
+        <div class="roster">
+          <span class="roster-agent new">steward</span>
+        </div>
+        <p>The steward role file includes instructions for when to split into multiple agents ("your memory file covers 3+ unrelated domains," "you're context-switching between very different kinds of work"). So far, those conditions haven't been met. A single-page catalog with a build script and an optional API doesn't need 10 agents.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">1</div><div class="number-label">agent</div></div>
+            <div class="number-item"><div class="number-value">205</div><div class="number-label">patterns</div></div>
+            <div class="number-item"><div class="number-value">92</div><div class="number-label">tests</div></div>
+            <div class="number-item"><div class="number-value">0</div><div class="number-label">forum lines</div></div>
+          </div>
+        </div>
+        <div class="callout callout-pattern">
+          No coordination pattern needed. 7 of its catalog entries come from watching the other projects organize themselves.
+        </div>
+      </div>
+
+    </div><!-- /timeline orchestration -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- TOOLSHED -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-toolshed" class="summary-section">
+      <h2>Project 4: toolshed</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">A software directory that catalogs 15,803 tools across 124 categories. Originally called "mainmenu." The first project to adopt thisminute's protocol+forum model from scratch rather than inheriting it &mdash; proof that the pattern transfers.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 2</div>
+        <h2>Full Protocol from Day One</h2>
+        <p>Seven agents, a PROTOCOL.md, and a forum. Builder, curator, designer, librarian, orchestrator, skeptic, strategist. The roles were modeled on thisminute's post-growth roster, minus the domain-specific ones (no deployer, economist, or feedback &mdash; a static directory doesn't need them).</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">builder</span>
+          <span class="roster-agent new">curator</span>
+          <span class="roster-agent new">designer</span>
+          <span class="roster-agent new">strategist</span>
+          <span class="roster-agent new">skeptic</span>
+          <span class="roster-agent new">librarian</span>
+        </div>
+        <p>Data aggregation from Homebrew, awesome-lists, and CNCF via scraping pipelines. Build script generates a 1MB+ data.js for client-side filtering. 67 tests for categorization, data validation, and taxonomy integrity.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">7</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">15,803</div><div class="number-label">tools cataloged</div></div>
+            <div class="number-item"><div class="number-value">124</div><div class="number-label">categories</div></div>
+            <div class="number-item"><div class="number-value">91</div><div class="number-label">forum lines (healthy)</div></div>
+          </div>
+        </div>
+        <p>The forum is at 91 lines and stable. thisminute's forum hit 1,008 lines in its first big session. toolshed never had that spike because the librarian was there from the start &mdash; a lesson carried over from thisminute.</p>
+        <div class="callout callout-pattern">
+          Orchestration patterns: <a href="./#airline-hub-spoke-ops">Orchestrated</a> (no single orchestrator, but protocol-mediated) + <a href="./#debate-tournament">Adversarial</a> (skeptic reviews strategy proposals). The protocol+forum model is now a documented, transferable pattern.
+        </div>
+      </div>
+
+    </div><!-- /timeline toolshed -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- STS2 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-sts2" class="summary-section">
+      <h2>Project 5: sts2</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">An LLM autopilot mod for Slay the Spire 2. The first checkpoint-model project &mdash; where the pattern was invented &mdash; and a case study in what happens when the underlying architecture pivots but the agent system doesn't break.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Late February</div>
+        <h2>The Checkpoint Model Is Born</h2>
+        <p>Nine agents: orchestrator, mod-builder, bot-builder, mcp-engineer, play-operator, analyst, overlay-dev, cycle, skeptic. The project needed rapid iteration &mdash; modify the mod, launch the game, observe behavior, adjust &mdash; and a forum-based model would have been too slow. Instead: a checkpoint file as the single source of truth. Each agent spawns, reads it, works, updates it, and shuts down.</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">mod-builder</span>
+          <span class="roster-agent new">bot-builder</span>
+          <span class="roster-agent new">mcp-engineer</span>
+          <span class="roster-agent new">play-operator</span>
+          <span class="roster-agent new">analyst</span>
+          <span class="roster-agent new">overlay-dev</span>
+          <span class="roster-agent new">cycle</span>
+          <span class="roster-agent new">skeptic</span>
+        </div>
+        <p>By cycle 37, the project had invented two patterns not seen elsewhere: a <strong>section index</strong> (<code>.claude/advisor-manager-index.md</code>) for navigating a 4,100+ line core file, and the checkpoint cycle itself. Both were later extracted into the forge's pattern library.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 2</div>
+        <h2>Architecture Pivot</h2>
+        <p>The original architecture used MCP (Model Context Protocol) for the bot to communicate with the game mod. Mid-project, the team pivoted to a completely different approach: state files + PostMessage clicks via a Python bot (<code>bot_vm/</code>). The mod writes game state to a file, the bot reads it and sends mouse/keyboard commands directly.</p>
+        <p>The agent system didn't need to change. The 9 roles still made sense &mdash; mod-builder still builds the mod, bot-builder still builds the bot, the cycle agent still manages iteration. The checkpoint absorbed the architecture change naturally. This is a strength of the model: the coordination structure is decoupled from the technical architecture.</p>
+        <div class="callout callout-broke">
+          <strong>What broke:</strong> AGENTS.md still describes the old MCP architecture. The pivot happened faster than documentation could keep up. The forge flagged this drift but deferred the fix &mdash; updating docs during an active architecture pivot creates churn.
+        </div>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">9</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">37</div><div class="number-label">cycles</div></div>
+            <div class="number-item"><div class="number-value">3</div><div class="number-label">memory files</div></div>
+            <div class="number-item"><div class="number-value">4,100+</div><div class="number-label">line core file</div></div>
+          </div>
+        </div>
+        <div class="callout callout-pattern">
+          sts2 invented two patterns: the <strong>checkpoint cycle</strong> (disposable agents + persistent state) and the <strong>section index</strong> (a table of contents for navigating huge files). Both were later adopted by balatro and extracted into forge templates.
+        </div>
+      </div>
+
+    </div><!-- /timeline sts2 -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- BALATRO -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-balatro" class="summary-section">
+      <h2>Project 6: balatro</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">An autopilot mod for the card game Balatro. The project that validated the checkpoint model &mdash; disposable per-cycle agents, no forum, no protocol, just a checkpoint file as the source of truth.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 1</div>
+        <h2>Checkpoint Cycles</h2>
+        <p>Nine agents: orchestrator, mod-builder, bot-builder, mcp-engineer, play-operator, analyst, overlay-dev, cycle, skeptic. Each cycle: agents spawn, read the checkpoint, do their work, update the checkpoint, shut down. No forum &mdash; the checkpoint IS the coordination mechanism. No protocol &mdash; the cycle IS the protocol.</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">mod-builder</span>
+          <span class="roster-agent new">bot-builder</span>
+          <span class="roster-agent new">mcp-engineer</span>
+          <span class="roster-agent new">play-operator</span>
+          <span class="roster-agent new">analyst</span>
+          <span class="roster-agent new">overlay-dev</span>
+          <span class="roster-agent new">cycle</span>
+          <span class="roster-agent new">skeptic</span>
+        </div>
+        <p>13 cycles in, and the memory system told the real story. The project started with 1 memory file. By cycle 13 it had 8 &mdash; scoring math, cost feedback, learning loops, strategy notes. Nobody told the agents to write memory files. They started doing it because the checkpoint kept losing context between cycles.</p>
+        <div class="callout callout-broke">
+          <strong>What surprised:</strong> The checkpoint model deliberately makes agents disposable &mdash; they spawn, work, and shut down each cycle. But the checkpoint itself was too narrow to carry all the context agents needed. Agents started writing memory files as a workaround: scoring math that shouldn't change between cycles, cost feedback, strategy notes. The agents adapted around a limitation of their own coordination model. 1&rarr;8 memory files in ~10 cycles.
+        </div>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">9</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">13</div><div class="number-label">cycles</div></div>
+            <div class="number-item"><div class="number-value">8</div><div class="number-label">memory files</div></div>
+            <div class="number-item"><div class="number-value">25/25</div><div class="number-label">MCP tests</div></div>
+          </div>
+        </div>
+        <div class="callout callout-pattern">
+          The checkpoint model is being validated here. Target: cycle 100 before formalizing the pattern into the <a href="/forge/">Forge</a> template library.
+        </div>
+      </div>
+
+    </div><!-- /timeline balatro -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- RTS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-rts" class="summary-section">
+      <h2>Project 7: rts</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">Space Crystals &mdash; a real-time strategy game built in Godot 4.6. The project that proved protocol+forum works for game development, not just web products. Seven agents built a playable 1v1 RTS from zero in under a month.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">Late February</div>
+        <h2>Full Protocol from Day One</h2>
+        <p>Seven agents: orchestrator, builder, verifier, strategist, librarian, debugger, skeptic. The roster was modeled on agi's post-consolidation team plus a debugger &mdash; game development needs someone who can track down why a unit is teleporting or why the AI builds Power Plants forever.</p>
+        <div class="roster">
+          <span class="roster-agent new">orchestrator</span>
+          <span class="roster-agent new">builder</span>
+          <span class="roster-agent new">verifier</span>
+          <span class="roster-agent new">strategist</span>
+          <span class="roster-agent new">librarian</span>
+          <span class="roster-agent new">debugger</span>
+          <span class="roster-agent new">skeptic</span>
+        </div>
+        <p>Phase 1 through 3 shipped in rapid succession: tile-based map, camera, unit movement, fog of war, resource gathering, building system, production queues, power grid, AI opponent, minimap, visual polish (custom particle system, lighting, weather). 27 source files, 8,100 lines of GDScript.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">7</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">8,100</div><div class="number-label">lines of GDScript</div></div>
+            <div class="number-item"><div class="number-value">27</div><div class="number-label">source files</div></div>
+            <div class="number-item"><div class="number-value">3</div><div class="number-label">skeptic reviews</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 3</div>
+        <h2>The Skeptic Catches Real Bugs</h2>
+        <p>Three formal skeptic reviews across Phases 1&ndash;3. The third review found: the AI's focus fire using a hardcoded Peacekeeper range for all unit types (Heavy Troopers have shorter range), a new unit with no design doc entry (the team was adding gameplay content without updating the spec), and inaccurate stats in the builder's own forum post.</p>
+        <p>Phase 4 is now starting: the Syndicate as a second playable faction. Data-driven refactoring to support multiple factions, AI controller abstraction, faction-specific build modes. The strategist wrote architecture decisions 16&ndash;23 covering the full migration plan.</p>
+        <div class="callout callout-broke">
+          <strong>What broke:</strong> The forum hit 1,178 lines &mdash; the largest in the ecosystem. The librarian existed but was never spawned for maintenance. The forge archived 18 threads of completed Phase 1&ndash;3 history, keeping only the active Phase 4 plan and the skeptic's open review. Same pattern seen in thisminute and toolshed before it.
+        </div>
+        <div class="callout callout-pattern">
+          Protocol+forum transfers to game development. The skeptic's value is magnified: spec/code mismatches in games are harder to catch because "it looks right when you play it" masks numerical errors. Three reviews caught bugs that headless testing missed.
+        </div>
+      </div>
+
+    </div><!-- /timeline rts -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- OPS -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-ops" class="summary-section">
+      <h2>Project 8: ops</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">Infrastructure management for the entire ecosystem. nginx, deployment queues, healthchecks, SSL. The steward pattern's first real growth event: one agent became two.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 1</div>
+        <h2>Steward Grows a Role</h2>
+        <p>ops started as a single steward &mdash; one agent managing deploys, nginx config, and healthchecks. Then thisminute needed app-layer security review, and it became clear that security concerns split cleanly into two layers: application (XSS, SSRF, rate limiting) and infrastructure (firewall, SSH, TLS).</p>
+        <p>The steward didn't absorb both. Instead, a security agent was added &mdash; the first organic role split in the steward model. The steward's role file had always included instructions for when to split ("your memory covers 3+ unrelated domains"). Infrastructure + security hit that threshold.</p>
+        <div class="roster">
+          <span class="roster-agent">steward</span>
+          <span class="roster-agent new">security</span>
+        </div>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">2</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">102</div><div class="number-label">deploy queue lines</div></div>
+          </div>
+        </div>
+        <div class="callout callout-pattern">
+          The split criteria were in the steward's role file from day one &mdash; they just hadn't been triggered until the security work created a second domain.
+        </div>
+      </div>
+
+    </div><!-- /timeline ops -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- THE FORGE -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-forge" class="summary-section">
+      <h2>The Meta-Project: the Forge</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">Once there were enough projects running, it made sense to have something watching them all. The <a href="/forge/">Forge</a> audits each project's agent system and extracts patterns from what's working.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 2</div>
+        <h2>Audit &amp; Propagate</h2>
+        <p>The forgemaster runs an audit cycle: scan every project's agent system, identify gaps, update the pattern library, and apply targeted upgrades. 25 cycles so far across 11 active projects. It tracks maturity progression &mdash; from "minimal" (steward-only) through "established+" (full protocol+forum) &mdash; and flags when a project's documentation lags behind its actual architecture.</p>
+        <p>The pattern library is the main output: 7 patterns extracted from live projects and shipped as reusable templates. Challenge loops, steward bootstraps, checkpoint cycles, forum maintenance, section indexes for navigating huge files.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">25</div><div class="number-label">audit cycles</div></div>
+            <div class="number-item"><div class="number-value">11</div><div class="number-label">projects monitored</div></div>
+            <div class="number-item"><div class="number-value">7</div><div class="number-label">validated patterns</div></div>
+            <div class="number-item"><div class="number-value">~58</div><div class="number-label">total agents</div></div>
+          </div>
+        </div>
+        <p>The forge observes but doesn't coordinate. Each project runs its own model. The forge watches what works and makes it available to new projects.</p>
+      </div>
+
+    </div><!-- /timeline forge -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- SINGULARITY-FORGE -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-singularity" class="summary-section">
+      <h2>The Second Forge: singularity-forge</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">What happens when a forge doesn't just audit projects &mdash; it creates them? singularity-forge scans the <a href="/tools/">toolshed</a> catalog for missing software and builds projects to fill the gaps.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-marker"></div>
+        <div class="phase-label">March, week 3</div>
+        <h2>Chained Forge</h2>
+        <p>Four agents: forgemaster, assayer, smith, skeptic. Same forge pattern as thisminute-forge, but pointed at a different problem. Instead of auditing agent systems, it audits the toolshed catalog: what categories have no tools? What real-world software is missing? When it finds a gap, it scaffolds a new project with a steward agent, links it back to the toolshed entry, and moves on.</p>
+        <div class="roster">
+          <span class="roster-agent new">forgemaster</span>
+          <span class="roster-agent new">assayer</span>
+          <span class="roster-agent new">smith</span>
+          <span class="roster-agent new">skeptic</span>
+        </div>
+        <p>25 projects generated in its first cycles. Each gets a CLAUDE.md, AGENTS.md, steward role file, and a CRUCIBLE_CONTEXT.md linking it back to the idea that spawned it. The projects live under <code>~/projects/singularity/</code> and are independent of the main ecosystem &mdash; thisminute-forge monitors the forge itself but doesn't coordinate the generated projects.</p>
+        <div class="callout callout-numbers">
+          <div class="numbers-grid">
+            <div class="number-item"><div class="number-value">4</div><div class="number-label">agents</div></div>
+            <div class="number-item"><div class="number-value">25</div><div class="number-label">projects created</div></div>
+          </div>
+        </div>
+        <div class="callout callout-broke">
+          <strong>What's interesting:</strong> This is the first forge that generates work rather than just auditing it. The audit-and-propagate pattern scales in a new direction: instead of improving existing projects, it identifies what should exist and bootstraps it. The two forges have cleanly separate registries &mdash; thisminute-forge monitors the ecosystem, singularity-forge monitors its own catalog projects.
+        </div>
+        <div class="callout callout-pattern">
+          The forge pattern is reusable. You can point it at different problems &mdash; agent system quality, software catalog gaps, potentially anything with a scan-evaluate-act loop. The 4-role structure (forgemaster, assayer, smith, keeper/skeptic) transfers directly.
+        </div>
+      </div>
+
+    </div><!-- /timeline singularity -->
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- ECOSYSTEM DIAGRAM -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-ecosystem" class="summary-section">
+      <h2>The Full Ecosystem</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">Twelve projects, three coordination models, two forges, ~58 agents. This is what it looks like today.</p>
+    </div>
+
+    <svg viewBox="0 0 840 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:840px;margin:1.5rem auto;display:block;" role="img" aria-label="Ecosystem diagram showing all projects grouped by coordination model with two oversight forges">
+
+      <!-- Oversight tier -->
+      <rect x="30" y="12" width="210" height="58" rx="8" fill="var(--bg-card)" stroke="var(--accent)" stroke-width="1.5"/>
+      <text x="135" y="36" text-anchor="middle" fill="var(--accent)" font-size="13" font-weight="600" font-family="inherit">thisminute-forge</text>
+      <text x="135" y="54" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">25 cycles &middot; 11 projects</text>
+
+      <rect x="330" y="20" width="160" height="40" rx="6" fill="var(--bg-raised)" stroke="var(--border)" stroke-width="1" stroke-dasharray="5,3"/>
+      <text x="410" y="45" text-anchor="middle" fill="var(--text-muted)" font-size="11" font-family="inherit">agent-forge (template)</text>
+
+      <rect x="590" y="12" width="220" height="58" rx="8" fill="var(--bg-card)" stroke="var(--amber)" stroke-width="1.5"/>
+      <text x="700" y="36" text-anchor="middle" fill="var(--amber)" font-size="13" font-weight="600" font-family="inherit">singularity-forge</text>
+      <text x="700" y="54" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">25 projects created</text>
+
+      <!-- Template lines from agent-forge -->
+      <line x1="330" y1="40" x2="240" y2="40" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="490" y1="40" x2="590" y2="40" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,3"/>
+
+      <!-- Oversight lines from thisminute-forge -->
+      <line x1="135" y1="70" x2="135" y2="108" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+      <line x1="135" y1="70" x2="420" y2="108" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
+      <line x1="135" y1="70" x2="690" y2="108" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3" opacity="0.2"/>
+
+      <!-- Singularity-forge scan line to toolshed -->
+      <path d="M 700 70 L 700 95 L 150 95 L 150 185" stroke="var(--amber)" stroke-width="1" stroke-dasharray="4,3" opacity="0.4" fill="none"/>
+      <text x="420" y="92" text-anchor="middle" fill="var(--amber)" font-size="9" font-family="inherit" opacity="0.6">scans toolshed</text>
+
+      <!-- Protocol + Forum group -->
+      <rect x="15" y="108" width="260" height="265" rx="10" fill="var(--accent-dim)" stroke="var(--accent-border)" stroke-width="1"/>
+      <text x="145" y="130" text-anchor="middle" fill="var(--accent)" font-size="11" font-weight="600" font-family="inherit">PROTOCOL + FORUM</text>
+
+      <rect x="30" y="142" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="var(--accent-border)" stroke-width="1"/>
+      <text x="145" y="162" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">thisminute</text>
+      <text x="145" y="178" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">11 agents &middot; news platform</text>
+
+      <rect x="30" y="196" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="var(--accent-border)" stroke-width="1"/>
+      <text x="145" y="216" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">toolshed</text>
+      <text x="145" y="232" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">7 agents &middot; software directory</text>
+
+      <rect x="30" y="250" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="var(--accent-border)" stroke-width="1"/>
+      <text x="145" y="270" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">rts</text>
+      <text x="145" y="286" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">7 agents &middot; Godot strategy game</text>
+
+      <text x="145" y="320" text-anchor="middle" fill="var(--accent)" font-size="20" font-weight="300" font-family="inherit">25</text>
+      <text x="145" y="336" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">agents</text>
+
+      <!-- Checkpoint group -->
+      <rect x="290" y="108" width="260" height="265" rx="10" fill="var(--amber-dim)" stroke="rgba(251,191,36,0.25)" stroke-width="1"/>
+      <text x="420" y="130" text-anchor="middle" fill="var(--amber)" font-size="11" font-weight="600" font-family="inherit">CHECKPOINT</text>
+
+      <rect x="305" y="142" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="rgba(251,191,36,0.25)" stroke-width="1"/>
+      <text x="420" y="162" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">balatro</text>
+      <text x="420" y="178" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">9 agents &middot; card game autopilot</text>
+
+      <rect x="305" y="196" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="rgba(251,191,36,0.25)" stroke-width="1"/>
+      <text x="420" y="216" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">sts2</text>
+      <text x="420" y="232" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">9 agents &middot; game autopilot (pivot)</text>
+
+      <rect x="305" y="250" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="rgba(251,191,36,0.25)" stroke-width="1"/>
+      <text x="420" y="270" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">forge.thisminute.org</text>
+      <text x="420" y="286" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">3 agents &middot; portal hub</text>
+
+      <text x="420" y="320" text-anchor="middle" fill="var(--amber)" font-size="20" font-weight="300" font-family="inherit">21</text>
+      <text x="420" y="336" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">agents</text>
+
+      <!-- Steward group -->
+      <rect x="565" y="108" width="260" height="265" rx="10" fill="var(--green-dim)" stroke="rgba(74,222,128,0.25)" stroke-width="1"/>
+      <text x="695" y="130" text-anchor="middle" fill="var(--green)" font-size="11" font-weight="600" font-family="inherit">STEWARD</text>
+
+      <rect x="580" y="142" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="rgba(74,222,128,0.25)" stroke-width="1"/>
+      <text x="695" y="162" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">ops</text>
+      <text x="695" y="178" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">2 agents &middot; infrastructure</text>
+
+      <rect x="580" y="196" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="rgba(74,222,128,0.25)" stroke-width="1"/>
+      <text x="695" y="216" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">orchestration</text>
+      <text x="695" y="232" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">1 agent &middot; pattern catalog</text>
+
+      <rect x="580" y="250" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="rgba(74,222,128,0.25)" stroke-width="1"/>
+      <text x="695" y="270" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">recipe-scaler</text>
+      <text x="695" y="286" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">1 agent &middot; singularity project</text>
+
+      <text x="695" y="320" text-anchor="middle" fill="var(--green)" font-size="20" font-weight="300" font-family="inherit">4</text>
+      <text x="695" y="336" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">agents</text>
+
+      <!-- Nesting annotation -->
+      <text x="420" y="395" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit" font-style="italic">forge.thisminute.org contains toolshed + orchestration (3 agent systems, 1 git repo)</text>
+
+      <!-- Singularity output -->
+      <line x1="700" y1="70" x2="700" y2="420" stroke="var(--amber)" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
+      <rect x="590" y="420" width="220" height="40" rx="6" fill="var(--bg-raised)" stroke="var(--amber)" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="700" y="444" text-anchor="middle" fill="var(--amber)" font-size="11" font-family="inherit">25 generated projects</text>
+
+      <!-- Grand total -->
+      <text x="145" y="395" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">+ 8 forge agents (2 forges) + 4 templates</text>
+      <rect x="30" y="420" width="530" height="40" rx="6" fill="none" stroke="var(--border)" stroke-width="1" stroke-dasharray="6,3"/>
+      <text x="295" y="444" text-anchor="middle" fill="var(--text-secondary)" font-size="13" font-weight="500" font-family="inherit">58 agents across 12 projects &middot; 3 coordination models &middot; 2 forges</text>
+
+      <!-- agi ghost -->
+      <text x="295" y="490" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit" font-style="italic">+ agi (on hold, 7 agents) &mdash; where it all started</text>
+
+      <!-- Legend dots -->
+      <circle cx="205" cy="510" r="4" fill="var(--accent)"/>
+      <text x="215" y="514" fill="var(--text-muted)" font-size="9" font-family="inherit">Protocol+Forum</text>
+      <circle cx="355" cy="510" r="4" fill="var(--amber)"/>
+      <text x="365" y="514" fill="var(--text-muted)" font-size="9" font-family="inherit">Checkpoint</text>
+      <circle cx="475" cy="510" r="4" fill="var(--green)"/>
+      <text x="485" y="514" fill="var(--text-muted)" font-size="9" font-family="inherit">Steward</text>
+      <circle cx="575" cy="510" r="4" fill="var(--text-muted)"/>
+      <text x="585" y="514" fill="var(--text-muted)" font-size="9" font-family="inherit">Oversight / Template</text>
+
+    </svg>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- HOW LESSONS TRANSFER -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-transfer" class="summary-section">
+      <h2>How Lessons Transfer</h2>
+      <p>Three mechanisms move organizational knowledge between projects:</p>
+      <p><strong>The human</strong> carries experience directly. agi's consolidation from 10 to 7 agents informed thisminute's initial roster of 5. The decision to add a librarian to toolshed on day one came from watching thisminute's forum grow unmanageable without one. These are judgment calls &mdash; knowing which roles to start with and which to wait on.</p>
+      <p><strong>Role files and templates</strong> transfer structure. When thisminute was created, its agent roles were modeled on agi's post-consolidation set. toolshed adopted the protocol+forum pattern from thisminute. Each new project starts from a better baseline because the role files encode what previous projects learned.</p>
+      <p><strong>The forge</strong> handles consistency. It audits each project's agent system and flags drift &mdash; where the documented structure no longer matches how the agents actually work. A project might add a role informally, or stop using a protocol step, and the documentation doesn't catch up. The forge's audit cycle surfaces these mismatches so they can be resolved rather than accumulating as organizational debt.</p>
+      <p>None of these mechanisms is automatic. The human has to notice patterns. The role files have to be maintained. The forge has to be run. Organizational knowledge doesn't transfer itself &mdash; it transfers because someone (or something) actively moves it.</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- WHAT WE LEARNED -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div id="evo-arc" class="summary-section">
+      <h2>The Arc</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>Agents</th>
+            <th>Model</th>
+            <th>What It Taught Us</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>agi</td><td>10 &rarr; 7</td><td>Protocol + Forum</td><td>Premature structure costs more than no structure. Police, coach, and editor produced overhead, not output.</td></tr>
+          <tr><td>thisminute</td><td>5 &rarr; 11</td><td>Protocol + Forum</td><td>Grow into complexity rather than starting with it. The skeptic was the most important addition.</td></tr>
+          <tr><td>orchestration</td><td>1</td><td>Steward</td><td>Not every project needs coordination. A catalog is not a news platform.</td></tr>
+          <tr><td>toolshed</td><td>7</td><td>Protocol + Forum</td><td>The pattern transfers. A librarian from day one prevents the forum explosion.</td></tr>
+          <tr><td>sts2</td><td>9</td><td>Checkpoint</td><td>Invented the checkpoint model. Agent systems survive architecture pivots &mdash; the coordination structure is decoupled from the tech stack.</td></tr>
+          <tr><td>balatro</td><td>9</td><td>Checkpoint</td><td>Validated the checkpoint model. Disposable agents + persistent checkpoint = rapid iteration. Memory adoption is organic.</td></tr>
+          <tr><td>rts</td><td>7</td><td>Protocol + Forum</td><td>Protocol+forum works for game dev. The skeptic catches spec/code drift that testing misses.</td></tr>
+          <tr><td>ops</td><td>1 &rarr; 2</td><td>Steward</td><td>The steward pattern's growth triggers work. One agent becomes two when the domains diverge.</td></tr>
+          <tr><td>singularity-forge</td><td>4</td><td>Forge</td><td>The forge pattern is reusable and generative. A forge can create work, not just audit it.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="evo-models" class="summary-section">
+      <h2>Four Models</h2>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; margin-bottom: 1rem;">Four coordination models emerged across the projects. Each came from a different set of constraints and turned out to be reusable.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Used By</th>
+            <th>When It Fits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Protocol + Forum</td><td>thisminute (11), toolshed (7), rts (7), agi (7)</td><td>Steady-state products with multiple domains. Agents persist between sessions. Forum is the evidence ledger; protocol defines the startup sequence. Needs a librarian or the forum grows without bound.</td></tr>
+          <tr><td>Checkpoint</td><td>balatro (9), sts2 (9), forge.thisminute.org (3)</td><td>Rapid build-test-fix iteration. Agents are disposable &mdash; they spawn, read the checkpoint, work, update it, and shut down. No forum, no protocol. The cycle IS the protocol.</td></tr>
+          <tr><td>Steward</td><td>orchestration (1), ops (2), recipe-scaler (1)</td><td>Small scope or bootstrap projects. One agent owns everything and knows when to split. Minimal coordination overhead. The split criteria are baked into the role file.</td></tr>
+          <tr><td>Forge</td><td>thisminute-forge (4), singularity-forge (4)</td><td>Scan-evaluate-act loop over a registry of projects. Audit agent systems or catalog gaps, propagate improvements. Can be pointed at different problems &mdash; quality or coverage.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="evo-lessons" class="summary-section">
+      <h2>What We'd Tell Ourselves at the Start</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 40%">Expectation</th>
+            <th>Reality</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>More agents = more capability</td><td>agi started with 10 and consolidated to 7 in a day. The eliminated roles (police, coach, editor) generated noise. thisminute grew from 5 to 11 because each role was needed. orchestration never needed more than 1.</td></tr>
+          <tr><td>The forum is the coordination mechanism</td><td>Forums grow without bound. agi: 8,753 lines in a day. thisminute: 1,008 lines in a session. Every shared-context pattern needs a maintenance agent, and the maintenance cost is inseparable from the pattern. toolshed shipped the librarian on day one and never had the spike.</td></tr>
+          <tr><td>The skeptic is a nice-to-have</td><td>In agi, the skeptic invalidated ALL Go results (broken oracle). In thisminute, it caught 10&ndash;100x inflated numbers. The adversarial dynamic is load-bearing in every project that has one.</td></tr>
+          <tr><td>Organizational structure should be designed up front</td><td>agi over-designed and had to consolidate. thisminute inherited and grew. orchestration never needed to grow. The right amount of structure depends on the project, not on a template.</td></tr>
+          <tr><td>There's one right coordination model</td><td>There are at least four. Protocol+forum for steady-state products, checkpoint for rapid iteration, steward for small scope, forge for scan-evaluate-act over registries. Each emerged from a project's constraints. Applying the wrong model wastes effort &mdash; orchestration doesn't need a forum, balatro doesn't need a protocol.</td></tr>
+          <tr><td>Memory needs to be mandated</td><td>balatro went from 1 to 8 memory files in ~10 cycles with zero instruction. Agents that wrote memories performed better, so more agents started writing memories. The incentive is self-reinforcing when the checkpoint keeps losing context.</td></tr>
+          <tr><td>You need a central coordinator</td><td>Each project runs its own coordination model. The forge's role is auditing and pattern extraction, not dispatching work. Projects don't share runtime state, so coordinating them centrally would add overhead without benefit.</td></tr>
+          <tr><td>Organizational structure is set-and-forget</td><td>Agent systems drift from their documentation. Roles get added informally, protocol steps stop being followed, memory files accumulate without review. The forge's audit cycle exists specifically to catch this drift before it compounds.</td></tr>
+          <tr><td>There's one kind of forge</td><td>The first forge audited agent systems. The second forge creates projects to fill catalog gaps. Same 4-role structure, different problem domain. The pattern is "scan a registry, evaluate gaps, act on them" &mdash; what you point it at determines what it builds.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="closing">
+      <p>This is a living document. The projects are still running, the agents are still being tuned, and the patterns are still being revised. The main thing we've learned is that there's no shortcut &mdash; you figure out how to organize agents by building things with them and paying attention to what goes wrong.</p>
+      <p style="color: var(--text-muted); font-size: 0.82rem;">The organizational patterns referenced above are from the <a href=".">Orchestration catalog</a>. The <a href="/forge/">Forge</a> watches these projects and extracts what works into reusable templates. A <a href="/tools/">second forge</a> builds what's missing.</p>
+    </div>
+  </div><!-- /content -->
+  </div><!-- /evo-layout -->
+
+
+
+  <script src="/shared/forge.js"></script>
+  <script>
+  (function() {
+    var navItems = document.querySelectorAll('.evo-nav-item[data-target]');
+    var sections = [];
+    navItems.forEach(function(item) {
+      var id = item.getAttribute('data-target');
+      var el = document.getElementById(id);
+      if (el) sections.push({ id: id, el: el, nav: item });
+    });
+
+    // Click handler: smooth scroll, prevent hash jump
+    navItems.forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = item.getAttribute('data-target');
+        var target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', '#' + id);
+        }
+      });
+    });
+
+    // IntersectionObserver to track visible section
+    var currentActive = null;
+    var observer = new IntersectionObserver(function(entries) {
+      // Find the topmost visible section
+      var visible = [];
+      entries.forEach(function(entry) {
+        var item = sections.find(function(s) { return s.el === entry.target; });
+        if (item) item.isIntersecting = entry.isIntersecting;
+      });
+      // Pick the first intersecting section in document order
+      var found = null;
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].isIntersecting) { found = sections[i]; break; }
+      }
+      if (found && found.id !== currentActive) {
+        currentActive = found.id;
+        navItems.forEach(function(n) { n.classList.remove('active'); });
+        found.nav.classList.add('active');
+      }
+    }, {
+      rootMargin: '0px 0px -60% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(function(s) {
+      s.isIntersecting = false;
+      observer.observe(s.el);
+    });
+
+    // Set initial active on first section
+    if (sections.length > 0) sections[0].nav.classList.add('active');
+  })();
+  </script>
+</body>
+</html>

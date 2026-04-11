@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Models &middot; LLMs &middot; thisminute.org</title>
+<meta name="description" content="A big snapshot of the real models out there right now, grouped by vendor. Context windows, modalities, reasoning modes, hosted vs open weights.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%A7%A0</text></svg>">
+<link rel="stylesheet" href="/shared/forge.css">
+<style>
+  :root { --accent: #f0a4c0; }
+  body.light-mode { --accent: #d97ea0; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 40px 24px 4px;
+  }
+  .site-label a { color: inherit; text-decoration: none; }
+  .site-label a:hover { color: var(--text-secondary); }
+
+  header.hero {
+    text-align: center;
+    padding: 0 24px 20px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+  .hero .tagline {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0.4rem auto 0;
+  }
+  .disclaimer {
+    max-width: 560px;
+    margin: 0.85rem auto 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.55;
+  }
+
+  /* Vendor jump nav */
+  .vendor-nav {
+    max-width: 1100px;
+    margin: 0.5rem auto 0;
+    padding: 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+  .vendor-nav a {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .vendor-nav a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  main.catalog {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2.5rem 24px 64px;
+  }
+
+  /* Vendor section */
+  .vendor-section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 2rem;
+  }
+  .vendor-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed var(--border-light);
+  }
+  .vendor-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2rem;
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+  .vendor-count {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.1rem;
+  }
+
+  /* --- Card --- */
+  .model-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.35rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med);
+  }
+  .model-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+  }
+
+  .card-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+  }
+
+  .ctx-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+  }
+  .ctx-value {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .ctx-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .tag.mint {
+    background: color-mix(in srgb, #a8d8b5 14%, transparent);
+    border-color: color-mix(in srgb, #a8d8b5 28%, transparent);
+    color: #7fbb8f;
+  }
+  body.light-mode .tag.mint {
+    background: color-mix(in srgb, #7fbb8f 12%, transparent);
+    color: #5a9577;
+  }
+  .tag.pink {
+    background: var(--accent-dim);
+    border-color: var(--accent-muted);
+    color: var(--accent);
+  }
+
+  .summary {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .card-foot {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: flex-end;
+    letter-spacing: 0.05em;
+  }
+  .card-foot .out { color: var(--accent); }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px 40px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  footer a { color: var(--text-secondary); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 520px) {
+    .hero h1 { font-size: 2.5rem; }
+    .grid { grid-template-columns: 1fr; gap: 1rem; }
+    main.catalog { padding: 2rem 16px 48px; }
+    .vendor-name { font-size: 1.65rem; }
+  }
+</style>
+</head>
+<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+
+<div class="forge-theme-toggle"></div>
+
+<p class="site-label"><a href="/">&larr; LLMs</a> / model</p>
+
+<header class="hero">
+  <h1>Models</h1>
+  <p class="tagline">a big pile of the real models people are actually using right now, grouped by whoever made them!</p>
+  <p class="disclaimer">current as of 2026-04-11. this is a fast-moving field so treat any specific number as a ballpark, and some of these will be wrong or retired by the time you read this. the point is to get a feel for the shape of the space, not to be a spec sheet.</p>
+</header>
+
+<nav class="vendor-nav" id="vendor-nav"></nav>
+
+<main class="catalog" id="catalog"></main>
+
+<footer>
+  part of <a href="/">LLMs &middot; thisminute.org</a>
+</footer>
+
+<script src="/shared/forge.js"></script>
+<script>
+const MODELS = [
+  // ─── Anthropic ────────────────────────────────────────
+  { vendor: "Anthropic", name: "Claude Opus 4.6", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Frontier reasoning model. Extended-thinking mode, 1M token window, image input. Anthropic's current top-tier.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude Sonnet 4.6", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "The workhorse. Most of Claude Code runs on this. Cheaper and faster than Opus, still extremely capable at long agentic work.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude Haiku 4.5", ctx: "200K", tags: ["hosted", "fast", {label:"vision",cls:"pink"}], summary: "The small one. Built for speed and cheap bulk work. Great for triage and pre-filtering before handing off to a bigger model.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude Sonnet 4.5", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Previous workhorse generation. Still widely deployed in production. Excellent at long-running tool-use loops.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude 3.7 Sonnet", ctx: "200K", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "First Claude with an extended-thinking mode. Bridged the gap between quick-response and reasoning models.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude 3.5 Sonnet", ctx: "200K", tags: ["hosted", {label:"vision",cls:"pink"}], summary: "The one that kicked off serious agentic coding use. Lots of tools still pin to this version.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude 3 Opus", ctx: "200K", tags: ["hosted", {label:"vision",cls:"pink"}], summary: "Original Claude 3 frontier. Strong at long creative writing. Still popular for specific analysis tasks.", url: "https://www.anthropic.com/claude" },
+
+  // ─── OpenAI ────────────────────────────────────────
+  { vendor: "OpenAI", name: "GPT-5", ctx: "256K", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"multimodal",cls:"pink"}], summary: "OpenAI's flagship. Heavy multimodal support, built-in reasoning modes, and broad tool-calling. The one everyone compares against.", url: "https://openai.com/index/introducing-gpt-5/" },
+  { vendor: "OpenAI", name: "GPT-5 Mini", ctx: "128K", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The smaller, cheaper GPT-5. Same shape, less horsepower. Solid default for API apps that don't need the full model.", url: "https://openai.com/api/" },
+  { vendor: "OpenAI", name: "GPT-5 Nano", ctx: "128K", tags: ["hosted", "fast", "tiny"], summary: "The cheapest GPT-5 class. Built for extreme-scale bulk workloads where latency and cost dominate.", url: "https://openai.com/api/" },
+  { vendor: "OpenAI", name: "o3", ctx: "200K", tags: ["hosted", {label:"thinking",cls:"mint"}], summary: "Dedicated reasoning model. Burns a lot of thinking tokens before answering, gets top marks on math and code benchmarks.", url: "https://openai.com/index/introducing-o3-and-o4-mini/" },
+  { vendor: "OpenAI", name: "o3-mini", ctx: "128K", tags: ["hosted", {label:"thinking",cls:"mint"}, "fast"], summary: "Smaller reasoning model. Quick enough to drop into loops, strong on competitive math and programming tasks.", url: "https://openai.com/index/openai-o3-mini/" },
+  { vendor: "OpenAI", name: "o1", ctx: "200K", tags: ["hosted", {label:"thinking",cls:"mint"}], summary: "The model that started the 'thinking out loud' generation of reasoning LLMs. Still in use, still expensive per query.", url: "https://openai.com/o1/" },
+  { vendor: "OpenAI", name: "GPT-4o", ctx: "128K", tags: ["hosted", {label:"multimodal",cls:"pink"}], summary: "Unified text / vision / audio model from 2024. Still the default for a lot of consumer-facing apps.", url: "https://openai.com/index/hello-gpt-4o/" },
+  { vendor: "OpenAI", name: "GPT-4o Mini", ctx: "128K", tags: ["hosted", "fast", {label:"vision",cls:"pink"}], summary: "Cheap fast multimodal model. Replaced GPT-3.5 Turbo as the go-to cheap option in a lot of stacks.", url: "https://openai.com/api/" },
+  { vendor: "OpenAI", name: "GPT-4 Turbo", ctx: "128K", tags: ["hosted", "legacy"], summary: "Pre-4o GPT-4 with a big context. Hangs around because a lot of older integrations pin to it.", url: "https://openai.com/api/" },
+  { vendor: "OpenAI", name: "GPT-3.5 Turbo", ctx: "16K", tags: ["hosted", "legacy", "cheap"], summary: "The dirt-cheap original. Way past its prime but still alive as a fallback for ultra-simple tasks.", url: "https://openai.com/api/" },
+
+  // ─── Google ────────────────────────────────────────
+  { vendor: "Google", name: "Gemini 2.5 Pro", ctx: "2M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"video",cls:"pink"}], summary: "Biggest context window in the game at 2M tokens. Takes video as input natively. Google's bet on huge-context reasoning.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemini 2.5 Flash", ctx: "1M", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The fast, cheap Gemini. Still a huge 1M window, but prices itself to compete at the budget end.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemini 2.5 Flash Lite", ctx: "1M", tags: ["hosted", "fast", "cheap"], summary: "Even cheaper than Flash. Built for high-volume bulk workloads where you need multimodal but can't afford Pro.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemini 2.0 Pro", ctx: "1M", tags: ["hosted", {label:"multimodal",cls:"pink"}], summary: "Previous-generation frontier Gemini. Still deployed widely, especially in Workspace and Android integrations.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemini 2.0 Flash", ctx: "1M", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The 2.0 generation's speedster. Introduced native tool use and strong vision performance at low latency.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemini 1.5 Pro", ctx: "2M", tags: ["hosted", "legacy", {label:"multimodal",cls:"pink"}], summary: "The model that made 1M+ context windows normal. Still used where the very long context matters more than raw smarts.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemma 3 27B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Google's open-weights model built on Gemini research. Multilingual, vision-capable, and small enough to run on a single GPU.", url: "https://ai.google.dev/gemma" },
+  { vendor: "Google", name: "Gemma 3 9B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "small", "self-host"], summary: "Smaller open Gemma. Runs on a laptop with enough VRAM. Popular for local dev and edge deployment.", url: "https://ai.google.dev/gemma" },
+
+  // ─── Meta ────────────────────────────────────────
+  { vendor: "Meta", name: "Llama 4 Behemoth", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "frontier"], summary: "Meta's huge MoE flagship. Still in training last we checked, but the preview numbers put it in the frontier conversation.", url: "https://llama.meta.com/" },
+  { vendor: "Meta", name: "Llama 4 Maverick", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "Mid-size MoE. The practical flagship for people self-hosting Llama 4. Strong coding and agentic performance.", url: "https://llama.meta.com/" },
+  { vendor: "Meta", name: "Llama 4 Scout", ctx: "10M", tags: [{label:"open weights",cls:"mint"}, {label:"huge ctx",cls:"pink"}], summary: "Weird one. Tiny parameters but a 10M token context window thanks to a new attention scheme. For very-long-document workloads.", url: "https://llama.meta.com/" },
+  { vendor: "Meta", name: "Llama 3.3 70B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Reliable open-weights workhorse. Most production self-hosted Llama deployments still run some variant of this.", url: "https://llama.meta.com/" },
+  { vendor: "Meta", name: "Llama 3.2 Vision", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "First Llama with multimodal input. 11B and 90B flavors. Unlocked self-hosted vision for a lot of open-source projects.", url: "https://llama.meta.com/" },
+  { vendor: "Meta", name: "Llama 3.1 405B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "huge"], summary: "Massive dense open-weights model. Proved that open models could hit frontier quality if you threw enough compute at them.", url: "https://llama.meta.com/" },
+
+  // ─── Mistral ────────────────────────────────────────
+  { vendor: "Mistral", name: "Mistral Large 2", ctx: "128K", tags: ["hosted", {label:"open weights",cls:"mint"}], summary: "French flagship. Weights released under research license, also available hosted through Mistral's API for commercial use.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mistral Medium 3", ctx: "128K", tags: ["hosted"], summary: "The mid-range hosted model. Priced to compete with Sonnet and GPT-4o Mini for everyday production use.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mistral Small 3", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, "fast", "self-host"], summary: "Fully open small model. 24B parameters. Built to run fast on modest hardware.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mistral Nemo", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "small"], summary: "12B open-weights model built with NVIDIA. Tokenizer is notably efficient on non-English languages.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mixtral 8x22B", ctx: "64K", tags: [{label:"open weights",cls:"mint"}, "MoE"], summary: "Open mixture-of-experts model. 8 experts, 22B each, only 2 active per token. Strong quality-per-inference-dollar.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mixtral 8x7B", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, "MoE", "small"], summary: "Original Mixtral. The model that made MoE mainstream in the open-weights world.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Codestral", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, {label:"coding",cls:"pink"}], summary: "Mistral's specialized coding model. Trained on 80+ programming languages. Great for self-hosted code assistants.", url: "https://mistral.ai/" },
+
+  // ─── DeepSeek ────────────────────────────────────────
+  { vendor: "DeepSeek", name: "DeepSeek R1", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, {label:"thinking",cls:"mint"}, "self-host"], summary: "Open-weights reasoning model that shocked everyone by being nearly as good as frontier models on math and code for a fraction of the training cost.", url: "https://www.deepseek.com/" },
+  { vendor: "DeepSeek", name: "DeepSeek V3", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "The non-reasoning DeepSeek. Large MoE model, cheap to run, fast, general-purpose. Very popular as a self-hosted workhorse.", url: "https://www.deepseek.com/" },
+  { vendor: "DeepSeek", name: "DeepSeek R1 Distill", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "small"], summary: "Reasoning traces from R1 distilled into smaller base models (Llama, Qwen). Runs on consumer hardware, retains a lot of the reasoning behavior.", url: "https://www.deepseek.com/" },
+  { vendor: "DeepSeek", name: "DeepSeek Coder V2", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, {label:"coding",cls:"pink"}], summary: "Coding-specialized DeepSeek. Strong at repo-scale completion and refactoring. Self-hostable for code assistants.", url: "https://www.deepseek.com/" },
+  { vendor: "DeepSeek", name: "DeepSeek V2", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "legacy"], summary: "Previous-generation V2. Still in use in self-hosted setups that haven't upgraded yet.", url: "https://www.deepseek.com/" },
+
+  // ─── Alibaba (Qwen) ────────────────────────────────────────
+  { vendor: "Alibaba", name: "Qwen 3", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "multilingual"], summary: "Qwen's current flagship. Strong multilingual coverage, sizes range from tiny to very large. All open.", url: "https://qwenlm.github.io/" },
+  { vendor: "Alibaba", name: "Qwen 2.5 72B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Previous-gen workhorse. Competitive with Llama 70B at the time, still widely deployed.", url: "https://qwenlm.github.io/" },
+  { vendor: "Alibaba", name: "Qwen 2.5 Coder", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, {label:"coding",cls:"pink"}], summary: "Code-specialized Qwen. Trained on a huge multi-language code corpus. Powers a lot of open coding assistants.", url: "https://qwenlm.github.io/" },
+  { vendor: "Alibaba", name: "Qwen 2 VL", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Vision-capable Qwen. Handles complex documents and charts. Popular for document-parsing pipelines you want to self-host.", url: "https://qwenlm.github.io/" },
+  { vendor: "Alibaba", name: "Qwen Audio", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, {label:"audio",cls:"pink"}], summary: "Audio-in, text-out. Transcription, audio understanding, music analysis. One of the few open audio-capable models.", url: "https://qwenlm.github.io/" },
+
+  // ─── xAI ────────────────────────────────────────
+  { vendor: "xAI", name: "Grok 3", ctx: "128K", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "xAI's flagship. Trained on an absurd amount of compute. Integrated into X (Twitter) and available via API.", url: "https://x.ai/" },
+  { vendor: "xAI", name: "Grok 2", ctx: "128K", tags: ["hosted", "legacy"], summary: "The previous Grok generation. Vision support added late in its lifecycle. Still used in parts of the X ecosystem.", url: "https://x.ai/" },
+
+  // ─── Cohere ────────────────────────────────────────
+  { vendor: "Cohere", name: "Command R+", ctx: "128K", tags: ["hosted", {label:"open weights",cls:"mint"}, "RAG"], summary: "Cohere's flagship, purpose-built for RAG and tool-use workflows. Weights released. Popular for enterprise search applications.", url: "https://cohere.com/command" },
+  { vendor: "Cohere", name: "Command R", ctx: "128K", tags: ["hosted", {label:"open weights",cls:"mint"}, "RAG"], summary: "Smaller, cheaper Command. Same RAG-first design. Sweet spot for retrieval-heavy pipelines on a budget.", url: "https://cohere.com/command" },
+
+  // ─── Microsoft ────────────────────────────────────────
+  { vendor: "Microsoft", name: "Phi-4", ctx: "16K", tags: [{label:"open weights",cls:"mint"}, "small", "self-host"], summary: "14B parameter model that punches way above its weight on math and reasoning benchmarks. Trained on synthetic data, not internet scrape.", url: "https://azure.microsoft.com/en-us/products/phi" },
+  { vendor: "Microsoft", name: "Phi-3 Medium", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "small"], summary: "14B model with a long context. Designed to fit on smaller devices while still handling whole documents.", url: "https://azure.microsoft.com/en-us/products/phi" },
+  { vendor: "Microsoft", name: "Phi-3 Mini", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "tiny", "self-host"], summary: "3.8B parameters. Runs on a phone. Built to prove that carefully curated training data beats brute scale for small models.", url: "https://azure.microsoft.com/en-us/products/phi" },
+
+  // ─── Others ────────────────────────────────────────
+  { vendor: "Others", name: "NVIDIA Nemotron", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "NVIDIA's own open-weights model family. Based on Llama with NVIDIA training tricks. Competitive with Llama 70B.", url: "https://huggingface.co/nvidia" },
+  { vendor: "Others", name: "Databricks DBRX", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, "MoE"], summary: "132B parameter MoE from Databricks. Released for people running LLMs on Databricks' platform, but the weights are open.", url: "https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm" },
+  { vendor: "Others", name: "Moonshot Kimi", ctx: "2M", tags: ["hosted", {label:"huge ctx",cls:"pink"}], summary: "Chinese AI startup. Famous for one of the earliest 2M-token context windows. Strong at long-document understanding.", url: "https://kimi.moonshot.cn/" },
+  { vendor: "Others", name: "01.AI Yi Lightning", ctx: "128K", tags: ["hosted", "fast"], summary: "01.AI's latest. Fast, cheap, and surprisingly capable. Competitive with GPT-4o class models on benchmarks.", url: "https://01.ai/" },
+  { vendor: "Others", name: "Baidu Ernie 4.5", ctx: "128K", tags: ["hosted"], summary: "Baidu's flagship. Dominant in the Chinese-language market and integrated throughout Baidu's products.", url: "https://ernie.baidu.com/" }
+];
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function slug(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+function tagHtml(t) {
+  if (typeof t === 'string') return '<span class="tag">'+esc(t)+'</span>';
+  return '<span class="tag '+(t.cls||'')+'">'+esc(t.label)+'</span>';
+}
+
+function render() {
+  // group by vendor (preserves first-appearance order)
+  const groups = {};
+  const order = [];
+  for (const m of MODELS) {
+    if (!(m.vendor in groups)) {
+      groups[m.vendor] = [];
+      order.push(m.vendor);
+    }
+    groups[m.vendor].push(m);
+  }
+
+  // vendor nav
+  document.getElementById('vendor-nav').innerHTML =
+    order.map(v => '<a href="#'+slug(v)+'">'+esc(v)+'</a>').join('');
+
+  // sections
+  const html = order.map(vendor => {
+    const items = groups[vendor];
+    const cards = items.map(m => (
+      '<a class="model-card" href="'+m.url+'" target="_blank" rel="noopener">'+
+        '<div class="card-name">'+esc(m.name)+'</div>'+
+        '<div class="ctx-row">'+
+          '<span class="ctx-value">'+esc(m.ctx)+'</span>'+
+          '<span class="ctx-label">ctx</span>'+
+        '</div>'+
+        '<div class="tags">'+m.tags.map(tagHtml).join('')+'</div>'+
+        '<div class="summary">'+esc(m.summary)+'</div>'+
+        '<div class="card-foot"><span class="out">read more &rarr;</span></div>'+
+      '</a>'
+    )).join('');
+    return (
+      '<section class="vendor-section" id="'+slug(vendor)+'">'+
+        '<div class="vendor-head">'+
+          '<span class="vendor-name">'+esc(vendor)+'</span>'+
+          '<span class="vendor-count">'+items.length+' models</span>'+
+        '</div>'+
+        '<div class="grid">'+cards+'</div>'+
+      '</section>'
+    );
+  }).join('');
+  document.getElementById('catalog').innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+[
+  {
+    "id": "processing",
+    "name": "Processing",
+    "description": "Java-based creative coding environment for visual arts. Beginner-friendly with a large community and extensive library ecosystem.",
+    "url": "https://processing.org/",
+    "category": "Creative Coding",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["creative-coding", "java", "visual-arts", "generative-art"],
+    "source": "https://github.com/processing/processing4"
+  },
+  {
+    "id": "p5js",
+    "name": "p5.js",
+    "description": "JavaScript library for creative coding, built on Processing's principles. Runs in the browser with a beginner-friendly web editor.",
+    "url": "https://p5js.org/",
+    "category": "Creative Coding",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["creative-coding", "javascript", "generative-art", "web"],
+    "source": "https://github.com/processing/p5.js"
+  },
+  {
+    "id": "openframeworks",
+    "name": "openFrameworks",
+    "description": "C++ toolkit for creative coding. Wraps OpenGL, audio, video, and hardware I/O in a consistent API across platforms.",
+    "url": "https://openframeworks.cc/",
+    "category": "Creative Coding",
+    "os": ["windows", "macos", "linux", "ios", "android"],
+    "pricing": "free",
+    "tags": ["creative-coding", "cpp", "opengl", "installations"],
+    "source": "https://github.com/openframeworks/openFrameworks"
+  },
+  {
+    "id": "touchdesigner",
+    "name": "TouchDesigner",
+    "description": "Node-based visual programming for real-time interactive multimedia. Used for installations, live visuals, and projection mapping.",
+    "url": "https://derivative.ca/",
+    "category": "Creative Coding",
+    "os": ["windows", "macos"],
+    "pricing": "freemium",
+    "tags": ["visual-programming", "real-time", "installations", "projection-mapping"]
+  },
+  {
+    "id": "shadertoy",
+    "name": "Shadertoy",
+    "description": "Browser-based GLSL shader editor with a community gallery of thousands of shaders. Real-time rendering with WebGL.",
+    "url": "https://www.shadertoy.com/",
+    "category": "Creative Coding",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["shaders", "glsl", "webgl", "community"]
+  },
+  {
+    "id": "glsl-sandbox",
+    "name": "GLSL Sandbox",
+    "description": "Minimal in-browser fragment shader editor with a public gallery. Write, fork, and remix shaders with instant visual feedback.",
+    "url": "https://glslsandbox.com/",
+    "category": "Creative Coding",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["shaders", "glsl", "webgl", "live-coding"],
+    "source": "https://github.com/mrdoob/glsl-sandbox"
+  },
+  {
+    "id": "nannou",
+    "name": "Nannou",
+    "description": "Creative coding framework for Rust. Inspired by Processing and openFrameworks, with safe concurrency and GPU access via wgpu.",
+    "url": "https://nannou.cc/",
+    "category": "Creative Coding",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["creative-coding", "rust", "generative-art", "wgpu"],
+    "source": "https://github.com/nannou-org/nannou"
+  },
+  {
+    "id": "hydra-synth",
+    "name": "Hydra",
+    "description": "Live-codeable video synthesizer in the browser. Analog-synth-inspired syntax for real-time visuals, supports WebRTC streaming.",
+    "url": "https://hydra.ojack.xyz/",
+    "category": "Creative Coding",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["live-coding", "video-synth", "visuals", "webgl"],
+    "source": "https://github.com/hydra-synth/hydra"
+  },
+  {
+    "id": "cables-gl",
+    "name": "Cables.gl",
+    "description": "Visual programming environment for WebGL and WebGPU. Node-based patching for interactive 3D graphics, free and open source.",
+    "url": "https://cables.gl/",
+    "category": "Creative Coding",
+    "os": ["web", "windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["visual-programming", "webgl", "webgpu", "3d"],
+    "source": "https://github.com/cables-gl/cables"
+  },
+  {
+    "id": "supercollider",
+    "name": "SuperCollider",
+    "description": "Environment for audio synthesis and algorithmic composition. Includes a real-time audio server, interpreted language, and IDE.",
+    "url": "https://supercollider.github.io/",
+    "category": "Audio Programming",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["audio-synthesis", "algorithmic-composition", "live-coding", "sound-design"],
+    "source": "https://github.com/supercollider/supercollider"
+  },
+  {
+    "id": "pure-data",
+    "name": "Pure Data",
+    "description": "Visual programming language for audio, music, and multimedia by Miller Puckette. Patch-based dataflow environment.",
+    "url": "https://puredata.info/",
+    "category": "Audio Programming",
+    "os": ["windows", "macos", "linux", "ios", "android"],
+    "pricing": "free",
+    "tags": ["visual-programming", "audio", "dataflow", "patching"],
+    "source": "https://github.com/pure-data/pure-data"
+  },
+  {
+    "id": "max-msp",
+    "name": "Max/MSP",
+    "description": "Visual programming environment for music, audio, and multimedia by Cycling '74. Extensible with JavaScript, Gen~, and RNBO.",
+    "url": "https://cycling74.com/",
+    "category": "Audio Programming",
+    "os": ["windows", "macos"],
+    "pricing": "subscription",
+    "tags": ["visual-programming", "audio", "max", "jitter"]
+  },
+  {
+    "id": "csound",
+    "name": "Csound",
+    "description": "Sound and music computing system with 1500+ opcodes. Descended from MUSIC-N, used in academia and production since 1985.",
+    "url": "https://csound.com/",
+    "category": "Audio Programming",
+    "os": ["windows", "macos", "linux", "web", "ios", "android"],
+    "pricing": "free",
+    "tags": ["audio-synthesis", "music-computing", "opcodes", "academic"],
+    "source": "https://github.com/csound/csound"
+  },
+  {
+    "id": "chuck",
+    "name": "ChucK",
+    "description": "Strongly-timed, concurrent audio programming language from Stanford/Princeton. Supports live coding and on-the-fly modification.",
+    "url": "https://chuck.stanford.edu/",
+    "category": "Audio Programming",
+    "os": ["windows", "macos", "linux", "web"],
+    "pricing": "free",
+    "tags": ["audio-programming", "live-coding", "concurrent", "strongly-timed"],
+    "source": "https://github.com/ccrma/chuck"
+  },
+  {
+    "id": "tone-js",
+    "name": "Tone.js",
+    "description": "Web Audio framework for interactive music in the browser. Provides synths, effects, scheduling, and a global transport.",
+    "url": "https://tonejs.github.io/",
+    "category": "Audio Programming",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["web-audio", "javascript", "synths", "interactive-music"],
+    "source": "https://github.com/Tonejs/Tone.js"
+  },
+  {
+    "id": "faust",
+    "name": "FAUST",
+    "description": "Functional language for audio DSP. Compiles to C++, WebAssembly, Rust, and plugin formats (VST, AU, Max, Pd, etc.).",
+    "url": "https://faust.grame.fr/",
+    "category": "Audio Programming",
+    "os": ["windows", "macos", "linux", "web"],
+    "pricing": "free",
+    "tags": ["dsp", "functional", "audio-plugins", "compiler"],
+    "source": "https://github.com/grame-cncm/faust"
+  },
+  {
+    "id": "vcv-rack",
+    "name": "VCV Rack",
+    "description": "Virtual Eurorack modular synthesizer with 2000+ community modules. Free standalone; Pro adds DAW plugin support.",
+    "url": "https://vcvrack.com/",
+    "category": "Audio Programming",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "freemium",
+    "tags": ["modular-synth", "eurorack", "virtual-analog", "sound-design"],
+    "source": "https://github.com/VCVRack/Rack"
+  },
+  {
+    "id": "unity-shader-graph",
+    "name": "Unity Shader Graph",
+    "description": "Visual shader editor for Unity. Drag-and-drop nodes to create shaders for URP and HDRP without writing code.",
+    "url": "https://docs.unity3d.com/Manual/shader-graph.html",
+    "category": "Graphics Programming",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "freemium",
+    "tags": ["shaders", "unity", "visual-editor", "game-dev"]
+  },
+  {
+    "id": "godot-shading-language",
+    "name": "Godot Shading Language",
+    "description": "Godot's built-in GLSL-like shader language. Covers spatial, canvas, particle, sky, and fog shaders with full editor integration.",
+    "url": "https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/shading_language.html",
+    "category": "Graphics Programming",
+    "os": ["windows", "macos", "linux", "web", "android", "ios"],
+    "pricing": "free",
+    "tags": ["shaders", "godot", "glsl", "game-dev"]
+  },
+  {
+    "id": "wgpu",
+    "name": "wgpu",
+    "description": "Safe, portable Rust graphics API implementing the WebGPU standard. Runs on Vulkan, Metal, DX12, OpenGL ES, and WebGPU.",
+    "url": "https://wgpu.rs/",
+    "category": "Graphics Programming",
+    "os": ["windows", "macos", "linux", "web"],
+    "pricing": "free",
+    "tags": ["webgpu", "rust", "vulkan", "cross-platform"],
+    "source": "https://github.com/gfx-rs/wgpu"
+  },
+  {
+    "id": "bgfx",
+    "name": "bgfx",
+    "description": "Cross-platform, API-agnostic rendering library. Supports Direct3D, Metal, Vulkan, OpenGL, and WebGPU from one codebase.",
+    "url": "https://bkaradzic.github.io/bgfx/",
+    "category": "Graphics Programming",
+    "os": ["windows", "macos", "linux", "web", "ios", "android"],
+    "pricing": "free",
+    "tags": ["rendering", "cross-platform", "graphics-api", "cpp"],
+    "source": "https://github.com/bkaradzic/bgfx"
+  },
+  {
+    "id": "vulkan-sdk",
+    "name": "Vulkan SDK",
+    "description": "LunarG SDK for the Vulkan graphics and compute API. Includes validation layers, shader tools, and debugging utilities.",
+    "url": "https://vulkan.lunarg.com/sdk/home",
+    "category": "Graphics Programming",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["vulkan", "gpu", "graphics-api", "low-level"]
+  },
+  {
+    "id": "metal-api",
+    "name": "Metal",
+    "description": "Apple's low-overhead GPU API for graphics and compute. Tightly integrated with Apple silicon for maximum performance.",
+    "url": "https://developer.apple.com/metal/",
+    "category": "Graphics Programming",
+    "os": ["macos", "ios"],
+    "pricing": "free",
+    "tags": ["gpu", "graphics-api", "apple", "low-level"]
+  },
+  {
+    "id": "three-js",
+    "name": "Three.js",
+    "description": "Lightweight JavaScript 3D library built on WebGL. Widely used for 3D games, visualizations, and interactive web experiences.",
+    "url": "https://threejs.org/",
+    "category": "Graphics Programming",
+    "os": ["web"],
+    "pricing": "free",
+    "tags": ["3d", "webgl", "javascript", "web"],
+    "source": "https://github.com/mrdoob/three.js"
+  },
+  {
+    "id": "ultimaker-cura",
+    "name": "UltiMaker Cura",
+    "description": "Open-source 3D printing slicer with 400+ settings. Trusted by millions, supports hundreds of printer profiles out of the box.",
+    "url": "https://ultimaker.com/software/ultimaker-cura/",
+    "category": "3D Printing",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["slicer", "3d-printing", "gcode", "fdm"],
+    "source": "https://github.com/Ultimaker/Cura"
+  },
+  {
+    "id": "prusaslicer",
+    "name": "PrusaSlicer",
+    "description": "Feature-rich slicer for FDM and resin printers by Prusa Research. Frequent updates, strong defaults, advanced multi-material support.",
+    "url": "https://www.prusa3d.com/page/prusaslicer_424/",
+    "category": "3D Printing",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["slicer", "3d-printing", "gcode", "resin"],
+    "source": "https://github.com/prusa3d/PrusaSlicer"
+  },
+  {
+    "id": "orcaslicer",
+    "name": "OrcaSlicer",
+    "description": "Fast, open-source slicer forked from PrusaSlicer and BambuStudio. Strong Bambu Lab support and active community development.",
+    "url": "https://www.orcaslicer.com/",
+    "category": "3D Printing",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["slicer", "3d-printing", "gcode", "bambu-lab"],
+    "source": "https://github.com/OrcaSlicer/OrcaSlicer"
+  },
+  {
+    "id": "superslicer",
+    "name": "SuperSlicer",
+    "description": "PrusaSlicer fork with extra calibration tools and tuning options. Aimed at users who want more control over print parameters.",
+    "url": "https://github.com/supermerill/SuperSlicer",
+    "category": "3D Printing",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["slicer", "3d-printing", "gcode", "calibration"],
+    "source": "https://github.com/supermerill/SuperSlicer"
+  },
+  {
+    "id": "meshmixer",
+    "name": "Meshmixer",
+    "description": "Autodesk's mesh editing and 3D print prep tool. Repairs, hollows, slices, and sculpts STL/OBJ files. Legacy but still functional.",
+    "url": "https://apps.autodesk.com/FUSION/en/Detail/Index?id=4108920185261935100&appLang=en&os=Win64",
+    "category": "3D Printing",
+    "os": ["windows", "macos"],
+    "pricing": "free",
+    "tags": ["mesh-editing", "3d-printing", "stl", "repair"]
+  }
+]

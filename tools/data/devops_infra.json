@@ -1,0 +1,1918 @@
+[
+  {
+    "id": "github-actions",
+    "name": "GitHub Actions",
+    "description": "CI/CD built into GitHub. Workflow automation with YAML, matrix builds, reusable actions, and free for public repos.",
+    "url": "https://github.com/features/actions",
+    "category": "CI/CD Tools",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ci-cd",
+      "automation",
+      "github",
+      "yaml"
+    ]
+  },
+  {
+    "id": "jenkins",
+    "name": "Jenkins",
+    "description": "Self-hosted automation server. Extensible with 1800+ plugins for building, testing, and deploying software.",
+    "url": "https://www.jenkins.io",
+    "category": "CI/CD Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "self-hosted",
+      "plugins",
+      "java",
+      "open-source"
+    ],
+    "source": "https://github.com/jenkinsci/jenkins"
+  },
+  {
+    "id": "circleci",
+    "name": "CircleCI",
+    "description": "Cloud CI/CD platform with fast builds, Docker support, caching, and parallelism. Free tier for open source.",
+    "url": "https://circleci.com",
+    "category": "CI/CD Tools",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ci-cd",
+      "cloud",
+      "docker",
+      "parallelism"
+    ]
+  },
+  {
+    "id": "gitlab-ci",
+    "name": "GitLab CI/CD",
+    "description": "CI/CD integrated into GitLab. Pipelines defined in YAML, auto DevOps, container registry, and review apps.",
+    "url": "https://docs.gitlab.com/ee/ci",
+    "category": "CI/CD Tools",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ci-cd",
+      "gitlab",
+      "pipelines",
+      "devops"
+    ]
+  },
+  {
+    "id": "buildkite",
+    "name": "Buildkite",
+    "description": "Hybrid CI/CD platform. Run builds on your own infrastructure with a hosted orchestration layer. Fast and scalable.",
+    "url": "https://buildkite.com",
+    "category": "CI/CD Tools",
+    "os": [
+      "web",
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ci-cd",
+      "self-hosted-agents",
+      "scalable",
+      "hybrid"
+    ]
+  },
+  {
+    "id": "travis-ci",
+    "name": "Travis CI",
+    "description": "Hosted CI service for open-source and private projects. YAML config, multi-language support, and GitHub integration.",
+    "url": "https://www.travis-ci.com",
+    "category": "CI/CD Tools",
+    "os": [
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ci-cd",
+      "cloud",
+      "github"
+    ]
+  },
+  {
+    "id": "argo-cd",
+    "name": "Argo CD",
+    "description": "Declarative GitOps continuous delivery for Kubernetes. Syncs app state from Git repos to clusters automatically.",
+    "url": "https://argoproj.github.io/cd",
+    "category": "CI/CD Tools",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "gitops",
+      "kubernetes",
+      "declarative",
+      "open-source"
+    ],
+    "source": "https://github.com/argoproj/argo-cd"
+  },
+  {
+    "id": "drone-ci",
+    "name": "Drone CI",
+    "description": "Container-native CI/CD platform. Pipelines run in isolated Docker containers defined via YAML.",
+    "url": "https://www.drone.io",
+    "category": "CI/CD Tools",
+    "os": [
+      "web",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ci-cd",
+      "containers",
+      "docker",
+      "self-hosted"
+    ],
+    "source": "https://github.com/harness/drone"
+  },
+  {
+    "id": "teamcity",
+    "name": "TeamCity",
+    "description": "JetBrains CI/CD server with smart build chaining, test history, and deep IDE integration. Free for small teams.",
+    "url": "https://www.jetbrains.com/teamcity",
+    "category": "CI/CD Tools",
+    "os": [
+      "web",
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "ci-cd",
+      "jetbrains",
+      "build-chains",
+      "enterprise"
+    ]
+  },
+  {
+    "id": "woodpecker-ci",
+    "name": "Woodpecker CI",
+    "description": "Community fork of Drone. Lightweight, container-based CI/CD with YAML pipelines and multi-platform support.",
+    "url": "https://woodpecker-ci.org",
+    "category": "CI/CD Tools",
+    "os": [
+      "web",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "containers",
+      "self-hosted",
+      "open-source"
+    ],
+    "source": "https://github.com/woodpecker-ci/woodpecker"
+  },
+  {
+    "id": "flux-cd",
+    "name": "Flux CD",
+    "description": "GitOps toolkit for Kubernetes. Continuously reconciles cluster state with Git repositories using CNCF-graduated controllers.",
+    "url": "https://fluxcd.io",
+    "category": "CI/CD Tools",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "gitops",
+      "kubernetes",
+      "cncf",
+      "open-source"
+    ],
+    "source": "https://github.com/fluxcd/flux2"
+  },
+  {
+    "id": "tekton",
+    "name": "Tekton",
+    "description": "Kubernetes-native CI/CD framework. Define pipelines as custom resources that run as pods in your cluster.",
+    "url": "https://tekton.dev",
+    "category": "CI/CD Tools",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "kubernetes",
+      "cloud-native",
+      "cncf",
+      "open-source"
+    ],
+    "source": "https://github.com/tektoncd/pipeline"
+  },
+  {
+    "id": "spinnaker",
+    "name": "Spinnaker",
+    "description": "Multi-cloud continuous delivery platform by Netflix. Manages deployments across AWS, GCP, Azure, and Kubernetes.",
+    "url": "https://spinnaker.io",
+    "category": "CI/CD Tools",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "multi-cloud",
+      "deployment",
+      "netflix",
+      "open-source"
+    ],
+    "source": "https://github.com/spinnaker/spinnaker"
+  },
+  {
+    "id": "concourse-ci",
+    "name": "Concourse CI",
+    "description": "Pipeline-based CI/CD system with hermetic builds. Every step runs in containers, ensuring fully reproducible pipelines.",
+    "url": "https://concourse-ci.org",
+    "category": "CI/CD Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "pipelines",
+      "containers",
+      "reproducible",
+      "open-source"
+    ],
+    "source": "https://github.com/concourse/concourse"
+  },
+  {
+    "id": "gocd",
+    "name": "GoCD",
+    "description": "Open-source CI/CD server by Thoughtworks. Advanced pipeline modeling with fan-in/fan-out and value stream maps.",
+    "url": "https://www.gocd.org",
+    "category": "CI/CD Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "pipelines",
+      "thoughtworks",
+      "value-stream",
+      "open-source"
+    ],
+    "source": "https://github.com/gocd/gocd"
+  },
+  {
+    "id": "webpack",
+    "name": "webpack",
+    "description": "Module bundler for JavaScript applications. Code splitting, loaders, plugins, and hot module replacement.",
+    "url": "https://webpack.js.org",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "bundler",
+      "javascript",
+      "module",
+      "open-source"
+    ],
+    "source": "https://github.com/webpack/webpack",
+    "language": "javascript"
+  },
+  {
+    "id": "vite",
+    "name": "Vite",
+    "description": "Next-generation frontend build tool. Instant dev server startup with native ES modules and fast HMR.",
+    "url": "https://vite.dev",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "bundler",
+      "dev-server",
+      "esm",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/vitejs/vite",
+    "language": "typescript"
+  },
+  {
+    "id": "esbuild",
+    "name": "esbuild",
+    "description": "Extremely fast JavaScript and CSS bundler and minifier written in Go. 10-100x faster than alternatives.",
+    "url": "https://esbuild.github.io",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "bundler",
+      "minifier",
+      "fast",
+      "go",
+      "open-source"
+    ],
+    "source": "https://github.com/evanw/esbuild",
+    "language": "go"
+  },
+  {
+    "id": "rollup",
+    "name": "Rollup",
+    "description": "JavaScript module bundler optimized for ES modules. Produces efficient, tree-shaken bundles for libraries and apps.",
+    "url": "https://rollupjs.org",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "bundler",
+      "tree-shaking",
+      "esm",
+      "open-source"
+    ],
+    "source": "https://github.com/rollup/rollup",
+    "language": "javascript"
+  },
+  {
+    "id": "turbopack",
+    "name": "Turbopack",
+    "description": "Incremental bundler by Vercel written in Rust. Designed as the successor to webpack with massive speed gains.",
+    "url": "https://turbo.build/pack",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "bundler",
+      "rust",
+      "incremental",
+      "vercel",
+      "open-source"
+    ],
+    "source": "https://github.com/vercel/turborepo",
+    "language": "rust"
+  },
+  {
+    "id": "parcel",
+    "name": "Parcel",
+    "description": "Zero-configuration web application bundler. Automatic transforms, code splitting, and hot reloading out of the box.",
+    "url": "https://parceljs.org",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "bundler",
+      "zero-config",
+      "hmr",
+      "open-source"
+    ],
+    "source": "https://github.com/parcel-bundler/parcel",
+    "language": "javascript"
+  },
+  {
+    "id": "gradle",
+    "name": "Gradle",
+    "description": "Build automation tool for JVM projects. Groovy/Kotlin DSL, incremental builds, and dependency management.",
+    "url": "https://gradle.org",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "jvm",
+      "android",
+      "groovy",
+      "open-source"
+    ],
+    "source": "https://github.com/gradle/gradle",
+    "language": "java"
+  },
+  {
+    "id": "maven",
+    "name": "Maven",
+    "description": "Standard build tool for Java projects. Convention-over-configuration, dependency management, and XML-based POM files.",
+    "url": "https://maven.apache.org",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "java",
+      "dependency-management",
+      "open-source"
+    ],
+    "source": "https://github.com/apache/maven",
+    "language": "java"
+  },
+  {
+    "id": "swc",
+    "name": "SWC",
+    "description": "Super-fast TypeScript/JavaScript compiler written in Rust. Drop-in replacement for Babel with 20x speed improvement.",
+    "url": "https://swc.rs",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "compiler",
+      "rust",
+      "transpiler",
+      "fast",
+      "open-source"
+    ],
+    "source": "https://github.com/swc-project/swc",
+    "language": "rust"
+  },
+  {
+    "id": "meson",
+    "name": "Meson",
+    "description": "Fast and user-friendly build system for C, C++, and other languages. Designed for minimal build times and clear syntax.",
+    "url": "https://mesonbuild.com",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "c-cpp",
+      "fast",
+      "cross-platform",
+      "open-source"
+    ],
+    "source": "https://github.com/mesonbuild/meson"
+  },
+  {
+    "id": "ninja",
+    "name": "Ninja",
+    "description": "Small, speed-focused build system. Designed to be generated by higher-level build tools like CMake and Meson.",
+    "url": "https://ninja-build.org",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "fast",
+      "low-level",
+      "open-source"
+    ],
+    "source": "https://github.com/ninja-build/ninja"
+  },
+  {
+    "id": "buck2",
+    "name": "Buck2",
+    "description": "Meta's large-scale build system rewritten in Rust. Hermetic, parallel builds with remote execution support.",
+    "url": "https://buck2.build",
+    "category": "Build Tools",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "meta",
+      "hermetic",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/facebook/buck2"
+  },
+  {
+    "id": "pants",
+    "name": "Pants",
+    "description": "Scalable build system for monorepos. Supports Python, Go, Java, and Shell with fine-grained caching and concurrency.",
+    "url": "https://www.pantsbuild.org",
+    "category": "Build Tools",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "monorepo",
+      "multi-language",
+      "caching",
+      "open-source"
+    ],
+    "source": "https://github.com/pantsbuild/pants"
+  },
+  {
+    "id": "turborepo",
+    "name": "Turborepo",
+    "description": "High-performance build system for JavaScript and TypeScript monorepos. Remote caching and parallel task execution.",
+    "url": "https://turbo.build/repo",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "monorepo",
+      "build-system",
+      "caching",
+      "vercel",
+      "open-source"
+    ],
+    "source": "https://github.com/vercel/turborepo"
+  },
+  {
+    "id": "nx",
+    "name": "Nx",
+    "description": "Smart monorepo build system with computation caching, task orchestration, and code generation for any language.",
+    "url": "https://nx.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "monorepo",
+      "build-system",
+      "caching",
+      "code-generation",
+      "open-source"
+    ],
+    "source": "https://github.com/nrwl/nx"
+  },
+  {
+    "id": "lerna",
+    "name": "Lerna",
+    "description": "Tool for managing JavaScript monorepos with multiple packages. Versioning, publishing, and changelog generation.",
+    "url": "https://lerna.js.org",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "monorepo",
+      "npm",
+      "versioning",
+      "publishing",
+      "open-source"
+    ],
+    "source": "https://github.com/lerna/lerna",
+    "language": "typescript"
+  },
+  {
+    "id": "make",
+    "name": "GNU Make",
+    "description": "Classic build automation tool. Reads Makefiles to compile code, run tests, and execute tasks based on dependency rules.",
+    "url": "https://www.gnu.org/software/make",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "classic",
+      "makefile",
+      "open-source"
+    ],
+    "source": "https://savannah.gnu.org/projects/make"
+  },
+  {
+    "id": "cmake",
+    "name": "CMake",
+    "description": "Cross-platform build system generator. Produces native build files for Make, Ninja, Visual Studio, and more.",
+    "url": "https://cmake.org",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "cross-platform",
+      "c-cpp",
+      "open-source"
+    ],
+    "source": "https://github.com/Kitware/CMake"
+  },
+  {
+    "id": "bazel",
+    "name": "Bazel",
+    "description": "Google's build system for large-scale software. Hermetic builds, remote caching, and multi-language support.",
+    "url": "https://bazel.build",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "google",
+      "hermetic",
+      "scalable",
+      "open-source"
+    ],
+    "source": "https://github.com/bazelbuild/bazel"
+  },
+  {
+    "id": "just",
+    "name": "just",
+    "description": "Handy command runner inspired by Make. Simple syntax for project-specific commands without build system complexity.",
+    "url": "https://just.systems",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "command-runner",
+      "task-runner",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/casey/just"
+  },
+  {
+    "id": "task",
+    "name": "Task",
+    "description": "Task runner and build tool written in Go. YAML-based Taskfiles as a simpler, modern alternative to Make.",
+    "url": "https://taskfile.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "yaml",
+      "go",
+      "open-source"
+    ],
+    "source": "https://github.com/go-task/task"
+  },
+  {
+    "id": "gulp",
+    "name": "Gulp",
+    "description": "Streaming build system for JavaScript. Automate tasks like compilation, minification, and testing with code-over-configuration.",
+    "url": "https://gulpjs.com",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "streaming",
+      "javascript",
+      "automation",
+      "open-source"
+    ],
+    "source": "https://github.com/gulpjs/gulp",
+    "language": "javascript"
+  },
+  {
+    "id": "moon",
+    "name": "moon",
+    "description": "Repository management and task runner for multi-language monorepos. Project graph, smart hashing, and remote caching.",
+    "url": "https://moonrepo.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "monorepo",
+      "task-runner",
+      "multi-language",
+      "rust",
+      "open-source"
+    ],
+    "source": "https://github.com/moonrepo/moon"
+  },
+  {
+    "id": "earthly",
+    "name": "Earthly",
+    "description": "Containerized build framework combining Dockerfiles and Makefiles. Reproducible builds that work the same everywhere.",
+    "url": "https://earthly.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "build-system",
+      "containers",
+      "reproducible",
+      "monorepo",
+      "open-source"
+    ],
+    "source": "https://github.com/earthly/earthly"
+  },
+  {
+    "id": "rush",
+    "name": "Rush",
+    "description": "Scalable monorepo manager by Microsoft for JavaScript/TypeScript projects. Handles installs, builds, and publishing across many packages.",
+    "url": "https://rushjs.io",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "monorepo",
+      "microsoft",
+      "javascript",
+      "publishing",
+      "open-source"
+    ],
+    "source": "https://github.com/microsoft/rushstack",
+    "language": "typescript"
+  },
+  {
+    "id": "bit",
+    "name": "Bit",
+    "description": "Component-driven development platform. Build, version, and share independent components across projects and teams.",
+    "url": "https://bit.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "components",
+      "monorepo",
+      "composable",
+      "collaboration",
+      "open-source"
+    ],
+    "source": "https://github.com/teambit/bit"
+  },
+  {
+    "id": "grunt",
+    "name": "Grunt",
+    "description": "JavaScript task runner with a large plugin ecosystem. Automates repetitive tasks like minification, linting, and testing via configuration.",
+    "url": "https://gruntjs.com",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "javascript",
+      "plugins",
+      "automation",
+      "open-source"
+    ],
+    "source": "https://github.com/gruntjs/grunt",
+    "language": "javascript"
+  },
+  {
+    "id": "xmake",
+    "name": "xmake",
+    "description": "Cross-platform build utility based on Lua. Handles C/C++ compilation with integrated package management and simple syntax.",
+    "url": "https://xmake.io",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "lua",
+      "c-cpp",
+      "package-management",
+      "open-source"
+    ],
+    "source": "https://github.com/xmake-io/xmake",
+    "language": "lua"
+  },
+  {
+    "id": "mise",
+    "name": "mise",
+    "description": "Polyglot dev tool manager combining version management, environment variables, and task running. Replaces asdf, nvm, and direnv.",
+    "url": "https://mise.jdx.dev",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "version-manager",
+      "environment",
+      "polyglot",
+      "open-source"
+    ],
+    "source": "https://github.com/jdx/mise",
+    "language": "rust"
+  },
+  {
+    "id": "dagger",
+    "name": "Dagger",
+    "description": "Programmable CI/CD engine that runs pipelines in containers. Define builds in real code instead of YAML, runs locally or in CI.",
+    "url": "https://dagger.io",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "ci-cd",
+      "containers",
+      "programmable",
+      "reproducible",
+      "open-source"
+    ],
+    "source": "https://github.com/dagger/dagger",
+    "language": "go"
+  },
+  {
+    "id": "mage",
+    "name": "Mage",
+    "description": "Make/Rake-like build tool using Go. Write build targets as plain Go functions, no special syntax or YAML needed.",
+    "url": "https://magefile.org",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-tool",
+      "go",
+      "task-runner",
+      "open-source"
+    ],
+    "source": "https://github.com/magefile/mage",
+    "language": "go"
+  },
+  {
+    "id": "mask",
+    "name": "Mask",
+    "description": "CLI task runner defined by a simple markdown file. Tasks are documented and executable in the same maskfile.md document.",
+    "url": "https://github.com/jacobdeichert/mask",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "task-runner",
+      "markdown",
+      "documentation",
+      "open-source"
+    ],
+    "source": "https://github.com/jacobdeichert/mask",
+    "language": "rust"
+  },
+  {
+    "id": "please",
+    "name": "Please Build",
+    "description": "Cross-language build system emphasizing performance, extensibility, and correctness. Hermetic builds with fine-grained caching.",
+    "url": "https://please.build",
+    "category": "Task Runners & Monorepos",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "build-system",
+      "hermetic",
+      "multi-language",
+      "caching",
+      "open-source"
+    ],
+    "source": "https://github.com/thought-machine/please",
+    "language": "go"
+  },
+  {
+    "id": "xc-runner",
+    "name": "xc",
+    "description": "Task runner where tasks are defined in a README.md as executable markdown. Documentation and automation in one file.",
+    "url": "https://xcfile.dev",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["task-runner", "markdown", "documentation", "go", "open-source"],
+    "source": "https://github.com/joerdav/xc",
+    "language": "go"
+  },
+  {
+    "id": "invoke-python",
+    "name": "Invoke",
+    "description": "Python task execution library inspired by Make and Fabric. Define tasks as Python functions, run them from the command line.",
+    "url": "https://www.pyinvoke.org",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["task-runner", "python", "automation", "cli", "open-source"],
+    "source": "https://github.com/pyinvoke/invoke",
+    "language": "python"
+  },
+  {
+    "id": "nox-session",
+    "name": "Nox",
+    "description": "Python test automation tool similar to tox but uses Python scripts instead of config files. Flexible session-based testing.",
+    "url": "https://nox.thea.codes",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["task-runner", "python", "testing", "automation", "open-source"],
+    "source": "https://github.com/wntrblm/nox",
+    "language": "python"
+  },
+  {
+    "id": "scons-build",
+    "name": "SCons",
+    "description": "Software construction tool using Python scripts as config files. Automatic dependency analysis and built-in support for C/C++, Java, and Fortran.",
+    "url": "https://scons.org",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["build-system", "python", "c-cpp", "dependency-analysis", "open-source"],
+    "source": "https://github.com/SCons/scons",
+    "language": "python"
+  },
+  {
+    "id": "tox-python",
+    "name": "tox",
+    "description": "Python testing tool that automates virtualenv management and test execution. Standard tool for testing across Python versions.",
+    "url": "https://tox.wiki",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["testing", "python", "virtualenv", "automation", "open-source"],
+    "source": "https://github.com/tox-dev/tox",
+    "language": "python"
+  },
+  {
+    "id": "npm-run-all",
+    "name": "npm-run-all",
+    "description": "CLI tool to run multiple npm scripts in parallel or sequential. Glob matching for script names and cross-platform support.",
+    "url": "https://github.com/mysticatea/npm-run-all",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["npm", "task-runner", "parallel", "javascript", "open-source"],
+    "source": "https://github.com/mysticatea/npm-run-all",
+    "language": "javascript"
+  },
+  {
+    "id": "wireit",
+    "name": "Wireit",
+    "description": "Upgrades npm scripts with caching, parallelism, and file watching. Drop-in enhancement for package.json scripts by Google.",
+    "url": "https://github.com/google/wireit",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["npm", "caching", "task-runner", "google", "open-source"],
+    "source": "https://github.com/google/wireit",
+    "language": "typescript"
+  },
+  {
+    "id": "changesets",
+    "name": "Changesets",
+    "description": "Manage versioning and changelogs for monorepos. Declare intent to release, then batch version bumps and publish.",
+    "url": "https://github.com/changesets/changesets",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["monorepo", "versioning", "changelog", "npm", "open-source"],
+    "source": "https://github.com/changesets/changesets",
+    "language": "typescript"
+  },
+  {
+    "id": "pnpm-workspace",
+    "name": "pnpm Workspaces",
+    "description": "Built-in monorepo support in pnpm. Shared dependencies, workspace protocol, and filtering for multi-package JavaScript projects.",
+    "url": "https://pnpm.io/workspaces",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["monorepo", "pnpm", "workspaces", "javascript", "open-source"],
+    "source": "https://github.com/pnpm/pnpm",
+    "language": "typescript"
+  },
+  {
+    "id": "rake",
+    "name": "Rake",
+    "description": "Ruby's build program with capabilities similar to Make. Define tasks in Ruby with dependency tracking and file lists.",
+    "url": "https://ruby.github.io/rake",
+    "category": "Task Runners & Monorepos",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["task-runner", "ruby", "build-system", "classic", "open-source"],
+    "source": "https://github.com/ruby/rake",
+    "language": "ruby"
+  },
+  {
+    "id": "terraform",
+    "name": "Terraform",
+    "description": "Infrastructure as code tool by HashiCorp. Declarative HCL configs to provision and manage cloud resources.",
+    "url": "https://www.terraform.io",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "hashicorp",
+      "hcl",
+      "cloud",
+      "open-source"
+    ],
+    "source": "https://github.com/hashicorp/terraform"
+  },
+  {
+    "id": "ansible",
+    "name": "Ansible",
+    "description": "Agentless IT automation tool. YAML playbooks for configuration management, app deployment, and orchestration.",
+    "url": "https://www.ansible.com",
+    "category": "Infrastructure as Code",
+    "os": [
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "automation",
+      "configuration-management",
+      "yaml",
+      "agentless",
+      "open-source"
+    ],
+    "source": "https://github.com/ansible/ansible"
+  },
+  {
+    "id": "pulumi",
+    "name": "Pulumi",
+    "description": "Infrastructure as code using real programming languages. Define cloud resources in TypeScript, Python, Go, or C#.",
+    "url": "https://www.pulumi.com",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "iac",
+      "multi-language",
+      "cloud",
+      "open-source"
+    ],
+    "source": "https://github.com/pulumi/pulumi"
+  },
+  {
+    "id": "cloudformation",
+    "name": "AWS CloudFormation",
+    "description": "AWS-native infrastructure as code. Define and provision AWS resources with JSON or YAML templates.",
+    "url": "https://aws.amazon.com/cloudformation",
+    "category": "Infrastructure as Code",
+    "os": [
+      "web"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "aws",
+      "templates",
+      "cloud-native"
+    ]
+  },
+  {
+    "id": "chef",
+    "name": "Chef",
+    "description": "Configuration management tool using Ruby-based recipes. Automates server setup, deployment, and compliance.",
+    "url": "https://www.chef.io",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "configuration-management",
+      "ruby",
+      "automation",
+      "compliance"
+    ],
+    "source": "https://github.com/chef/chef"
+  },
+  {
+    "id": "puppet",
+    "name": "Puppet",
+    "description": "Configuration management and automation platform. Declarative language to define desired system state at scale.",
+    "url": "https://www.puppet.com",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "configuration-management",
+      "declarative",
+      "enterprise",
+      "open-source"
+    ],
+    "source": "https://github.com/puppetlabs/puppet"
+  },
+  {
+    "id": "saltstack",
+    "name": "SaltStack",
+    "description": "Event-driven IT automation and configuration management. Fast remote execution across thousands of servers.",
+    "url": "https://saltproject.io",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "configuration-management",
+      "event-driven",
+      "remote-execution",
+      "open-source"
+    ],
+    "source": "https://github.com/saltstack/salt"
+  },
+  {
+    "id": "opentofu",
+    "name": "OpenTofu",
+    "description": "Open-source fork of Terraform maintained by the Linux Foundation. Drop-in replacement with community governance.",
+    "url": "https://opentofu.org",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "hcl",
+      "terraform-fork",
+      "linux-foundation",
+      "open-source"
+    ],
+    "source": "https://github.com/opentofu/opentofu"
+  },
+  {
+    "id": "crossplane",
+    "name": "Crossplane",
+    "description": "Kubernetes-native infrastructure as code. Compose cloud resources using kubectl and Kubernetes-style YAML.",
+    "url": "https://www.crossplane.io",
+    "category": "Infrastructure as Code",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "kubernetes",
+      "cloud",
+      "cncf",
+      "open-source"
+    ],
+    "source": "https://github.com/crossplane/crossplane"
+  },
+  {
+    "id": "cdktf",
+    "name": "CDK for Terraform",
+    "description": "Define Terraform infrastructure using TypeScript, Python, Java, C#, or Go instead of HCL. Generates Terraform JSON.",
+    "url": "https://developer.hashicorp.com/terraform/cdktf",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "terraform",
+      "cdk",
+      "multi-language",
+      "open-source"
+    ],
+    "source": "https://github.com/hashicorp/terraform-cdk"
+  },
+  {
+    "id": "aws-cdk",
+    "name": "AWS CDK",
+    "description": "Define AWS infrastructure using TypeScript, Python, Java, or C#. Synthesizes to CloudFormation templates.",
+    "url": "https://aws.amazon.com/cdk",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "aws",
+      "cdk",
+      "multi-language",
+      "open-source"
+    ],
+    "source": "https://github.com/aws/aws-cdk"
+  },
+  {
+    "id": "bicep",
+    "name": "Bicep",
+    "description": "Domain-specific language for deploying Azure resources. Cleaner syntax than ARM templates with first-class Azure support.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "azure",
+      "dsl",
+      "microsoft",
+      "open-source"
+    ],
+    "source": "https://github.com/Azure/bicep"
+  },
+  {
+    "id": "vagrant",
+    "name": "Vagrant",
+    "description": "Build and manage reproducible development environments. Define VMs and containers in a single Vagrantfile.",
+    "url": "https://www.vagrantup.com",
+    "category": "Infrastructure as Code",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "iac",
+      "dev-environments",
+      "hashicorp",
+      "virtual-machines",
+      "open-source"
+    ],
+    "source": "https://github.com/hashicorp/vagrant"
+  },
+  {
+    "id": "kubernetes",
+    "name": "Kubernetes",
+    "description": "Industry-standard container orchestration platform. Automates deployment, scaling, and management of containerized apps.",
+    "url": "https://kubernetes.io",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "containers",
+      "orchestration",
+      "cncf",
+      "open-source"
+    ],
+    "source": "https://github.com/kubernetes/kubernetes"
+  },
+  {
+    "id": "helm",
+    "name": "Helm",
+    "description": "Package manager for Kubernetes. Define, install, and upgrade complex Kubernetes applications using reusable charts.",
+    "url": "https://helm.sh",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kubernetes",
+      "package-manager",
+      "charts",
+      "open-source"
+    ],
+    "source": "https://github.com/helm/helm"
+  },
+  {
+    "id": "docker-compose",
+    "name": "Docker Compose",
+    "description": "Define and run multi-container Docker applications with a single YAML file. Simplifies local development stacks.",
+    "url": "https://docs.docker.com/compose",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "docker",
+      "multi-container",
+      "yaml",
+      "open-source"
+    ],
+    "source": "https://github.com/docker/compose"
+  },
+  {
+    "id": "rancher",
+    "name": "Rancher",
+    "description": "Kubernetes management platform. Deploy and manage multiple clusters across any infrastructure from a unified UI.",
+    "url": "https://www.rancher.com",
+    "category": "Container Orchestration",
+    "os": [
+      "web",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kubernetes",
+      "multi-cluster",
+      "management",
+      "open-source"
+    ],
+    "source": "https://github.com/rancher/rancher"
+  },
+  {
+    "id": "nomad",
+    "name": "Nomad",
+    "description": "Flexible workload orchestrator by HashiCorp. Deploys containers, VMs, and standalone apps without Kubernetes complexity.",
+    "url": "https://www.nomadproject.io",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "orchestration",
+      "hashicorp",
+      "multi-workload",
+      "open-source"
+    ],
+    "source": "https://github.com/hashicorp/nomad"
+  },
+  {
+    "id": "k3s",
+    "name": "k3s",
+    "description": "Lightweight Kubernetes distribution by Rancher. Single binary under 100MB, ideal for edge, IoT, and dev environments.",
+    "url": "https://k3s.io",
+    "category": "Container Orchestration",
+    "os": [
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kubernetes",
+      "lightweight",
+      "edge",
+      "iot",
+      "open-source"
+    ],
+    "source": "https://github.com/k3s-io/k3s"
+  },
+  {
+    "id": "docker-swarm",
+    "name": "Docker Swarm",
+    "description": "Docker's built-in container orchestration. Turns a group of Docker hosts into a single virtual host for simple clustering.",
+    "url": "https://docs.docker.com/engine/swarm",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "docker",
+      "clustering",
+      "orchestration",
+      "open-source"
+    ],
+    "source": "https://github.com/moby/swarmkit"
+  },
+  {
+    "id": "kustomize",
+    "name": "Kustomize",
+    "description": "Template-free Kubernetes configuration customization. Overlay patches to manage environment-specific manifests.",
+    "url": "https://kustomize.io",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kubernetes",
+      "configuration",
+      "overlays",
+      "open-source"
+    ],
+    "source": "https://github.com/kubernetes-sigs/kustomize"
+  },
+  {
+    "id": "openshift",
+    "name": "OpenShift",
+    "description": "Red Hat's enterprise Kubernetes platform. Adds developer tools, CI/CD, monitoring, and security on top of Kubernetes.",
+    "url": "https://www.redhat.com/en/technologies/cloud-computing/openshift",
+    "category": "Container Orchestration",
+    "os": [
+      "linux",
+      "web"
+    ],
+    "pricing": "freemium",
+    "tags": [
+      "kubernetes",
+      "enterprise",
+      "red-hat",
+      "platform"
+    ],
+    "source": "https://github.com/openshift/origin"
+  },
+  {
+    "id": "podman-compose",
+    "name": "Podman Compose",
+    "description": "Run multi-container workloads using Compose files with Podman instead of Docker. Rootless and daemonless alternative.",
+    "url": "https://github.com/containers/podman-compose",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "podman",
+      "compose",
+      "rootless",
+      "open-source"
+    ],
+    "source": "https://github.com/containers/podman-compose"
+  },
+  {
+    "id": "skaffold",
+    "name": "Skaffold",
+    "description": "Handles the workflow for building, pushing, and deploying Kubernetes applications during local development.",
+    "url": "https://skaffold.dev",
+    "category": "Container Orchestration",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "kubernetes",
+      "development",
+      "google",
+      "workflow",
+      "open-source"
+    ],
+    "source": "https://github.com/GoogleContainerTools/skaffold"
+  },
+  {
+    "id": "containerd",
+    "name": "containerd",
+    "description": "Industry-standard container runtime. Manages the full container lifecycle from image transfer to execution, used by Docker and Kubernetes.",
+    "url": "https://containerd.io",
+    "category": "Container Orchestration",
+    "os": ["windows", "linux"],
+    "pricing": "free",
+    "tags": ["containers", "runtime", "cncf", "open-source"],
+    "source": "https://github.com/containerd/containerd",
+    "language": "go"
+  },
+  {
+    "id": "minikube",
+    "name": "Minikube",
+    "description": "Run a single-node Kubernetes cluster locally for development and testing. Supports multiple container runtimes and drivers.",
+    "url": "https://minikube.sigs.k8s.io",
+    "category": "Container Orchestration",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["kubernetes", "local-development", "testing", "open-source"],
+    "source": "https://github.com/kubernetes/minikube",
+    "language": "go"
+  },
+  {
+    "id": "kind",
+    "name": "kind",
+    "description": "Run local Kubernetes clusters using Docker container nodes. Designed for testing Kubernetes itself, also useful for CI and local dev.",
+    "url": "https://kind.sigs.k8s.io",
+    "category": "Container Orchestration",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["kubernetes", "docker", "testing", "ci", "open-source"],
+    "source": "https://github.com/kubernetes-sigs/kind",
+    "language": "go"
+  },
+  {
+    "id": "k9s",
+    "name": "k9s",
+    "description": "Terminal-based UI for managing Kubernetes clusters. Navigate, observe, and manage deployed applications with real-time resource monitoring.",
+    "url": "https://k9scli.io",
+    "category": "Container Orchestration",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["kubernetes", "tui", "monitoring", "cli", "open-source"],
+    "source": "https://github.com/derailed/k9s",
+    "language": "go"
+  },
+  {
+    "id": "istio",
+    "name": "Istio",
+    "description": "Service mesh for Kubernetes and traditional workloads. Programmable traffic management, telemetry, and mutual TLS security.",
+    "url": "https://istio.io",
+    "category": "Container Orchestration",
+    "os": ["linux", "macos"],
+    "pricing": "free",
+    "tags": ["kubernetes", "service-mesh", "networking", "cncf", "open-source"],
+    "source": "https://github.com/istio/istio",
+    "language": "go"
+  },
+  {
+    "id": "tilt",
+    "name": "Tilt",
+    "description": "Microservice development toolkit with smart rebuilds and live updates. Bridges local development and Kubernetes deployments.",
+    "url": "https://tilt.dev",
+    "category": "Container Orchestration",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["kubernetes", "development", "live-reload", "microservices", "open-source"],
+    "source": "https://github.com/tilt-dev/tilt",
+    "language": "go"
+  },
+  {
+    "id": "aws-cli",
+    "name": "AWS CLI",
+    "description": "Official command-line tool for Amazon Web Services. Manage EC2, S3, Lambda, and all AWS services from the terminal.",
+    "url": "https://aws.amazon.com/cli",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "aws",
+      "cloud",
+      "cli",
+      "amazon"
+    ],
+    "source": "https://github.com/aws/aws-cli"
+  },
+  {
+    "id": "gcloud-sdk",
+    "name": "Google Cloud SDK",
+    "description": "CLI tools for Google Cloud Platform. Manage GCP resources, deploy apps, and interact with all Google Cloud services.",
+    "url": "https://cloud.google.com/sdk",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "gcp",
+      "cloud",
+      "cli",
+      "google"
+    ]
+  },
+  {
+    "id": "azure-cli",
+    "name": "Azure CLI",
+    "description": "Cross-platform command-line tool for managing Microsoft Azure resources. Scriptable with JSON output.",
+    "url": "https://learn.microsoft.com/en-us/cli/azure",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "azure",
+      "cloud",
+      "cli",
+      "microsoft"
+    ],
+    "source": "https://github.com/Azure/azure-cli"
+  },
+  {
+    "id": "wrangler",
+    "name": "Wrangler",
+    "description": "CLI for Cloudflare Workers and Pages. Build, test, and deploy serverless functions and static sites to the edge.",
+    "url": "https://developers.cloudflare.com/workers/wrangler",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "cloudflare",
+      "workers",
+      "edge",
+      "serverless",
+      "open-source"
+    ],
+    "source": "https://github.com/cloudflare/workers-sdk"
+  },
+  {
+    "id": "vercel-cli",
+    "name": "Vercel CLI",
+    "description": "Command-line interface for Vercel. Deploy frontend apps, manage projects, and run local development previews.",
+    "url": "https://vercel.com/docs/cli",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "vercel",
+      "deploy",
+      "cli",
+      "frontend"
+    ],
+    "source": "https://github.com/vercel/vercel"
+  },
+  {
+    "id": "netlify-cli",
+    "name": "Netlify CLI",
+    "description": "Deploy and manage Netlify sites from the terminal. Local dev server, functions, and environment management.",
+    "url": "https://docs.netlify.com/cli/get-started",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "netlify",
+      "deploy",
+      "cli",
+      "jamstack"
+    ],
+    "source": "https://github.com/netlify/cli"
+  },
+  {
+    "id": "flyctl",
+    "name": "flyctl",
+    "description": "CLI for Fly.io platform. Deploy Docker containers to edge servers worldwide with simple commands.",
+    "url": "https://fly.io/docs/flyctl",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "fly-io",
+      "deploy",
+      "cli",
+      "edge",
+      "open-source"
+    ],
+    "source": "https://github.com/superfly/flyctl"
+  },
+  {
+    "id": "railway-cli",
+    "name": "Railway CLI",
+    "description": "Deploy apps to Railway from the terminal. Link local projects, manage environments, and stream logs.",
+    "url": "https://docs.railway.app/guides/cli",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "railway",
+      "deploy",
+      "cli",
+      "paas"
+    ],
+    "source": "https://github.com/railwayapp/cli"
+  },
+  {
+    "id": "doctl",
+    "name": "doctl",
+    "description": "Official CLI for DigitalOcean. Manage droplets, Kubernetes, databases, and all DO resources from the command line.",
+    "url": "https://docs.digitalocean.com/reference/doctl",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "digitalocean",
+      "cloud",
+      "cli",
+      "open-source"
+    ],
+    "source": "https://github.com/digitalocean/doctl"
+  },
+  {
+    "id": "heroku-cli",
+    "name": "Heroku CLI",
+    "description": "Command-line tool for creating and managing Heroku apps. Deploy, scale, and manage add-ons from the terminal.",
+    "url": "https://devcenter.heroku.com/articles/heroku-cli",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "heroku",
+      "paas",
+      "deploy",
+      "cli"
+    ],
+    "source": "https://github.com/heroku/cli"
+  },
+  {
+    "id": "render-cli",
+    "name": "Render CLI",
+    "description": "Manage Render cloud services from the command line. Deploy, view logs, and configure services without the dashboard.",
+    "url": "https://render.com/docs/cli",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "render",
+      "paas",
+      "deploy",
+      "cli"
+    ]
+  },
+  {
+    "id": "copilot-cli",
+    "name": "AWS Copilot CLI",
+    "description": "CLI for building, releasing, and operating containerized apps on AWS ECS and Fargate with simplified workflows.",
+    "url": "https://aws.github.io/copilot-cli",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "aws",
+      "ecs",
+      "fargate",
+      "containers",
+      "open-source"
+    ],
+    "source": "https://github.com/aws/copilot-cli"
+  },
+  {
+    "id": "supabase-cli",
+    "name": "Supabase CLI",
+    "description": "Local development and management CLI for Supabase. Run Postgres, Auth, and Storage locally, then deploy to cloud.",
+    "url": "https://supabase.com/docs/guides/cli",
+    "category": "Cloud SDKs & CLIs",
+    "os": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "pricing": "free",
+    "tags": [
+      "supabase",
+      "postgres",
+      "baas",
+      "cli",
+      "open-source"
+    ],
+    "source": "https://github.com/supabase/cli"
+  }
+]

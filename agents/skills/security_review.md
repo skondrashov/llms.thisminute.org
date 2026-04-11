@@ -1,6 +1,6 @@
 # Security Review
 
-Checklist for reviewing user-facing features across forge.thisminute.org and its sub-sites (rhizome, toolshed). Use this when building or reviewing any feature that accepts user input, renders user content, or asks visitors to run code.
+Checklist for reviewing user-facing features across forge.thisminute.org and its sub-sites (orchestration, toolshed). Use this when building or reviewing any feature that accepts user input, renders user content, or asks visitors to run code.
 
 ---
 

@@ -1,0 +1,175 @@
+# toolshed
+> Universal software directory with 16143 entries across 139 categories. Structured data for AI agents and developers.
+
+## Endpoints
+- Full catalog (JSON): /api/v1/catalog.json
+- Categories with counts: /api/v1/categories.json
+- Entry schema: /schema.json
+- Full text catalog: /llms-full.txt
+- Human browsable: /
+
+## Entry Schema
+{ id, name, description, url, category, os[], pricing, tags[], source?, language?, triage? }
+
+## Triage (ideas only)
+Ideas (status: idea/in-progress) have a triage object: { impact: high|medium|low, buildability: straightforward|moderate|hard, alternatives: none|partial|covered, alternatives_note: string }
+Filter out covered, sort by impact desc then buildability asc.
+
+Pricing: free | freemium | paid | subscription
+OS: windows | macos | linux | web | ios | android
+
+## Categories
+- iOS UI Components: 700
+- Static Analysis: 529
+- CLI Frameworks: 449
+- Databases: 408
+- Testing Frameworks: 351
+- Image Processing: 341
+- Frontend Frameworks: 336
+- Networking: 335
+- Cross-Platform Frameworks: 309
+- Container Orchestration: 307
+- Video Editing: 289
+- Communication: 284
+- Music Production: 278
+- Data Validation & Serialization: 276
+- Game Engines: 232
+- Backend Frameworks: 219
+- Version Control: 208
+- Media Players: 207
+- Data Pipelines: 206
+- Async & Concurrency: 205
+- API Clients: 195
+- CI/CD Tools: 193
+- Logging & Diagnostics: 191
+- Project Management: 189
+- Configuration: 184
+- Security Scanning: 184
+- Backup & Sync: 183
+- Encryption & Privacy Tools: 183
+- Monitoring & Metrics: 183
+- AI/ML Libraries: 181
+- Note Taking: 181
+- Programming Languages: 178
+- UI/UX Design Tools: 178
+- Content Management Systems: 173
+- Utilities: 167
+- Launcher & Productivity Utils: 161
+- Accounting & Finance: 158
+- Code Editors: 156
+- iOS Networking & Data: 153
+- Documentation Tools: 150
+- Embedded & IoT: 147
+- System Utilities: 144
+- Auth & Identity: 143
+- PDF Tools: 143
+- Web Scraping & Parsing: 140
+- File Managers: 139
+- Build Tools: 137
+- 3D & CAD: 130
+- Screen Recording / Streaming: 129
+- Fonts & Typography: 128
+- ORMs: 127
+- Search Engines: 122
+- Real-time Communication: 121
+- Password Managers: 119
+- Office Suites: 118
+- Text Processing: 118
+- Operating Systems: 117
+- Package Managers: 117
+- Window Managers: 117
+- Terminal Emulators: 115
+- HTTP Libraries: 114
+- Cloud Storage: 113
+- Scientific Computing: 112
+- Data Analysis: 111
+- Learning Platforms: 110
+- Email: 109
+- Calendar & Scheduling: 96
+- Static Site Generators: 84
+- Photo Management: 81
+- Caching: 80
+- RSS Readers: 80
+- Blockchain & Web3: 78
+- Document Conversion: 77
+- Date & Time: 76
+- Virtualization: 75
+- Clipboard Managers: 71
+- UI Automation & E2E Testing: 71
+- Cloud SDKs & CLIs: 69
+- NLP & Text AI: 69
+- Template Engines: 63
+- Database Drivers: 62
+- Blogging & Newsletter Platforms: 61
+- Browsers: 60
+- VPN: 59
+- LLM Tools: 58
+- Load & Performance Testing: 55
+- Error & Exception Tracking: 53
+- Linters: 53
+- Torrent Clients: 51
+- Jupyter & Notebooks: 50
+- GraphQL Tools: 49
+- Image Editors: 47
+- Social Media Clients: 47
+- Screenshot & Annotation: 46
+- Diagramming & Whiteboard: 45
+- Terminal UI: 45
+- Code Coverage & Quality: 42
+- CRM & Sales: 41
+- Math & Numerics: 40
+- Log Management: 39
+- Formatters: 37
+- Mobile IDE & Tools: 36
+- Shell Environments: 36
+- Vector & Illustration: 36
+- Task Runners & Monorepos: 35
+- Video Conferencing: 35
+- APIs & Services: 34
+- Compression & Archiving: 34
+- Database Migrations: 34
+- Infrastructure as Code: 33
+- Media Processing: 33
+- Chess: 32
+- Desktop App Frameworks: 32
+- Flashcards & Study: 32
+- HR & People: 32
+- Statistical Tools: 32
+- Vector Databases: 31
+- Error Handling: 30
+- Secrets Management: 30
+- API Documentation: 29
+- Database Tools: 29
+- AI Assistants: 28
+- File Search & Navigation: 28
+- Game Modding: 23
+- GIS & Mapping: 12
+- Creative Coding: 9
+- Audio Programming: 8
+- Graphics Programming: 7
+- Robotics: 7
+- 3D Printing: 5
+- AI Coding Agents: 4
+- Browser Extensions & Userscripts: 4
+- Reverse Engineering: 4
+- Emulators: 3
+- Browser Automation: 2
+- API Testing: 1
+- Code Quality: 1
+- Dev Environments: 1
+- DevOps Agents: 1
+
+## Querying
+Download /api/v1/catalog.json and filter by:
+- category: exact match on category field
+- os: check if desired OS is in the os[] array
+- pricing: exact match (free, freemium, paid, subscription)
+- tags: check if desired tag is in tags[] array
+- language: filter libraries by ecosystem (python, rust, go, javascript, etc.)
+- status: idea (unfulfilled request), submitted (built by AI forge), or absent (existing software)
+- text search: match against name, description, tags
+
+## Example Queries
+- "Find free image editors for Linux": filter pricing=free, os contains "linux", category="Image Editors"
+- "Python HTTP libraries": filter language="python", category="HTTP Libraries"
+- "All database tools": filter category in ["Databases", "Database Tools", "ORMs"]

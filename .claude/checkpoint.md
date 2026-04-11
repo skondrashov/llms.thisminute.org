@@ -1,26 +1,92 @@
 # Checkpoint — 2026-04-11
 
+## Architecture change (2026-04-11, evening) — URL flatten
+
+After the nuclear cleanup (earlier same day), the user asked for a flatter URL structure: "should be /llms (or just the index), /models, /context, /orchestration, /tools, and /forge. tbh i wanna rename forge too but idk what to." Executed the restructure, left forge alone pending a rename decision.
+
+- **Directory moves**:
+  - `llms/model/` → `models/` (top level)
+  - `llms/context/` → `context/` (top level)
+  - `toolshed/` → `tools/`
+  - `llms/` deleted entirely (the Anatomy page was redundant with the home's flowchart; its content is already at `/`)
+- **Files deleted with the `llms/` wrapper**: `llms/index.html`, `llms/AGENTS.md`, `llms/CLAUDE.md`, `llms/agents/steward.md`, `llms/memory/`. The llms steward role is gone — `/models/` and `/context/` are now top-level flat pages under the top-level builder's ownership.
+- **Global sed replace** across `.md / .html / .py / .json / .sh / .sql / .js` files (excluding `.git/`, `__pycache__/`, `shared/`):
+  - `/llms/model/` → `/models/`
+  - `/llms/context/` → `/context/`
+  - `/toolshed/` → `/tools/`
+  - `toolshed/` → `tools/` (filesystem path references in scripts, deploy docs)
+- **Manual sweeps** for stale `/llms/` references in docs that weren't caught by the sed (role files, AGENTS.md section table, checkpoint narrative, memory files) — updated to reflect the flat structure.
+- **tools/deploy.sh migration header** added documenting the VM-side `/opt/toolshed → /opt/tools` rename + nginx location block update.
+- **Ops deploy queue** amended with the new URL changes and a unified multi-step VM migration block covering both orchestration and tools.
+- **Forge rename pending**: user said "tbh i wanna rename forge too but idk what to." Flagged in all the docs as future work, not executed.
+
+## Architecture change (2026-04-11, late afternoon) — nuclear cleanup
+
+User requested a hard rename and cleanup pass after the integration: "rename rhizome to orchestration, get rid of crucible, we're ok with going nuclear." Executed:
+
+- **Directory rename**: `rhizome/` → `orchestration/`. The old URL path `/rhizome/` is gone, not redirected. Every internal link updated (15+ files). Global sed replace ran across all `.md / .html / .py / .json / .sh / .sql / .js` files under the repo (excluding `.git/`, `__pycache__/`, `shared/`).
+- **localStorage keys renamed**: `rhizome_visited` → `orchestration_visited`, `rhizome_votes` → `orchestration_votes`. Existing users will lose their voted/visited state — acceptable per user, nuclear was the explicit directive.
+- **API endpoints renamed**: `/rhizome/api/*` → `/orchestration/api/*` in the client code. Deploy script (`orchestration/deploy.sh`) references `/opt/orchestration`, `orchestration-api` systemd unit, `ORCHESTRATION_DB_PATH`. Server-side deployment needs to follow when next deployed.
+- **Crucible deleted**: `crucible/` directory fully removed (build.py, data/, data.js, index.html, schema.json). Legacy `crucibleId` detection block in `tools/index.html` removed. `crucibleId` field stripped from `tools/schema.json`. "Former Crucible sub-site" comment in `tools/ideas.js` replaced with a neutral "unfilled slots" note.
+- **`/llms/llm/` deleted**: the standalone token demo directory is gone. Its animation lives inside `/context/` now. Nothing links to `/llms/llm/` anymore — all hand-offs point at `/models/` (the LLM node) or `/context/` (where the demo is embedded).
+
+## Architecture change (2026-04-11, earlier) — integration pass + aesthetic rebrand
+
+The site pivots from its "Forge — multi-section portal" framing into a single LLMs-branded educational experience with a warm watermelon-gum pastel aesthetic and a Fredoka typeface system-wide. The home page becomes a visual anatomy-of-an-agent flowchart (model → context → tools, with a rhizomatic cluster of context windows off to the side linking to the orchestration catalog). All five sections (home, llms, orchestration, toolshed, forge) adopt the new shared palette via `shared/forge.css`. Two new content pages land: `/models/` (catalog of ~60 real models grouped by vendor) and `/context/` (statelessness demo + "what's filling our context?" breakdown + vision transformers + self-population threads).
+
+Key changes:
+- `shared/forge.css` rewritten: warm plum dusk dark / pink-tinted cream light palette, Fredoka + JetBrains Mono via `@import`, radius bumped to 14px, softer shadows, light-default theme. Introduces `--accent` (pink) and `--accent-alt` (mint) for the watermelon-gum pair.
+- `shared/forge.js` default flipped: first-time visitors get light mode unless their system explicitly prefers dark.
+- `index.html` rewritten as LLMs-branded home with a visual flowchart (Model ↔ Context ↔ Tools) inside a HARNESS frame, plus an SVG cluster of 8 interconnected mini context-window rectangles off to the side linking to `/orchestration/`. Big Fredoka "LLMs!" headline that, on hover, picks one random plural from a curated list (LargeLanguageModels, LavaLamps, LLaMas, LuluLemons, linoleums, slaloms, clingfilms, fulfillments, flimflams, all the -isms, flagellums, flabellums, allelomorphs, hyaloplasms, platyhelminthes, electroencephalogrammata, Malcolms, Wilhelms, Malayalams, parallelograms, allhallowmases, etc.) and formats it with the first L, last M, and closest L-before-M uppercased so you can see the LLMs pattern inside the word.
+- All section pages adopt the new palette and retint their section accent: orchestration → mint, toolshed → coral, llms → pink, forge → primary pink.
+- Copy voice shifted to a casual/enthusiastic 12-year-old-explaining-their-favorite-thing register. No em-dashes, lowercase "ok so", ALL CAPS for emphasis. User plans to rewrite the tone themselves later.
+- Favicons: home 💬 speech balloon, model 🧠 brain, context 🪟 window, orchestration 🎶 beamed notes, toolshed 🛠️ hammer and wrench, forge 🔥 flame.
+- Anatomy page (`llms/index.html`) hand-offs rewired: LLM → `/models/`, Context → `/context/`, Harness → `/tools/#harnesses`, Orchestration → `/orchestration/`.
+- New: `/models/` — catalog of ~60 models across 11 vendors (Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek, Alibaba, xAI, Cohere, Microsoft, Others). Vendor jump nav, card grid, tags for hosted/open-weights/thinking/vision.
+- New: `/context/` — statelessness intro + embedded token demo + "what's filling our context?" breakdown (10 categories with rough token amounts and casual explanations) + vision transformers section + self-population threads + window sizes summary.
+- Forge link moved out of the home footer and onto the orchestration header-actions bar (forge is about managing multi-agent systems, which is orchestration-adjacent).
+
+Files changed: `shared/forge.css`, `shared/forge.js`, `index.html`, `forge/index.html`, `llms/index.html`, `orchestration/index.html` (was `rhizome/index.html`), `tools/index.html`, `llms/AGENTS.md`.
+Files created: `llms/model/index.html`, `llms/context/index.html`.
+Files deleted: `crucible/` (entire directory), `llms/llm/` (entire directory).
+Deferred: toolshed curator should add a `Harnesses` category (task #12 in the integration-pass plan) so the Anatomy hand-off `/tools/#harnesses` has real content. Not blocking.
+
 ## Architecture change (2026-04-09)
 
-**Major reorganization**: forge.thisminute.org is now an agentic engineering education site with five sections: LLMs, Forge, Rhizome, Toolshed, and Portal. Previously it was a portal linking three sub-sites.
+**Major reorganization**: forge.thisminute.org is now an agentic engineering education site with five sections: LLMs, Forge, Orchestration, Toolshed, and Portal. Previously it was a portal linking three sub-sites.
 
 Key changes:
 - `llms/` section added — interactive explainers on LLM fundamentals (copied from llms.thisminute.org, adapted paths)
 - `llms/` gets its own steward agent (`llms/agents/steward.md`)
-- Portal index.html redesigned: 2x2 grid with LLMs, Rhizome, Toolshed, Forge. Vision updated to "agentic engineering education."
+- Portal index.html redesigned: 2x2 grid with LLMs, Orchestration, Toolshed, Forge. Vision updated to "agentic engineering education."
 - Toolshed "unfilled slots" concept formalized — ideas/requests renamed to "unfilled slots" in agent docs
 - crucible/ fully absorbed (was already redirecting to toolshed; now conceptually replaced by unfilled slots)
 - All agent files updated: AGENTS.md, orchestrator.md, builder.md, skeptic.md reflect unified site
 - singularity-forge retired in the forge registry (premise was wrong — software gaps don't exist at scale)
 
 Files created: `llms/index.html`, `llms/llm/index.html`, `llms/CLAUDE.md`, `llms/AGENTS.md`, `llms/agents/steward.md`
-Files updated: `index.html`, `AGENTS.md`, `agents/orchestrator.md`, `agents/builder.md`, `agents/skeptic.md`, `toolshed/AGENTS.md`, `toolshed/agents/curator.md`
+Files updated: `index.html`, `AGENTS.md`, `agents/orchestrator.md`, `agents/builder.md`, `agents/skeptic.md`, `tools/AGENTS.md`, `tools/agents/curator.md`
 
 ## Previous architecture change (2026-03-22)
 
 The top-level orchestrator coordinates the entire repo. Sub-site agent files stay in place but the orchestrator spawns them directly. See `agents/orchestrator.md`.
 
 ## What was done
+
+### Session 11
+
+Integration pass: soft aesthetic + llms section restructure. Driven by the plan at `C:\Users\tkond\.claude\plans\polished-weaving-lynx.md`.
+
+- **Phase 1 — Soft palette and type:** Rewrote `shared/forge.css` with the watermelon-gum pastel direction (warm plum dusk dark, pink-tinted cream light), Fredoka + JetBrains Mono via `@import`, radius 14px, feathered warm shadows, new --accent (pink) and --accent-alt (mint) pair. Flipped `shared/forge.js` default to light-when-system-not-dark.
+- **Phase 2 — Home rewrite as LLMs flowchart:** `index.html` becomes LLMs-branded (big Fredoka "LLMs!" headline), replaces the 4-card grid with a visual anatomy diagram (Model ↔ Context ↔ Tools inside a HARNESS frame) plus an SVG orchestration cluster (8 interconnected mini context-window rectangles) off to the side, clickable to /orchestration/. Voice shifted to cute/fun 12yo enthusiast. Forge link removed from home, moved onto orchestration.
+- **Phase 3 — Section retunes:** orchestration/tools/forge/llms all adopt the shared palette, retint their section accents (orchestration mint, toolshed coral, forge pink, llms pink), update inline flash scripts to light-default, swap favicons to the new color. Orchestration also gets a forge link in its header-actions row.
+- **Phase 4 — LLMs section restructure:** Anatomy page hand-offs rewired (LLM → /models/, Context → /context/, Harness → /tools/#harnesses). `/llms/llm/` token demo kept at its URL for direct links but its content is also embedded into `/context/`. Retuned to match the shared aesthetic.
+- **Phase 5 — New content pages:**
+  - `/models/` — ~60 real models across 11 vendors (Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek, Alibaba, xAI, Cohere, Microsoft, Others). Vendor jump nav up top, card grid below, tags for hosted/open-weights/thinking/vision. Cards link out to each vendor's product page.
+  - `/context/` — statelessness intro with embedded token demo (ported from /llms/llm/), "what's filling our context?" centerpiece section with 10 categories and rough token amounts (fact-checked: tool output dominates agent workflows), self-population threads (memory files + reasoning tokens + tool output are all the same mechanism from the model's perspective), vision transformers section on how image patches become tokens in the same window, window sizes summary for current frontier models.
+- **Phase 6 — Docs update:** `llms/AGENTS.md` page inventory rewritten (Anatomy / Model / Context, drops standalone Harness row, notes /llms/llm/ kept for backward-compat). This checkpoint entry added.
+
+**Deferred (not blocking):** Toolshed curator should add a `Harnesses` category with ~20 entries (Claude Code, Cursor, Aider, LangChain, CrewAI, etc.) so the Anatomy page's `/tools/#harnesses` hand-off has real content to land on. Currently the link works but doesn't filter to anything specific.
 
 ### Session 10
 
@@ -31,35 +97,35 @@ Site reorg + 2026 research pass + forge page polish.
 - **Phase 2 — Forge readme link (2026-04-08, `238c4df`):** Readme link added above quick-start for first-time users (`forge/index.html`).
 
 - **Phase 3 — 2026 research pass (2026-04-08, `cde8fd2`):**
-  - Rhizome: 8 new patterns in `structures/round6_2026_update.json` — Protocol Split (A2A/MCP), Event-Driven Production Stack, Corporate Hierarchy with Budget Caps, Memory Distillation Pipeline, Metacognitive Self-Improvement Loop, Experiential Heuristic Library, Fractal Modularity, Diversity-Preserving Ensemble. `structural-classes.json` updated with new mappings.
-  - Toolshed: 13 new entries in `data/2026_update.json` — OpenCode, Junie CLI, Gemini CLI, cmux, Ghostty, ty, uv, Octrafic, Clanker CLI, Devbox, Prowler, Termdock, Kilo Code CLI. `toolshed/index.html`, `llms.txt`, `llms-full.txt` regenerated.
+  - Orchestration: 8 new patterns in `structures/round6_2026_update.json` — Protocol Split (A2A/MCP), Event-Driven Production Stack, Corporate Hierarchy with Budget Caps, Memory Distillation Pipeline, Metacognitive Self-Improvement Loop, Experiential Heuristic Library, Fractal Modularity, Diversity-Preserving Ensemble. `structural-classes.json` updated with new mappings.
+  - Toolshed: 13 new entries in `data/2026_update.json` — OpenCode, Junie CLI, Gemini CLI, cmux, Ghostty, ty, uv, Octrafic, Clanker CLI, Devbox, Prowler, Termdock, Kilo Code CLI. `tools/index.html`, `llms.txt`, `llms-full.txt` regenerated.
 
-- **Phase 4 — Site reorg (2026-04-09, `1954445`):** Portal redesigned as agentic engineering education site. See "Architecture change (2026-04-09)" note above for details. Adds `llms/` section with 2 pages live (`llms/index.html` Anatomy of an Agent, `llms/llm/index.html` token explainer) and a section steward. Portal 2x2 grid introduces LLMs/Rhizome/Toolshed/Forge. Toolshed "unfilled slots" concept formalized in agent docs.
+- **Phase 4 — Site reorg (2026-04-09, `1954445`):** Portal redesigned as agentic engineering education site. See "Architecture change (2026-04-09)" note above for details. Adds `llms/` section with 2 pages live (`llms/index.html` Anatomy of an Agent, `llms/llm/index.html` token explainer) and a section steward. Portal 2x2 grid introduces LLMs/Orchestration/Toolshed/Forge. Toolshed "unfilled slots" concept formalized in agent docs.
 
-**Rhizome: 269 patterns** (was 261 → +8 this session), counted from `rhizome/structures/*.json`. AGENTS.md and portal both say 269 ✓.
-**Toolshed: ~16,050 entries** (was 16,037 per strategic docs; +13 from `data/2026_update.json`). Toolshed's own agent docs (`toolshed/AGENTS.md`, `STRATEGY.md`) still show 16,037 and should be updated on next curator pass.
+**Orchestration: 269 patterns** (was 261 → +8 this session), counted from `orchestration/structures/*.json`. AGENTS.md and portal both say 269 ✓.
+**Toolshed: ~16,050 entries** (was 16,037 per strategic docs; +13 from `data/2026_update.json`). Toolshed's own agent docs (`tools/AGENTS.md`, `STRATEGY.md`) still show 16,037 and should be updated on next curator pass.
 
 ### Session 9 (prior)
 
-Toolshed final thin-category expansion + Rhizome LLM agent orchestration research and UI.
+Toolshed final thin-category expansion + Orchestration LLM agent orchestration research and UI.
 
 - **Phase 1:** Health check across all 4 sites. All healthy — no critical bugs, shared CSS/JS working, all cross-links valid.
 
 - **Phase 2:** Toolshed curator cycle 76 — final 3 thin categories expanded: HR & People (27→32), Chess (27→32), APIs & Services (27→34). +17 curated, -2 discovered. **No thin categories remain.**
 
-- **Phase 3:** Rhizome steward researched 30+ real-world LLM agent orchestration frameworks (LangGraph, CrewAI, AutoGen, MetaGPT, ChatDev, OpenAI Swarm, Devin, Replit Agent, etc.). Tagged 24 existing patterns with `llm-agent`, created 9 new patterns in `structures/llm_agent_orchestration.json`. New patterns: graph-state-machine, role-play-dialogue-pair, sop-driven-software-team, conversational-group-chat, supervisor-router, agent-as-tool, skill-library-curriculum, plan-code-verify-loop, generative-agent-society.
+- **Phase 3:** Orchestration steward researched 30+ real-world LLM agent orchestration frameworks (LangGraph, CrewAI, AutoGen, MetaGPT, ChatDev, OpenAI Swarm, Devin, Replit Agent, etc.). Tagged 24 existing patterns with `llm-agent`, created 9 new patterns in `structures/llm_agent_orchestration.json`. New patterns: graph-state-machine, role-play-dialogue-pair, sop-driven-software-team, conversational-group-chat, supervisor-router, agent-as-tool, skill-library-curriculum, plan-code-verify-loop, generative-agent-society.
 
 - **Phase 4:** Skeptic review of steward's work. 0 bugs, 2 warnings, 5 notes:
   - WARNING: role-play-dialogue-pair had `adversarial` hierarchy type for cooperative pattern → fixed to `["mesh"]`
   - WARNING: agent-as-tool overlapped with tool-specialist-ring (duplicate LlamaIndex citation) → fixed tool-specialist-ring realWorldExample
   - NOTEs: minor imprecisions in framework attributions (ADK topology, MetaGPT benchmark specificity, AutoGen 0.4 framing, Voyager attribution, Anthropic internal system claim) — acceptable
 
-- **Phase 5:** Builder added LLM Agent Orchestration toggle to rhizome UI (`index.html`). Pill-style toggle above filter panels, green accent when active, works with existing category/structure/search filters, mobile-responsive, accessible (`role="switch"`, `aria-checked`).
+- **Phase 5:** Builder added LLM Agent Orchestration toggle to orchestration UI (`index.html`). Pill-style toggle above filter panels, green accent when active, works with existing category/structure/search filters, mobile-responsive, accessible (`role="switch"`, `aria-checked`).
 
-**Rhizome: 215 patterns (was 206), 33 tagged `documented`, 99 tests passing.**
+**Orchestration: 215 patterns (was 206), 33 tagged `documented`, 99 tests passing.**
 **Toolshed: 16,052 entries (1,555 curated + 14,497 discovered), 67 tests passing. All categories ≥30.**
 
-- **Phase 6:** Rhizome UI rework — replaced documented toggle with Origin/Structure/Field dropdown filters, side-by-side, collapsed by default, overlaying content. Origin has 4 domains: Agentic, Organizational, Computational, Natural. Descriptions appear under each dropdown when a filter is selected. "Category" renamed to "Field". Header simplified — removed "200 ways to organize", concise intro.
+- **Phase 6:** Orchestration UI rework — replaced documented toggle with Origin/Structure/Field dropdown filters, side-by-side, collapsed by default, overlaying content. Origin has 4 domains: Agentic, Organizational, Computational, Natural. Descriptions appear under each dropdown when a filter is selected. "Category" renamed to "Field". Header simplified — removed "200 ways to organize", concise intro.
 
 - **Phase 7:** Portal splash page updated with self-obsolescence sentiment.
 
@@ -84,7 +150,7 @@ Cross-site DRY cleanup: theme toggle and CSS variable deduplication.
 
 - **Phase 3:** Forge page DRY cleanup (`forge/index.html`): removed duplicated shared CSS variables, reset, and body styles. Kept site-specific vars (`--bg-card`, `--accent-dim`, `--accent-text`).
 
-- **Phase 4:** Fixed toolshed crucible link (`toolshed/index.html` line 1872): `/crucible/#id` → `/toolshed/#id` since crucible was merged into toolshed and the redirect doesn't preserve hash fragments.
+- **Phase 4:** Fixed toolshed crucible link (`tools/index.html` line 1872): `/crucible/#id` → `/tools/#id` since crucible was merged into toolshed and the redirect doesn't preserve hash fragments.
 
 - **Phase 5:** Skeptic review of all changes. 0 bugs, 2 warnings:
   - WARNING: Unused CSS vars on landing page → cleaned (removed `--bg-card`, `--bg-card-hover`, `--accent-dim`, `--accent-text`)
@@ -130,7 +196,7 @@ Cross-site polish, DRY cleanup, CSS normalization.
 - Crucible sub-site, security fixes, cross-site a11y polish (144e6fa)
 - Cross-site nav links to crucible (0a5b4cd)
 - Toolshed DRY — shuffleArray() + sortResults() helpers (69a30d0)
-- Rhizome CSS variables normalized (144414e)
+- Orchestration CSS variables normalized (144414e)
 
 ### Session 5 (prior)
 
@@ -138,11 +204,11 @@ Skeptic review of uncommitted changes: 1 security, 6 warning, 5 note — fixed 4
 
 ### Session 4 (prior)
 
-3 new executable tools, cross-site og: meta tags, CSS variable alignment, forge v0.4, rhizome overlay focus, toolshed semantic HTML.
+3 new executable tools, cross-site og: meta tags, CSS variable alignment, forge v0.4, orchestration overlay focus, toolshed semantic HTML.
 
 ### Session 3 (prior)
 
-Cross-site consistency, forge hover shadows, rhizome evolution features.
+Cross-site consistency, forge hover shadows, orchestration evolution features.
 
 ### Session 2 (prior)
 
@@ -158,9 +224,9 @@ None. Git tree is clean as of 2026-04-11. Everything from sessions 7–10 is lan
 
 ## In progress
 
-- **llms section half-built**: 2 of 4 planned pages live. `/llms/` (Anatomy of an Agent) and `/llms/llm/` (token explainer) exist; `/llms/harness/` and `/llms/context/` still listed as *Planned* in `llms/AGENTS.md` with no folders.
+- **llms section half-built**: 2 of 4 planned pages live. `/llms/` (Anatomy of an Agent) and `/llms/llm/` (token explainer) exist; `/llms/harness/` and `/context/` still listed as *Planned* in `llms/AGENTS.md` with no folders.
 - **llms visual split**: `llms/index.html` and `llms/llm/index.html` do not reference `shared/forge.css`. They use their own palette (deep blue `#07090e`) and fonts (Instrument Serif + JetBrains Mono), not the portal's warm orange. Skeptic policy (`agents/skeptic.md` line 36) is currently "flag inconsistencies but don't force adoption if the llms aesthetic works" — so this is intentional-for-now, but a navigation transition from `/` to `/llms/` feels like two different sites. Needs an explicit call: commit to the aesthetic split or plan an integration pass.
-- **Toolshed entry count drift**: `cde8fd2` added 13 entries via `data/2026_update.json` but `toolshed/AGENTS.md` and `STRATEGY.md` still say 16,037. Curator should re-run `build.py` and update docs on next toolshed pass.
+- **Toolshed entry count drift**: `cde8fd2` added 13 entries via `data/2026_update.json` but `tools/AGENTS.md` and `STRATEGY.md` still say 16,037. Curator should re-run `build.py` and update docs on next toolshed pass.
 
 ## Deferred
 

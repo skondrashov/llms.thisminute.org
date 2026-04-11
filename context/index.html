@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context &middot; LLMs &middot; thisminute.org</title>
+<meta name="description" content="The context window is the only memory a model has. What fills it, how fast, and why everything from memory files to reasoning tokens to tool output is really the same thing.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='82'>%F0%9F%AA%9F</text></svg>">
+<link rel="stylesheet" href="/shared/forge.css">
+<style>
+  :root { --accent: #a8d8b5; }
+  body.light-mode { --accent: #7fbb8f; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 40px 24px 4px;
+  }
+  .site-label a { color: inherit; text-decoration: none; }
+  .site-label a:hover { color: var(--text-secondary); }
+
+  header.hero {
+    text-align: center;
+    padding: 0 24px 32px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+  .hero .tagline {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0.35rem auto 0;
+    line-height: 1.55;
+  }
+
+  main.page {
+    flex: 1;
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  section h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.75rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0;
+  }
+
+  section p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.9rem;
+    font-size: 1rem;
+  }
+  section p strong { color: var(--text); font-weight: 600; }
+
+  /* --- Embedded token demo --- */
+  .demo-wrap {
+    background: var(--bg-raised);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow);
+  }
+  .formula {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent);
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .token-area {
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .token-area.reading {
+    border-color: var(--accent-muted);
+  }
+  #tokens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: flex-start;
+    min-height: 90px;
+    align-content: flex-start;
+  }
+  .brk { flex-basis: 100%; height: 5px; }
+  .tk {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    white-space: nowrap;
+    transition: filter 0.12s, background 0.12s;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--bg-card);
+  }
+  .tk.ru {
+    background: color-mix(in srgb, var(--accent) 12%, var(--bg-card));
+    border-color: color-mix(in srgb, var(--accent) 24%, transparent);
+  }
+  .tk.ra {
+    background: color-mix(in srgb, #f0a4c0 12%, var(--bg-card));
+    border-color: color-mix(in srgb, #f0a4c0 24%, transparent);
+  }
+  body.light-mode .tk.ra {
+    background: color-mix(in srgb, #d97ea0 10%, var(--bg-card));
+    border-color: color-mix(in srgb, #d97ea0 22%, transparent);
+  }
+  .tk.lt {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: var(--accent-muted);
+    animation: pop 0.28s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .tk.fl {
+    filter: brightness(1.15) saturate(1.3);
+    background: var(--bg-card-hover) !important;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .tk.bt { animation: batch-in 0.2s ease; }
+  @keyframes batch-in {
+    from { opacity: 0; transform: translateY(3px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .demo-meta { margin-bottom: 12px; }
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    min-height: 1.2em;
+  }
+  .status strong { color: var(--accent); font-weight: 600; }
+
+  .controls {
+    display: flex;
+    gap: 10px;
+  }
+  .controls button {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    padding: 7px 18px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .controls button:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+  .controls button:disabled { opacity: 0.4; cursor: default; }
+  .controls button:active:not(:disabled) { transform: scale(0.97); }
+
+  /* --- What's filling our context? --- */
+  .fill-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 1.5rem 0 1rem;
+  }
+  .fill-row {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem;
+    align-items: start;
+    box-shadow: var(--shadow);
+  }
+  .fill-row.big {
+    border-color: var(--accent-muted);
+  }
+  .fill-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .fill-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  .fill-amount {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-align: right;
+    white-space: nowrap;
+    padding-top: 0.1rem;
+  }
+  .fill-bar {
+    grid-column: 1 / -1;
+    margin-top: 0.55rem;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--bg-inset);
+    overflow: hidden;
+    position: relative;
+  }
+  .fill-bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: var(--w, 10%);
+    background: linear-gradient(90deg, var(--accent-muted), var(--accent));
+    border-radius: 2px;
+  }
+
+  /* --- Vision section --- */
+  .vision-note {
+    background: color-mix(in srgb, var(--accent) 8%, var(--bg-raised));
+    border: 1px dashed var(--accent-muted);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    margin: 1.2rem 0;
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .vision-note strong { color: var(--accent); }
+
+  footer {
+    text-align: center;
+    padding: 32px 24px 40px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  footer a { color: var(--text-secondary); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  @media (max-width: 520px) {
+    .fill-row { grid-template-columns: 1fr; }
+    .fill-amount { text-align: left; padding-top: 0.2rem; }
+  }
+</style>
+</head>
+<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+
+<div class="forge-theme-toggle"></div>
+
+<p class="site-label"><a href="/">&larr; LLMs</a> / context</p>
+
+<header class="hero">
+  <h1>Context</h1>
+  <p class="tagline">the window the model actually sees, and the only place anything ever gets remembered!</p>
+</header>
+
+<main class="page">
+
+  <section>
+    <h2>the model has no memory</h2>
+    <p>ok so this part is genuinely wild. every time you ask the model something, it is seeing the entire conversation for the first time. it has no idea it answered you ten minutes ago. it doesn&rsquo;t remember your name. it doesn&rsquo;t know which tokens it wrote and which you wrote. all it has is the context window, and all it does is guess the next token that should come after everything in it.</p>
+    <p>here&rsquo;s the animation from the anatomy page to show you what that looks like. hit play.</p>
+
+    <div class="demo-wrap">
+      <span class="formula">f(all preceding tokens) &rarr; one token</span>
+      <div class="token-area" id="area">
+        <div id="tokens"></div>
+      </div>
+      <div class="demo-meta">
+        <div class="status" id="status"></div>
+      </div>
+      <div class="controls">
+        <button onclick="doReset()">Reset</button>
+        <button onclick="doStep()" id="sbtn">Step</button>
+        <button onclick="doPlay()" id="pbtn">Play</button>
+      </div>
+    </div>
+
+    <p>notice how when the model &ldquo;reads&rdquo; the window to predict the next token, <em>all of the tokens flash at once</em>. it&rsquo;s not reading them in order. it doesn&rsquo;t know which ones it wrote last turn. it just sees a flat pile and guesses what should come after.</p>
+  </section>
+
+  <section id="filling">
+    <h2>what&rsquo;s filling our context?</h2>
+    <p>so if the context is the only memory, the obvious next question is: what&rsquo;s actually in there? like, what takes up the space?</p>
+    <p>rough token amounts for the stuff that piles up in an agent context, smallest to biggest:</p>
+
+    <div class="fill-breakdown">
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">system prompt</div>
+          <div class="fill-desc">the scaffolding the model sees before anything else. role instructions, tool definitions, formatting rules. usually set once and never touched.</div>
+        </div>
+        <div class="fill-amount">~1K to 5K</div>
+        <div class="fill-bar" style="--w: 4%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">tool call request</div>
+          <div class="fill-desc">when the model asks to use a tool, it writes out the function name plus a little JSON with arguments. this part is tiny, usually a sentence or two.</div>
+        </div>
+        <div class="fill-amount">50 to 200</div>
+        <div class="fill-bar" style="--w: 1%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">user message</div>
+          <div class="fill-desc">whatever you typed. could be a one-word question or could be a wall of context you pasted in. usually on the smaller side!</div>
+        </div>
+        <div class="fill-amount">50 to 2K</div>
+        <div class="fill-bar" style="--w: 4%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">assistant reply (no thinking)</div>
+          <div class="fill-desc">a normal model response. a paragraph, a code block, whatever. this is what you see it writing back to you.</div>
+        </div>
+        <div class="fill-amount">200 to 2K</div>
+        <div class="fill-bar" style="--w: 4%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">screenshot (vision)</div>
+          <div class="fill-desc">one image, once the model converts it into tokens. a single screenshot costs about this much, regardless of what&rsquo;s in it. more on this below.</div>
+        </div>
+        <div class="fill-amount">~1.5K</div>
+        <div class="fill-bar" style="--w: 3%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">grep hit list</div>
+          <div class="fill-desc">the model runs a search across a repo and gets a bunch of file-line matches back. the more hits, the bigger it gets.</div>
+        </div>
+        <div class="fill-amount">500 to 10K</div>
+        <div class="fill-bar" style="--w: 20%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">reading a file</div>
+          <div class="fill-desc">the model asks to open a file, and the entire file comes back to it. small config file? nothing. a 2000-line source file? ouch.</div>
+        </div>
+        <div class="fill-amount">500 to 20K+</div>
+        <div class="fill-bar" style="--w: 40%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">web search or scrape</div>
+          <div class="fill-desc">the model asks a search tool, gets back a bunch of page text. scraping a single webpage can return a giant wall of stuff.</div>
+        </div>
+        <div class="fill-amount">2K to 20K</div>
+        <div class="fill-bar" style="--w: 40%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">reasoning trace (thinking models)</div>
+          <div class="fill-desc">some models think out loud before answering. all of those thinking tokens live in the context too. reasoning-heavy models can burn a huge chunk of the window on a single turn.</div>
+        </div>
+        <div class="fill-amount">2K to 20K+</div>
+        <div class="fill-bar" style="--w: 40%"></div>
+      </div>
+
+      <div class="fill-row big">
+        <div>
+          <div class="fill-name">git log -p on a big commit</div>
+          <div class="fill-desc">the BOSS of context fillers. you ask the model to look at what changed in a commit, and suddenly fifty thousand tokens of diff show up in the window. this is the thing that eats your context window alive.</div>
+        </div>
+        <div class="fill-amount">10K to 50K+</div>
+        <div class="fill-bar" style="--w: 100%"></div>
+      </div>
+    </div>
+
+    <p>in a typical agent workflow, <strong>tool output dominates</strong>. one file read or one git diff can be bigger than everything the user and the model have typed all session combined. reasoning tokens are the other big spender when you&rsquo;re running a thinking model. the system prompt, user messages, and assistant replies feel important because they&rsquo;re the part you can see, but compared to tool output they&rsquo;re usually small fries.</p>
+  </section>
+
+  <section>
+    <h2>the model fills its own context, constantly</h2>
+    <p>here&rsquo;s the thing that makes all of this click. memory files, role instructions, skill prompts, reasoning tokens, tool output: they all look like different kinds of things, but from the model&rsquo;s perspective they&rsquo;re literally the same. it&rsquo;s all just tokens in the window.</p>
+    <p>think about it like this. when you put a <strong>memory file</strong> in front of the model, you&rsquo;re pre-populating its context. when the model writes <strong>reasoning tokens</strong> before its answer (like Gemini&rsquo;s classic &ldquo;but wait, let me reconsider...&rdquo;), it&rsquo;s populating its OWN context with words that help it think. when the harness <strong>dumps tool output</strong> into the next turn, it&rsquo;s populating the model&rsquo;s context on its behalf. all three are doing the same mechanical thing: putting tokens in the window so the next prediction pass has more to work with.</p>
+    <p>this is why persistent context stuff works so well and feels so intuitive. you&rsquo;re not doing anything weird or magical! you&rsquo;re just adding to the pile of tokens the model is about to read. the model was already going to do that to itself anyway.</p>
+  </section>
+
+  <section>
+    <h2>vision, but make it tokens</h2>
+    <p>the thing about models being pure token machines is that when they &ldquo;see&rdquo; an image, they&rsquo;re not really looking at pixels. under the hood, a vision transformer chops the image up into little patches (usually a grid, like 16 by 16), runs each patch through an encoder, and produces a sequence of embeddings. those embeddings get stuffed into the context window right next to the text tokens, and the model treats them the same.</p>
+
+    <div class="vision-note">
+      so when you upload a screenshot to a multimodal model, it&rsquo;s not magically understanding the image, it&rsquo;s receiving <strong>a sequence of image-patch tokens</strong> mixed into the same window that holds your text. typical cost: around <strong>1,500 tokens per image</strong> in Claude, varying with model and resolution settings.
+    </div>
+
+    <p>this is why document processing or long screenshot chains can chew through a context window the same way a big file read does. ten pages of scanned PDF might be 15K tokens of nothing but image patches, before you&rsquo;ve said a single word to the model.</p>
+    <p>higher resolution buys more detail at the cost of more tokens. some models give you knobs for this. most just have a default patch budget and if your image needs more tokens, it downsamples.</p>
+  </section>
+
+  <section>
+    <h2>how big is the window anyway?</h2>
+    <p>this used to be a tight constraint. GPT-3 had a 4K token window, which sounds like nothing now. current frontier models:</p>
+    <ul style="list-style:none; padding:0; margin: 0.5rem 0 0.9rem 0.5rem; color: var(--text-secondary); line-height: 1.9; font-size: 0.95rem;">
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">200K</span> &mdash; Claude Haiku 4.5</li>
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">1M</span> &mdash; Claude Opus/Sonnet 4.6, Gemini 2.5 Flash</li>
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">2M</span> &mdash; Gemini 2.5 Pro</li>
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">128K</span> &mdash; most open-weights models (Llama, Mistral, DeepSeek, Qwen)</li>
+    </ul>
+    <p>1M is genuinely a lot! you can fit a medium-sized codebase in there. but remember, tool output is measured in the tens of thousands, so even 1M fills up faster than you&rsquo;d think if the model is browsing a lot. harnesses have to decide what to evict, what to summarize, or when to start a fresh session.</p>
+    <p>and there&rsquo;s a subtler thing too: even when your tokens are technically in the window, the model&rsquo;s attention isn&rsquo;t uniform. stuff near the beginning and the end of the window tends to be more salient than stuff in the middle. the bigger the window, the more noticeable this &ldquo;lost in the middle&rdquo; effect gets.</p>
+  </section>
+
+</main>
+
+<footer>
+  part of <a href="/">LLMs &middot; thisminute.org</a>
+</footer>
+
+<script src="/shared/forge.js"></script>
+<script>
+// Statelessness token demo, ported from /llms/llm/
+var T = [
+  {t:'user',r:1},{t:'What'},{t:'is'},{t:'the'},{t:'capital'},{t:'of'},{t:'France'},{t:'?'},
+  {t:'assistant',r:2},{t:'The'},{t:'capital'},{t:'of'},{t:'France'},{t:'is'},{t:'Paris'},{t:'.'},
+  {t:'user',r:1},{t:'And'},{t:'Germany'},{t:'?'},
+  {t:'assistant',r:2},{t:'The'},{t:'capital'},{t:'of'},{t:'Germany'},{t:'is'},{t:'Berlin'},{t:'.'}
+];
+var START = 9;
+var EV = [
+  {n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},
+  {n:5},
+  {n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1}
+];
+var vis = START, ei = 0, busy = false, playing = false;
+
+function render(newCount, isGen) {
+  var h = '';
+  for (var i = 0; i < vis; i++) {
+    if (T[i].r && i > 0) h += '<div class="brk"></div>';
+    var c = 'tk';
+    if (T[i].r === 1) c += ' ru';
+    else if (T[i].r === 2) c += ' ra';
+    if (newCount && i >= vis - newCount) c += isGen ? ' lt' : ' bt';
+    h += '<span class="' + c + '">' + T[i].t + '</span>';
+  }
+  document.getElementById('tokens').innerHTML = h;
+}
+function status() {
+  var el = document.getElementById('status');
+  if (ei === 0) el.textContent = vis + ' tokens in context';
+  else if (ei >= EV.length) el.textContent = 'complete \u2014 ' + T.length + ' tokens';
+  else if (EV[ei - 1].g) el.innerHTML = 'reads ' + (vis - 1) + ' tokens \u2192 <strong>' + T[vis - 1].t + '</strong>';
+  else el.textContent = vis + ' tokens in context';
+  document.getElementById('sbtn').disabled = ei >= EV.length;
+}
+function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+async function doStep() {
+  if (ei >= EV.length || busy) return;
+  busy = true;
+  var ev = EV[ei];
+  if (ev.g) {
+    var area = document.getElementById('area');
+    var tks = document.querySelectorAll('#tokens .tk');
+    area.classList.add('reading');
+    tks.forEach(function(t) { t.classList.add('fl'); });
+    await sleep(280);
+    tks.forEach(function(t) { t.classList.remove('fl'); });
+    area.classList.remove('reading');
+    await sleep(80);
+  }
+  vis += ev.n; ei++;
+  render(ev.n, !!ev.g);
+  status();
+  busy = false;
+}
+function doReset() {
+  playing = false;
+  document.getElementById('pbtn').textContent = 'Play';
+  vis = START; ei = 0;
+  render(0, false); status();
+}
+function doPlay() {
+  if (playing) {
+    playing = false;
+    document.getElementById('pbtn').textContent = 'Play';
+    return;
+  }
+  playing = true;
+  document.getElementById('pbtn').textContent = 'Pause';
+  (async function go() {
+    if (!playing || ei >= EV.length) {
+      playing = false;
+      document.getElementById('pbtn').textContent = 'Play';
+      return;
+    }
+    await doStep();
+    var delay = EV[ei - 1].g ? 600 : 1000;
+    await sleep(delay);
+    go();
+  })();
+}
+render(0, false);
+status();
+</script>
+</body>
+</html>

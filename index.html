@@ -3,170 +3,441 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forge — thisminute.org</title>
-  <meta name="description" content="Learn agentic engineering: how LLMs work, orchestration patterns, software tools, and multi-agent systems. Interactive explainers built in the open.">
-  <meta property="og:title" content="Forge — thisminute.org">
-  <meta property="og:description" content="Learn agentic engineering: how LLMs work, orchestration patterns, software tools, and multi-agent systems.">
+  <title>LLMs · thisminute.org</title>
+  <meta name="description" content="ok so what's actually inside an AI agent?? here's all the pieces and how they fit together, no jargon">
+  <meta property="og:title" content="LLMs · thisminute.org">
+  <meta property="og:description" content="ok so what's actually inside an AI agent?? here's all the pieces and how they fit together, no jargon">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://forge.thisminute.org/">
   <meta name="twitter:card" content="summary">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%94%A5</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='82'>%F0%9F%92%AC</text></svg>">
   <link rel="stylesheet" href="/shared/forge.css">
   <!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
   <script defer data-domain="forge.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
 
   <style>
-    /* Site-specific color overrides (shared vars come from forge.css) */
-    :root {
-      --bg: #111118;
-      --bg-raised: #1a1a24;
-      --accent: #e8672a;
-    }
-    body.light-mode {
-      --bg: #faf8f5;
-      --bg-raised: #ffffff;
-      --accent: #c2410c;
-    }
+    /* Home inherits palette + typography from shared/forge.css.
+       Only home-specific layout and the flowchart live here. */
 
     body {
-      background: var(--bg);
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main.home {
+      flex: 1;
+      max-width: 880px;
+      width: 100%;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* --- Hero --- */
+    .hero {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+      min-height: 5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 7vw, 4.25rem);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      line-height: 1;
+      max-width: 100%;
+      word-break: break-word;
+      cursor: default;
+      transition: color var(--transition-fast);
+    }
+    .hero h1:hover {
+      color: var(--accent);
+    }
+
+    /* --- Flowchart: the anatomy diagram --- */
+    .anatomy {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      padding: 2.5rem 1.5rem;
+      border: 1.5px dashed var(--border-light);
+      border-radius: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: var(--shadow);
+      background: var(--bg-raised);
+    }
+    .anatomy__harness-label {
+      position: absolute;
+      top: -0.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg);
+      padding: 0 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* Flow nodes */
+    .anatomy__node {
+      display: block;
+      padding: 1.2rem 1.8rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--text);
+      background: var(--bg-card);
+      border: 1.5px solid var(--node-c, var(--border));
+      box-shadow: 0 2px 18px color-mix(in srgb, var(--node-c) 14%, transparent);
+      text-align: center;
+      min-width: 220px;
+      position: relative;
+      z-index: 2;
+      transition: transform var(--transition-med), box-shadow var(--transition-med);
+    }
+    .anatomy__node:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px color-mix(in srgb, var(--node-c) 22%, transparent);
+      text-decoration: none;
+    }
+    .anatomy__node-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--node-c);
+      margin-bottom: 0.35rem;
+    }
+    .anatomy__node-name {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.45rem;
+    }
+    .anatomy__node-desc {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Connector line between nodes */
+    .anatomy__link {
+      width: 2px;
+      height: 42px;
+      background: linear-gradient(var(--border-light), var(--border-light));
+      position: relative;
+    }
+    .anatomy__link::before,
+    .anatomy__link::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      transform: translateX(-50%);
+      animation: flow 2.6s ease-in-out infinite;
+    }
+    .anatomy__link::before { top: -3px; }
+    .anatomy__link::after  { top: -3px; animation-delay: 1.3s; }
+    @keyframes flow {
+      0%   { top: -3px; opacity: 0; }
+      15%  { opacity: 1; }
+      85%  { opacity: 1; }
+      100% { top: calc(100% - 4px); opacity: 0; }
+    }
+
+    /* Node color tokens */
+    .node--model    { --node-c: var(--accent); }       /* pink */
+    .node--context  { --node-c: var(--accent-alt); }   /* mint */
+    .node--tools    { --node-c: #f4a58c; }             /* coral */
+    body.light-mode .node--tools { --node-c: #d97c60; }
+
+    /* --- Diagram row: anatomy + orchestration cluster side by side --- */
+    .diagram-row {
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .portal {
-      max-width: 880px;
+      gap: var(--space-lg);
       width: 100%;
-      padding: 2rem;
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    .header h1 {
-      font-size: 2.5rem;
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      color: var(--text);
-    }
-    .header .tagline {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-top: 0.25rem;
-    }
-
-    .vision {
-      max-width: 640px;
-      margin: 0 auto 2.5rem;
-      text-align: left;
-    }
-    .vision p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-      margin-bottom: 0.75rem;
-    }
-    .vision p:last-child { margin-bottom: 0; }
-    .vision strong { color: var(--text); font-weight: 500; }
-
-    .site-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-    }
-
-    .site-card {
+    /* --- Orchestration cluster --- */
+    .orchestration-link {
       display: block;
-      background: var(--bg-raised);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem 1.5rem;
       text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+      padding: 0.5rem;
+      transition: transform var(--transition-med);
     }
-    .site-card:hover {
-      border-color: var(--card-accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
+    .orchestration-link:hover {
+      transform: rotate(-1.5deg) scale(1.05);
       text-decoration: none;
     }
-    .site-card h2 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--card-accent);
-      margin-bottom: 0.5rem;
+    .orchestration-svg {
+      width: 170px;
+      height: auto;
+      display: block;
+      overflow: visible;
     }
-    .site-card p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.5;
+    .orchestration-connectors path {
+      fill: none;
+      stroke: var(--accent-alt);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+      opacity: 0.5;
+      transition: stroke-width var(--transition-fast), opacity var(--transition-fast);
     }
-    .site-card .stat {
-      font-size: 0.7rem;
-      color: var(--text-muted);
+    .ctx-window rect {
+      fill: var(--bg-card);
+      stroke: var(--accent-alt);
+      stroke-width: 1.5;
+      transition: stroke-width var(--transition-fast);
+    }
+    .ctx-window line {
+      stroke: var(--accent-alt);
+      stroke-width: 0.9;
+      stroke-linecap: round;
+      opacity: 0.45;
+    }
+    .orchestration-label {
+      fill: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 1rem;
+      transition: fill var(--transition-fast);
+    }
+    .orchestration-link:hover .orchestration-connectors path {
+      stroke-width: 1.8;
+      opacity: 0.9;
+    }
+    .orchestration-link:hover .ctx-window rect {
+      stroke-width: 2.2;
+    }
+    .orchestration-link:hover .orchestration-label {
+      fill: var(--accent-alt);
     }
 
-    .card-llms { --card-accent: #e0a050; }
-    .card-rhizome { --card-accent: #22d3ee; }
-    .card-toolshed { --card-accent: #f59e0b; }
-    .card-forge { --card-accent: #e8672a; }
-
-    .site-card:focus-visible {
-      outline: 2px solid var(--card-accent, var(--text-muted));
-      outline-offset: 2px;
+    /* --- Below the diagram --- */
+    .more {
+      margin-top: var(--space-xl);
+      max-width: 560px;
+      text-align: center;
     }
+    .more p {
+      color: var(--text-secondary);
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+    .more p + p { margin-top: 0.6rem; }
+    .more strong { color: var(--text); font-weight: 600; }
 
-    @media (max-width: 700px) {
-      .site-grid { grid-template-columns: 1fr; }
-      .header h1 { font-size: 1.8rem; }
-      body { align-items: flex-start; padding-top: 3rem; }
+    /* Footer */
+    .footer {
+      margin-top: auto;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+    .footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin: 0 0.6rem;
+    }
+    .footer a:hover { color: var(--accent); }
+
+    /* --- Responsive --- */
+    @media (max-width: 840px) {
+      .diagram-row {
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+      .orchestration-svg { width: 190px; }
+    }
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 3rem; }
+      .anatomy { padding: 2rem 1rem; }
+      .anatomy__node { min-width: 180px; padding: 1rem 1.2rem; }
+      .anatomy__node-name { font-size: 1.4rem; }
     }
   </style>
 </head>
-<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&matchMedia('(prefers-color-scheme:light)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
 
   <div class="forge-theme-toggle"></div>
 
-  <main class="portal">
-    <header class="header">
-      <h1>FORGE</h1>
+  <main class="home">
+    <header class="hero">
+      <h1>LLMs!</h1>
     </header>
 
-    <section class="vision">
-      <p>Learn agentic engineering &mdash; from how LLMs predict tokens to how multi-agent systems coordinate. Interactive explainers, a pattern catalog, and a software directory. All connected.</p>
+    <div class="diagram-row">
+    <section class="anatomy" aria-label="Anatomy of an agent">
+      <span class="anatomy__harness-label">harness</span>
+
+      <a href="/models/" class="anatomy__node node--model">
+        <span class="anatomy__node-label">Model</span>
+        <span class="anatomy__node-name">f(tokens) &rarr; token</span>
+        <span class="anatomy__node-desc">you hand it a giant wall of tokens and it guesses the next one. that&rsquo;s LITERALLY all it does!! and then it forgets everything, which is honestly kinda wild</span>
+      </a>
+
+      <div class="anatomy__link" aria-hidden="true"></div>
+
+      <a href="/context/" class="anatomy__node node--context">
+        <span class="anatomy__node-label">Context</span>
+        <span class="anatomy__node-name">the window</span>
+        <span class="anatomy__node-desc">all the stuff the model actually gets to see when you talk to it. want it to remember something? gotta put it in here. there&rsquo;s literally nowhere else!</span>
+      </a>
+
+      <div class="anatomy__link" aria-hidden="true"></div>
+
+      <a href="/tools/" class="anatomy__node node--tools">
+        <span class="anatomy__node-label">Tools</span>
+        <span class="anatomy__node-name">files, APIs, the web</span>
+        <span class="anatomy__node-desc">ok so the model can&rsquo;t actually DO anything by itself, like it can&rsquo;t open files or go on the internet. so you give it tools that can! and whatever the tool finds out shows up in the context so the model sees what happened</span>
+      </a>
     </section>
 
-    <nav class="site-grid" aria-label="Sections">
-      <a href="/llms/" class="site-card card-llms">
-        <h2>LLMs</h2>
-        <p>How agents actually work. Token prediction, context windows, harnesses, and the parts that connect them.</p>
-        <div class="stat">Interactive explainers</div>
-      </a>
-      <a href="/rhizome/" class="site-card card-rhizome">
-        <h2>Rhizome</h2>
-        <p>Agent orchestration pattern catalog. Reusable coordination strategies for multi-agent systems.</p>
-        <div class="stat">269 patterns</div>
-      </a>
-      <a href="/toolshed/" class="site-card card-toolshed">
-        <h2>Toolshed</h2>
-        <p>Software directory. Existing tools and unfilled slots &mdash; the software that exists and the software that should.</p>
-        <div class="stat">16,000+ entries</div>
-      </a>
-      <a href="/forge/" class="site-card card-forge">
-        <h2>Forge</h2>
-        <p>Manage multi-agent systems across coding projects. Audit, upgrade, and propagate patterns.</p>
-        <div class="stat">Scan &rarr; Review &rarr; Propagate</div>
-      </a>
-    </nav>
+    <a href="/orchestration/" class="orchestration-link" aria-label="Orchestration: many contexts, one model. Go to the orchestration pattern catalog.">
+      <svg class="orchestration-svg" viewBox="0 0 180 310" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g class="orchestration-connectors">
+          <path d="M 45,32 Q 70,48 92,56" />
+          <path d="M 92,56 Q 65,78 38,88" />
+          <path d="M 38,88 Q 78,104 108,122" />
+          <path d="M 108,122 Q 74,142 42,158" />
+          <path d="M 42,158 Q 82,178 96,192" />
+          <path d="M 96,192 Q 56,214 28,222" />
+          <path d="M 28,222 Q 62,244 92,256" />
+          <path d="M 92,256 Q 42,272 36,250" />
+        </g>
+        <g class="orchestration-windows">
+          <g class="ctx-window"><rect x="28" y="16"  width="34" height="22" rx="4"/><line x1="32" y1="23" x2="52" y2="23"/><line x1="32" y1="27" x2="54" y2="27"/><line x1="32" y1="31" x2="46" y2="31"/></g>
+          <g class="ctx-window"><rect x="78" y="44"  width="34" height="22" rx="4"/><line x1="82" y1="51" x2="102" y2="51"/><line x1="82" y1="55" x2="104" y2="55"/><line x1="82" y1="59" x2="98" y2="59"/></g>
+          <g class="ctx-window"><rect x="22" y="74"  width="34" height="22" rx="4"/><line x1="26" y1="81" x2="46" y2="81"/><line x1="26" y1="85" x2="48" y2="85"/><line x1="26" y1="89" x2="40" y2="89"/></g>
+          <g class="ctx-window"><rect x="90" y="108" width="34" height="22" rx="4"/><line x1="94" y1="115" x2="114" y2="115"/><line x1="94" y1="119" x2="116" y2="119"/><line x1="94" y1="123" x2="108" y2="123"/></g>
+          <g class="ctx-window"><rect x="28" y="144" width="34" height="22" rx="4"/><line x1="32" y1="151" x2="52" y2="151"/><line x1="32" y1="155" x2="54" y2="155"/><line x1="32" y1="159" x2="44" y2="159"/></g>
+          <g class="ctx-window"><rect x="80" y="178" width="34" height="22" rx="4"/><line x1="84" y1="185" x2="104" y2="185"/><line x1="84" y1="189" x2="106" y2="189"/><line x1="84" y1="193" x2="96" y2="193"/></g>
+          <g class="ctx-window"><rect x="14" y="208" width="34" height="22" rx="4"/><line x1="18" y1="215" x2="38" y2="215"/><line x1="18" y1="219" x2="40" y2="219"/><line x1="18" y1="223" x2="30" y2="223"/></g>
+          <g class="ctx-window"><rect x="76" y="242" width="34" height="22" rx="4"/><line x1="80" y1="249" x2="100" y2="249"/><line x1="80" y1="253" x2="102" y2="253"/><line x1="80" y1="257" x2="92" y2="257"/></g>
+        </g>
+        <text x="90" y="295" text-anchor="middle" class="orchestration-label">orchestration</text>
+      </svg>
+    </a>
+
+    </div>
+
+    <div class="more">
+      <p>ok so here&rsquo;s the whole deal. a model by itself is kinda useless?? it just guesses the next token and forgets. but when you stick it inside a context full of everything you want it to know, and give it tools so it can actually go do stuff in the world, and wrap the whole situation up in a harness that keeps the loop running, suddenly you&rsquo;ve got an actual AI agent going. and if you run a whole BUNCH of these at once, all sharing the same model?? that&rsquo;s orchestration, and it&rsquo;s basically the whole reason everyone&rsquo;s losing their minds about AI right now.</p>
+      <p>click any of the boxes up there to dig into that part!</p>
+    </div>
   </main>
 
+  <footer class="footer">
+    <a href="https://github.com/thisminute/llms.thisminute.org">source</a>
+  </footer>
+
   <script src="/shared/forge.js"></script>
+  <script>
+    (function() {
+      var h1 = document.querySelector('.hero h1');
+      if (!h1) return;
+      var original = 'LLMs!';
+
+      // Plurals only. Every entry must contain at least one 'l' and one 'm'.
+      // Where a fun non-s plural exists that keeps the M, we use it.
+      var words = [
+        'largelanguagemodels',
+        'lavalamps',
+        'llamas',
+        'lululemons',
+        'linoleums',
+        'slaloms',
+        'clingfilms',
+        'fulfillments',
+        'flimflams',
+        'globalisms',
+        'legalisms',
+        'liberalisms',
+        'pluralisms',
+        'localisms',
+        'loyalisms',
+        'colonialisms',
+        'clericalisms',
+        'literalisms',
+        'parallelisms',
+        'intellectualisms',
+        'multiculturalisms',
+        'neoliberalisms',
+        'unilateralisms',
+        'ultranationalisms',
+        'flagellums',
+        'flabellums',
+        'labellums',
+        'allelomorphs',
+        'hyaloplasms',
+        'hyaloplasmata',          // Greek -mata plural
+        'nucleoplasms',
+        'nucleoplasmata',         // Greek -mata plural
+        'polyacrylamides',
+        'sulfanilamides',
+        'platyhelminths',
+        'platyhelminthes',        // Greek -es plural
+        'electroencephalograms',
+        'electroencephalogrammata', // Greek -mata plural, ridiculous, beautiful
+        'electroluminescents',
+        'paleoclimatologies',
+        'malcolms',
+        'wilhelms',
+        'malayalams',
+        'parallelograms',
+        'parallelogrammata',      // fake Greek plural, rules of cool apply
+        'allhallowmases'
+      ];
+
+      // Rule: lowercase everything EXCEPT the first L, the last M, and the
+      // closest L that comes before that last M.
+      function formatLLMs(word) {
+        var w = word.toLowerCase();
+        var firstL = w.indexOf('l');
+        var lastM = w.lastIndexOf('m');
+        if (firstL < 0 || lastM < 0) return word;
+        var closestL = -1;
+        for (var i = lastM - 1; i >= 0; i--) {
+          if (w.charAt(i) === 'l') { closestL = i; break; }
+        }
+        var chars = w.split('');
+        chars[firstL] = 'L';
+        if (closestL >= 0) chars[closestL] = 'L';
+        chars[lastM] = 'M';
+        return chars.join('') + '!';
+      }
+
+      // Pick ONCE on page load and stick with it until the page is refreshed.
+      var picked = formatLLMs(words[Math.floor(Math.random() * words.length)]);
+
+      h1.addEventListener('mouseenter', function() {
+        h1.textContent = picked;
+      });
+      h1.addEventListener('mouseleave', function() {
+        h1.textContent = original;
+      });
+    })();
+  </script>
 
 </body>
 </html>
