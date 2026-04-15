@@ -70,7 +70,7 @@
     "name": "LangChain",
     "description": "Framework for building LLM-powered applications. Chains, agents, RAG, memory, and tool integrations.",
     "url": "https://www.langchain.com",
-    "category": "LLM Tools",
+    "category": "Harnesses",
     "os": [
       "windows",
       "macos",
@@ -1489,7 +1489,7 @@
     "name": "LlamaIndex",
     "description": "Data framework for LLM apps. Connect custom data sources for RAG with indexing, retrieval, and query engines.",
     "url": "https://www.llamaindex.ai",
-    "category": "LLM Tools",
+    "category": "Harnesses",
     "os": [
       "windows",
       "macos",
@@ -1533,7 +1533,7 @@
     "name": "CrewAI",
     "description": "Framework for orchestrating autonomous AI agents. Define roles, goals, and tasks for collaborative multi-agent workflows.",
     "url": "https://www.crewai.com",
-    "category": "LLM Tools",
+    "category": "Harnesses",
     "os": [
       "windows",
       "macos",
@@ -1596,7 +1596,7 @@
     "name": "AutoGen",
     "description": "Microsoft framework for building multi-agent AI systems. Agents converse, code, and use tools to solve tasks together.",
     "url": "https://microsoft.github.io/autogen",
-    "category": "LLM Tools",
+    "category": "Harnesses",
     "os": [
       "windows",
       "macos",

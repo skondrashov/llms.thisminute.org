@@ -516,7 +516,7 @@
     "name": "Claude Code",
     "description": "Anthropic's agentic CLI for Claude. Reads your codebase, edits files, runs commands, and handles complex tasks.",
     "url": "https://docs.anthropic.com/en/docs/claude-code",
-    "category": "AI Assistants",
+    "category": "Harnesses",
     "os": [
       "windows",
       "macos",
@@ -609,7 +609,7 @@
     "name": "Windsurf",
     "description": "AI-powered code editor with agentic coding flows, multi-file editing, and deep codebase awareness.",
     "url": "https://codeium.com/windsurf",
-    "category": "AI Assistants",
+    "category": "Harnesses",
     "os": [
       "windows",
       "macos",

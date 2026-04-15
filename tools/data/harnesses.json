@@ -1,0 +1,135 @@
+[
+  {
+    "id": "aider",
+    "name": "Aider",
+    "description": "AI pair programming in the terminal. Works with Git repos, edits multiple files, and commits changes. Supports all major LLMs.",
+    "url": "https://aider.chat",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["ai", "coding-agent", "cli", "git", "open-source", "pair-programming"],
+    "source": "https://github.com/paul-gauthier/aider"
+  },
+  {
+    "id": "cline",
+    "name": "Cline",
+    "description": "Autonomous coding agent for VS Code. Edits files, runs terminal commands, uses browser, and asks for approval on risky steps.",
+    "url": "https://github.com/cline/cline",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["ai", "coding-agent", "vscode", "open-source", "autonomous", "mcp"],
+    "source": "https://github.com/cline/cline"
+  },
+  {
+    "id": "roo-code",
+    "name": "Roo Code",
+    "description": "VS Code extension forked from Cline with multi-agent orchestration, boomerang tasks, and concurrent role-based agents.",
+    "url": "https://roocode.com",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["ai", "coding-agent", "vscode", "multi-agent", "open-source"],
+    "source": "https://github.com/RooVetGit/Roo-Code"
+  },
+  {
+    "id": "continue",
+    "name": "Continue",
+    "description": "Open-source AI code assistant for VS Code and JetBrains. Inline chat, edit, and autocomplete with any LLM or local model.",
+    "url": "https://www.continue.dev",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["ai", "coding-agent", "vscode", "jetbrains", "open-source", "autocomplete"],
+    "source": "https://github.com/continuedev/continue"
+  },
+  {
+    "id": "goose-ai",
+    "name": "Goose (Block)",
+    "description": "Open-source agentic AI developer assistant from Block. Automates multi-step tasks in your terminal with extensible toolkits.",
+    "url": "https://block.github.io/goose",
+    "category": "Harnesses",
+    "os": ["macos", "linux"],
+    "pricing": "free",
+    "tags": ["ai", "coding-agent", "cli", "open-source", "block", "toolkit"],
+    "source": "https://github.com/block/goose"
+  },
+  {
+    "id": "langgraph",
+    "name": "LangGraph",
+    "description": "Framework for stateful, multi-actor LLM applications as graphs. Cycles, branching, checkpointing, and human-in-the-loop built in.",
+    "url": "https://langchain-ai.github.io/langgraph/",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "llm", "agents", "state-machine", "open-source"],
+    "source": "https://github.com/langchain-ai/langgraph",
+    "language": "python"
+  },
+  {
+    "id": "dspy",
+    "name": "DSPy",
+    "description": "Framework for programming LMs with declarative signatures and optimizers. Replaces prompt engineering with compiled pipelines.",
+    "url": "https://dspy.ai",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "llm", "optimization", "prompting", "open-source"],
+    "source": "https://github.com/stanfordnlp/dspy",
+    "language": "python"
+  },
+  {
+    "id": "smolagents",
+    "name": "smolagents",
+    "description": "Hugging Face's minimal agent library. Code agents that write and execute Python, MCP integration, multi-agent support. Under 1k LOC.",
+    "url": "https://huggingface.co/docs/smolagents",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "llm", "agents", "hugging-face", "open-source", "minimal"],
+    "source": "https://github.com/huggingface/smolagents",
+    "language": "python"
+  },
+  {
+    "id": "openai-agents-sdk",
+    "name": "OpenAI Agents SDK",
+    "description": "OpenAI's Python SDK for building agentic apps. Agents, handoffs, guardrails, tracing, and tool use with built-in orchestration primitives.",
+    "url": "https://openai.github.io/openai-agents-python/",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux"],
+    "pricing": "free",
+    "tags": ["python", "llm", "agents", "openai", "open-source"],
+    "source": "https://github.com/openai/openai-agents-python",
+    "language": "python"
+  },
+  {
+    "id": "devin",
+    "name": "Devin",
+    "description": "Autonomous AI software engineer. Runs in a cloud sandbox with its own shell, browser, and editor. Plans and executes multi-step tasks.",
+    "url": "https://devin.ai",
+    "category": "Harnesses",
+    "os": ["web"],
+    "pricing": "subscription",
+    "tags": ["ai", "autonomous-agent", "cloud", "coding-agent", "web"]
+  },
+  {
+    "id": "lovable",
+    "name": "Lovable",
+    "description": "AI-powered full-stack web app builder. Describe what you want, get a working React app with Supabase backend. One-click deploy.",
+    "url": "https://lovable.dev",
+    "category": "Harnesses",
+    "os": ["web"],
+    "pricing": "freemium",
+    "tags": ["ai", "autonomous-agent", "web", "app-builder", "react", "no-code"]
+  },
+  {
+    "id": "sourcegraph-amp",
+    "name": "Sourcegraph Amp",
+    "description": "Agentic coding assistant from Sourcegraph. Deep codebase search, multi-file edits, and context from your entire repo history.",
+    "url": "https://sourcegraph.com/amp",
+    "category": "Harnesses",
+    "os": ["windows", "macos", "linux", "web"],
+    "pricing": "freemium",
+    "tags": ["ai", "coding-agent", "codebase-search", "sourcegraph", "cli"]
+  }
+]

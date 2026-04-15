@@ -97,5 +97,6 @@ Post to `FORUM.md`:
 | `data/creative_media.json` | Music Production, Video Editing, Image Editors, 3D & CAD, Media Players |
 | `data/productivity.json` | Note Taking, Email, File Managers, Cloud Storage, Password Managers |
 | `data/internet_comms.json` | Browsers, Communication, VPN, Chess |
+| `data/harnesses.json` | Harnesses |
 
 Add new files for new category groups (e.g., `data/system_tools.json`, `data/frameworks.json`).

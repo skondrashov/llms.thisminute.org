@@ -1,5 +1,5 @@
 # toolshed
-> Universal software directory with 16143 entries across 139 categories. Structured data for AI agents and developers.
+> Universal software directory with 16155 entries across 139 categories. Structured data for AI agents and developers.
 
 ## Endpoints
 - Full catalog (JSON): /api/v1/catalog.json
@@ -103,8 +103,8 @@ OS: windows | macos | linux | web | ios | android
 - Blogging & Newsletter Platforms: 61
 - Browsers: 60
 - VPN: 59
-- LLM Tools: 58
 - Load & Performance Testing: 55
+- LLM Tools: 54
 - Error & Exception Tracking: 53
 - Linters: 53
 - Torrent Clients: 51
@@ -140,16 +140,16 @@ OS: windows | macos | linux | web | ios | android
 - Secrets Management: 30
 - API Documentation: 29
 - Database Tools: 29
-- AI Assistants: 28
 - File Search & Navigation: 28
+- AI Assistants: 26
 - Game Modding: 23
+- Harnesses: 22
 - GIS & Mapping: 12
 - Creative Coding: 9
 - Audio Programming: 8
 - Graphics Programming: 7
 - Robotics: 7
 - 3D Printing: 5
-- AI Coding Agents: 4
 - Browser Extensions & Userscripts: 4
 - Reverse Engineering: 4
 - Emulators: 3

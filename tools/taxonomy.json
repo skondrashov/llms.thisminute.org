@@ -73,7 +73,8 @@
         { "name": "ML Frameworks", "categories": ["AI/ML Libraries"] },
         { "name": "NLP & Text AI", "categories": ["NLP & Text AI"] },
         { "name": "LLM Tools", "categories": ["LLM Tools"] },
-        { "name": "Notebooks & Environments", "categories": ["Jupyter & Notebooks"] }
+        { "name": "Notebooks & Environments", "categories": ["Jupyter & Notebooks"] },
+        { "name": "Harnesses", "categories": ["Harnesses"] }
       ]
     },
     {
