@@ -60,8 +60,8 @@ Plus `alternatives_note` (free text) naming the specific tools and what gap rema
 
 ## Current State
 
-- 16,037 entries across 123 populated categories (124 in taxonomy) in 22 top-level groups
-- 1,538 curated + 14,499 discovered entries + 25 forge ideas across 22 data files
+- 16,143 entries across 123 populated categories (124 in taxonomy) in 22 top-level groups
+- ~1,551 curated + ~14,567 discovered entries + 25 forge ideas across 22 data files
 - 67 tests passing (test_categorize, test_data, test_taxonomy)
 - **View Tabs**: All / Catalog / Requests / Built by Forge — browse filled slots, unfilled slots, and built tools
 - **Multi-dimensional filtering**: OS, pricing (free/freemium/paid/subscription), language, tags

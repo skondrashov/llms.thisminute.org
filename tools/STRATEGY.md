@@ -202,7 +202,7 @@ Define a standard way for agents to interact with Toolshed:
 
 ## Current Priorities (Updated 2026-03-16)
 
-**Context:** 16,037 entries across 123 populated categories (124 in taxonomy). 67 tests passing. Forge UI integration complete (view tabs, multi-dimensional filtering, forge pipeline visualization, covered/unique distinction). Thin categories addressed (Cycles 15-16, 20, 22, 28, 30, 38, 40, 43, 45, 48-49, 52, 55, 57, 60, 63, 65, 70, 73-75 curator). 3 forge ideas remaining, 22 built.
+**Context:** 16,143 entries across 123 populated categories (124 in taxonomy). 67 tests passing. Forge UI integration complete (view tabs, multi-dimensional filtering, forge pipeline visualization, covered/unique distinction). Thin categories addressed (Cycles 15-16, 20, 22, 28, 30, 38, 40, 43, 45, 48-49, 52, 55, 57, 60, 63, 65, 70, 73-75 curator). 3 forge ideas remaining, 22 built.
 
 ### Priority 0: Idea Triage Must Stay Current (CURATOR)
 
