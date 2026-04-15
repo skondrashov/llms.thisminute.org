@@ -1,0 +1,380 @@
+[
+  {
+    "id": "peer-communicating-agent-team",
+    "name": "Peer-Communicating Agent Team",
+    "category": "Technology & Engineering",
+    "hierarchyTypes": ["mesh"],
+    "tags": [
+      "multi-agent",
+      "team",
+      "mailbox",
+      "self-claim",
+      "harness-native",
+      "documented"
+    ],
+    "summary": "A set of peer agents share a task list and a mailbox. Members message each other directly and self-claim work instead of being routed by a supervisor.",
+    "description": "Distinct from supervisor-router by the absence of a central dispatcher. A shared task list holds claimable work items; each agent can read, claim, and complete items autonomously. A per-agent mailbox allows targeted peer-to-peer messages so agents can ask each other for help without going through a hub. The harness provides the task list, the mailbox, and the idle / claim / complete lifecycle events; application code only writes the agent prompts and the claim logic. The pattern scales naturally as agents are added because no router becomes a bottleneck.",
+    "realWorldExample": "Claude Code Agent Teams (experimental, v2.1.32+) spawns multiple full Claude Code sessions that coordinate via a shared task list and a mailbox. Teammates send each other messages directly; any teammate can claim an open task. Lifecycle hooks (TeammateIdle, TaskCreated, TaskCompleted) fire as work flows through the team. Cursor 3's Agents Window exposes a similar primary interface for managing a fleet of agents that can message each other across local and cloud.",
+    "whenToUse": "When work is naturally parallel and the agents are broadly interchangeable -- each can take any task. Also when a central router would be a throughput bottleneck or a single point of failure. Less effective when work is strongly dependent and sequencing matters, where a supervisor is easier to reason about.",
+    "strengths": [
+      "No central bottleneck; agents scale horizontally",
+      "Resilient to individual agent failures",
+      "Direct peer messaging is faster than routing through a hub",
+      "Self-claim prevents idle agents while work is waiting"
+    ],
+    "weaknesses": [
+      "Harder to enforce global invariants without a supervisor",
+      "Task-list contention at high agent counts (claim races)",
+      "Debugging requires reconstructing cross-mailbox conversations",
+      "Still experimental in most harnesses -- subject to API changes"
+    ],
+    "agents": [
+      {
+        "role": "teammate",
+        "name": "Teammate",
+        "description": "Full-capability agent that reads the shared task list, claims open items, completes them, and messages peers when it needs help or has information they need.",
+        "memory": "persistent-private"
+      }
+    ],
+    "forums": [
+      {
+        "name": "Shared Task List",
+        "type": "queue",
+        "participants": ["teammate"]
+      },
+      {
+        "name": "Per-Teammate Mailbox",
+        "type": "direct-message",
+        "participants": ["teammate"]
+      }
+    ],
+    "memoryArchitecture": {
+      "shared": ["Task list with claim state", "Cross-team message history"],
+      "private": ["Each teammate's context, tool permissions, and task history"],
+      "description": "Shared task list is the coordination primitive; mailboxes are point-to-point. Teammates keep their own session context and do not share it by default."
+    },
+    "diagram": "graph TD\n  TL[Shared Task List]\n  T1[Teammate A] -->|claim task| TL\n  T2[Teammate B] -->|claim task| TL\n  T3[Teammate C] -->|claim task| TL\n  T1 <-->|mailbox| T2\n  T2 <-->|mailbox| T3\n  T1 <-->|mailbox| T3"
+  },
+  {
+    "id": "best-of-n-worktree-racing",
+    "name": "Best-of-N Worktree Racing",
+    "category": "Technology & Engineering",
+    "hierarchyTypes": ["adversarial"],
+    "tags": [
+      "parallel-exploration",
+      "worktree",
+      "selection",
+      "competitive",
+      "harness-native",
+      "documented"
+    ],
+    "summary": "The same task is dispatched to N agents running in isolated git worktrees, often on different models. A selector picks the best result; losing branches are discarded.",
+    "description": "A sampling-diversity pattern specialized for coding agents. Each contestant gets its own worktree so file edits do not collide and all runs are independently reviewable as diffs. The models, prompts, or temperatures can differ across contestants to maximize diversity. Unlike ensembling (which votes or averages) the selector here is a chooser -- the user or a judge agent picks exactly one winner and the remaining worktrees are discarded or archived. The worktree isolation is load-bearing; without it, parallel agents would thrash the same files.",
+    "realWorldExample": "Cursor 3 (Apr 2026) lets users submit a prompt to multiple models simultaneously. Each model edits its own git worktree; the Agents Window shows results side by side for the user to pick a winner. The losing worktrees vanish with no cleanup burden on the main tree. Some teams also layer a judge agent that scores diffs on compile / test / lint and auto-picks the top one.",
+    "whenToUse": "When the task is well-specified and the value is in exploring several plausible solutions rather than one canonical path -- refactors with multiple reasonable shapes, choose-your-favorite UI tweaks, or contested algorithm implementations. Not worth the cost for tasks with a single obviously correct answer.",
+    "strengths": [
+      "Surfaces solution diversity the user might not have asked for",
+      "Worktree isolation means no coordination overhead between contestants",
+      "Easy to retire losers -- just drop the worktree",
+      "Works well across heterogeneous models"
+    ],
+    "weaknesses": [
+      "N-times the token and compute cost",
+      "Selection is a decision the user still has to make",
+      "Harder for tasks that span many files or depend on repo state",
+      "Encourages shallow comparison if the selector does not read carefully"
+    ],
+    "agents": [
+      {
+        "role": "contestant",
+        "name": "Contestant",
+        "description": "An agent running the same task in an isolated worktree. Different contestants use different models, prompts, or sampling settings.",
+        "memory": "ephemeral"
+      },
+      {
+        "role": "selector",
+        "name": "Selector",
+        "description": "User or judge agent that compares the N resulting worktrees and picks one winner.",
+        "memory": "ephemeral"
+      }
+    ],
+    "forums": [
+      {
+        "name": "Comparison Pane",
+        "type": "broadcast",
+        "participants": ["contestant", "selector"]
+      }
+    ],
+    "memoryArchitecture": {
+      "shared": ["Task prompt distributed to all contestants"],
+      "private": ["Each contestant's worktree and conversation"],
+      "description": "No shared state between contestants -- the isolation is the point. Only the task prompt enters and only the winning diff leaves."
+    },
+    "diagram": "graph TD\n  P[Task prompt] --> C1[Contestant 1 / worktree A]\n  P --> C2[Contestant 2 / worktree B]\n  P --> C3[Contestant 3 / worktree C]\n  C1 --> S[Selector]\n  C2 --> S\n  C3 --> S\n  S -->|pick winner| W[Merged diff]"
+  },
+  {
+    "id": "fleet-orchestration",
+    "name": "Fleet Orchestration",
+    "category": "Technology & Engineering",
+    "hierarchyTypes": ["orchestrated"],
+    "tags": [
+      "fleet",
+      "dynamic-scaling",
+      "homogeneous-workers",
+      "harness-native",
+      "documented"
+    ],
+    "summary": "A primary agent dispatches subtasks to a managed fleet of homogeneous peer agents. Fleet size grows or shrinks to match load.",
+    "description": "A narrow variant of supervisor-router distinguished by two features: workers are interchangeable (same model, same tools, same system prompt) and the fleet size is dynamic -- the primary can request additional instances or retire idle ones. The fleet manager sits between the primary and the workers, handling spin-up, spin-down, and health. Differs from a classical worker pool in that each worker is a full LLM agent, not a thread, so the cost curve and debugging story are agent-shaped, not service-shaped.",
+    "realWorldExample": "Devin (Cognition, now part of Windsurf as of Dec 2025) can delegate subtasks to a managed fleet of parallel Devin instances -- informally called 'Devin-of-Devins'. The primary Devin owns the user conversation and the overall plan; fleet members run in parallel on discrete subtasks (edit a file, run a test suite, investigate an error). Fleet size adjusts to the complexity of the plan. Cursor 3's cloud agent dispatch is moving in the same direction for coding tasks.",
+    "whenToUse": "When work decomposes into many independent subtasks of similar shape and the bottleneck is throughput, not specialization. Good fit for bulk refactors, large test runs, or exploration across many files. Less suitable when subtasks require different capabilities -- use a specialist ring instead.",
+    "strengths": [
+      "Horizontal throughput scaling",
+      "Predictable cost model -- cost scales linearly with fleet size",
+      "Failed workers can be retried without affecting the primary",
+      "Workers are interchangeable so scheduling is simple"
+    ],
+    "weaknesses": [
+      "All workers share the same weaknesses; a prompt or model flaw hits every subtask",
+      "Coordination overhead can dominate when subtasks are small",
+      "Requires real fleet management (spin-up, health, retirement) at the harness layer",
+      "Still emerging -- few harnesses ship it natively today"
+    ],
+    "agents": [
+      {
+        "role": "primary",
+        "name": "Primary Agent",
+        "description": "Owns the user conversation and the overall plan. Decomposes work into subtasks and dispatches them to the fleet.",
+        "memory": "persistent-private"
+      },
+      {
+        "role": "fleet-manager",
+        "name": "Fleet Manager",
+        "description": "Spins workers up or down, tracks health, and queues subtasks. Usually a harness component, not a prompt-level agent.",
+        "memory": "ephemeral"
+      },
+      {
+        "role": "fleet-worker",
+        "name": "Fleet Worker",
+        "description": "An instance of the same agent type as its peers, running one subtask and returning a result.",
+        "memory": "ephemeral",
+        "count": 10
+      }
+    ],
+    "forums": [
+      {
+        "name": "Subtask Queue",
+        "type": "queue",
+        "participants": ["primary", "fleet-manager", "fleet-worker"]
+      },
+      {
+        "name": "Result Channel",
+        "type": "queue",
+        "participants": ["fleet-worker", "primary"]
+      }
+    ],
+    "memoryArchitecture": {
+      "shared": ["Subtask queue", "Aggregated results visible to primary"],
+      "private": ["Each worker's subtask context"],
+      "description": "Workers are stateless between subtasks. Primary retains the plan and the running result set."
+    },
+    "diagram": "graph TD\n  U[User] <--> P[Primary]\n  P -->|dispatch| FM[Fleet Manager]\n  FM -->|spawn| W1[Worker 1]\n  FM -->|spawn| W2[Worker 2]\n  FM -->|spawn| W3[Worker N]\n  W1 -->|result| P\n  W2 -->|result| P\n  W3 -->|result| P"
+  },
+  {
+    "id": "spec-gate-workflow",
+    "name": "Spec-Gate Workflow",
+    "category": "Technology & Engineering",
+    "hierarchyTypes": ["pipeline"],
+    "tags": [
+      "spec-first",
+      "approval-gate",
+      "contract",
+      "harness-native",
+      "documented"
+    ],
+    "summary": "A structured spec document is produced and human-approved before any code is written. The spec is the contract between planner and executor.",
+    "description": "A sibling of plan-code-verify-loop with a sharper contract. Instead of a loose plan that the same agent is free to revise, the spec is a first-class artifact -- schema-constrained, reviewable, versioned. The planner agent writes it; a human approves or rejects it; only approved specs reach the executor. The executor treats the spec as an authoritative input it cannot unilaterally rewrite. This makes the gate architectural, not stylistic -- skipping it is an error, not a choice.",
+    "realWorldExample": "Devin (Cognition) produces a work plan before writing code and asks for approval. Kiro (spec-driven AI IDE) makes the spec document the center of the UI and requires approval before generation. Factory's workflows put spec approval as a hard gate between planning and implementation stages. Enterprise buyers drove the shape -- a spec is a reviewable artifact that satisfies compliance requirements code review alone cannot.",
+    "whenToUse": "When stakes are high enough that a post-hoc diff review is not sufficient -- compliance-sensitive work, production infrastructure, user-visible behavior changes. Also when multiple reviewers need to weigh in before implementation starts. Over-engineered for small changes where the diff is the spec.",
+    "strengths": [
+      "Decision-making happens on cheap-to-change artifacts (spec text) before expensive ones (code)",
+      "Spec is a durable record for compliance and audit",
+      "Separates planning quality from execution quality -- measurable independently",
+      "Multiple reviewers can weigh in in parallel"
+    ],
+    "weaknesses": [
+      "Upfront latency before any code appears",
+      "Spec can drift from implementation if the gate is not re-triggered on change",
+      "Requires a spec format opinionated enough to be actionable",
+      "Unsuitable for exploratory or research work where the spec emerges from the code"
+    ],
+    "agents": [
+      {
+        "role": "planner",
+        "name": "Planner",
+        "description": "Reads the user request, produces a structured spec document (requirements, approach, risks, rollout).",
+        "memory": "persistent-shared"
+      },
+      {
+        "role": "reviewer",
+        "name": "Reviewer",
+        "description": "Human (or multi-reviewer panel) that approves, requests changes, or rejects the spec.",
+        "memory": "persistent-shared"
+      },
+      {
+        "role": "executor",
+        "name": "Executor",
+        "description": "Implements the approved spec. Cannot unilaterally modify the spec without re-triggering the gate.",
+        "memory": "persistent-private"
+      }
+    ],
+    "forums": [
+      {
+        "name": "Spec Document",
+        "type": "artifact",
+        "participants": ["planner", "reviewer", "executor"]
+      },
+      {
+        "name": "Review Thread",
+        "type": "thread",
+        "participants": ["planner", "reviewer"]
+      }
+    ],
+    "memoryArchitecture": {
+      "shared": ["Approved spec is the shared source of truth"],
+      "private": ["Executor's implementation state"],
+      "description": "The spec is the load-bearing artifact. Both planner and executor read it; only the planner (with reviewer approval) can write it."
+    },
+    "diagram": "graph TD\n  U[User request] --> P[Planner]\n  P -->|draft spec| SD[Spec Document]\n  SD --> R{Reviewer}\n  R -->|request changes| P\n  R -->|reject| DONE[No implementation]\n  R -->|approve| E[Executor]\n  E -->|implement| CODE[Code diff]"
+  },
+  {
+    "id": "cloud-local-agent-mobility",
+    "name": "Cloud / Local Agent Mobility",
+    "category": "Technology & Engineering",
+    "hierarchyTypes": ["pipeline"],
+    "tags": [
+      "mobility",
+      "cloud-local",
+      "state-transfer",
+      "harness-native",
+      "documented"
+    ],
+    "summary": "An agent session migrates between cloud and local execution environments on demand, with state preserved across the move.",
+    "description": "A session starts locally, is handed off to a cloud runner while the user goes offline, and returns to local for review or follow-up. The harness serializes the conversation, the tool permission state, and any worktree snapshots so the agent can resume without re-reading context. Differs from checkpoint-resume-across-sessions in that the intent is not restart but relocation -- the agent continues to execute, just somewhere else. The economic shape is new: long-running work can happen where compute is cheap; interactive work happens where latency is low.",
+    "realWorldExample": "Cursor 3 lets users kick off an agent from Slack, GitHub, Linear, or mobile; the agent runs in the cloud and appears in the Agents Window when the user is back. Sessions move between cloud and local on demand. Devin's fleet model does the same -- work lives on the cloud-managed instance but can be pulled locally for a close read. The dispatch-from-phone, review-from-laptop flow is becoming the dominant async coding loop.",
+    "whenToUse": "When work is long-running and does not require interactive supervision -- large refactors, test suite runs, exploration tasks, codebase audits. Also for on-call scenarios where an agent needs to keep running while the engineer steps away.",
+    "strengths": [
+      "User can leave and rejoin without losing agent progress",
+      "Long-running work does not block the user's machine",
+      "Cost arbitrage between local and cloud compute",
+      "Agents can be triggered from low-powered devices"
+    ],
+    "weaknesses": [
+      "State serialization is hard to get right -- tool state and file system state are tricky",
+      "Two environments is two places to debug",
+      "Cloud runners add vendor lock-in and data residency questions",
+      "Hand-off points are where state bugs surface"
+    ],
+    "agents": [
+      {
+        "role": "session",
+        "name": "Agent Session",
+        "description": "A running agent that can execute in either the local or cloud environment. Its state (context, tools, worktree) is portable.",
+        "memory": "persistent-shared"
+      },
+      {
+        "role": "runner-local",
+        "name": "Local Runner",
+        "description": "The user's machine. Interactive, low latency, bounded by local resources.",
+        "memory": "ephemeral"
+      },
+      {
+        "role": "runner-cloud",
+        "name": "Cloud Runner",
+        "description": "Managed cloud environment. Higher capacity, survives user going offline.",
+        "memory": "ephemeral"
+      }
+    ],
+    "forums": [
+      {
+        "name": "Session State Snapshot",
+        "type": "artifact",
+        "participants": ["session", "runner-local", "runner-cloud"]
+      }
+    ],
+    "memoryArchitecture": {
+      "shared": ["Portable session state (context, permissions, worktree reference)"],
+      "private": ["Runner-local filesystem, process state"],
+      "description": "The harness owns the portable state blob; runners are execution environments that load and save it on hand-off."
+    },
+    "diagram": "graph LR\n  L[Local Runner] -->|snapshot| S[Portable Session State]\n  S -->|resume| C[Cloud Runner]\n  C -->|snapshot| S\n  S -->|resume| L"
+  },
+  {
+    "id": "mcp-elicitation",
+    "name": "MCP Elicitation",
+    "category": "Technology & Engineering",
+    "hierarchyTypes": ["pipeline"],
+    "tags": [
+      "mcp",
+      "elicitation",
+      "bidirectional",
+      "human-in-the-loop",
+      "harness-native",
+      "documented"
+    ],
+    "summary": "A tool server requests user input mid-call. The harness intercepts, routes the question to the user, and injects the answer back into the tool call.",
+    "description": "An extension of the tool-server-protocol pattern that makes the tool call bidirectional. Instead of a tool returning a single result, a tool server can signal that it needs more information from the user (missing parameter, confirmation, choice between alternatives). The harness pauses the tool call, presents the question in-band, collects the answer, and resumes. This makes tool servers genuinely interactive without requiring every tool to define its own chat UI. A negotiation pattern, not just a fetch.",
+    "realWorldExample": "Claude Code's Elicitation hook (part of the hooks reference as of v2.x) intercepts MCP elicitation requests and lets the harness route them through user prompts. A file-upload MCP server that discovers it needs the user to pick one of several format options can ask mid-call; the user answers; the upload proceeds. This is distinct from a plain tool call because the tool's execution pauses mid-flight and the conversation owns the interruption.",
+    "whenToUse": "When tool calls need optional or conditional user input that is impractical to pre-specify (ambiguous inputs, variable options, confirmation of destructive actions). Less useful when tool inputs are fully determinable up front.",
+    "strengths": [
+      "Keeps tools composable without forcing them to define UX surfaces",
+      "User sees the question in the same conversation as the task",
+      "Distinguishes 'I need more info' from 'I failed' -- two very different errors today",
+      "Works across any MCP-compatible harness"
+    ],
+    "weaknesses": [
+      "Synchronous by nature -- agent pauses until the user answers",
+      "Requires harness cooperation; not all MCP hosts support elicitation yet",
+      "Can be abused to nag the user with unnecessary confirmations",
+      "Error handling around abandoned elicitation is still underspecified"
+    ],
+    "agents": [
+      {
+        "role": "calling-agent",
+        "name": "Calling Agent",
+        "description": "Initiates a tool call via MCP. Receives the tool's result or an elicitation request that it forwards to the harness.",
+        "memory": "persistent-private"
+      },
+      {
+        "role": "mcp-server",
+        "name": "MCP Server",
+        "description": "External tool provider that may raise elicitation requests mid-call when it needs more information.",
+        "memory": "ephemeral"
+      },
+      {
+        "role": "user",
+        "name": "User",
+        "description": "Answers elicitation prompts routed through the harness.",
+        "memory": "human"
+      }
+    ],
+    "forums": [
+      {
+        "name": "MCP Tool Channel",
+        "type": "rpc",
+        "participants": ["calling-agent", "mcp-server"]
+      },
+      {
+        "name": "Elicitation Prompt",
+        "type": "user-facing",
+        "participants": ["mcp-server", "user"]
+      }
+    ],
+    "memoryArchitecture": {
+      "shared": ["In-flight tool call state (pending question, pending answer)"],
+      "private": ["MCP server's internal task state"],
+      "description": "The harness owns the bridge between MCP elicitation and user prompts. Agents see it as a tool call that may pause."
+    },
+    "diagram": "graph TD\n  A[Calling Agent] -->|MCP call| M[MCP Server]\n  M -->|need input?| H[Harness]\n  H -->|prompt| U[User]\n  U -->|answer| H\n  H -->|inject answer| M\n  M -->|result| A"
+  }
+]

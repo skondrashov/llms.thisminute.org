@@ -58,6 +58,36 @@ def main():
     else:
         print(f"All {sc_assigned} patterns have structuralClass")
 
+    # Load lens assignments (three-lens IA: core / wild / garden)
+    lenses_path = os.path.join(root_dir, 'lenses.json')
+    lens_overrides = {}
+    category_defaults = {}
+    if os.path.exists(lenses_path):
+        with open(lenses_path, encoding='utf-8') as f:
+            lenses_data = json.load(f)
+        category_defaults = lenses_data.get('categoryDefault', {})
+        for lens, ids in lenses_data.get('overrides', {}).items():
+            for pid in ids:
+                lens_overrides[pid] = lens
+
+    # Load harness-native mappings
+    harness_path = os.path.join(root_dir, 'harness_native.json')
+    harness_mappings = {}
+    if os.path.exists(harness_path):
+        with open(harness_path, encoding='utf-8') as f:
+            harness_data = json.load(f)
+        harness_mappings = harness_data.get('mappings', {})
+
+    # Annotate each pattern with lens + harnesses
+    lens_counts = {}
+    for s in structures:
+        pid = s.get('id', '')
+        lens = lens_overrides.get(pid) or category_defaults.get(s.get('category'), 'garden')
+        s['lens'] = lens
+        lens_counts[lens] = lens_counts.get(lens, 0) + 1
+        if pid in harness_mappings:
+            s['harnesses'] = harness_mappings[pid]
+
     # Sort by category then name
     structures.sort(key=lambda s: (s.get('category', ''), s.get('name', '')))
 
@@ -76,6 +106,10 @@ def main():
 
     print_breakdown("Category breakdown",
                     count_by(structures, 'category'))
+
+    print_breakdown("Lens breakdown",
+                    sorted(lens_counts.items(), key=lambda x: -x[1]))
+    print(f"  Harness-native mappings: {len(harness_mappings)} patterns")
 
     # Hierarchy type validation and breakdown
     missing_ht = []

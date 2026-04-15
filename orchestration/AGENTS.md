@@ -2,7 +2,19 @@
 
 If told to go, start, or begin — you are the **steward**. See `agents/steward.md`.
 
-Browsable taxonomy of 200 agent orchestration patterns. Live at https://thisminute.org/orchestration.
+Browsable taxonomy of 277 agent orchestration patterns. Live at https://thisminute.org/orchestration.
+
+## Three-Lens IA (added 2026-04-15)
+
+The catalog is organized into three educational lenses:
+
+- **Core** (~27 patterns) — industry-standard patterns every agent developer now meets in practice. Each Core pattern carries a `harnesses` array mapping to the harnesses that ship it natively (Claude Code Task tool, Roo Code Boomerang, LangGraph Supervisor, etc.).
+- **In the Wild** (~120 patterns) — real-world organizational patterns from corporate, governmental, medical, aviation, military, and industrial case studies.
+- **The Garden** (~130 patterns) — nature-inspired, philosophical, and exotic patterns.
+
+Lens assignment lives in `lenses.json` (category defaults + per-id overrides). Harness-native mappings live in `harness_native.json`. Both are merged into each pattern at build time (`build.py`) as `lens` and `harnesses` fields on `window.STRUCTURES`. The frontend's Lens filter panel replaces the old Origin / Domain filter.
+
+The full rework design is in `LENS_PLAN.md`.
 
 ## Forge Notes
 

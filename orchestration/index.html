@@ -663,6 +663,39 @@
       border-radius: 2px;
       padding: 0 1px;
     }
+    .card-harnesses {
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .harness-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+    .harness-list li {
+      font-size: 0.85rem;
+      padding: 0.25rem 0.6rem;
+      background: var(--accent-dim);
+      border-radius: 999px;
+      border: 1px solid var(--accent-muted);
+    }
+    .harness-list a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .harness-list a:hover {
+      text-decoration: underline;
+    }
     .card-example {
       font-size: 0.78rem;
       color: var(--text-muted);
@@ -1280,7 +1313,7 @@
       <a class="icon-btn" href="/forge/" title="Forge — manage a bunch of agents at once" aria-label="Forge" style="font-size:0.7rem;letter-spacing:0.03em;text-decoration:none">forge</a>
     </div>
     <h1>Orchestration <a href="/">&larr; LLMs</a></h1>
-    <p class="about" style="font-size: 1.05rem; max-width: 640px; margin: 0.75rem auto 0;">A catalog of organizational structures — from nature, human institutions, computer science, and LLM agent frameworks — broken down into roles, communication channels, and information flows. <button id="fieldnotes-inline" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:inherit;font-family:inherit;padding:0;text-decoration:underline;text-underline-offset:2px;">Field notes &rarr;</button></p>
+    <p class="about" style="font-size: 1.05rem; max-width: 680px; margin: 0.75rem auto 0;">Three lenses on how to coordinate agents. <strong style="color:var(--accent)">Core</strong> is the industry-standard patterns every agent developer now meets (with the harnesses that ship each one). <strong>In the Wild</strong> draws from real-world organizations. <strong>The Garden</strong> is the nature-inspired and exotic half. <button id="fieldnotes-inline" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:inherit;font-family:inherit;padding:0;text-decoration:underline;text-underline-offset:2px;">Field notes &rarr;</button></p>
     <div class="stats">
       <div class="stat">
         <span class="stat-value" id="total-count">0</span>
@@ -1315,7 +1348,7 @@
     <div class="filter-row">
       <div class="filter-panel" id="domain-panel">
         <div class="filter-panel-header" id="domain-panel-header" role="button" tabindex="0" aria-expanded="false">
-          <span class="filter-panel-title">Origin <span class="filter-panel-active-label" id="domain-active-label"></span></span>
+          <span class="filter-panel-title">Lens <span class="filter-panel-active-label" id="domain-active-label"></span></span>
           <span class="filter-panel-chevron">&#9654;</span>
         </div>
         <div class="filter-panel-body"><div class="filter-panel-inner">
@@ -1511,7 +1544,7 @@
       structures: window.STRUCTURES || [],
       activeCategory: null,
       activeStructuralClass: null,
-      activeDomain: null,
+      activeDomain: (() => { try { return localStorage.getItem('orchestration_lens_seen') ? null : 'core'; } catch { return 'core'; } })(),
       searchQuery: '',
       sortBy: 'category',
       focusedCardIndex: -1,
@@ -2060,6 +2093,7 @@
           <div class="card-structure-badge">${structureBadge}</div>
           <div class="card-category">${esc(s.category)}</div>
           <div class="card-summary">${summary}</div>
+          ${s.harnesses ? `<div class="card-harnesses" title="Ships natively in these harnesses">Ships in: ${s.harnesses.map(h => esc(h.harness)).join(' \u00b7 ')}</div>` : ''}
           ${s.realWorldExample ? `<div class="card-example">${esc(s.realWorldExample.length > 120 ? s.realWorldExample.slice(0, 117) + '...' : s.realWorldExample)}</div>` : ''}
           <div class="card-tags">${(s.tags || []).slice(0, 5).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
         </div>`;
@@ -2086,28 +2120,23 @@
       state.focusedCardIndex = -1;
     }
 
-    // ─── Domain mapping ──────────────────────────────────
-    const DOMAIN_MAP = {
-      'Nature-Inspired': 'natural',
-      'Network Topologies': 'computational',
-      'Agile & Software': 'computational',
-      'Technology & Engineering': 'agentic',
-      'Novel & Experimental': 'agentic'
-    };
+    // ─── Lens mapping (three-lens IA) ────────────────────
+    // Lens is assigned by build.py from lenses.json. Three values:
+    //   core   — industry-standard agent patterns every dev will meet
+    //   wild   — real-world org / industry case studies (NASA, Toyota, airline CRM)
+    //   garden — nature-inspired, philosophical, and exotic patterns
     function getDomain(s) {
-      return DOMAIN_MAP[s.category] || 'organizational';
+      return s.lens || 'garden';
     }
     const DOMAIN_COLORS = {
-      'natural': '#4ade80',
-      'organizational': '#f59e0b',
-      'computational': '#22d3ee',
-      'agentic': '#a78bfa'
+      'core': '#a8d8b5',
+      'wild': '#f0c56a',
+      'garden': '#d8a8c8'
     };
     const DOMAIN_LABELS = {
-      'natural': 'Natural',
-      'organizational': 'Organizational',
-      'computational': 'Computational',
-      'agentic': 'Agentic'
+      'core': 'Core',
+      'wild': 'In the Wild',
+      'garden': 'The Garden'
     };
 
     function getDomainCounts() {
@@ -2140,10 +2169,9 @@
 
     // ─── Filter Descriptions ──────────────────────────────
     const DOMAIN_DESCRIPTIONS = {
-      'natural': 'Patterns observed in biological systems — ant colonies, neural networks, flocking, root systems. No designer; coordination emerges from simple local rules.',
-      'organizational': 'Patterns from human institutions — military command chains, corporate hierarchies, judicial systems, religious orders. Designed for people, refined over centuries.',
-      'computational': 'Patterns from computer science and software engineering — network topologies, agile workflows, distributed systems. Designed for machines and processes.',
-      'agentic': 'Patterns designed explicitly for LLM agent orchestration — graph workflows, role-play pairs, plan-code-verify loops. Built for the specific constraints and capabilities of language models.'
+      'core': 'The industry-standard patterns every agent developer now meets in practice. Each Core pattern shows which harnesses (Claude Code, Cursor, Aider, LangGraph, CrewAI, etc.) ship it natively, so you can recognize what you\'re already using.',
+      'wild': 'Real-world organizational patterns applied at scale — NASA mission control, Toyota production, airline crew resource management, military command structures, corporate hierarchies. The serious case-study layer.',
+      'garden': 'Nature-inspired, philosophical, and exotic patterns. Ant-colony stigmergy, jazz ensembles, pirate democracies, mycelial networks, religious orders, thought experiments. Still educational, but the fun half.'
     };
     const SC_DESCRIPTIONS = {
       'hub-and-spoke': 'A central coordinator dispatches work to peripheral specialists and synthesizes their results.',
@@ -2283,6 +2311,17 @@
 
       // Description
       html += buildSection('Description', `<p>${esc(s.description || s.summary)}</p>`, true);
+
+      // Ships natively in (harness-native mappings, Core patterns only)
+      if (s.harnesses && s.harnesses.length) {
+        const items = s.harnesses.map(h => {
+          const featureText = `${esc(h.harness)} <span style="color:var(--text-muted)">${esc(h.feature)}</span>`;
+          return h.url
+            ? `<li><a href="${esc(h.url)}" target="_blank" rel="noopener">${featureText}</a></li>`
+            : `<li>${featureText}</li>`;
+        }).join('');
+        html += buildSection('Ships natively in', `<ul class="harness-list">${items}</ul>`, true);
+      }
 
       // Structurally Similar
       if (detailSc) {
@@ -2768,6 +2807,7 @@
     renderCategories();
     renderStructureTiles();
     renderGrid();
+    try { localStorage.setItem('orchestration_lens_seen', '1'); } catch {}
 
     // Load vote data async (graceful degradation)
     loadVoteData();

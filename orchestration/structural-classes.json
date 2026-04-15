@@ -347,6 +347,12 @@
     "metacognitive-self-improvement": "cyclic-renewal",
     "experiential-heuristic-library": "assembly-pipeline",
     "fractal-modularity": "hub-and-spoke",
-    "diversity-preserving-ensemble": "peer-ensemble"
+    "diversity-preserving-ensemble": "peer-ensemble",
+    "peer-communicating-agent-team": "peer-ensemble",
+    "best-of-n-worktree-racing": "adversarial-arena",
+    "fleet-orchestration": "hub-and-spoke",
+    "spec-gate-workflow": "dual-key-safeguard",
+    "cloud-local-agent-mobility": "assembly-pipeline",
+    "mcp-elicitation": "assembly-pipeline"
   }
 }

@@ -1,0 +1,131 @@
+{
+  "description": "Core orchestration patterns mapped to the harnesses and frameworks that ship them natively. Each entry is displayed as a 'Ships natively in' strip on the pattern card in the Core lens. Keep entries current; when a new harness lands a native version of a Core pattern, add it here rather than in the pattern description.",
+  "mappings": {
+    "supervisor-router": [
+      { "harness": "Claude Code", "feature": "Task tool + subagents", "url": "https://code.claude.com/docs/en/sub-agents" },
+      { "harness": "Roo Code", "feature": "Orchestrator mode / Boomerang", "url": "https://docs.roocode.com/features/boomerang-tasks" },
+      { "harness": "CrewAI", "feature": "Hierarchical process", "url": "https://docs.crewai.com/concepts/processes" },
+      { "harness": "LangGraph", "feature": "Supervisor agent", "url": "https://langchain-ai.github.io/langgraph/tutorials/multi_agent/agent_supervisor/" },
+      { "harness": "Kilo Code", "feature": "Orchestrator mode", "url": "https://github.com/Kilo-Org/kilocode" }
+    ],
+    "agent-as-tool": [
+      { "harness": "Claude Code", "feature": "Task tool", "url": "https://code.claude.com/docs/en/sub-agents" },
+      { "harness": "OpenAI Agents SDK", "feature": "agent-as-tool", "url": "https://openai.github.io/openai-agents-python/" },
+      { "harness": "LangChain", "feature": "Agent executor", "url": "https://python.langchain.com/docs/modules/agents/" }
+    ],
+    "harness-bundled-planner": [
+      { "harness": "Claude Code", "feature": "Plan mode", "url": "https://code.claude.com/docs/en/plan-mode" },
+      { "harness": "Cline", "feature": "Plan mode", "url": "https://docs.cline.bot/" },
+      { "harness": "OpenCode", "feature": "Plan mode", "url": "https://opencode.ai/docs/agents/" },
+      { "harness": "Aider", "feature": "Architect mode", "url": "https://aider.chat/docs/usage/modes.html" }
+    ],
+    "harness-autopilot-mode": [
+      { "harness": "Cursor", "feature": "Agent mode", "url": "https://cursor.com/product" },
+      { "harness": "Windsurf", "feature": "Cascade", "url": "https://windsurf.com/cascade" },
+      { "harness": "ChatGPT", "feature": "Agent mode", "url": "https://openai.com/index/introducing-chatgpt-agent/" }
+    ],
+    "peer-communicating-agent-team": [
+      { "harness": "Claude Code", "feature": "Agent Teams (experimental)", "url": "https://code.claude.com/docs/en/agent-teams" },
+      { "harness": "Cursor 3", "feature": "Agents Window", "url": "https://cursor.com/changelog/3-0" }
+    ],
+    "plan-code-verify-loop": [
+      { "harness": "Aider", "feature": "Architect mode", "url": "https://aider.chat/docs/usage/modes.html" },
+      { "harness": "Cursor", "feature": "Composer", "url": "https://cursor.com/product" },
+      { "harness": "Devin", "feature": "Plan / Execute / Verify loop", "url": "https://devin.ai/" }
+    ],
+    "multi-model-cascade": [
+      { "harness": "Claude Code", "feature": "Haiku explore, Sonnet plan, Opus judge", "url": "https://code.claude.com/docs/en/sub-agents" },
+      { "harness": "Aider", "feature": "Reasoner + editor (Architect)", "url": "https://aider.chat/docs/usage/modes.html" },
+      { "harness": "Cursor 3", "feature": "Best-of-N model racing", "url": "https://cursor.com/changelog/3-0" }
+    ],
+    "conversational-group-chat": [
+      { "harness": "AutoGen", "feature": "GroupChat", "url": "https://microsoft.github.io/autogen/" },
+      { "harness": "Microsoft Agent Framework", "feature": "Group orchestration", "url": "https://microsoft.github.io/autogen/" }
+    ],
+    "graph-state-machine": [
+      { "harness": "LangGraph", "feature": "StateGraph", "url": "https://langchain-ai.github.io/langgraph/" },
+      { "harness": "Microsoft Agent Framework", "feature": "Graph orchestration", "url": "https://microsoft.github.io/autogen/" }
+    ],
+    "worktree-isolation": [
+      { "harness": "Claude Code", "feature": "Worktree hooks", "url": "https://code.claude.com/docs/en/hooks" },
+      { "harness": "Cursor 3", "feature": "Parallel worktrees", "url": "https://cursor.com/changelog/3-0" },
+      { "harness": "Windsurf", "feature": "Arena mode", "url": "https://windsurf.com/changelog" }
+    ],
+    "hook-driven-agent-lifecycle": [
+      { "harness": "Claude Code", "feature": "26-event hooks system", "url": "https://code.claude.com/docs/en/hooks" },
+      { "harness": "Goose", "feature": "MCP interceptors", "url": "https://block.github.io/goose/" },
+      { "harness": "Continue", "feature": "CI/CD triggers", "url": "https://docs.continue.dev/" }
+    ],
+    "tool-server-protocol": [
+      { "harness": "Claude Code", "feature": "MCP server integration", "url": "https://modelcontextprotocol.io/" },
+      { "harness": "OpenAI Agents SDK", "feature": "MCP support", "url": "https://openai.github.io/openai-agents-python/" },
+      { "harness": "Goose", "feature": "MCP-native tool layer", "url": "https://block.github.io/goose/" },
+      { "harness": "Continue", "feature": "MCP servers", "url": "https://docs.continue.dev/" }
+    ],
+    "file-based-agent-memory": [
+      { "harness": "Claude Code", "feature": "CLAUDE.md", "url": "https://code.claude.com/docs/en/memory" },
+      { "harness": "Cursor", "feature": ".cursorrules", "url": "https://cursor.com/product" },
+      { "harness": "OpenAI Codex / Agents SDK", "feature": "AGENTS.md", "url": "https://openai.github.io/openai-agents-python/" }
+    ],
+    "guardrail-sandwich": [
+      { "harness": "OpenAI", "feature": "Moderation API", "url": "https://platform.openai.com/docs/guides/moderation" },
+      { "harness": "Anthropic", "feature": "Constitutional AI", "url": "https://www.anthropic.com/research" },
+      { "harness": "Cursor", "feature": "Enterprise allow/block lists", "url": "https://cursor.com/enterprise" }
+    ],
+    "approval-gate-pipeline": [
+      { "harness": "Claude Code", "feature": "PermissionRequest hook", "url": "https://code.claude.com/docs/en/hooks" },
+      { "harness": "Cline", "feature": "Plan-mode approval", "url": "https://docs.cline.bot/" },
+      { "harness": "Continue", "feature": "Team allowlists", "url": "https://docs.continue.dev/" }
+    ],
+    "memory-distillation-pipeline": [
+      { "harness": "Claude Code", "feature": "/compact", "url": "https://code.claude.com/docs/en/context-management" },
+      { "harness": "LangGraph", "feature": "Memory store + checkpoints", "url": "https://langchain-ai.github.io/langgraph/" }
+    ],
+    "context-window-relay": [
+      { "harness": "Claude Code", "feature": "Context handoff across subagents", "url": "https://code.claude.com/docs/en/sub-agents" },
+      { "harness": "Roo Code", "feature": "Boomerang context isolation", "url": "https://docs.roocode.com/features/boomerang-tasks" }
+    ],
+    "best-of-n-worktree-racing": [
+      { "harness": "Cursor 3", "feature": "Parallel model racing", "url": "https://cursor.com/changelog/3-0" }
+    ],
+    "agent-handoff-chain": [
+      { "harness": "OpenAI Swarm", "feature": "Agent handoff", "url": "https://github.com/openai/swarm" },
+      { "harness": "CrewAI", "feature": "Sequential process", "url": "https://docs.crewai.com/concepts/processes" },
+      { "harness": "OpenAI Agents SDK", "feature": "Handoffs", "url": "https://openai.github.io/openai-agents-python/" }
+    ],
+    "spec-gate-workflow": [
+      { "harness": "Devin", "feature": "Spec-first workflow", "url": "https://devin.ai/" },
+      { "harness": "Kiro", "feature": "Spec-driven IDE", "url": "https://kiro.dev/" },
+      { "harness": "Factory", "feature": "Spec gate", "url": "https://factory.ai/" }
+    ],
+    "llm-as-judge": [
+      { "harness": "Anthropic API", "feature": "Model-graded evals", "url": "https://docs.anthropic.com/" },
+      { "harness": "OpenAI Evals", "feature": "Model-based grading", "url": "https://github.com/openai/evals" },
+      { "harness": "LangSmith", "feature": "LLM-as-judge evaluators", "url": "https://docs.smith.langchain.com/" }
+    ],
+    "agentic-rag": [
+      { "harness": "LlamaIndex", "feature": "Agentic retrieval", "url": "https://www.llamaindex.ai/" },
+      { "harness": "LangGraph", "feature": "Agentic RAG tutorial", "url": "https://langchain-ai.github.io/langgraph/tutorials/rag/langgraph_agentic_rag/" }
+    ],
+    "checkpoint-resume-across-sessions": [
+      { "harness": "Claude Code", "feature": "/resume", "url": "https://code.claude.com/docs/en/session" },
+      { "harness": "LangGraph", "feature": "Checkpointers", "url": "https://langchain-ai.github.io/langgraph/concepts/persistence/" }
+    ],
+    "structured-output-enforcement": [
+      { "harness": "OpenAI API", "feature": "Structured Outputs", "url": "https://platform.openai.com/docs/guides/structured-outputs" },
+      { "harness": "Anthropic API", "feature": "Tool use / JSON mode", "url": "https://docs.anthropic.com/" },
+      { "harness": "Pydantic AI", "feature": "Typed responses", "url": "https://ai.pydantic.dev/" }
+    ],
+    "code-generation-with-execution-feedback": [
+      { "harness": "Claude Code", "feature": "Bash tool + test loops", "url": "https://code.claude.com/docs/en/tools" },
+      { "harness": "Aider", "feature": "Test / lint loop", "url": "https://aider.chat/docs/usage/tips.html" }
+    ],
+    "semantic-router": [
+      { "harness": "OpenRouter", "feature": "Model routing", "url": "https://openrouter.ai/" },
+      { "harness": "LangChain", "feature": "RouterChain", "url": "https://python.langchain.com/" }
+    ],
+    "progressive-context-disclosure": [
+      { "harness": "Claude Code", "feature": "Lazy-loaded skills + CLAUDE.md chaining", "url": "https://code.claude.com/docs/en/memory" }
+    ]
+  }
+}
