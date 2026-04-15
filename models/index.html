@@ -6,7 +6,7 @@
 <title>Models &middot; LLMs &middot; thisminute.org</title>
 <meta name="description" content="A big snapshot of the real models out there right now, grouped by vendor. Context windows, modalities, reasoning modes, hosted vs open weights.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%A7%A0</text></svg>">
-<link rel="stylesheet" href="/shared/forge.css?v=2aExpl">
+<link rel="stylesheet" href="/shared/forge.css?v=3aTone">
 <style>
   :root { --accent: #f0a4c0; }
   body.light-mode { --accent: #d97ea0; }
@@ -211,43 +211,43 @@
 
 <header class="hero">
   <h1>Models</h1>
-  <p class="tagline">the actual neural networks doing the guessing. everything else in an agent system sits around one of these.</p>
+  <p class="tagline">The actual neural networks doing the guessing. Everything else in an agent system sits around one of these.</p>
 </header>
 
 <div class="explainer">
 
   <section class="explainer-section">
-    <h2>what a model actually is</h2>
-    <p>a model is a giant pile of numbers, trained on most of the internet, that does exactly one thing: given a sequence of tokens, it predicts the next one. that&rsquo;s it. there is no reasoning engine in there, no agent, no &ldquo;it&rdquo; in the human sense. the whole &ldquo;talking to an AI&rdquo; experience is built by running that one next-token prediction over and over, with the model&rsquo;s own output feeding back into the input, until it produces a stop token.</p>
-    <p>so when we say a model is GPT-5 or Claude Sonnet 4.6 or Llama 3.1, we&rsquo;re talking about <strong>a specific set of trained weights</strong>. swap the weights and the behavior changes completely. the harness (Claude Code, Cursor, Aider), the context window, the tools, all of that can stay the same, and you&rsquo;ll get a different agent.</p>
-    <p>that&rsquo;s why model choice is load-bearing. in agentic engineering, the model is the engine. the rest is the car built around it.</p>
+    <h2>What a model actually is</h2>
+    <p>A model is a pile of trained weights that does exactly one thing: given a sequence of tokens, it predicts the next one. There&rsquo;s no reasoning engine in there, no agent, no &ldquo;it&rdquo; in the human sense. The whole experience of talking to an AI is built by running that single next-token prediction over and over, with the model&rsquo;s own output feeding back into the input, until it produces a stop token.</p>
+    <p>When we say a model is GPT-5 or Claude Sonnet 4.6 or Llama 3.1, we&rsquo;re talking about <strong>a specific set of weights</strong>. Swap the weights and the behavior changes completely. The harness (Claude Code, Cursor, Aider), the context window, the tools, all of that can stay the same, and you&rsquo;ll get a different agent.</p>
+    <p>That&rsquo;s why model choice is load-bearing. In agentic engineering the model is the engine, and the rest is the car built around it.</p>
   </section>
 
   <section class="explainer-section">
-    <h2>the axes people compare them on</h2>
-    <p>every model has the same general shape but they differ on a handful of things that matter for agent work:</p>
+    <h2>The axes people compare them on</h2>
+    <p>Every model has the same general shape, but they differ on a handful of things that matter for agent work:</p>
     <ul>
-      <li><strong>size and capability.</strong> bigger weights usually means stronger reasoning and better recall, at higher cost and slower latency. a single vendor often has a large / medium / small tier (Opus / Sonnet / Haiku, GPT-5 / Mini / Nano, and so on) that trade quality for speed.</li>
-      <li><strong>context window.</strong> how much the model can read at once, measured in tokens. 128K to 2M is the current range. for agentic work where tool output dominates, bigger is almost always better. see <a href="/context/">context</a>.</li>
-      <li><strong>thinking modes.</strong> some models produce reasoning tokens before the final answer (o3, Claude with extended thinking, Gemini 2.5 Pro). these get smarter the more tokens they burn before committing to a reply.</li>
-      <li><strong>vision and multimodality.</strong> most frontier models now accept images as input, and a growing share take audio. they convert each modality into tokens and process everything in the same window.</li>
-      <li><strong>hosted versus open weights.</strong> hosted models live behind an API and you pay per token. open-weights models (Llama, Mistral, DeepSeek, Qwen) ship the weights so you can run them yourself, fine-tune them, or inspect them. the frontier still lives on hosted, but the gap narrows every cycle.</li>
+      <li><strong>Size and capability.</strong> Bigger weights usually mean stronger reasoning and better recall, at higher cost and slower latency. A vendor typically has a large / medium / small tier (Opus / Sonnet / Haiku, GPT-5 / Mini / Nano, and so on) that trades quality for speed.</li>
+      <li><strong>Context window.</strong> How much the model can read at once, measured in tokens. Current range is roughly 128K to 2M. For agentic work, where tool output dominates, bigger is almost always better. See <a href="/context/">context</a>.</li>
+      <li><strong>Thinking modes.</strong> Some models produce reasoning tokens before the final answer (o3, Claude with extended thinking, Gemini 2.5 Pro). They tend to get smarter the more tokens they burn before committing to a reply.</li>
+      <li><strong>Vision and multimodality.</strong> Most frontier models accept images as input, and a growing share take audio. Each modality gets turned into tokens and processed in the same window.</li>
+      <li><strong>Hosted versus open weights.</strong> Hosted models live behind an API and you pay per token. Open-weights models (Llama, Mistral, DeepSeek, Qwen) ship the weights, so you can run them yourself, fine-tune them, or inspect them. The frontier is still on hosted, but the gap narrows every cycle.</li>
     </ul>
   </section>
 
   <section class="explainer-section">
-    <h2>some quirks worth knowing</h2>
-    <p>none of this is in the marketing copy but all of it affects how agents built on these models behave.</p>
+    <h2>Quirks worth knowing</h2>
+    <p>None of this is in the marketing copy, but all of it affects how agents built on these models behave.</p>
     <div class="explainer-callout">
-      <strong>the context isn&rsquo;t uniformly attended.</strong> even inside a 1M window, tokens near the beginning and the end tend to have more influence than tokens in the middle. harnesses bury important stuff at the tail for exactly this reason.
+      <strong>The context isn&rsquo;t uniformly attended.</strong> Even inside a 1M window, tokens near the beginning and the end tend to have more influence than tokens in the middle. Good harnesses bury important context at the tail for exactly this reason.
     </div>
-    <p>models from the same vendor usually share a tokenizer and a training lineage, so &ldquo;Claude 3.5 Sonnet&rdquo; and &ldquo;Claude 4.6 Sonnet&rdquo; feel more alike than &ldquo;Claude Sonnet&rdquo; and &ldquo;GPT-5&rdquo; even at similar benchmark scores. different vendors have different personalities, different refusal patterns, different quirks in how they call tools. if you switch a big agent system from one vendor to another, expect surprises.</p>
-    <p>the sticker-price cost of a model is almost never the real cost. an agent loop with a thinking model will spend way more tokens on reasoning than on the user-visible reply. a cheap-per-token model that needs three loops to get something right is often more expensive than the premium model that gets it in one shot. benchmarks measure correctness; they don&rsquo;t price the loop.</p>
-    <p>and the field moves fast. a model that was frontier a year ago is a cheap workhorse today, and today&rsquo;s frontier will be a workhorse by next year. pinning production systems to a specific version is common because the &ldquo;same model name&rdquo; can silently shift behavior after a vendor-side update.</p>
+    <p>Models from the same vendor share a tokenizer and a training lineage, so Claude 3.5 Sonnet and Claude 4.6 Sonnet feel more alike than Claude and GPT-5 do, even at similar benchmark scores. Different vendors have different personalities, different refusal patterns, different habits around tool-calling. Switching a big agent system from one vendor to another always turns up surprises.</p>
+    <p>The sticker-price cost of a model is almost never the real cost. An agent loop with a thinking model spends way more tokens on reasoning than on the user-visible reply, so a cheap-per-token model that needs three loops can end up more expensive than a premium model that gets it in one shot. Benchmarks measure correctness, not the price of the loop.</p>
+    <p>And the field moves fast. A model that was frontier a year ago is a cheap workhorse today, and today&rsquo;s frontier will be a workhorse by next year. Production systems usually pin to a specific version, because the &ldquo;same model name&rdquo; can silently shift behavior after a vendor-side update.</p>
   </section>
 
   <section class="explainer-section" style="text-align:center; margin-top: 3.5rem;">
-    <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">snapshot of the current landscape below. grouped by vendor. current as of 2026-04-11 and already a little out of date, the usual deal.</p>
+    <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">Snapshot of the current landscape below, grouped by vendor. Current as of 2026-04-11 and already a little out of date, as usual.</p>
     <a class="archive-jump" href="#catalog">Browse the catalog &darr;</a>
   </section>
 
@@ -261,7 +261,7 @@
   part of <a href="/">LLMs &middot; thisminute.org</a>
 </footer>
 
-<script src="/shared/forge.js?v=2aExpl"></script>
+<script src="/shared/forge.js?v=3aTone"></script>
 <script>
 const MODELS = [
   // ─── Anthropic ────────────────────────────────────────

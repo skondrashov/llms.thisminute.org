@@ -6,7 +6,7 @@
 <title>Context &middot; LLMs &middot; thisminute.org</title>
 <meta name="description" content="The context window is the only memory a model has. What fills it, how fast, and why everything from memory files to reasoning tokens to tool output is really the same thing.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='82'>%F0%9F%AA%9F</text></svg>">
-<link rel="stylesheet" href="/shared/forge.css?v=2aExpl">
+<link rel="stylesheet" href="/shared/forge.css?v=3aTone">
 <style>
   :root { --accent: #a8d8b5; }
   body.light-mode { --accent: #7fbb8f; }
@@ -287,15 +287,15 @@
 
 <header class="hero">
   <h1>Context</h1>
-  <p class="tagline">the window the model actually sees, and the only place anything ever gets remembered!</p>
+  <p class="tagline">The window the model actually sees, and the only place anything ever gets remembered.</p>
 </header>
 
 <main class="page">
 
   <section>
-    <h2>the model has no memory</h2>
-    <p>ok so this part is genuinely wild. every time you ask the model something, it is seeing the entire conversation for the first time. it has no idea it answered you ten minutes ago. it doesn&rsquo;t remember your name. it doesn&rsquo;t know which tokens it wrote and which you wrote. all it has is the context window, and all it does is guess the next token that should come after everything in it.</p>
-    <p>here&rsquo;s the animation from the anatomy page to show you what that looks like. hit play.</p>
+    <h2>The model has no memory</h2>
+    <p>Every time you ask a model something, it&rsquo;s seeing the entire conversation for the first time. It has no idea it answered you ten minutes ago, it doesn&rsquo;t remember your name. What separates its turns from yours is the little <code>user</code> and <code>assistant</code> markers you can see in the animation below, and those are tokens too, learned during training to act as turn boundaries. Beyond those markers there&rsquo;s no structural &ldquo;who said what&rdquo; metadata. The model has the context window, and all it does is guess the next token that should come after everything in it.</p>
+    <p>Here&rsquo;s the animation from the anatomy page. Hit play.</p>
 
     <div class="demo-wrap">
       <span class="formula">f(all preceding tokens) &rarr; one token</span>
@@ -312,19 +312,19 @@
       </div>
     </div>
 
-    <p>notice how when the model &ldquo;reads&rdquo; the window to predict the next token, <em>all of the tokens flash at once</em>. there&rsquo;s no sequential pass through them, and nothing flagging which tokens it wrote last turn versus which you just sent. the whole window gets attended to simultaneously, and the next guess comes from that entire pile.</p>
+    <p>Notice how when the model &ldquo;reads&rdquo; the window to predict the next token, <em>all the tokens flash at once</em>. There&rsquo;s no sequential pass through them. The whole window is attended to simultaneously, role markers and all, and the next guess comes out of that single pile.</p>
   </section>
 
   <section id="filling">
-    <h2>what&rsquo;s filling our context?</h2>
-    <p>so if the context is the only memory, the obvious next question is: what&rsquo;s actually in there? like, what takes up the space?</p>
-    <p>rough token amounts for the stuff that piles up in an agent context, smallest to biggest:</p>
+    <h2>What&rsquo;s filling our context</h2>
+    <p>If the context is the only memory, the obvious next question is what actually lives in there, and how much space the different kinds of things take up.</p>
+    <p>Rough token amounts for the stuff that piles up in an agent context, smallest to biggest:</p>
 
     <div class="fill-breakdown">
       <div class="fill-row">
         <div>
-          <div class="fill-name">system prompt</div>
-          <div class="fill-desc">the scaffolding the model sees before anything else. role instructions, tool definitions, formatting rules. usually set once and never touched.</div>
+          <div class="fill-name">System prompt</div>
+          <div class="fill-desc">The scaffolding the model sees before anything else: role instructions, tool definitions, formatting rules. Usually set once and never touched.</div>
         </div>
         <div class="fill-amount">~1K to 5K</div>
         <div class="fill-bar" style="--w: 4%"></div>
@@ -332,8 +332,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">tool call request</div>
-          <div class="fill-desc">when the model asks to use a tool, it writes out the function name plus a little JSON with arguments. this part is tiny, usually a sentence or two.</div>
+          <div class="fill-name">Tool call request</div>
+          <div class="fill-desc">When the model asks to use a tool, it writes out the function name plus a bit of JSON with arguments. Tiny, usually a sentence or two in the window.</div>
         </div>
         <div class="fill-amount">50 to 200</div>
         <div class="fill-bar" style="--w: 1%"></div>
@@ -341,8 +341,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">user message</div>
-          <div class="fill-desc">whatever you typed. could be a one-word question or could be a wall of context you pasted in. usually on the smaller side!</div>
+          <div class="fill-name">User message</div>
+          <div class="fill-desc">Whatever you typed. Could be a one-word question, could be a wall of context you pasted in. Usually on the smaller side.</div>
         </div>
         <div class="fill-amount">50 to 2K</div>
         <div class="fill-bar" style="--w: 4%"></div>
@@ -350,8 +350,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">assistant reply (no thinking)</div>
-          <div class="fill-desc">a normal model response. a paragraph, a code block, whatever. this is what you see it writing back to you.</div>
+          <div class="fill-name">Assistant reply (no thinking)</div>
+          <div class="fill-desc">A normal model response. A paragraph, a code block, whatever. This is the part you see it writing back to you.</div>
         </div>
         <div class="fill-amount">200 to 2K</div>
         <div class="fill-bar" style="--w: 4%"></div>
@@ -359,8 +359,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">screenshot (vision)</div>
-          <div class="fill-desc">one image, once the model converts it into tokens. a single screenshot costs about this much, regardless of what&rsquo;s in it. more on this below.</div>
+          <div class="fill-name">Screenshot (vision)</div>
+          <div class="fill-desc">One image, converted into tokens. A single screenshot costs about this much regardless of what&rsquo;s in it. More on this below.</div>
         </div>
         <div class="fill-amount">~1.5K</div>
         <div class="fill-bar" style="--w: 3%"></div>
@@ -368,8 +368,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">grep hit list</div>
-          <div class="fill-desc">the model runs a search across a repo and gets a bunch of file-line matches back. the more hits, the bigger it gets.</div>
+          <div class="fill-name">Grep hit list</div>
+          <div class="fill-desc">The model runs a search across a repo and gets the file-line matches back. More hits, bigger result.</div>
         </div>
         <div class="fill-amount">500 to 10K</div>
         <div class="fill-bar" style="--w: 20%"></div>
@@ -377,8 +377,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">reading a file</div>
-          <div class="fill-desc">the model asks to open a file, and the entire file comes back to it. small config file? nothing. a 2000-line source file? ouch.</div>
+          <div class="fill-name">Reading a file</div>
+          <div class="fill-desc">The model asks to open a file and the entire file comes back. A small config is nothing. A 2000-line source file hurts.</div>
         </div>
         <div class="fill-amount">500 to 20K+</div>
         <div class="fill-bar" style="--w: 40%"></div>
@@ -386,8 +386,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">web search or scrape</div>
-          <div class="fill-desc">the model asks a search tool, gets back a bunch of page text. scraping a single webpage can return a giant wall of stuff.</div>
+          <div class="fill-name">Web search or scrape</div>
+          <div class="fill-desc">The model asks a search tool, gets back a pile of page text. Scraping a single webpage can return a surprising amount.</div>
         </div>
         <div class="fill-amount">2K to 20K</div>
         <div class="fill-bar" style="--w: 40%"></div>
@@ -395,8 +395,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">reasoning trace (thinking models)</div>
-          <div class="fill-desc">some models think out loud before answering. all of those thinking tokens live in the context too. reasoning-heavy models can burn a huge chunk of the window on a single turn.</div>
+          <div class="fill-name">Reasoning trace (thinking models)</div>
+          <div class="fill-desc">Some models think out loud before answering. Those thinking tokens live in the context too. A reasoning-heavy model can burn a huge chunk of the window on a single turn.</div>
         </div>
         <div class="fill-amount">2K to 20K+</div>
         <div class="fill-bar" style="--w: 40%"></div>
@@ -404,47 +404,47 @@
 
       <div class="fill-row big">
         <div>
-          <div class="fill-name">git log -p on a big commit</div>
-          <div class="fill-desc">the BOSS of context fillers. you ask the model to look at what changed in a commit, and suddenly fifty thousand tokens of diff show up in the window. this is the thing that eats your context window alive.</div>
+          <div class="fill-name"><code>git log -p</code> on a big commit</div>
+          <div class="fill-desc">The worst offender. You ask the model what changed in a commit and fifty thousand tokens of diff show up in the window. This is the thing that eats your context alive.</div>
         </div>
         <div class="fill-amount">10K to 50K+</div>
         <div class="fill-bar" style="--w: 100%"></div>
       </div>
     </div>
 
-    <p>in a typical agent workflow, <strong>tool output dominates</strong>. one file read or one git diff can be bigger than everything the user and the model have typed all session combined. reasoning tokens are the other big spender when you&rsquo;re running a thinking model. the system prompt, user messages, and assistant replies feel important because they&rsquo;re the part you can see, but compared to tool output they&rsquo;re usually small fries.</p>
+    <p>In a typical agent workflow, <strong>tool output dominates</strong>. A single file read or a single diff can be bigger than everything the user and the model have typed all session combined. Reasoning tokens are the other big spender when a thinking model is in play. The system prompt, user messages, and assistant replies feel important because they&rsquo;re the part you actually see, but next to tool output they&rsquo;re small.</p>
   </section>
 
   <section>
-    <h2>the model fills its own context, constantly</h2>
-    <p>here&rsquo;s the thing that makes all of this click. memory files, role instructions, skill prompts, reasoning tokens, tool output: they all look like different kinds of things, but from the model&rsquo;s perspective they&rsquo;re literally the same. it&rsquo;s all just tokens in the window.</p>
-    <p>think about it like this. when you put a <strong>memory file</strong> in front of the model, you&rsquo;re pre-populating its context. when the model writes <strong>reasoning tokens</strong> before its answer (like Gemini&rsquo;s classic &ldquo;but wait, let me reconsider...&rdquo;), it&rsquo;s populating its OWN context with words that help it think. when the harness <strong>dumps tool output</strong> into the next turn, it&rsquo;s populating the model&rsquo;s context on its behalf. all three are doing the same mechanical thing: putting tokens in the window so the next prediction pass has more to work with.</p>
-    <p>this is why persistent context stuff works so well and feels so intuitive. you&rsquo;re not doing anything weird or magical! you&rsquo;re just adding to the pile of tokens the model is about to read. the model was already going to do that to itself anyway.</p>
+    <h2>The model fills its own context, constantly</h2>
+    <p>Here&rsquo;s the thing that makes all of this click. Memory files, role instructions, skill prompts, reasoning tokens, tool output: they look like different kinds of things, but from the model&rsquo;s perspective they&rsquo;re literally the same. It&rsquo;s all just tokens in the window.</p>
+    <p>When you put a <strong>memory file</strong> in front of the model, you&rsquo;re pre-populating its context. When the model writes <strong>reasoning tokens</strong> before its answer (Gemini&rsquo;s classic &ldquo;but wait, let me reconsider...&rdquo;), it&rsquo;s populating its own context with words that help it think. When the harness <strong>dumps tool output</strong> into the next turn, it&rsquo;s populating the context on the model&rsquo;s behalf. All three are doing the same mechanical thing: adding tokens to the window so the next prediction has more to work with.</p>
+    <p>This is why persistent context scaffolding works so well and feels intuitive. You&rsquo;re not doing anything weird or magical, you&rsquo;re just adding to the pile of tokens the model is about to read. The model was already going to do that to itself anyway.</p>
   </section>
 
   <section>
-    <h2>vision, but make it tokens</h2>
-    <p>the thing about models being pure token machines is that when they &ldquo;see&rdquo; an image, they&rsquo;re not really looking at pixels. under the hood, a vision transformer chops the image up into little patches (usually a grid, like 16 by 16), runs each patch through an encoder, and produces a sequence of embeddings. those embeddings get stuffed into the context window right next to the text tokens, and the model treats them the same.</p>
+    <h2>Vision, but make it tokens</h2>
+    <p>A model is a pure token machine, so when it &ldquo;sees&rdquo; an image it&rsquo;s not really looking at pixels. Under the hood, a vision transformer chops the image into patches (usually a 16 by 16 grid), runs each patch through an encoder, and produces a sequence of embeddings. Those embeddings get stuffed into the context window right next to the text tokens, and the model treats them the same.</p>
 
     <div class="vision-note">
-      so when you upload a screenshot to a multimodal model, it&rsquo;s not magically understanding the image, it&rsquo;s receiving <strong>a sequence of image-patch tokens</strong> mixed into the same window that holds your text. typical cost: around <strong>1,500 tokens per image</strong> in Claude, varying with model and resolution settings.
+      When you upload a screenshot to a multimodal model, it isn&rsquo;t magically understanding the image. It&rsquo;s receiving <strong>a sequence of image-patch tokens</strong> mixed into the same window that holds your text. Typical cost: around <strong>1,500 tokens per image</strong> in Claude, varying with model and resolution settings.
     </div>
 
-    <p>this is why document processing or long screenshot chains can chew through a context window the same way a big file read does. ten pages of scanned PDF might be 15K tokens of nothing but image patches, before you&rsquo;ve said a single word to the model.</p>
-    <p>higher resolution buys more detail at the cost of more tokens. some models give you knobs for this. most just have a default patch budget and if your image needs more tokens, it downsamples.</p>
+    <p>This is why document processing or long screenshot chains can chew through a context window the same way a big file read does. Ten pages of scanned PDF might be 15K tokens of image patches before you&rsquo;ve said a single word to the model.</p>
+    <p>Higher resolution buys more detail at the cost of more tokens. Some models give you knobs for this. Most have a default patch budget and will downsample if the image needs more.</p>
   </section>
 
   <section>
-    <h2>how big is the window anyway?</h2>
-    <p>this used to be a tight constraint. GPT-3 had a 4K token window, which sounds like nothing now. current frontier models:</p>
+    <h2>How big is the window</h2>
+    <p>This used to be a tight constraint. GPT-3 had a 4K token window, which sounds like nothing now. Current frontier models:</p>
     <ul style="list-style:none; padding:0; margin: 0.5rem 0 0.9rem 0.5rem; color: var(--text-secondary); line-height: 1.9; font-size: 0.95rem;">
-      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">200K</span> &mdash; Claude Haiku 4.5</li>
-      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">1M</span> &mdash; Claude Opus/Sonnet 4.6, Gemini 2.5 Flash</li>
-      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">2M</span> &mdash; Gemini 2.5 Pro</li>
-      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">128K</span> &mdash; most open-weights models (Llama, Mistral, DeepSeek, Qwen)</li>
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">200K</span> &nbsp;Claude Haiku 4.5</li>
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">1M</span> &nbsp;Claude Opus / Sonnet 4.6, Gemini 2.5 Flash</li>
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">2M</span> &nbsp;Gemini 2.5 Pro</li>
+      <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">128K</span> &nbsp;most open-weights models (Llama, Mistral, DeepSeek, Qwen)</li>
     </ul>
-    <p>1M is genuinely a lot! you can fit a medium-sized codebase in there. but remember, tool output is measured in the tens of thousands, so even 1M fills up faster than you&rsquo;d think if the model is browsing a lot. harnesses have to decide what to evict, what to summarize, or when to start a fresh session.</p>
-    <p>and there&rsquo;s a subtler thing too: even when your tokens are technically in the window, the model&rsquo;s attention isn&rsquo;t uniform. stuff near the beginning and the end of the window tends to be more salient than stuff in the middle. the bigger the window, the more noticeable this &ldquo;lost in the middle&rdquo; effect gets.</p>
+    <p>1M is a lot. You can fit a medium-sized codebase in there. Tool output is measured in the tens of thousands though, so even 1M fills up faster than you&rsquo;d think once the model starts browsing. Harnesses have to decide what to evict, what to summarize, and when to start a fresh session.</p>
+    <p>There&rsquo;s a subtler thing too: even when your tokens are technically in the window, the model&rsquo;s attention across them isn&rsquo;t uniform. Stuff near the beginning and the end tends to be more salient than stuff in the middle. The bigger the window, the more noticeable this &ldquo;lost in the middle&rdquo; effect becomes.</p>
   </section>
 
 </main>
@@ -453,7 +453,7 @@
   part of <a href="/">LLMs &middot; thisminute.org</a>
 </footer>
 
-<script src="/shared/forge.js?v=2aExpl"></script>
+<script src="/shared/forge.js?v=3aTone"></script>
 <script>
 // Statelessness token demo, ported from /llms/llm/
 var T = [

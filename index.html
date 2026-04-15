@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LLMs · thisminute.org</title>
-  <meta name="description" content="ok so what's actually inside an AI agent?? here's all the pieces and how they fit together, no jargon">
+  <meta name="description" content="What's actually inside an AI agent? Here are all the pieces and how they fit together, without jargon.">
   <meta property="og:title" content="LLMs · thisminute.org">
-  <meta property="og:description" content="ok so what's actually inside an AI agent?? here's all the pieces and how they fit together, no jargon">
+  <meta property="og:description" content="What's actually inside an AI agent? Here are all the pieces and how they fit together, without jargon.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://llms.thisminute.org/">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='82'>%F0%9F%92%AC</text></svg>">
-  <link rel="stylesheet" href="/shared/forge.css?v=2aExpl">
+  <link rel="stylesheet" href="/shared/forge.css?v=3aTone">
   <!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
   <script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
 
@@ -293,7 +293,7 @@
       <a href="/models/" class="anatomy__node node--model">
         <span class="anatomy__node-label">Model</span>
         <span class="anatomy__node-name">f(tokens) &rarr; token</span>
-        <span class="anatomy__node-desc">you hand it a giant wall of tokens and it guesses the next one. that&rsquo;s LITERALLY all it does!! and then it forgets everything, which is honestly kinda wild</span>
+        <span class="anatomy__node-desc">You hand it a pile of tokens and it guesses the next one. That is the entire job. It also forgets everything the moment it&rsquo;s done, which is a bigger deal than it sounds.</span>
       </a>
 
       <div class="anatomy__link" aria-hidden="true"></div>
@@ -301,7 +301,7 @@
       <a href="/context/" class="anatomy__node node--context">
         <span class="anatomy__node-label">Context</span>
         <span class="anatomy__node-name">the window</span>
-        <span class="anatomy__node-desc">all the stuff the model actually gets to see when you talk to it. want it to remember something? gotta put it in here. there&rsquo;s literally nowhere else!</span>
+        <span class="anatomy__node-desc">Everything the model actually gets to see on a given turn. If you want it to remember something, it has to live in here. There&rsquo;s nowhere else.</span>
       </a>
 
       <div class="anatomy__link" aria-hidden="true"></div>
@@ -309,7 +309,7 @@
       <a href="/tools/" class="anatomy__node node--tools">
         <span class="anatomy__node-label">Tools</span>
         <span class="anatomy__node-name">files, APIs, the web</span>
-        <span class="anatomy__node-desc">ok so the model can&rsquo;t actually DO anything by itself, like it can&rsquo;t open files or go on the internet. so you give it tools that can! and whatever the tool finds out shows up in the context so the model sees what happened</span>
+        <span class="anatomy__node-desc">The model can&rsquo;t do anything on its own. It can&rsquo;t open files or go on the internet. You give it tools that can, and whatever the tool finds shows up in the context so the model sees what happened.</span>
       </a>
     </section>
 
@@ -342,8 +342,8 @@
     </div>
 
     <div class="more">
-      <p>ok so here&rsquo;s the whole deal. a model by itself is kinda useless?? it just guesses the next token and forgets. but when you stick it inside a context full of everything you want it to know, and give it tools so it can actually go do stuff in the world, and wrap the whole situation up in a harness that keeps the loop running, suddenly you&rsquo;ve got an actual AI agent going. and if you run a whole BUNCH of these at once, all sharing the same model?? that&rsquo;s orchestration, and it&rsquo;s basically the whole reason everyone&rsquo;s losing their minds about AI right now.</p>
-      <p>click any of the boxes up there to dig into that part!</p>
+      <p>A model on its own isn&rsquo;t useful for much. It guesses the next token and forgets. But put it inside a context full of what you want it to know, give it tools so it can actually do things in the world, and wrap all of that in a harness that keeps the loop running, and you have an AI agent. Run a bunch of them at once, sharing the same model, and you have orchestration. That&rsquo;s pretty much the whole story of the current moment.</p>
+      <p>Click any of the boxes above to dig into that part.</p>
     </div>
   </main>
 
@@ -351,7 +351,7 @@
     <a href="https://github.com/thisminute/llms.thisminute.org">source</a>
   </footer>
 
-  <script src="/shared/forge.js?v=2aExpl"></script>
+  <script src="/shared/forge.js?v=3aTone"></script>
   <script>
     (function() {
       var h1 = document.querySelector('.hero h1');
