@@ -1,3 +1,59 @@
+# Checkpoint — 2026-04-15
+
+## Session 12 — 2026-04-15
+
+Three tracks: tidy-up, Harnesses category, orchestration rework.
+
+### Track 1 — Pending commits (commit `b58be9e`)
+
+4 days of uncommitted work was sitting on the tree despite the 2026-04-11 note claiming clean. Committed:
+- `models/index.html` — added OpenAI o4-mini and GPT-4.1 cards
+- `tools/AGENTS.md` + `tools/STRATEGY.md` — count bump to 16,143 (verified by re-running `build.py`; tools/index.html diff was pure CRLF noise so discarded)
+
+### Track 2 — Harnesses tools category (commit `55ce44f`)
+
+Filled the `/tools/#harnesses` filter target that the home page's anatomy flowchart lands on. 22 entries in a new `Harnesses` category:
+- 13 new curated entries: Aider, Cline, Roo Code, Continue, Goose (Block), LangGraph, DSPy, smolagents, OpenAI Agents SDK, Devin, Lovable, Sourcegraph Amp
+- 9 moved from other categories: Claude Code, Windsurf (from AI Assistants), LangChain, CrewAI, AutoGen, LlamaIndex (from LLM Tools), OpenCode, Junie CLI, Gemini CLI, Kilo Code (from the orphan AI Coding Agents category)
+- `taxonomy.json` extended with the new category under AI & Machine Learning group
+- Fixed one duplicate name introduced during the move (`llama-index` in harnesses.json collided with existing `llamaindex-llm` in ai_science.json — resolved by keeping the ai_science entry and retargeting its category to Harnesses)
+
+Total catalog: **16,155 entries across 124 populated categories**. All 99 orchestration tests pass. Pre-existing tools test failures (4 orphan categories from `data/2026_update.json`: octrafic/clanker-cli/ty/devbox, and one pre-existing dolphin name duplicate) are **unchanged by this session** — future cleanup.
+
+### Track 3 — Orchestration rework (commit `c1b31e8`)
+
+User requested: rework `/orchestration/` around three educational lenses so the simplest industry-standard patterns are the entry point, real-world org patterns are their own layer, and the nature-inspired/philosophical patterns are cleanly separated. Also asked for deep research on **harness-native orchestration features** since Claude Code and others have changed a lot recently.
+
+Research pass: a general-purpose subagent surveyed Claude Code (Task tool, Agent Teams, Plan mode, 26-event hooks, Skills, MCP, worktree isolation), Cursor 3, Windsurf, Aider Architect, Cline/Roo Boomerang, OpenCode / Goose / Continue / Kilo, Devin / Amp / Factory, LangGraph / CrewAI / AutoGen / MAF, and OpenAI ChatGPT agent / Codex. 10 convergence patterns and 7 catalog gaps identified.
+
+Executed:
+- **`LENS_PLAN.md`** — design doc for the rework (IA, Core pattern list, new pattern gaps, execution phases).
+- **`lenses.json`** — category defaults + per-id overrides. 27 in Core, 120 in Wild, 130 in Garden.
+- **`harness_native.json`** — 27 Core patterns mapped to the harnesses that ship them natively (~70 harness feature entries total).
+- **`structures/round7_harness_native.json`** — 6 new patterns from the research gaps: `peer-communicating-agent-team`, `best-of-n-worktree-racing`, `fleet-orchestration`, `spec-gate-workflow`, `cloud-local-agent-mobility`, `mcp-elicitation`.
+- **`structural-classes.json`** — extended with mappings for the 6 new patterns.
+- **`build.py`** — now merges lens + harnesses into `data.js` and prints a lens breakdown.
+- **`index.html`** — Origin filter renamed to Lens (3-value palette: core mint / wild amber / garden rose). First-time visitors land on Core active (flag stored in `localStorage.orchestration_lens_seen`). Core pattern cards render a `Ships in: Claude Code · Cursor · ...` strip. The detail pane gets a full "Ships natively in" section with linked pill-chips. Header copy rewritten to name the three lenses.
+- **`orchestration/AGENTS.md`** — documented the three-lens IA and the new data files.
+
+**Orchestration total: 277 patterns** (was 271). 99 tests passing.
+
+User wants to review the result and iterate. Open questions in `LENS_PLAN.md`:
+- Naming ("Core / In the Wild / The Garden" is a first guess)
+- Core set size (27 is on the generous end; could tighten to ~15)
+- Whether the detail pane's "Ships natively in" should expand to Wild/Garden patterns that also have harness implementations (currently only Core)
+
+### Deploy status
+
+Deploy queue at `~/projects/ops/DEPLOY_QUEUE.md` still has the 2026-04-11 "forge — Full redesign" entry. Session 12's three new commits (`b58be9e`, `55ce44f`, `c1b31e8`) should be appended to the next deploy window, especially the orchestration rework which is a visible site change.
+
+### Follow-ups flagged this session
+
+- **Tools test suite has 5 pre-existing failures** — 4 orphan categories from `data/2026_update.json` and 1 duplicate `dolphin` name. Not introduced this session. Quick fix: add `AI Coding Agents / API Testing / Code Quality / Dev Environments / DevOps Agents` to `tools/taxonomy.json` (or recategorize the 4 entries) and rename one of the dolphins.
+- **Forge rename still pending user direction** — flagged in 2026-04-11 checkpoint, still open.
+
+---
+
 # Checkpoint — 2026-04-11
 
 ## Architecture change (2026-04-11, evening) — URL flatten

@@ -312,7 +312,7 @@
       </div>
     </div>
 
-    <p>notice how when the model &ldquo;reads&rdquo; the window to predict the next token, <em>all of the tokens flash at once</em>. it&rsquo;s not reading them in order. it doesn&rsquo;t know which ones it wrote last turn. it just sees a flat pile and guesses what should come after.</p>
+    <p>notice how when the model &ldquo;reads&rdquo; the window to predict the next token, <em>all of the tokens flash at once</em>. there&rsquo;s no sequential pass through them, and nothing flagging which tokens it wrote last turn versus which you just sent. the whole window gets attended to simultaneously, and the next guess comes from that entire pile.</p>
   </section>
 
   <section id="filling">
