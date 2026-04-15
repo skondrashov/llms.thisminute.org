@@ -351,11 +351,11 @@ if os.path.exists(index_path):
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 "name": "Toolshed",
-                "url": "https://forge.thisminute.org/toolshed",
+                "url": "https://llms.thisminute.org/toolshed",
                 "description": f"Universal software directory. Browse apps, libraries, protocols, and platforms across {len(categories)}+ categories.",
                 "potentialAction": {
                     "@type": "SearchAction",
-                    "target": "https://forge.thisminute.org/tools/#search={search_term_string}",
+                    "target": "https://llms.thisminute.org/tools/#search={search_term_string}",
                     "query-input": "required name=search_term_string",
                 },
             },
@@ -363,7 +363,7 @@ if os.path.exists(index_path):
                 "@context": "https://schema.org",
                 "@type": "CollectionPage",
                 "name": "Toolshed Software Directory",
-                "url": "https://forge.thisminute.org/toolshed",
+                "url": "https://llms.thisminute.org/toolshed",
                 "description": f"Curated software directory with {len(entries)} entries across {len(categories)} categories.",
                 "mainEntity": {
                     "@type": "ItemList",

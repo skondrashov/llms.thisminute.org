@@ -1,4 +1,4 @@
-/* forge.js — shared theme toggle + cross-site nav for forge.thisminute.org */
+/* forge.js — shared theme toggle + cross-site nav for llms.thisminute.org */
 (function () {
   var THEME_KEY = 'thisminute_theme';
 

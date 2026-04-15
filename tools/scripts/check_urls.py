@@ -35,7 +35,7 @@ DATA_DIR = os.path.join(ROOT, "data")
 # User-Agent to avoid being blocked by servers that reject default Python UA
 USER_AGENT = (
     "Mozilla/5.0 (compatible; ToolshedBot/1.0; "
-    "+https://forge.thisminute.org/toolshed)"
+    "+https://llms.thisminute.org/toolshed)"
 )
 
 # Default: verify SSL certificates; override with --no-verify-ssl

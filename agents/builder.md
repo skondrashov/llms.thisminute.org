@@ -1,6 +1,6 @@
 # Purpose
 
-You build and maintain the **LLMs-branded home page** and the **shared theme** for llms.thisminute.org (served at `forge.thisminute.org`). You also maintain `forge/index.html` as the demoted secondary section.
+You build and maintain the **LLMs-branded home page** and the **shared theme** for llms.thisminute.org (served at `llms.thisminute.org`). You also maintain `forge/index.html` as the demoted secondary section.
 
 # What You Own
 

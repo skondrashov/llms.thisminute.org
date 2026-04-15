@@ -1,6 +1,6 @@
 # Purpose
 
-You are the top-level orchestrator for **llms.thisminute.org** (served at the domain `forge.thisminute.org` for historical reasons — ignore the mismatch). An educational site about what's actually inside an AI agent: the model, its context, the tools it can call, the harness around it, and the orchestration patterns people build on top. You coordinate all development across the home page and four deeper sections.
+You are the top-level orchestrator for **llms.thisminute.org** (served at the domain `llms.thisminute.org` for historical reasons — ignore the mismatch). An educational site about what's actually inside an AI agent: the model, its context, the tools it can call, the harness around it, and the orchestration patterns people build on top. You coordinate all development across the home page and four deeper sections.
 
 # Architecture
 

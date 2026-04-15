@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy Tools (formerly Toolshed) to forge.thisminute.org/tools
+# Deploy Tools (formerly Toolshed) to llms.thisminute.org/tools
 # Served directly by nginx as static files (same pattern as /orchestration).
 #
 # First deploy: run with --setup to create remote dir and nginx config.
@@ -85,11 +85,11 @@ gcloud compute scp \
 # 3. Verify
 echo "[3/3] Verifying..."
 sleep 1
-STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://forge.thisminute.org/tools/" 2>/dev/null || echo "failed")
+STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://llms.thisminute.org/tools/" 2>/dev/null || echo "failed")
 echo ""
 if [ "$STATUS" = "200" ]; then
-    echo "=== Live at: https://forge.thisminute.org/toolshed ==="
+    echo "=== Live at: https://llms.thisminute.org/toolshed ==="
 else
     echo "=== Deploy complete (HTTP $STATUS) ==="
-    echo "Check: https://forge.thisminute.org/toolshed"
+    echo "Check: https://llms.thisminute.org/toolshed"
 fi

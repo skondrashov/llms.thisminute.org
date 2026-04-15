@@ -118,7 +118,7 @@ Added two patterns on 2026-04-11 documenting a category the orchestrator flagged
   7. llm-as-judge (Tech & Eng) — Separate LLM evaluates outputs with structured scoring (MT-Bench, ARK)
   8. agent-handoff-chain (Tech & Eng) — Direct context transfer between specialists (OpenAI Agents SDK)
   9. docker-sandboxed-execution (Tech & Eng) — Disposable containers for safe code execution (Code Interpreter, E2B)
-  10. checkpoint-resume-across-sessions (Tech & Eng) — Structured checkpoint for multi-session continuity (forge.thisminute.org)
+  10. checkpoint-resume-across-sessions (Tech & Eng) — Structured checkpoint for multi-session continuity (llms.thisminute.org)
 - Added structural class mappings for all 10 patterns in `structural-classes.json`
 - Total pattern count: 229 (was 219)
 - All 99 tests pass

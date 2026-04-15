@@ -1,6 +1,6 @@
 # LLMs · thisminute.org
 
-An educational site about what's actually inside an AI agent. The home page is a visual anatomy diagram (model ↔ context ↔ tools inside a harness frame, with a rhizomatic cluster of context windows off to the side for orchestration). Each part hands off to a deeper section. Served at `forge.thisminute.org` (domain name predates the rebrand, not worth changing now).
+An educational site about what's actually inside an AI agent. The home page is a visual anatomy diagram (model ↔ context ↔ tools inside a harness frame, with a rhizomatic cluster of context windows off to the side for orchestration). Each part hands off to a deeper section. Served at `llms.thisminute.org` (domain name predates the rebrand, not worth changing now).
 
 | Section | Path | Source | What it is |
 |---------|------|--------|------------|

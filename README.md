@@ -2,7 +2,7 @@
 
 An educational site about what's actually inside an AI agent. The home page is a visual anatomy diagram (model → context → tools inside a harness frame, with a rhizomatic cluster of context windows linking to orchestration). Each part of the diagram hands off to a deeper section.
 
-Live at [forge.thisminute.org](https://forge.thisminute.org) — the domain predates the rebrand and isn't worth changing.
+Live at [llms.thisminute.org](https://llms.thisminute.org) — the domain predates the rebrand and isn't worth changing.
 
 | Section | Path | What it is |
 |---------|------|------------|

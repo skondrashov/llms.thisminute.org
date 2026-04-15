@@ -47,6 +47,29 @@ User wants to review the result and iterate. Open questions in `LENS_PLAN.md`:
 
 Deploy queue at `~/projects/ops/DEPLOY_QUEUE.md` still has the 2026-04-11 "forge — Full redesign" entry. Session 12's three new commits (`b58be9e`, `55ce44f`, `c1b31e8`) should be appended to the next deploy window, especially the orchestration rework which is a visible site change.
 
+### Session 12 continuation — subsite explainers (commit `3594d2e`, `da945f7`)
+
+User asked to enshrine a **splash → explanation → archive** pattern across subsites, modeled on how `/context/` teaches before cataloging, with reusable shared components where it made sense. Also noted a small copy fix on `/context/` ("it's not reading them in order" was misleading — the model does use positional encoding; the novel thing is parallel attention across the whole window).
+
+Done:
+- **Context copy fix** — rewrote the paragraph to describe parallel attention and the absence of authorship metadata on tokens, rather than claiming order doesn&rsquo;t matter.
+- **Shared explainer classes in `shared/forge.css`** — `.site-label`, `.hero`, `.hero h1`, `.hero .tagline`, `.hero .disclaimer`, `.explainer` (720px prose column), `.explainer-section`, `.explainer-section h2`, `.explainer-section p`, `.explainer-section ul/ol`, `.explainer-callout` (dashed accent pull-quote), `.archive-jump` (pill link handing off to the catalog). Lifted from the `/context/` inline styles so every subsite can match without copy-pasting.
+- **`/models/` explainer** — four sections above the vendor catalog: what a model actually is, the axes people compare them on, quirks worth knowing (attention non-uniformity, vendor-family feel, cost-per-loop vs cost-per-token, version pinning), then an archive-jump CTA. Duplicated `.site-label` / `.hero` / `.disclaimer` blocks deleted from the page&rsquo;s inline `<style>` now that shared covers them.
+- **`/tools/` explainer** — four sections between the existing header and the view tabs: what counts as a tool, how most software wasn&rsquo;t built for agents and MCP&rsquo;s role, tools vs harnesses vs libraries, why the catalog is intentionally wide.
+- **`/orchestration/` explainer** — four sections between the existing header and the filter row: why orchestration is a thing, the primitives (roles, context boundaries, coordination channels, gates), how much of it already ships in harnesses, how to read the three-lens split below.
+- **`/forge/` left alone** — it already has a substantial &ldquo;What It Is&rdquo;, &ldquo;Getting Started&rdquo;, and &ldquo;The Audit Cycle&rdquo; narrative. Matches the spirit; not worth restructuring.
+- **Cache-bust** bumped from `v=1wBW1I` to `v=2aExpl` on every page so browsers pick up the new shared CSS on reload.
+
+Memories saved this session (for future sessions):
+- `feedback_tone.md` — no em-dashes, no filler casualness, no stacked-short-sentence LinkedIn cadence, mix sentence lengths, casual-but-not-performative. User will edit most copy themselves; focus on structure.
+- `project_subsite_pattern.md` — splash → explainer → archive is the durable direction, `/context/` is the model, shared components welcome.
+
+User is reviewing tomorrow. Open questions to watch for on their review:
+- **Copy tone.** Likely rewrites coming. The explainer copy tries to follow the tone memo but this is the one area where the user&rsquo;s pen will be most active.
+- **Does the models catalog need restructuring** beyond the explainer above it? Currently the vendor-grouped cards stay. Could be an argument for a tag-first or capability-first browser.
+- **Should tools get a harnesses-specific view** that&rsquo;s the default landing (since harnesses is the section that maps cleanly to the orchestration catalog)?
+- **Does `/context/` need the same shared-class treatment** to remove its inline duplication? Low priority but clean-up would unify the set.
+
 ### Follow-ups flagged this session
 
 - **Tools test suite has 5 pre-existing failures** — 4 orphan categories from `data/2026_update.json` and 1 duplicate `dolphin` name. Not introduced this session. Quick fix: add `AI Coding Agents / API Testing / Code Quality / Dev Environments / DevOps Agents` to `tools/taxonomy.json` (or recategorize the 4 entries) and rename one of the dolphins.
@@ -109,7 +132,7 @@ Deferred: toolshed curator should add a `Harnesses` category (task #12 in the in
 
 ## Architecture change (2026-04-09)
 
-**Major reorganization**: forge.thisminute.org is now an agentic engineering education site with five sections: LLMs, Forge, Orchestration, Toolshed, and Portal. Previously it was a portal linking three sub-sites.
+**Major reorganization**: llms.thisminute.org is now an agentic engineering education site with five sections: LLMs, Forge, Orchestration, Toolshed, and Portal. Previously it was a portal linking three sub-sites.
 
 Key changes:
 - `llms/` section added — interactive explainers on LLM fundamentals (copied from llms.thisminute.org, adapted paths)
