@@ -25,7 +25,7 @@
 
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='82'>%F0%9F%8E%B6</text></svg>">
 
-  <link rel="stylesheet" href="/shared/forge.css?v=1wBW1I">
+  <link rel="stylesheet" href="/shared/forge.css?v=2aExpl">
   <style>
     /* Orchestration section = mint green in the watermelon-gum palette.
        Base palette + typography come from shared/forge.css. */
@@ -1333,6 +1333,53 @@
       </div>
     </div>
   </header>
+
+  <div class="explainer">
+
+    <section class="explainer-section">
+      <h2>why orchestration is a thing</h2>
+      <p>a single model in a single context window is good at a lot of things, but there are tasks it just can&rsquo;t hold in one go: refactors that span dozens of files, research projects with too many threads, workflows that need a cautious planner and an aggressive implementer and a skeptical reviewer. orchestration is the set of patterns for splitting work across multiple agents, subagents, phases, or processes, and making sure the pieces fit back together.</p>
+      <p>none of this is new. human organizations have been solving the same problem for thousands of years: how do we coordinate a pile of limited minds into something that can tackle a problem bigger than any one of them? a military command structure, a newsroom, an ant colony, a jazz ensemble, a hospital on a busy night. these are all orchestration patterns. the LLM version inherits most of the vocabulary.</p>
+    </section>
+
+    <section class="explainer-section">
+      <h2>the primitives</h2>
+      <p>almost every pattern in the catalog is built out of the same small set of primitives.</p>
+      <ul>
+        <li><strong>roles.</strong> distinct agent personas with their own system prompts, tool permissions, and scope. a planner, an executor, a reviewer, a router.</li>
+        <li><strong>context boundaries.</strong> who sees what. subagents often start with a minimal context and return a summary so the parent&rsquo;s window doesn&rsquo;t bloat. this is the single most load-bearing design choice in any multi-agent system.</li>
+        <li><strong>coordination channels.</strong> how agents talk to each other. a supervisor dispatching tasks. a shared task list. a mailbox. an artifact (a spec document, a diff, a plan) that multiple agents read and write.</li>
+        <li><strong>gates.</strong> places where the flow pauses for approval: a human, a judge agent, a test suite, a compile step. gates are where orchestration meets governance.</li>
+      </ul>
+      <p>swap out any of these and you get a different pattern. the catalog below is essentially a combinatorial space of those primitives, dressed up with domain-specific names.</p>
+    </section>
+
+    <section class="explainer-section">
+      <h2>the harness is already orchestrating</h2>
+      <p>if you&rsquo;ve used Claude Code, Cursor, Aider, Cline, or anything similar in the last six months, you&rsquo;ve already been inside an orchestration system. the Plan mode / Execute mode split is a two-phase pipeline. subagent dispatch is a supervisor-router. parallel agents in separate worktrees is best-of-n racing. hooks that fire on lifecycle events are a stigmergic coordination layer bolted under the conversation.</p>
+      <p>a big chunk of &ldquo;how should I orchestrate this?&rdquo; is really &ldquo;which of these harness features am I already underusing?&rdquo; the <strong>Core</strong> lens below flags, for each pattern, which harnesses ship a native version of it. if a pattern looks useful, that row tells you where to go enable it.</p>
+      <div class="explainer-callout">
+        <strong>rule of thumb:</strong> if a pattern ships natively in a harness you already use, try that first. hand-rolling an orchestration pattern is usually ten times more work than flipping a config.
+      </div>
+    </section>
+
+    <section class="explainer-section">
+      <h2>how to read the catalog</h2>
+      <p>the catalog is split into three lenses, filterable at the top:</p>
+      <ul>
+        <li><strong>Core.</strong> patterns every agent developer will meet. industry-standard shapes, with the harnesses that ship each one.</li>
+        <li><strong>In the Wild.</strong> patterns from real-world human organizations. NASA mission control, Toyota production, airline crew resource management. useful when your agent system is starting to look like a small company and you want prior art.</li>
+        <li><strong>The Garden.</strong> nature-inspired, philosophical, and exotic patterns. ant colonies, pirate democracies, mycelial networks. useful, weird, worth browsing even if you don&rsquo;t use any of them directly.</li>
+      </ul>
+      <p>each pattern card shows a structure (the abstract shape: hub-and-spoke, peer ensemble, assembly pipeline, etc.) and a topology (the edge pattern: orchestrated, mesh, pipeline, and so on). the detail view has roles, forums, a diagram, and for Core patterns a &ldquo;ships natively in&rdquo; list that links to vendor docs.</p>
+    </section>
+
+    <section class="explainer-section" style="text-align:center; margin-top: 3rem;">
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">catalog below. 277 patterns across 20 domains. filterable by lens, structure, or field.</p>
+      <a class="archive-jump" href="#controls">Browse the catalog &darr;</a>
+    </section>
+
+  </div>
 
   <div class="controls" id="controls">
     <div class="search-row">
@@ -2839,6 +2886,6 @@
       }
     });
   </script>
-  <script src="/shared/forge.js?v=1wBW1I"></script>
+  <script src="/shared/forge.js?v=2aExpl"></script>
 </body>
 </html>
