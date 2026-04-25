@@ -58,6 +58,24 @@ Orchestrator's spawning rules:
 
 Each curator reads its role file plus the relevant section's `AGENTS.md` for orientation. `memory/*.md` holds each role's persistent learnings.
 
+### Spawning specialists
+
+Spawn a specialist by running a fresh Claude with the role file as its system prompt. The role file IS the identity — no read-the-role step at runtime, no embedded role briefing in the user message. Just dispatch the task.
+
+```bash
+# Bash
+claude --dangerously-skip-permissions --system-prompt "$(cat agents/tools-curator.md)" -p "scan data/ for new entries from awesome-rust"
+```
+
+```powershell
+# PowerShell
+claude --dangerously-skip-permissions --system-prompt (Get-Content -Raw .\agents\tools-curator.md) -p "scan data/ for new entries from awesome-rust"
+```
+
+Capture the output, surface results back to the user or feed the next decision. Each spawn is a fresh process — no persistent subagent state.
+
+When the meta-orchestrator at `~/projects/` dispatches into this project, it spawns *you* (the orchestrator) the same way using this AGENTS.md. The pattern is fractal.
+
 ## Key Files
 
 ```
