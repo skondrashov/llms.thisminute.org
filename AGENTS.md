@@ -7,7 +7,7 @@ An educational site about what's actually inside an AI agent. The home page is a
 | Home | `/` | `index.html` | LLMs-branded anatomy flowchart. Visual hand-offs to the other sections. |
 | Models | `/models/` | `models/` | Catalog of ~60 real models grouped by vendor. Card grid, vendor jump nav. |
 | Context | `/context/` | `context/` | Context explainer with embedded statelessness demo, "what's filling our context?" breakdown, vision transformers section. |
-| Orchestration | `/orchestration/` | `orchestration/` | Catalog of 271 orchestration patterns with a FastAPI + SQLite social layer. |
+| Orchestration | `/orchestration/` | `orchestration/` | Catalog of 271+ orchestration patterns with a FastAPI + SQLite social layer. |
 | Tools | `/tools/` | `tools/` | Software directory (~16K entries, filled + unfilled slots). |
 | Forge | `/forge/` | `forge/index.html` | Multi-agent system management guide. (Naming TBD — user wants to rename, options pending.) |
 
@@ -15,13 +15,13 @@ If told to go, start, or begin, you are the **orchestrator**. See `agents/orches
 
 ## Scope
 
-The orchestrator has authority over the entire repo — home, models, context, orchestration, tools, forge. Larger sections with their own internal structure (orchestration, tools) keep their own agent definitions; the flat top-level pages (home, models, context, forge) are handled by the top-level builder + skeptic.
+The orchestrator has authority over the entire repo — home, models, context, orchestration, tools, forge. All agent roles live at the top level. Sections no longer have their own agents; the orchestrator spawns the relevant top-level curator for catalog/pattern/content work and reads the section's `AGENTS.md` for orientation.
 
 - `index.html` — LLMs-branded home with anatomy flowchart + rhizome cluster SVG + hover-word headline
-- `models/index.html` — flat page, model catalog, no sub-section agents
-- `context/index.html` — flat page, context explainer, no sub-section agents
-- `orchestration/` — pattern catalog, 271 patterns, FastAPI + SQLite API, section steward
-- `tools/` — software directory, 7-role agent team
+- `models/index.html` — flat page, model catalog
+- `context/index.html` — flat page, context explainer
+- `orchestration/` — pattern catalog, 271+ patterns, FastAPI + SQLite API (curator: `orchestration-curator`)
+- `tools/` — software directory (curator: `tools-curator`)
 - `forge/index.html` — multi-agent management landing, flat page
 - `shared/forge.css` + `shared/forge.js` — the watermelon-gum pastel theme and light-default theme toggle, loaded by every page
 - Visual identity and consistency across all sections
@@ -29,20 +29,34 @@ The orchestrator has authority over the entire repo — home, models, context, o
 
 ## Stack
 
-Vanilla HTML/CSS/JS. No frameworks, no build step. Fredoka + JetBrains Mono webfonts loaded via `@import` in `shared/forge.css`. Light-default, dark available via toggle. Mobile-responsive. Favicons are emoji (💬 home, 🧠 model, 🪟 context, 🎶 orchestration, 🛠️ toolshed, 🔥 forge).
+Vanilla HTML/CSS/JS. No frameworks, no build step on the flat pages. Fredoka + JetBrains Mono webfonts loaded via `@import` in `shared/forge.css`. Light-default, dark available via toggle. Mobile-responsive. Favicons are emoji (💬 home, 🧠 model, 🪟 context, 🎶 orchestration, 🛠️ tools, 🔥 forge).
+
+The orchestration and tools sections each have their own Python build pipeline (`python build.py`) and pytest suite; see the respective `AGENTS.md` in each section for details.
 
 ## Design direction
 
 Soft, warm, essayist. Parchment-cream light / warm-plum-dusk dark. Watermelon-gum pastel accents: pink (`--accent`) and mint (`--accent-alt`). Rounded chunky sans (Fredoka). No em-dashes in prose. Casual, human voice. Explicitly anti "AI-hype techy brutalist dashboard" vibe. See `shared/forge.css` for the full palette + type system.
 
-## Agents
+## Agent system
 
-| Agent | Scope |
-|-------|-------|
-| orchestrator | Coordinates all work across all sections |
-| builder + skeptic | Top-level flat pages (`/`, `/models/`, `/context/`, `/forge/`) and the shared theme |
-| orchestration steward | All orchestration work (`orchestration/agents/steward.md`) |
-| tools agents | 7 roles (`tools/agents/*.md`) — read before spawning |
+Five roles, all at the top level in `agents/`. Sections do **not** have their own agents — those directories were removed in the 2026-04-18 consolidation.
+
+| Agent | Role file | Scope |
+|-------|-----------|-------|
+| **orchestrator** | `agents/orchestrator.md` | The only coordinator. Spawns curators by domain; does ad-hoc code/CSS/layout work directly. |
+| **tools-curator** | `agents/tools-curator.md` | Catalog-maintenance specialist for `tools/` (data quality, dedup, new entries, category gaps) |
+| **orchestration-curator** | `agents/orchestration-curator.md` | Pattern-catalog specialist for `orchestration/` (new patterns, three-lens IA, structural classes, harness mappings) |
+| **llms-curator** | `agents/llms-curator.md` | Content specialist for the four flat-page sections (`home/`, `models/`, `context/`, `forge/`); owns voice/tone |
+| **skeptic** | `agents/skeptic.md` | Project-wide reviewer: catalog data quality, pattern taxonomy, flat-page content, accessibility, cross-section consistency |
+
+Orchestrator's spawning rules:
+- Catalog or entry work in `tools/` → `tools-curator`
+- Pattern work in `orchestration/` → `orchestration-curator`
+- Flat-page content or voice/tone → `llms-curator`
+- Review → `skeptic`
+- Everything else (small code fixes, CSS tweaks, cross-section navigation, shared chrome, doc maintenance) → orchestrator does it directly
+
+Each curator reads its role file plus the relevant section's `AGENTS.md` for orientation. `memory/*.md` holds each role's persistent learnings.
 
 ## Key Files
 
@@ -50,13 +64,14 @@ Soft, warm, essayist. Parchment-cream light / warm-plum-dusk dark. Watermelon-gu
 index.html              # LLMs-branded home (anatomy flowchart + rhizome cluster)
 shared/forge.css        # Palette, typography, shared components, webfont @imports
 shared/forge.js         # Theme toggle (light-default)
-models/index.html       # Model catalog (flat page, builder-managed)
-context/index.html      # Context explainer (flat page, builder-managed)
-orchestration/          # Pattern catalog, 271 patterns, FastAPI + SQLite API
-tools/                  # Software directory
+models/index.html       # Model catalog (flat page)
+context/index.html      # Context explainer (flat page)
+orchestration/          # Pattern catalog, 271+ patterns, FastAPI + SQLite API
+tools/                  # Software directory (~16K entries)
 forge/index.html        # Multi-agent management guide (flat page)
-agents/                 # Top-level agent role files
+agents/                 # Role files (5 roles)
 agents/skills/          # Reusable checklists (security_review.md)
+memory/                 # Per-role persistent learnings (+ memory/archive/ for retired roles)
 .claude/checkpoint.md   # Session history — read before starting work
 ```
 

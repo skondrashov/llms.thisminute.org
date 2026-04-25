@@ -1,3 +1,9 @@
+# Orchestration Curator Memory
+
+<!-- Moved from orchestration/memory/steward.md on 2026-04-18 during the 11→5 agent consolidation.
+     Role renamed steward → orchestration-curator for symmetry with the other two curators.
+     Content below preserved verbatim. -->
+
 # Steward Memory
 
 Persistent learnings across sessions. Update after each section session. Remove stale info.

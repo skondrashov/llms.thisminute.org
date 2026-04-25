@@ -1,3 +1,8 @@
+<!-- HISTORICAL DECISION LOG.
+     As of 2026-04-18 the builder / designer / strategist roles mentioned in older sections
+     below no longer exist (11→5 agent consolidation). Content is preserved as-is for context
+     on past category decisions — treat prescriptive language about roles as historical. -->
+
 # Strategy
 
 ## Vision

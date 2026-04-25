@@ -1,12 +1,10 @@
-# Toolshed
+# tools
 
-If told to go, start, or begin — you are the **orchestrator**. See `agents/orchestrator.md`.
-
-For agent startup protocol, communication rules, and forum voting, see `PROTOCOL.md`.
+Technical reference for the software-directory section at `thisminute.org/tools`. The `tools-curator` role (at the project top level — see `../agents/tools-curator.md`) reads this file to orient; there are no section-local agents anymore.
 
 ## Overview
 
-Universal software directory at thisminute.org/toolshed. Browse apps, libraries, protocols, and platforms across 124 categories in a tree hierarchy, filterable by OS. Static site — no backend.
+Universal software directory at thisminute.org/tools. Browse apps, libraries, protocols, and platforms across 124 categories in a tree hierarchy, filterable by OS. Static site — no backend.
 
 The toolshed has both **filled slots** (existing software) and **unfilled slots** (software that should exist but doesn't). Every category is conceptually a set of slots — some filled by real tools, some empty. The empty ones are the interesting signal: they show where the software landscape has genuine gaps. Examples of unfilled slots: tools that don't exist yet because the problem is unsolved, tools for emerging domains, tools that would exist if someone bothered to build them.
 

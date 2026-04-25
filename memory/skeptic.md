@@ -1,5 +1,11 @@
 # Skeptic Memory
 
+<!-- Moved from tools/memory/skeptic.md on 2026-04-18 during the 11→5 agent consolidation.
+     Scope widened from tools-only to project-wide review (all three curators + cross-section
+     consistency). Older findings below are tools-focused; newer sessions will span all sections. -->
+
+# Skeptic Memory (legacy tools-scoped content)
+
 ## Last Session: Cycles 73-74 Review (2026-03-16, 22:13)
 
 ### What I Did

@@ -1,8 +1,8 @@
 # Orchestration
 
-If told to go, start, or begin — you are the **steward**. See `agents/steward.md`.
+Technical reference for the pattern-catalog section at `thisminute.org/orchestration`. The `orchestration-curator` role (at the project top level — see `../agents/orchestration-curator.md`) reads this file to orient; there are no section-local agents anymore.
 
-Browsable taxonomy of 277 agent orchestration patterns. Live at https://thisminute.org/orchestration.
+Browsable taxonomy of 277 agent orchestration patterns.
 
 ## Three-Lens IA (added 2026-04-15)
 

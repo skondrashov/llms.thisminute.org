@@ -126,7 +126,7 @@
   },
   {
     "id": "dolphin-emu",
-    "name": "Dolphin",
+    "name": "Dolphin Emulator",
     "description": "GameCube and Wii emulator. Play games in HD with enhancements like higher resolution, netplay, and controller customization.",
     "url": "https://dolphin-emu.org",
     "category": "Emulators",

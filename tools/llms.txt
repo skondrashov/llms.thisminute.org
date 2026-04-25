@@ -1,5 +1,5 @@
 # toolshed
-> Universal software directory with 16155 entries across 139 categories. Structured data for AI agents and developers.
+> Universal software directory with 16150 entries across 135 categories. Structured data for AI agents and developers.
 
 ## Endpoints
 - Full catalog (JSON): /api/v1/catalog.json
@@ -20,34 +20,34 @@ OS: windows | macos | linux | web | ios | android
 
 ## Categories
 - iOS UI Components: 700
-- Static Analysis: 529
+- Static Analysis: 527
 - CLI Frameworks: 449
-- Databases: 408
-- Testing Frameworks: 351
+- Databases: 407
+- Testing Frameworks: 352
 - Image Processing: 341
-- Frontend Frameworks: 336
 - Networking: 335
+- Frontend Frameworks: 334
 - Cross-Platform Frameworks: 309
 - Container Orchestration: 307
 - Video Editing: 289
 - Communication: 284
 - Music Production: 278
-- Data Validation & Serialization: 276
-- Game Engines: 232
+- Data Validation & Serialization: 275
+- Game Engines: 230
 - Backend Frameworks: 219
 - Version Control: 208
-- Media Players: 207
 - Data Pipelines: 206
+- Media Players: 206
 - Async & Concurrency: 205
 - API Clients: 195
 - CI/CD Tools: 193
 - Logging & Diagnostics: 191
 - Project Management: 189
+- Monitoring & Metrics: 185
 - Configuration: 184
 - Security Scanning: 184
 - Backup & Sync: 183
 - Encryption & Privacy Tools: 183
-- Monitoring & Metrics: 183
 - AI/ML Libraries: 181
 - Note Taking: 181
 - Programming Languages: 178
@@ -55,11 +55,11 @@ OS: windows | macos | linux | web | ios | android
 - Content Management Systems: 173
 - Utilities: 167
 - Launcher & Productivity Utils: 161
-- Accounting & Finance: 158
+- Accounting & Finance: 157
 - Code Editors: 156
 - iOS Networking & Data: 153
 - Documentation Tools: 150
-- Embedded & IoT: 147
+- Embedded & IoT: 148
 - System Utilities: 144
 - Auth & Identity: 143
 - PDF Tools: 143
@@ -69,22 +69,22 @@ OS: windows | macos | linux | web | ios | android
 - 3D & CAD: 130
 - Screen Recording / Streaming: 129
 - Fonts & Typography: 128
-- ORMs: 127
-- Search Engines: 122
+- ORMs: 126
 - Real-time Communication: 121
+- Search Engines: 121
 - Password Managers: 119
-- Office Suites: 118
 - Text Processing: 118
-- Operating Systems: 117
+- Office Suites: 117
 - Package Managers: 117
-- Window Managers: 117
-- Terminal Emulators: 115
+- Operating Systems: 116
+- Window Managers: 116
 - HTTP Libraries: 114
 - Cloud Storage: 113
-- Scientific Computing: 112
-- Data Analysis: 111
-- Learning Platforms: 110
+- Terminal Emulators: 112
+- Scientific Computing: 111
+- Data Analysis: 110
 - Email: 109
+- Learning Platforms: 109
 - Calendar & Scheduling: 96
 - Static Site Generators: 84
 - Photo Management: 81
@@ -96,11 +96,11 @@ OS: windows | macos | linux | web | ios | android
 - Virtualization: 75
 - Clipboard Managers: 71
 - UI Automation & E2E Testing: 71
-- Cloud SDKs & CLIs: 69
+- Cloud SDKs & CLIs: 70
 - NLP & Text AI: 69
 - Template Engines: 63
 - Database Drivers: 62
-- Blogging & Newsletter Platforms: 61
+- Blogging & Newsletter Platforms: 60
 - Browsers: 60
 - VPN: 59
 - Load & Performance Testing: 55
@@ -115,13 +115,13 @@ OS: windows | macos | linux | web | ios | android
 - Screenshot & Annotation: 46
 - Diagramming & Whiteboard: 45
 - Terminal UI: 45
-- Code Coverage & Quality: 42
+- Code Coverage & Quality: 43
 - CRM & Sales: 41
 - Math & Numerics: 40
 - Log Management: 39
 - Formatters: 37
+- Shell Environments: 37
 - Mobile IDE & Tools: 36
-- Shell Environments: 36
 - Vector & Illustration: 36
 - Task Runners & Monorepos: 35
 - Video Conferencing: 35
@@ -144,20 +144,16 @@ OS: windows | macos | linux | web | ios | android
 - AI Assistants: 26
 - Game Modding: 23
 - Harnesses: 22
-- GIS & Mapping: 12
+- GIS & Mapping: 16
 - Creative Coding: 9
+- Emulators: 9
 - Audio Programming: 8
+- Reverse Engineering: 8
 - Graphics Programming: 7
 - Robotics: 7
 - 3D Printing: 5
 - Browser Extensions & Userscripts: 4
-- Reverse Engineering: 4
-- Emulators: 3
 - Browser Automation: 2
-- API Testing: 1
-- Code Quality: 1
-- Dev Environments: 1
-- DevOps Agents: 1
 
 ## Querying
 Download /api/v1/catalog.json and filter by:

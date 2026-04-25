@@ -1,3 +1,8 @@
+# Tools Curator Memory
+
+<!-- Moved from tools/memory/curator.md on 2026-04-18 during the 11→5 agent consolidation.
+     Scope unchanged (tools catalog maintenance). Content below preserved verbatim. -->
+
 # Curator Memory
 
 ## Last Session: 2026-03-21

@@ -694,6 +694,11 @@ class TestFrontendSmoke:
     def _load_html(self):
         with open(os.path.join(ROOT, "index.html"), encoding="utf-8") as f:
             self.html = f.read()
+        # app.js contains the extracted JS — check both for string assertions
+        app_js_path = os.path.join(ROOT, "app.js")
+        if os.path.exists(app_js_path):
+            with open(app_js_path, encoding="utf-8") as f:
+                self.html += f.read()
 
     def test_index_html_has_structure_tiles(self):
         assert 'id="structure-tiles"' in self.html

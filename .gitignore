@@ -2,3 +2,6 @@
 __pycache__/
 .pytest_cache/
 tmp_*.txt
+node_modules/
+test-results/
+playwright-report/
