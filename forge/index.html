@@ -311,7 +311,7 @@ claude go</pre>
 
     <section>
       <h2>What It Is</h2>
-      <p>Agent Forge is a template agent system manager. You register your projects, and the forge scans them against a pattern library, identifies gaps, and propagates best practices, one project at a time.</p>
+      <p>The forge is a template agent system manager. You register your projects, and the forge scans them against a pattern library, identifies gaps, and propagates best practices, one project at a time.</p>
       <p style="margin-top:0.85rem;color:var(--text-secondary);font-size:0.93rem;">The honest framing, though, is that the forge is just <strong>context</strong>. Role files, protocol docs, memory scaffolding, patterns the orchestrator can spawn against. There is no special software here. If this pattern of preloading an agent with a bunch of carefully written context turns out to be durably useful (and so far it does), the major harness vendors will eventually ship their own version of something like it as the default context their harness comes with. That is a good outcome, not a threat. The forge's job is to stay one step ahead of whatever the harnesses ship natively, and to make it easy to see what is worth adopting back.</p>
     </section>
 
@@ -397,7 +397,7 @@ claude go</pre>
 
     <section id="security">
       <h2>Security</h2>
-      <p>When you run Agent Forge, your AI agent reads the role files and patterns in this repo as instructions. That's a supply chain risk &mdash; a compromised prompt file could instruct your agent to exfiltrate data or modify code in harmful ways. We take that seriously.</p>
+      <p>When you run the forge, your AI agent reads the role files and patterns in this repo as instructions. That's a supply chain risk &mdash; a compromised prompt file could instruct your agent to exfiltrate data or modify code in harmful ways. We take that seriously.</p>
       <p><strong>What we have in place:</strong></p>
       <ul style="text-align: left; max-width: 640px; margin: 0.75rem auto; line-height: 1.7;">
         <li>Automated security scan on every release: checks all prompt files for network requests, sensitive file access, encoding/eval, system paths outside project scope, and confirmation bypasses</li>

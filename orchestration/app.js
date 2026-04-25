@@ -25,16 +25,6 @@ function initMermaid() {
 initMermaid();
 
 // ─── Constants ────────────────────────────────────────
-const HIERARCHY_COLORS = {
-  'adversarial': '#ef4444',
-  'chain-of-command': '#f59e0b',
-  'orchestrated': '#3b82f6',
-  'swarm': '#4ade80',
-  'mesh': '#a78bfa',
-  'pipeline': '#22d3ee',
-  'consensus': '#f472b6',
-  'federated': '#fb923c'
-};
 const HIERARCHY_LABELS = {
   'adversarial': 'Adversarial',
   'chain-of-command': 'Chain of Command',
@@ -45,6 +35,15 @@ const HIERARCHY_LABELS = {
   'consensus': 'Consensus',
   'federated': 'Federated'
 };
+const SEARCH_DEBOUNCE_MS = 120;
+const SCROLL_TOP_THRESHOLD = 600;
+const COPY_FEEDBACK_MS = 1500;
+const MAX_VISIBLE_TAGS = 5;
+const MAX_SIMILAR_ITEMS = 8;
+const MAX_EXAMPLE_LENGTH = 120;
+const STAGGER_DELAY_MS = 25;
+const MAX_STAGGER_MS = 400;
+const CARD_VISIBILITY_THRESHOLD = 0.05;
 
 // Structural classes (loaded from data.js, written by build.py)
 const SC = window.STRUCTURAL_CLASSES || {};
@@ -425,32 +424,16 @@ document.addEventListener('click', e => {
     });
   }
 });
-document.getElementById('domain-panel-header').addEventListener('click', () => {
-  togglePanel('domain-panel-header', 'domain-panel');
-});
-document.getElementById('domain-panel-header').addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    togglePanel('domain-panel-header', 'domain-panel');
-  }
-});
-document.getElementById('structure-panel-header').addEventListener('click', () => {
-  togglePanel('structure-panel-header', 'structure-panel');
-});
-document.getElementById('structure-panel-header').addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    togglePanel('structure-panel-header', 'structure-panel');
-  }
-});
-document.getElementById('category-panel-header').addEventListener('click', () => {
-  togglePanel('category-panel-header', 'category-panel');
-});
-document.getElementById('category-panel-header').addEventListener('keydown', e => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    togglePanel('category-panel-header', 'category-panel');
-  }
+PANEL_IDS.forEach(id => {
+  const headerId = id + '-header';
+  const el = document.getElementById(headerId);
+  el.addEventListener('click', () => togglePanel(headerId, id));
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      togglePanel(headerId, id);
+    }
+  });
 });
 
 // ─── Vote Data Loading ──────────────────────────────────
@@ -563,13 +546,9 @@ function setSort(by) {
 }
 
 // Sort button listeners
-document.getElementById('sort-name').addEventListener('click', () => setSort('name'));
-document.getElementById('sort-agents').addEventListener('click', () => setSort('agents'));
-document.getElementById('sort-category').addEventListener('click', () => setSort('category'));
-document.getElementById('sort-structure').addEventListener('click', () => setSort('structure'));
-document.getElementById('sort-votes').addEventListener('click', () => setSort('votes'));
-document.getElementById('sort-trending').addEventListener('click', () => setSort('trending'));
-document.getElementById('sort-random').addEventListener('click', () => setSort('random'));
+['name', 'agents', 'category', 'structure', 'votes', 'trending', 'random'].forEach(key => {
+  document.getElementById('sort-' + key).addEventListener('click', () => setSort(key));
+});
 
 // ─── Grid Rendering ───────────────────────────────────
 let lastFiltered = [];
@@ -624,7 +603,7 @@ function renderGrid() {
       if (vd.rate_label === 'hot') trendBadge = `<span class="card-trending-badge hot">hot</span>`;
       else if (vd.rate_label === 'trending') trendBadge = `<span class="card-trending-badge">trending</span>`;
     }
-    return `<div class="card${visited}" data-id="${esc(s.id)}" data-index="${i}" style="--cat-color:${color};transition-delay:${Math.min(i * 25, 400)}ms">
+    return `<div class="card${visited}" data-id="${esc(s.id)}" data-index="${i}" style="--cat-color:${color};transition-delay:${Math.min(i * STAGGER_DELAY_MS, MAX_STAGGER_MS)}ms">
       <div class="card-header">
         <span class="card-name">${name}</span>
         <span style="display:flex;align-items:center;gap:0.4rem;flex-shrink:0">${trendBadge}${voteBadge}<span class="card-badge">${roleCount} roles</span></span>
@@ -633,8 +612,8 @@ function renderGrid() {
       <div class="card-category">${esc(s.category)}</div>
       <div class="card-summary">${summary}</div>
       ${s.harnesses ? `<div class="card-harnesses" title="Ships natively in these harnesses">Ships in: ${s.harnesses.map(h => esc(h.harness)).join(' \u00b7 ')}</div>` : ''}
-      ${s.realWorldExample ? `<div class="card-example">${esc(s.realWorldExample.length > 120 ? s.realWorldExample.slice(0, 117) + '...' : s.realWorldExample)}</div>` : ''}
-      <div class="card-tags">${(s.tags || []).slice(0, 5).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+      ${s.realWorldExample ? `<div class="card-example">${esc(s.realWorldExample.length > MAX_EXAMPLE_LENGTH ? s.realWorldExample.slice(0, MAX_EXAMPLE_LENGTH - 3) + '...' : s.realWorldExample)}</div>` : ''}
+      <div class="card-tags">${(s.tags || []).slice(0, MAX_VISIBLE_TAGS).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
     </div>`;
   }).join('');
 
@@ -652,7 +631,7 @@ function renderGrid() {
           gridObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.05 });
+    }, { threshold: CARD_VISIBILITY_THRESHOLD });
     grid.querySelectorAll('.card').forEach(card => gridObserver.observe(card));
   });
 
@@ -866,7 +845,7 @@ async function openDetail(id) {
   if (detailSc) {
     const similar = state.structures
       .filter(x => x.id !== s.id && x.structuralClass === detailSc && x.category !== s.category)
-      .slice(0, 8);
+      .slice(0, MAX_SIMILAR_ITEMS);
     if (similar.length) {
       const chips = similar.map(x => {
         return `<span class="similar-chip" data-id="${esc(x.id)}" title="${esc(x.category)}">${esc(x.name)}</span>`;
@@ -884,10 +863,10 @@ async function openDetail(id) {
   if (s.strengths || s.weaknesses) {
     let swHtml = '<div class="sw-grid">';
     if (s.strengths) {
-      swHtml += `<div><h3 style="font-size:0.8rem;color:var(--success);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em">Strengths</h3><ul>${s.strengths.map(x => `<li class="strength">${esc(x)}</li>`).join('')}</ul></div>`;
+      swHtml += `<div><h3 class="sw-strengths">Strengths</h3><ul>${s.strengths.map(x => `<li class="strength">${esc(x)}</li>`).join('')}</ul></div>`;
     }
     if (s.weaknesses) {
-      swHtml += `<div><h3 style="font-size:0.8rem;color:var(--danger);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em">Weaknesses</h3><ul>${s.weaknesses.map(x => `<li class="weakness">${esc(x)}</li>`).join('')}</ul></div>`;
+      swHtml += `<div><h3 class="sw-weaknesses">Weaknesses</h3><ul>${s.weaknesses.map(x => `<li class="weakness">${esc(x)}</li>`).join('')}</ul></div>`;
     }
     swHtml += '</div>';
     html += buildSection('Strengths & Weaknesses', swHtml, true);
@@ -1014,7 +993,7 @@ async function openDetail(id) {
       setTimeout(() => {
         this.classList.remove('copied');
         this.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4.715 6.542L3.343 7.914a3 3 0 104.243 4.243l1.828-1.829A3 3 0 008.586 5.5L8 6.086a1 1 0 00-.154.199 2 2 0 01.861 3.337L6.88 11.45a2 2 0 11-2.83-2.83l.793-.792a4 4 0 01-.128-1.287z"/><path d="M6.586 4.672A3 3 0 007.414 9.5l.775-.776a2 2 0 01-.896-3.346L9.12 3.55a2 2 0 112.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 10-4.243-4.243L6.586 4.672z"/></svg> Copy link`;
-      }, 1500);
+      }, COPY_FEEDBACK_MS);
     } catch {}
   });
 
@@ -1130,7 +1109,7 @@ document.getElementById('search').addEventListener('input', e => {
   searchTimeout = setTimeout(() => {
     state.searchQuery = e.target.value;
     renderGrid();
-  }, 120);
+  }, SEARCH_DEBOUNCE_MS);
 });
 
 // ─── Overlay / Escape ─────────────────────────────────
@@ -1139,7 +1118,7 @@ document.getElementById('overlay').addEventListener('click', closeDetail);
 // ─── Back to Top ──────────────────────────────────────
 const backToTop = document.getElementById('back-to-top');
 window.addEventListener('scroll', () => {
-  backToTop.classList.toggle('visible', window.scrollY > 600);
+  backToTop.classList.toggle('visible', window.scrollY > SCROLL_TOP_THRESHOLD);
 }, { passive: true });
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1232,8 +1211,8 @@ document.addEventListener('keydown', e => {
       return;
     }
     if (e.key === 't') {
-      document.body.classList.toggle('light-mode');
-      try { localStorage.setItem('thisminute_theme', document.body.classList.contains('light-mode') ? 'light' : 'dark'); } catch {}
+      const btn = document.getElementById('forge-theme-btn');
+      if (btn) btn.click();
       return;
     }
     return;
@@ -1251,8 +1230,8 @@ document.addEventListener('keydown', e => {
   }
 
   if (e.key === 't') {
-    state.lightMode = !state.lightMode;
-    applyTheme();
+    const btn = document.getElementById('forge-theme-btn');
+    if (btn) btn.click();
     return;
   }
 
@@ -1300,11 +1279,11 @@ const mobileTab = document.getElementById('mobile-filter-tab');
 const mobilePanelEl = document.getElementById('mobile-filter-panel');
 
 function syncMobileCategories() {
-  let html = `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:0.25rem">Origin</div>`;
+  let html = `<div class="mobile-section-label">Origin</div>`;
   html += buildFilterTiles(getDomainCounts(), state.activeDomain, 'domain', DOMAIN_COLORS, DOMAIN_LABELS);
-  html += `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin:0.75rem 0 0.25rem;border-top:1px solid var(--border);padding-top:0.75rem">Structure</div>`;
+  html += `<div class="mobile-section-label mobile-section-label-sep">Structure</div>`;
   html += buildFilterTiles(getStructuralClassCounts(), state.activeStructuralClass, 'sc', SC_COLORS, SC_LABELS);
-  html += `<div style="width:100%;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin:0.75rem 0 0.25rem;border-top:1px solid var(--border);padding-top:0.75rem">Field</div>`;
+  html += `<div class="mobile-section-label mobile-section-label-sep">Field</div>`;
   html += buildFilterTiles(getCategories(), state.activeCategory, 'category', CATEGORY_COLORS);
   mobilePanelEl.innerHTML = html;
   wireFilterTiles(mobilePanelEl, 'domain', val => {

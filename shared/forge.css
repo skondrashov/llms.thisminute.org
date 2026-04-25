@@ -146,7 +146,7 @@ a:hover {
   text-decoration-color: var(--accent);
 }
 
-/* --- Header: SITENAME FORGE --- */
+/* --- Header --- */
 .forge-header h1 a {
   color: var(--text-muted);
   text-decoration: none;
