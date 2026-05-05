@@ -17,7 +17,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/shared/forge.css?v=3aTone">
+  <link rel="stylesheet" href="/shared/llms.css?v=3aTone">
   <style>
     :root {
       --bg: #0a0a0f;
@@ -550,7 +550,7 @@
         <p>The composable-intelligence hypothesis ran into two problems. Networks are better at learning compositional structure internally than having it imposed externally &mdash; the DAG of specialists was solving a problem that end-to-end training already handles. And LLMs had achieved broad, flexible reasoning by a completely unrelated path. The research question was answered, just not by this project.</p>
         <p>The project was placed on hold so more promising ideas could be explored. The organizational lessons &mdash; consolidation from 10 to 7 agents, the skeptic catching bad results, the forum scaling problem &mdash; carried forward into every project that followed, starting with <a href="#evo-thisminute">thisminute</a>.</p>
         <div class="callout callout-pattern">
-          Orchestration pattern: <a href="./#meta-learning-zoo">Meta-Learning Zoo</a> &mdash; specialized sub-groups coordinating through shared experiment logs. The adversarial dynamic (skeptic invalidating claims) was load-bearing from the start.
+          Orchestration pattern: <a href="./#meta-learning-zoo">Meta-Learning Zoo</a> &mdash; specialized sub-groups coordinating through shared experiment logs. The adversarial dynamic (skeptic invalidating claims) was essential from the start.
         </div>
       </div>
 
@@ -1234,7 +1234,7 @@
         <tbody>
           <tr><td>More agents = more capability</td><td>agi started with 10 and consolidated to 7 in a day. The eliminated roles (police, coach, editor) generated noise. thisminute grew from 5 to 11 because each role was needed. orchestration never needed more than 1.</td></tr>
           <tr><td>The forum is the coordination mechanism</td><td>Forums grow without bound. agi: 8,753 lines in a day. thisminute: 1,008 lines in a session. Every shared-context pattern needs a maintenance agent, and the maintenance cost is inseparable from the pattern. tools shipped the librarian on day one and never had the spike.</td></tr>
-          <tr><td>The skeptic is a nice-to-have</td><td>In agi, the skeptic invalidated ALL Go results (broken oracle). In thisminute, it caught 10&ndash;100x inflated numbers. The adversarial dynamic is load-bearing in every project that has one.</td></tr>
+          <tr><td>The skeptic is a nice-to-have</td><td>In agi, the skeptic invalidated ALL Go results (broken oracle). In thisminute, it caught 10&ndash;100x inflated numbers. The adversarial dynamic proved essential in every project that has one.</td></tr>
           <tr><td>Organizational structure should be designed up front</td><td>agi over-designed and had to consolidate. thisminute inherited and grew. orchestration never needed to grow. The right amount of structure depends on the project, not on a template.</td></tr>
           <tr><td>There's one right coordination model</td><td>There are at least four. Protocol+forum for steady-state products, checkpoint for rapid iteration, steward for small scope, forge for scan-evaluate-act over registries. Each emerged from a project's constraints. Applying the wrong model wastes effort &mdash; orchestration doesn't need a forum, balatro doesn't need a protocol.</td></tr>
           <tr><td>Memory needs to be mandated</td><td>balatro went from 1 to 8 memory files in ~10 cycles with zero instruction. Agents that wrote memories performed better, so more agents started writing memories. The incentive is self-reinforcing when the checkpoint keeps losing context.</td></tr>
@@ -1254,7 +1254,7 @@
 
 
 
-  <script src="/shared/forge.js"></script>
+  <script src="/shared/llms.js"></script>
   <script>
   (function() {
     var navItems = document.querySelectorAll('.evo-nav-item[data-target]');

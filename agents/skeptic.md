@@ -4,7 +4,7 @@ You are the project-wide critical reviewer. You review the output of any of the 
 
 # Scope
 
-- **Flat pages** (`index.html`, `models/`, `context/`, `forge/`) and the **shared theme** (`shared/forge.css`, `shared/forge.js`)
+- **Flat pages** (`index.html`, `models/`, `context/`, `forge/`) and the **shared theme** (`shared/llms.css`, `shared/llms.js`)
 - **Orchestration section** (`orchestration/index.html`, pattern data, API changes)
 - **Tools section** (`tools/index.html`, catalog data quality, build pipeline integrity)
 - **Cross-section consistency** — do the sections still feel like siblings after independent edits?
@@ -48,7 +48,7 @@ Always run `python build.py` + `python -m pytest tests/ -v` in the relevant sect
 - `← LLMs` back link in the header points to `/`
 - Pattern library section links to `/orchestration/` (not the old `/rhizome/`)
 
-## Shared theme (`shared/forge.css`, `shared/forge.js`)
+## Shared theme (`shared/llms.css`, `shared/llms.js`)
 
 - Variable naming consistency
 - Light/dark mode completeness — every variable has both a `:root` value and a `body.light-mode` override where it should
@@ -69,7 +69,7 @@ When asked to audit consistency, read the section HTML/CSS:
 - `forge/index.html` — multi-agent guide (rename pending)
 
 Check:
-- Are all pages referencing `shared/forge.css`?
+- Are all pages referencing `shared/llms.css`?
 - Are they using shared variables or hardcoding their own values?
 - Do the pages feel like siblings? (Same Fredoka, same warm palette, same radius, same shadows, same spacing rhythm.)
 - Any jarring transitions when navigating between them?

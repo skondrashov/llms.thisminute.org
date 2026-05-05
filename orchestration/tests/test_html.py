@@ -21,21 +21,21 @@ class TestIndexLinks:
         assert os.path.isfile(target), f"Evolution link target '{href}' does not exist"
 
     def test_cross_site_nav_via_shared_library(self):
-        """Cross-site nav uses shared forge.js which injects nav with portal link."""
+        """Cross-site nav uses shared llms.js which injects nav with portal link."""
         html = _read_html("index.html")
-        assert '/shared/forge.js' in html, "Missing shared forge.js include"
-        assert '/shared/forge.css' in html, "Missing shared forge.css include"
-        # Nav is now injected by forge.js (DRY pattern) — portal link lives there
-        forge_js = os.path.join(ROOT, '..', 'shared', 'forge.js')
-        assert os.path.isfile(forge_js), "shared/forge.js file not found"
-        with open(forge_js, encoding='utf-8') as f:
+        assert '/shared/llms.js' in html, "Missing shared llms.js include"
+        assert '/shared/llms.css' in html, "Missing shared llms.css include"
+        # Nav is now injected by llms.js (DRY pattern) — portal link lives there
+        llms_js = os.path.join(ROOT, '..', 'shared', 'llms.js')
+        assert os.path.isfile(llms_js), "shared/llms.js file not found"
+        with open(llms_js, encoding='utf-8') as f:
             js = f.read()
-        assert "href: '/'" in js, "Missing portal link in shared nav (forge.js)"
+        assert "href: '/'" in js, "Missing portal link in shared nav (llms.js)"
 
-    def test_fieldnotes_inline_trigger_exists(self):
-        """There should be an inline field notes trigger near the intro blurb."""
+    def test_fieldnotes_btn_trigger_exists(self):
+        """There should be a field notes button in the header."""
         html = _read_html("index.html")
-        assert 'id="fieldnotes-inline"' in html, "Inline field notes trigger not found"
+        assert 'id="fieldnotes-btn"' in html, "Field notes button not found"
 
     def test_fieldnotes_overlay_exists(self):
         """The field notes overlay/modal should exist."""

@@ -23,19 +23,19 @@ The orchestrator has authority over the entire repo — home, models, context, o
 - `orchestration/` — pattern catalog, 271+ patterns, FastAPI + SQLite API (curator: `orchestration-curator`)
 - `tools/` — software directory (curator: `tools-curator`)
 - `forge/index.html` — multi-agent management landing, flat page
-- `shared/forge.css` + `shared/forge.js` — the watermelon-gum pastel theme and light-default theme toggle, loaded by every page
+- `shared/llms.css` + `shared/llms.js` — the watermelon-gum pastel theme and light-default theme toggle, loaded by every page
 - Visual identity and consistency across all sections
 - Deploys — submit requests to `~/projects/ops/DEPLOY_QUEUE.md`. Do not deploy directly.
 
 ## Stack
 
-Vanilla HTML/CSS/JS. No frameworks, no build step on the flat pages. Fredoka + JetBrains Mono webfonts loaded via `@import` in `shared/forge.css`. Light-default, dark available via toggle. Mobile-responsive. Favicons are emoji (💬 home, 🧠 model, 🪟 context, 🎶 orchestration, 🛠️ tools, 🔥 forge).
+Vanilla HTML/CSS/JS. No frameworks, no build step on the flat pages. Fredoka + JetBrains Mono webfonts loaded via `@import` in `shared/llms.css`. Light-default, dark available via toggle. Mobile-responsive. Favicons are emoji (💬 home, 🧠 model, 🪟 context, 🎶 orchestration, 🛠️ tools, 🔥 forge).
 
 The orchestration and tools sections each have their own Python build pipeline (`python build.py`) and pytest suite; see the respective `AGENTS.md` in each section for details.
 
 ## Design direction
 
-Soft, warm, essayist. Parchment-cream light / warm-plum-dusk dark. Watermelon-gum pastel accents: pink (`--accent`) and mint (`--accent-alt`). Rounded chunky sans (Fredoka). No em-dashes in prose. Casual, human voice. Explicitly anti "AI-hype techy brutalist dashboard" vibe. See `shared/forge.css` for the full palette + type system.
+Soft, warm, essayist. Parchment-cream light / warm-plum-dusk dark. Watermelon-gum pastel accents: pink (`--accent`) and mint (`--accent-alt`). Rounded chunky sans (Fredoka). No em-dashes in prose. Casual, human voice. Explicitly anti "AI-hype techy brutalist dashboard" vibe. See `shared/llms.css` for the full palette + type system.
 
 ## Agent system
 
@@ -78,8 +78,8 @@ Capture the output, surface results back to the user or feed the next decision. 
 
 ```
 index.html              # LLMs-branded home (anatomy flowchart + rhizome cluster)
-shared/forge.css        # Palette, typography, shared components, webfont @imports
-shared/forge.js         # Theme toggle (light-default)
+shared/llms.css        # Palette, typography, shared components, webfont @imports
+shared/llms.js         # Theme toggle (light-default)
 models/index.html       # Model catalog (flat page)
 context/index.html      # Context explainer (flat page)
 orchestration/          # Pattern catalog, 271+ patterns, FastAPI + SQLite API

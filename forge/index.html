@@ -15,38 +15,23 @@
   <script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/shared/forge.css?v=3aTone">
+  <link rel="stylesheet" href="/shared/llms.css?v=3aTone">
 
   <style>
-    /* Forge inherits palette + typography from shared/forge.css. */
+    /* Forge inherits palette + typography from shared/llms.css. */
     body {
       min-height: 100vh;
     }
 
-    .header {
-      position: relative;
-      padding: 3rem 2rem 1.5rem;
-      text-align: center;
-    }
-    .header h1 {
-      font-size: 2.75rem;
-      font-weight: 500;
-      letter-spacing: 0;
-      color: var(--accent);
-    }
-    .header .tagline {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      margin-top: 0.35rem;
-    }
-    .header .links {
+    header.hero { position: relative; }
+    .hero .links {
       margin-top: 1.25rem;
       display: flex;
       gap: 1rem;
       justify-content: center;
       font-size: 0.85rem;
     }
-    .header .links a {
+    .hero .links a {
       padding: 0.5rem 1.1rem;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -54,7 +39,7 @@
       color: var(--text-secondary);
       transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
     }
-    .header .links a:hover {
+    .hero .links a:hover {
       border-color: var(--accent);
       background: var(--accent-dim);
       color: var(--accent);
@@ -86,7 +71,7 @@
       list-style: none;
       counter-reset: step;
     }
-    .how-it-works li {
+    .how-it-works ol > li {
       counter-increment: step;
       padding: 0.75rem 1rem 0.75rem 3rem;
       position: relative;
@@ -94,8 +79,8 @@
       border-left: 1px solid var(--border);
       margin-left: 0.75rem;
     }
-    .how-it-works li:last-child { border-left-color: transparent; }
-    .how-it-works li::before {
+    .how-it-works ol > li:last-child { border-left-color: transparent; }
+    .how-it-works ol > li::before {
       content: counter(step);
       position: absolute;
       left: -0.75rem;
@@ -112,6 +97,10 @@
       justify-content: center;
     }
     .how-it-works li strong { color: var(--text); }
+    .how-it-works ul li {
+      color: var(--text-secondary);
+      padding: 0.25rem 0;
+    }
 
     .role-grid {
       display: grid;
@@ -220,7 +209,7 @@
       color: var(--text-muted);
     }
 
-    /* position: relative merged into main .header rule */
+    /* position: relative merged into header.hero rule */
     .other-projects {
       position: absolute;
       top: 0.75rem;
@@ -248,7 +237,7 @@
       border-radius: 2px;
     }
 
-    .header .links a:focus-visible {
+    .hero .links a:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
       border-radius: 4px;
@@ -269,7 +258,7 @@
     }
 
     @media (max-width: 600px) {
-      .header h1 { font-size: 1.6rem; }
+      .hero h1 { font-size: 1.6rem; }
       .content { padding: 1.5rem 1rem; }
       .pattern-item { flex-direction: column; gap: 0.25rem; }
       .pattern-item strong { min-width: auto; }
@@ -282,7 +271,7 @@
 
   <div class="forge-theme-toggle"></div>
 
-  <header class="header forge-header">
+  <header class="hero">
     <h1>Forge</h1>
     <p class="tagline">Audit and upgrade multi-agent systems across your coding projects</p>
     <div class="links">
@@ -319,26 +308,26 @@ claude go</pre>
     <section class="how-it-works">
       <h2>Getting Started</h2>
       <ol>
-        <li><strong>Run the forge</strong> &mdash; clone this repo, run <code>claude go</code>. The forgemaster scans your projects and sets up agent systems: an <code>AGENTS.md</code>, role files, and memory. This is a one-time setup step.</li>
-        <li><strong>Open your project</strong> &mdash; once the forge has set up your project, go there and start a new Claude instance. Say <code>go</code>, <code>start</code>, or just describe what you need. The agent reads its role files and knows what to do.</li>
-        <li><strong>Talk to one agent</strong> &mdash; your project will have an orchestrator (often called a steward). This is the only agent you talk to directly. You do three things with it:
+        <li><strong>Run the forge</strong>: clone this repo, run <code>claude go</code>. The forgemaster scans your projects and sets up agent systems: an <code>AGENTS.md</code>, role files, and memory. This is a one-time setup step.</li>
+        <li><strong>Open your project</strong>: once the forge has set up your project, go there and start a new Claude instance. Say <code>go</code>, <code>start</code>, or just describe what you need. The agent reads its role files and knows what to do.</li>
+        <li><strong>Talk to one agent</strong>: your project will have an orchestrator (often called a steward). This is the only agent you talk to directly. You do three things with it:
           <ul style="margin-top: 0.5rem; list-style: disc; padding-left: 1.25rem;">
-            <li><strong>Spawn an agent</strong> &mdash; tell it to run a role. "Run the builder to add a login page." The spawned agent gets a fresh context window with only what it needs, does the work, and reports back. This is how you keep context clean instead of one conversation accumulating everything.</li>
-            <li><strong>Create a role</strong> &mdash; describe a new kind of agent you need. "I need a role that handles database migrations." The orchestrator writes the role file; now you can spawn it anytime.</li>
-            <li><strong>Ask a question</strong> &mdash; anything that doesn't need a dedicated agent. "What changed since yesterday?" "Why is this test failing?" The orchestrator answers directly.</li>
+            <li><strong>Spawn an agent</strong>: tell it to run a role. "Run the builder to add a login page." The spawned agent gets a fresh context window with only what it needs, does the work, and reports back. This is how you keep context clean instead of one conversation accumulating everything.</li>
+            <li><strong>Create a role</strong>: describe a new kind of agent you need. "I need a role that handles database migrations." The orchestrator writes the role file; now you can spawn it anytime.</li>
+            <li><strong>Ask a question</strong>: anything that doesn't need a dedicated agent. "What changed since yesterday?" "Why is this test failing?" The orchestrator answers directly.</li>
           </ul>
         </li>
-        <li><strong>Ctrl+B</strong> &mdash; if the orchestrator is busy with a long-running task, press <strong>Ctrl+B</strong> to start a parallel conversation without waiting for it to finish.</li>
+        <li><strong>Ctrl+B</strong>: if the orchestrator is busy with a long-running task, press <strong>Ctrl+B</strong> to start a parallel conversation without waiting for it to finish.</li>
       </ol>
     </section>
 
     <section class="how-it-works">
       <h2>The Audit Cycle</h2>
       <ol>
-        <li><strong>Audit</strong> &mdash; scans every registered project's agent system</li>
-        <li><strong>Review</strong> &mdash; compares against the pattern library, ranks by priority</li>
-        <li><strong>Propagate</strong> &mdash; applies upgrades to one project at a time</li>
-        <li><strong>Update</strong> &mdash; refreshes patterns and the registry</li>
+        <li><strong>Audit</strong>: scans every registered project's agent system</li>
+        <li><strong>Review</strong>: compares against the pattern library, ranks by priority</li>
+        <li><strong>Propagate</strong>: applies upgrades to one project at a time</li>
+        <li><strong>Update</strong>: refreshes patterns and the registry</li>
         <li><strong>Repeat</strong></li>
       </ol>
     </section>
@@ -398,21 +387,21 @@ claude go</pre>
 
     <section id="security">
       <h2>Security</h2>
-      <p>When you run the forge, your AI agent reads the role files and patterns in this repo as instructions. That's a supply chain risk &mdash; a compromised prompt file could instruct your agent to exfiltrate data or modify code in harmful ways. We take that seriously.</p>
+      <p>When you run the forge, your AI agent reads the role files and patterns in this repo as instructions. That's a supply chain risk. A compromised prompt file could instruct your agent to exfiltrate data or modify code in harmful ways. We take that seriously.</p>
       <p><strong>What we have in place:</strong></p>
       <ul style="text-align: left; max-width: 640px; margin: 0.75rem auto; line-height: 1.7;">
         <li>Automated security scan on every release: checks all prompt files for network requests, sensitive file access, encoding/eval, system paths outside project scope, and confirmation bypasses</li>
         <li>Automated leak scan: catches ecosystem-specific data that shouldn't be in a generic template</li>
-        <li>Pinned tag releases &mdash; clone a vetted tag, not <code>main</code></li>
-        <li>Upstream upgrade diffs &mdash; when a new version is available, the forge shows you the diff and asks before applying</li>
-        <li>Role files are plain markdown with no obfuscation &mdash; you can read every instruction your agent will follow</li>
+        <li>Pinned tag releases: clone a vetted tag, not <code>main</code></li>
+        <li>Upstream upgrade diffs: when a new version is available, the forge shows you the diff and asks before applying</li>
+        <li>Role files are plain markdown with no obfuscation. You can read every instruction your agent will follow</li>
       </ul>
       <p>Read the full policy: <a href="https://github.com/skondrashov/agent-forge/blob/main/SECURITY.md">SECURITY.md</a></p>
     </section>
 
   </div>
 
-  <script src="/shared/forge.js?v=3aTone"></script>
+  <script src="/shared/llms.js?v=3aTone"></script>
 
 </body>
 </html>

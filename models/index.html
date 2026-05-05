@@ -15,185 +15,11 @@
 <script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/shared/forge.css?v=3aTone">
+<link rel="stylesheet" href="/shared/llms.css?v=3aTone">
 <style>
-  body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* .hero, .disclaimer now live in shared/forge.css */
-
-  /* Vendor jump nav */
-  .vendor-nav {
-    max-width: 1100px;
-    margin: 0.5rem auto 0;
-    padding: 0 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    justify-content: center;
-  }
-  .vendor-nav a {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
-    background: var(--bg-raised);
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: border-color var(--transition-fast), color var(--transition-fast);
-  }
-  .vendor-nav a:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  main.catalog {
-    flex: 1;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 2.5rem 24px 64px;
-  }
-
-  /* Vendor section */
-  .vendor-section {
-    margin-bottom: 3.5rem;
-    scroll-margin-top: 2rem;
-  }
-  .vendor-head {
-    display: flex;
-    align-items: baseline;
-    gap: 0.85rem;
-    margin-bottom: 1.1rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 1px dashed var(--border-light);
-  }
-  .vendor-name {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 2rem;
-    color: var(--accent);
-    letter-spacing: 0;
-  }
-  .vendor-count {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.1rem;
-  }
-
-  /* --- Card --- */
-  .model-card {
-    background: var(--bg-card);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.35rem;
-    box-shadow: var(--shadow);
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: transform var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med);
-  }
-  .model-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
-    box-shadow: var(--shadow-lg);
-    text-decoration: none;
-  }
-
-  .card-name {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.15;
-  }
-
-  .ctx-row {
-    display: flex;
-    align-items: baseline;
-    gap: 0.45rem;
-    font-family: var(--font-mono);
-  }
-  .ctx-value {
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: var(--accent);
-  }
-  .ctx-label {
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-  }
-  .tag {
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.18rem 0.55rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-inset);
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-  }
-  .tag.mint {
-    background: color-mix(in srgb, var(--color-context) 14%, transparent);
-    border-color: color-mix(in srgb, var(--color-context) 28%, transparent);
-    color: var(--color-context);
-  }
-  .tag.pink {
-    background: var(--accent-dim);
-    border-color: var(--accent-muted);
-    color: var(--accent);
-  }
-
-  .summary {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-
-  .card-foot {
-    margin-top: auto;
-    padding-top: 0.75rem;
-    border-top: 1px dashed var(--border);
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--text-muted);
-    display: flex;
-    justify-content: flex-end;
-    letter-spacing: 0.05em;
-  }
-  .card-foot .out { color: var(--accent); }
-
-  @media (max-width: 520px) {
-    .hero h1 { font-size: 2.5rem; }
-    .grid { grid-template-columns: 1fr; gap: 1rem; }
-    main.catalog { padding: 2rem 16px 48px; }
-    .vendor-name { font-size: 1.65rem; }
-  }
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+  html { scroll-behavior: smooth; }
+  @media (max-width: 520px) { .hero h1 { font-size: 2.5rem; } }
 </style>
 </head>
 <body class="section-models"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
@@ -202,20 +28,21 @@
 
 <header class="hero">
   <h1>Models</h1>
-  <p class="tagline">The actual neural networks doing the guessing. Everything else in an agent system sits around one of these.</p>
+  <p class="tagline"></p>
+  <a class="archive-jump" href="#catalog" style="margin-top: 0.6rem;">Browse the catalog &darr;</a>
 </header>
 
 <div class="explainer">
 
   <section class="explainer-section">
-    <h2>What a model actually is</h2>
+    <h2>What is a model?</h2>
     <p>A model is a pile of trained weights that does exactly one thing: given a sequence of tokens, it predicts the next one. There&rsquo;s no reasoning engine in there, no agent, no &ldquo;it&rdquo; in the human sense. The whole experience of talking to an AI is built by running that single next-token prediction over and over, with the model&rsquo;s own output feeding back into the input, until it produces a stop token.</p>
     <p>When we say a model is GPT-5 or Claude Sonnet 4.6 or Llama 3.1, we&rsquo;re talking about <strong>a specific set of weights</strong>. Swap the weights and the behavior changes completely. The harness (Claude Code, Cursor, Aider), the context window, the tools, all of that can stay the same, and you&rsquo;ll get a different agent.</p>
-    <p>That&rsquo;s why model choice is load-bearing. In agentic engineering the model is the engine, and the rest is the car built around it.</p>
+    <p>That&rsquo;s why model choice matters so much. In agentic engineering the model is the engine, and the rest is the car built around it.</p>
   </section>
 
   <section class="explainer-section">
-    <h2>The axes people compare them on</h2>
+    <h2>Differences between models</h2>
     <p>Every model has the same general shape, but they differ on a handful of things that matter for agent work:</p>
     <ul>
       <li><strong>Size and capability.</strong> Bigger weights usually mean stronger reasoning and better recall, at higher cost and slower latency. A vendor typically has a large / medium / small tier (Opus / Sonnet / Haiku, GPT-5 / Mini / Nano, and so on) that trades quality for speed.</li>
@@ -237,18 +64,21 @@
     <p>And the field moves fast. A model that was frontier a year ago is a cheap workhorse today, and today&rsquo;s frontier will be a workhorse by next year. Production systems usually pin to a specific version, because the &ldquo;same model name&rdquo; can silently shift behavior after a vendor-side update.</p>
   </section>
 
-  <section class="explainer-section" style="text-align:center; margin-top: 3.5rem;">
-    <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">Snapshot of the current landscape below, grouped by vendor.</p>
-    <a class="archive-jump" href="#catalog">Browse the catalog &darr;</a>
-  </section>
 
 </div>
 
-<nav class="vendor-nav" id="vendor-nav"></nav>
+<div id="catalog">
+<div class="catalog-stats" id="catalog-stats"></div>
+<nav class="catalog-nav" id="catalog-nav"></nav>
+<main class="catalog" id="catalog-grid"></main>
+</div>
 
-<main class="catalog" id="catalog"></main>
+<button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3.293l-4.354 4.354a.5.5 0 01-.707-.708l5-5a.5.5 0 01.707 0l5 5a.5.5 0 11-.707.708L8 3.293zm0 5l-4.354 4.354a.5.5 0 01-.707-.708l5-5a.5.5 0 01.707 0l5 5a.5.5 0 11-.707.708L8 8.293z"/></svg>
+</button>
 
-<script src="/shared/forge.js?v=3aTone"></script>
+<script src="/shared/llms.js?v=3aTone"></script>
+<script src="/shared/catalog.js?v=1"></script>
 <script>
 const MODELS = [
   // ─── Anthropic ────────────────────────────────────────
@@ -350,62 +180,73 @@ const MODELS = [
   { vendor: "Others", name: "Baidu Ernie 4.5", ctx: "128K", tags: ["hosted"], summary: "Baidu's flagship. Dominant in the Chinese-language market and integrated throughout Baidu's products.", url: "https://ernie.baidu.com/" }
 ];
 
-function esc(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-function slug(s) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-}
-function tagHtml(t) {
-  if (typeof t === 'string') return '<span class="tag">'+esc(t)+'</span>';
-  return '<span class="tag '+(t.cls||'')+'">'+esc(t.label)+'</span>';
+var U = CatalogUtils;
+var grouped = U.groupBy(MODELS, 'vendor');
+var groups = grouped.groups;
+var order = grouped.order;
+
+var activeFilter = null;
+
+function renderCard(m) {
+  var e = U.esc;
+  return (
+    '<a class="catalog-card" href="'+m.url+'" target="_blank" rel="noopener">'+
+      '<div class="catalog-card-name">'+e(m.name)+'</div>'+
+      '<div class="catalog-card-detail lg">'+
+        '<span class="value">'+e(m.ctx)+'</span>'+
+        '<span class="label">ctx</span>'+
+      '</div>'+
+      '<div class="catalog-tags">'+m.tags.map(U.tagHtml).join('')+'</div>'+
+      '<div class="catalog-card-summary">'+e(m.summary)+'</div>'+
+      '<div class="catalog-card-foot"><span class="out">read more &rarr;</span></div>'+
+    '</a>'
+  );
 }
 
-function render() {
-  // group by vendor (preserves first-appearance order)
-  const groups = {};
-  const order = [];
-  for (const m of MODELS) {
-    if (!(m.vendor in groups)) {
-      groups[m.vendor] = [];
-      order.push(m.vendor);
-    }
-    groups[m.vendor].push(m);
-  }
+function renderNav() {
+  var navEl = document.getElementById('catalog-nav');
+  navEl.innerHTML = order.map(function(v) {
+    var cls = activeFilter === v ? ' class="active"' : '';
+    return '<button data-vendor="'+U.esc(v)+'"'+cls+'>'+U.esc(v)+'</button>';
+  }).join('');
 
-  // vendor nav
-  document.getElementById('vendor-nav').innerHTML =
-    order.map(v => '<a href="#'+slug(v)+'">'+esc(v)+'</a>').join('');
+  navEl.querySelectorAll('button').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var vendor = btn.getAttribute('data-vendor');
+      activeFilter = activeFilter === vendor ? null : vendor;
+      renderNav();
+      renderCatalog();
+    });
+  });
+}
 
-  // sections
-  const html = order.map(vendor => {
-    const items = groups[vendor];
-    const cards = items.map(m => (
-      '<a class="model-card" href="'+m.url+'" target="_blank" rel="noopener">'+
-        '<div class="card-name">'+esc(m.name)+'</div>'+
-        '<div class="ctx-row">'+
-          '<span class="ctx-value">'+esc(m.ctx)+'</span>'+
-          '<span class="ctx-label">ctx</span>'+
-        '</div>'+
-        '<div class="tags">'+m.tags.map(tagHtml).join('')+'</div>'+
-        '<div class="summary">'+esc(m.summary)+'</div>'+
-        '<div class="card-foot"><span class="out">read more &rarr;</span></div>'+
-      '</a>'
-    )).join('');
+function renderCatalog() {
+  var visibleVendors = activeFilter ? [activeFilter] : order;
+
+  var html = visibleVendors.map(function(vendor) {
+    var items = groups[vendor];
+    var cards = items.map(renderCard).join('');
     return (
-      '<section class="vendor-section" id="'+slug(vendor)+'">'+
-        '<div class="vendor-head">'+
-          '<span class="vendor-name">'+esc(vendor)+'</span>'+
-          '<span class="vendor-count">'+items.length+' models</span>'+
+      '<section class="catalog-section" id="'+U.slug(vendor)+'">'+
+        '<div class="catalog-section-head">'+
+          '<span class="catalog-section-name">'+U.esc(vendor)+'</span>'+
+          '<span class="catalog-section-count">'+items.length+' model'+(items.length !== 1 ? 's' : '')+'</span>'+
         '</div>'+
-        '<div class="grid">'+cards+'</div>'+
+        '<div class="catalog-grid">'+cards+'</div>'+
       '</section>'
     );
   }).join('');
-  document.getElementById('catalog').innerHTML = html;
+  document.getElementById('catalog-grid').innerHTML = html;
 }
 
-render();
+// Stats bar
+document.getElementById('catalog-stats').innerHTML =
+  '<span><span class="stat-value">'+MODELS.length+'</span><span class="stat-label">models</span></span>'+
+  '<span><span class="stat-value">'+order.length+'</span><span class="stat-label">vendors</span></span>';
+
+renderNav();
+renderCatalog();
+CatalogUtils.initBackToTop();
 </script>
 </body>
 </html>

@@ -15,7 +15,7 @@
 <script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/shared/forge.css?v=3aTone">
+<link rel="stylesheet" href="/shared/llms.css?v=3aTone">
 <style>
   body {
     min-height: 100vh;
@@ -23,7 +23,7 @@
     flex-direction: column;
   }
 
-  /* Overrides for narrower context tagline (shared base in forge.css) */
+  /* Overrides for narrower context tagline (shared base in llms.css) */
   .hero .tagline {
     max-width: 520px;
     margin-top: 0.35rem;
@@ -253,13 +253,13 @@
 
 <header class="hero">
   <h1>Context</h1>
-  <p class="tagline">The window the model actually sees, and the only place anything ever gets remembered.</p>
+  <p class="tagline"></p>
 </header>
 
 <main class="page">
 
   <section>
-    <h2>The model has no memory</h2>
+    <h2>What is context?</h2>
     <p>Every time you ask a model something, it&rsquo;s seeing the entire conversation for the first time. It has no idea it answered you ten minutes ago, it doesn&rsquo;t remember your name. What separates its turns from yours is the little <code>user</code> and <code>assistant</code> markers you can see in the animation below, and those are tokens too, learned during training to act as turn boundaries. Beyond those markers there&rsquo;s no structural &ldquo;who said what&rdquo; metadata. The model has the context window, and all it does is guess the next token that should come after everything in it.</p>
     <p>Here&rsquo;s the animation from the anatomy page. Hit play.</p>
 
@@ -282,7 +282,7 @@
   </section>
 
   <section id="filling">
-    <h2>What&rsquo;s filling our context</h2>
+    <h2>What&rsquo;s filling our context?</h2>
     <p>If the context is the only memory, the obvious next question is what actually lives in there, and how much space the different kinds of things take up.</p>
     <p>Rough token amounts for the stuff that piles up in an agent context, smallest to biggest:</p>
 
@@ -401,7 +401,7 @@
   </section>
 
   <section>
-    <h2>How big is the window</h2>
+    <h2>How big is the window?</h2>
     <p>This used to be a tight constraint. GPT-3 had a 4K token window, which sounds like nothing now. Current frontier models:</p>
     <ul style="list-style:none; padding:0; margin: 0.5rem 0 0.9rem 0.5rem; color: var(--text-secondary); line-height: 1.9; font-size: 0.95rem;">
       <li><span style="font-family:var(--font-mono); color:var(--accent); font-size:0.88rem;">200K</span> &nbsp;Claude Haiku 4.5</li>
@@ -415,7 +415,7 @@
 
 </main>
 
-<script src="/shared/forge.js?v=3aTone"></script>
+<script src="/shared/llms.js?v=3aTone"></script>
 <script>
 // Statelessness token demo, ported from /llms/llm/
 var T = [

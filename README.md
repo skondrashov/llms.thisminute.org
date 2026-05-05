@@ -15,7 +15,7 @@ Live at [llms.thisminute.org](https://llms.thisminute.org) — the domain predat
 
 ## Stack
 
-Vanilla HTML/CSS/JS — no frameworks, no build step for the flat pages. Orchestration and tools have Python build pipelines that aggregate source JSON into generated `.js` data files. Light-default theme with dark toggle. Mobile-responsive. Watermelon-gum pastel palette (pink + mint) on parchment-cream / warm-plum-dusk backgrounds. Fredoka + JetBrains Mono webfonts via `@import` in `shared/forge.css`.
+Vanilla HTML/CSS/JS — no frameworks, no build step for the flat pages. Orchestration and tools have Python build pipelines that aggregate source JSON into generated `.js` data files. Light-default theme with dark toggle. Mobile-responsive. Watermelon-gum pastel palette (pink + mint) on parchment-cream / warm-plum-dusk backgrounds. Fredoka + JetBrains Mono webfonts via `@import` in `shared/llms.css`.
 
 ## Local dev
 
@@ -56,8 +56,8 @@ Deploy requests go through `~/projects/ops/DEPLOY_QUEUE.md` — the ops steward 
 
 ```
 index.html              LLMs-branded home (anatomy flowchart + rhizome cluster SVG)
-shared/forge.css        Palette, typography, shared components
-shared/forge.js         Theme toggle (light-default)
+shared/llms.css        Palette, typography, shared components
+shared/llms.js         Theme toggle (light-default)
 models/index.html       Model catalog (flat page)
 context/index.html      Context explainer (flat page)
 orchestration/

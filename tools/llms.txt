@@ -9,11 +9,7 @@
 - Human browsable: /
 
 ## Entry Schema
-{ id, name, description, url, category, os[], pricing, tags[], source?, language?, triage? }
-
-## Triage (ideas only)
-Ideas (status: idea/in-progress) have a triage object: { impact: high|medium|low, buildability: straightforward|moderate|hard, alternatives: none|partial|covered, alternatives_note: string }
-Filter out covered, sort by impact desc then buildability asc.
+{ id, name, description, url, category, os[], pricing, tags[], source?, language? }
 
 Pricing: free | freemium | paid | subscription
 OS: windows | macos | linux | web | ios | android
@@ -162,7 +158,6 @@ Download /api/v1/catalog.json and filter by:
 - pricing: exact match (free, freemium, paid, subscription)
 - tags: check if desired tag is in tags[] array
 - language: filter libraries by ecosystem (python, rust, go, javascript, etc.)
-- status: idea (unfulfilled request), submitted (built by AI forge), or absent (existing software)
 - text search: match against name, description, tags
 
 ## Example Queries

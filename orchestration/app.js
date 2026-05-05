@@ -175,7 +175,7 @@ new MutationObserver(() => applyTheme()).observe(document.body, { attributes: tr
 // ─── Categories ───────────────────────────────────────
 function getCategories() {
   const cats = {};
-  state.structures.forEach(s => {
+  getFilteredExcept('category').forEach(s => {
     cats[s.category] = (cats[s.category] || 0) + 1;
   });
   return Object.entries(cats).sort((a, b) => b[1] - a[1]);
@@ -311,9 +311,10 @@ function renderStats() {
 
 // ─── Shared filter tile helpers ─────────────────────
 function buildFilterTiles(items, activeValue, attr, colorMap, labelMap) {
+  const allCount = items.reduce((sum, [, c]) => sum + c, 0);
   let html = `<div class="filter-tile filter-tile-all${!activeValue ? ' active' : ''}" data-${attr}="" style="--tile-color:var(--accent)" tabindex="0" role="button">
     <div class="filter-tile-name">All</div>
-    <div class="filter-tile-count">${state.structures.length}</div>
+    <div class="filter-tile-count">${allCount}</div>
   </div>`;
   items.forEach(([key, count]) => {
     html += `<div class="filter-tile${activeValue === key ? ' active' : ''}" data-${attr}="${esc(key)}" style="--tile-color:${colorMap[key] || '#888'}" tabindex="0" role="button">
@@ -332,13 +333,18 @@ function wireFilterTiles(container, attr, onActivate) {
   });
 }
 
+function renderAllFilterPanels() {
+  renderDomainTiles();
+  renderStructureTiles();
+  renderCategories();
+}
+
 function renderCategories() {
   const container = document.getElementById('category-tiles');
   container.innerHTML = buildFilterTiles(getCategories(), state.activeCategory, 'category', CATEGORY_COLORS);
   wireFilterTiles(container, 'category', val => {
     state.activeCategory = val;
-    renderCategories();
-    updateCategoryLabel();
+    renderAllFilterPanels();
     updateFilterDescriptions();
     renderGrid();
     syncMobileCategories();
@@ -365,7 +371,7 @@ function updateCategoryLabel() {
 // ─── Structural Class Tiles ──────────────────────────
 function getStructuralClassCounts() {
   const counts = {};
-  state.structures.forEach(s => {
+  getFilteredExcept('structuralClass').forEach(s => {
     const sc = s.structuralClass;
     if (sc) counts[sc] = (counts[sc] || 0) + 1;
   });
@@ -377,8 +383,7 @@ function renderStructureTiles() {
   container.innerHTML = buildFilterTiles(getStructuralClassCounts(), state.activeStructuralClass, 'sc', SC_COLORS, SC_LABELS);
   wireFilterTiles(container, 'sc', val => {
     state.activeStructuralClass = val;
-    renderStructureTiles();
-    updateStructureLabel();
+    renderAllFilterPanels();
     updateFilterDescriptions();
     renderGrid();
     syncMobileCategories();
@@ -498,11 +503,13 @@ async function flagComment(commentId) {
 }
 
 // ─── Filtering & Sorting ──────────────────────────────
-function getFiltered() {
-  let results = state.structures.filter(s => {
-    if (state.activeDomain && getDomain(s) !== state.activeDomain) return false;
-    if (state.activeCategory && s.category !== state.activeCategory) return false;
-    if (state.activeStructuralClass && s.structuralClass !== state.activeStructuralClass) return false;
+
+// Cross-filter: apply all filters EXCEPT the named one (for faceted counts)
+function getFilteredExcept(exclude) {
+  return state.structures.filter(s => {
+    if (exclude !== 'domain' && state.activeDomain && getDomain(s) !== state.activeDomain) return false;
+    if (exclude !== 'category' && state.activeCategory && s.category !== state.activeCategory) return false;
+    if (exclude !== 'structuralClass' && state.activeStructuralClass && s.structuralClass !== state.activeStructuralClass) return false;
     if (state.searchQuery) {
       const q = state.searchQuery.toLowerCase();
       const scText = (SC_LABELS[s.structuralClass] || s.structuralClass || '').toLowerCase();
@@ -516,6 +523,10 @@ function getFiltered() {
     }
     return true;
   });
+}
+
+function getFiltered() {
+  let results = getFilteredExcept(null);
   if (state.sortBy === 'name') {
     results.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
   } else if (state.sortBy === 'agents') {
@@ -568,8 +579,8 @@ function renderGrid() {
     countEl.textContent = '';
   }
 
-  // Keep domain tile counts in sync
-  renderDomainTiles();
+  // Keep all filter panel counts in sync (e.g. after search)
+  renderAllFilterPanels();
 
   if (!filtered.length) {
     grid.innerHTML = `<div class="empty-state">
@@ -659,7 +670,7 @@ const DOMAIN_LABELS = {
 
 function getDomainCounts() {
   const counts = {};
-  state.structures.forEach(s => {
+  getFilteredExcept('domain').forEach(s => {
     const d = getDomain(s);
     counts[d] = (counts[d] || 0) + 1;
   });
@@ -672,8 +683,7 @@ function renderDomainTiles() {
   container.innerHTML = buildFilterTiles(getDomainCounts(), state.activeDomain, 'domain', DOMAIN_COLORS, DOMAIN_LABELS);
   wireFilterTiles(container, 'domain', val => {
     state.activeDomain = val;
-    renderDomainTiles();
-    updateDomainLabel();
+    renderAllFilterPanels();
     updateFilterDescriptions();
     renderGrid();
     syncMobileCategories();
@@ -1157,7 +1167,8 @@ function closeFieldnotesOverlay() {
 document.getElementById('fieldnotes-btn').addEventListener('click', (e) => {
   openFieldnotesOverlay(e.currentTarget);
 });
-document.getElementById('fieldnotes-inline').addEventListener('click', (e) => {
+var fieldnotesInline = document.getElementById('fieldnotes-inline');
+if (fieldnotesInline) fieldnotesInline.addEventListener('click', (e) => {
   openFieldnotesOverlay(e.currentTarget);
 });
 fieldnotesOverlay.addEventListener('click', e => {
@@ -1288,19 +1299,19 @@ function syncMobileCategories() {
   mobilePanelEl.innerHTML = html;
   wireFilterTiles(mobilePanelEl, 'domain', val => {
     state.activeDomain = val;
-    renderDomainTiles();
+    renderAllFilterPanels();
     renderGrid();
     mobileBar.classList.remove('open');
   });
   wireFilterTiles(mobilePanelEl, 'sc', val => {
     state.activeStructuralClass = val;
-    renderStructureTiles();
+    renderAllFilterPanels();
     renderGrid();
     mobileBar.classList.remove('open');
   });
   wireFilterTiles(mobilePanelEl, 'category', val => {
     state.activeCategory = val;
-    renderCategories();
+    renderAllFilterPanels();
     renderGrid();
     mobileBar.classList.remove('open');
   });

@@ -16,7 +16,7 @@ Seeded 2026-04-18 during the 11→5 agent consolidation. Tone/voice notes extrac
 ## Aesthetic (stable)
 
 - Warm watermelon-gum pastels: pink `--accent`, mint `--accent-alt`, coral for tools accents
-- Fredoka typeface (Fredoka + JetBrains Mono loaded via `@import` at the top of `shared/forge.css`)
+- Fredoka typeface (Fredoka + JetBrains Mono loaded via `@import` at the top of `shared/llms.css`)
 - Light-mode default; dark-mode via toggle (the `body.light-mode` class is the light state)
 - Rounded 14px radius, feathered warm shadows
 - Parchment-cream light / warm-plum-dusk dark

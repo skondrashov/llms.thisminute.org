@@ -27,10 +27,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="/shared/forge.css?v=3aTone">
+  <link rel="stylesheet" href="/shared/llms.css?v=3aTone">
   <style>
     /* Orchestration section = mint green in the watermelon-gum palette.
-       Base palette + typography come from shared/forge.css. */
+       Base palette + typography come from shared/llms.css. */
     :root {
       --success: #a8d8b5;
       --danger: #f4a58c;
@@ -44,30 +44,7 @@
     }
 
     /* ─── Header ───────────────────────────────────────────── */
-    header {
-      padding: 2.5rem 2rem 1.5rem;
-      text-align: center;
-      position: relative;
-    }
-    header h1 {
-      font-family: var(--font-display);
-      font-size: 2.75rem;
-      letter-spacing: 0;
-      font-weight: 500;
-      color: var(--accent);
-    }
-    header .subtitle {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      margin-top: 0.25rem;
-    }
-    header .about {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      max-width: 680px;
-      margin: 0.75rem auto 0;
-      line-height: 1.6;
-    }
+    header.hero { position: relative; }
     .header-actions {
       position: absolute;
       top: 1rem;
@@ -167,142 +144,8 @@
       flex-shrink: 0;
     }
     /* ─── Filter Panels (Topology + Category) ────────────── */
-    .filter-row {
-      display: flex;
-      gap: 0.5rem;
-      max-width: 1100px;
-      margin: 0 auto 0.5rem;
-    }
-    .filter-panel {
-      position: relative;
-      flex: 1;
-      min-width: 0;
-    }
-    .filter-panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem 0.75rem;
-      cursor: pointer;
-      user-select: none;
-      transition: color var(--transition-fast);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: var(--bg-raised);
-    }
-    .filter-panel-header:hover {
-      color: var(--accent);
-      border-color: var(--border-light);
-    }
-    .filter-panel-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .filter-panel-header:hover .filter-panel-title { color: var(--accent); }
-    .filter-panel-active-label {
-      font-size: 0.75rem;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
-      padding: 0.15rem 0.5rem;
-      border-radius: 10px;
-    }
-    .filter-panel-chevron {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      transition: transform var(--transition-fast);
-    }
-    .filter-panel.expanded .filter-panel-chevron {
-      transform: rotate(90deg);
-    }
-    .filter-panel.expanded .filter-panel-header {
-      border-color: var(--border-light);
-    }
-    .filter-panel-body {
-      display: none;
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      margin-top: 0.25rem;
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-sm);
-      background: var(--bg-raised);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      padding: 0.5rem;
-    }
-    body.light-mode .filter-panel-body {
-      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    }
-    .filter-panel.expanded .filter-panel-body {
-      display: block;
-    }
-    .filter-panel-inner {
-      overflow: visible;
-    }
-    .filter-tiles {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0.5rem;
-      width: max-content;
-      min-width: 100%;
-    }
-    .filter-tile {
-      padding: 0.65rem 0.75rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      background: var(--bg-raised);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      user-select: none;
-      text-align: center;
-    }
-    .filter-tile:hover {
-      border-color: var(--border-light);
-      background: var(--bg-card-hover);
-    }
-    .filter-tile:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    .filter-tile.active {
-      background: color-mix(in srgb, var(--tile-color, var(--accent)) 12%, transparent);
-      border-color: var(--tile-color, var(--accent));
-    }
-    .filter-tile-name {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .filter-tile.active .filter-tile-name {
-      color: var(--tile-color, var(--accent));
-    }
-    .filter-tile-count {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      margin-top: 0.15rem;
-    }
-    .filter-tile.active .filter-tile-count {
-      color: var(--tile-color, var(--accent));
-      opacity: 0.7;
-    }
-    .filter-tile-all {
-      border-style: dashed;
-    }
-    .filter-tile-all.active {
-      border-style: solid;
-      background: var(--accent-dim);
-      border-color: var(--accent);
-    }
-    .filter-tile-all .filter-tile-name { color: var(--text-secondary); }
-    .filter-tile-all.active .filter-tile-name { color: var(--accent); }
+    /* filter-panel base styles are in shared/llms.css */
+    .filter-tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
     /* ─── Filter Descriptions ────────────────────────────── */
     .filter-descriptions {
@@ -320,10 +163,6 @@
       min-height: 1.1em;
     }
     .filter-desc:empty { visibility: hidden; }
-    @media (max-width: 768px) {
-      .filter-row { flex-direction: column; }
-      .filter-panel-body { position: static; box-shadow: none; border: none; margin-top: 0; }
-    }
 
     .toolbar {
       display: flex;
@@ -1067,38 +906,7 @@
       color: var(--bg);
     }
 
-    /* ─── Back to Top ──────────────────────────────────────── */
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--bg-raised);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      z-index: 20;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(8px);
-      transition: all var(--transition-med);
-      box-shadow: var(--shadow);
-    }
-    .back-to-top.visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-    .back-to-top:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    /* back-to-top now in shared/llms.css */
 
     /* ─── Shortcuts Overlay ────────────────────────────────── */
     .shortcuts-overlay {
@@ -1267,14 +1075,13 @@
     /* ─── Mobile ───────────────────────────────────────────── */
     .mobile-filter-bar { display: none; }
     @media (max-width: 768px) {
-      header h1 { font-size: 1.75rem; }
+      .hero h1 { font-size: 1.75rem; }
       .header-actions { top: 0.75rem; right: 0.75rem; }
       .grid { grid-template-columns: 1fr; padding: 1rem; }
       .detail { width: 100%; border-left: none; }
       .detail-body { grid-template-columns: 1fr; }
       .controls { padding: 1rem; position: sticky; }
       .sw-grid { grid-template-columns: 1fr; }
-      .back-to-top { bottom: 1rem; right: 1rem; }
       .mobile-filter-bar {
         position: fixed;
         top: 0;
@@ -1325,38 +1132,21 @@
 </head>
 <body class="section-orchestration"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
   <div class="forge-theme-toggle"></div>
-  <header class="forge-header">
+  <header class="hero">
     <div class="header-actions">
       <button class="icon-btn" id="shortcuts-btn" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">?</button>
       <button class="icon-btn" id="fieldnotes-btn" title="Field notes from the forge" aria-label="Field notes" style="font-size:0.7rem;letter-spacing:0.03em">notes</button>
       <a class="icon-btn" href="evolution.html" title="How one project evolved from solo to 10 agents" aria-label="Evolution case study" style="font-size:0.7rem;letter-spacing:0.03em;text-decoration:none">case</a>
     </div>
     <h1>Orchestration</h1>
-    <p class="about" style="font-size: 1.05rem; max-width: 680px; margin: 0.75rem auto 0;">Three lenses on how to coordinate agents. <strong style="color:var(--accent)">Core</strong> is the industry-standard patterns every agent developer now meets (with the harnesses that ship each one). <strong>In the Wild</strong> draws from real-world organizations. <strong>The Garden</strong> is the nature-inspired and exotic half. <button id="fieldnotes-inline" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:inherit;font-family:inherit;padding:0;text-decoration:underline;text-underline-offset:2px;">Field notes &rarr;</button></p>
-    <div class="stats">
-      <div class="stat">
-        <span class="stat-value" id="total-count">0</span>
-        <span class="stat-label">Patterns</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value" id="category-count">0</span>
-        <span class="stat-label">Categories</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value" id="structure-count">0</span>
-        <span class="stat-label">Structures</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value" id="agent-count">0</span>
-        <span class="stat-label">Total Roles</span>
-      </div>
-    </div>
+    <p class="tagline"></p>
+    <a class="archive-jump" href="#catalog" style="margin-top: 0.6rem;">Browse the catalog &darr;</a>
   </header>
 
   <div class="explainer">
 
     <section class="explainer-section">
-      <h2>Why orchestration is a thing</h2>
+      <h2>What is orchestration?</h2>
       <p>A single model in a single context window is good at a lot of things, but there are tasks it can&rsquo;t hold in one go: refactors that span dozens of files, research projects with too many threads, workflows that need a cautious planner and an aggressive implementer and a skeptical reviewer. Orchestration is the set of patterns for splitting work across multiple agents, subagents, phases, or processes, and making sure the pieces fit back together.</p>
       <p>None of this is new. Human organizations have been solving the same problem for thousands of years: how do we coordinate a pile of limited minds into something that can tackle a problem bigger than any one of them? A military command structure, a newsroom, an ant colony, a jazz ensemble, a hospital on a busy night. These are all orchestration patterns, and the LLM version inherits most of the vocabulary.</p>
     </section>
@@ -1366,7 +1156,7 @@
       <p>Almost every pattern in the catalog is built out of the same small set of primitives.</p>
       <ul>
         <li><strong>Roles.</strong> Distinct agent personas with their own system prompts, tool permissions, and scope. A planner, an executor, a reviewer, a router.</li>
-        <li><strong>Context boundaries.</strong> Who sees what. Subagents usually start with a minimal context and return a summary so the parent&rsquo;s window doesn&rsquo;t bloat. This is the most load-bearing design choice in any multi-agent system.</li>
+        <li><strong>Context boundaries.</strong> Who sees what. Subagents usually start with a minimal context and return a summary so the parent&rsquo;s window doesn&rsquo;t bloat. This is the single most important design choice in any multi-agent system.</li>
         <li><strong>Coordination channels.</strong> How agents talk to each other. A supervisor dispatching tasks, a shared task list, a mailbox, an artifact (a spec document, a diff, a plan) that multiple agents read and write.</li>
         <li><strong>Gates.</strong> Places where the flow pauses for approval: a human, a judge agent, a test suite, a compile step. Gates are where orchestration meets governance.</li>
       </ul>
@@ -1393,13 +1183,27 @@
       <p>Each pattern card shows a structure (the abstract shape: hub-and-spoke, peer ensemble, assembly pipeline, and so on) and a topology (the edge pattern: orchestrated, mesh, pipeline, etc.). The detail view has roles, forums, a diagram, and for Core patterns a &ldquo;ships natively in&rdquo; list that links out to vendor docs.</p>
     </section>
 
-    <section class="explainer-section" style="text-align:center; margin-top: 3rem;">
-      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">Catalog below. 277 patterns across 20 domains. Filterable by lens, structure, or field.</p>
-      <a class="archive-jump" href="#controls">Browse the catalog &darr;</a>
-    </section>
-
   </div>
 
+  <div id="catalog">
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-value" id="total-count">0</span>
+      <span class="stat-label">Patterns</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="category-count">0</span>
+      <span class="stat-label">Categories</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="structure-count">0</span>
+      <span class="stat-label">Structures</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value" id="agent-count">0</span>
+      <span class="stat-label">Total Roles</span>
+    </div>
+  </div>
   <div class="controls" id="controls">
     <div class="search-row">
       <div class="search-wrap">
@@ -1465,6 +1269,7 @@
   </div>
 
   <main class="grid" id="grid"></main>
+  </div><!-- /#catalog -->
 
   <div class="overlay" id="overlay"></div>
   <div class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Pattern details"></div>
@@ -1525,7 +1330,7 @@
           crossorigin="anonymous"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
-  <!-- Keep forge.js after app.js so the theme toggle injects into the DOM last -->
-  <script src="/shared/forge.js?v=3aTone"></script>
+  <!-- Keep llms.js after app.js so the theme toggle injects into the DOM last -->
+  <script src="/shared/llms.js?v=3aTone"></script>
 </body>
 </html>
