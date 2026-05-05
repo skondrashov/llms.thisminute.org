@@ -791,3 +791,27 @@ body.light-mode .filter-panel-body {
   .filter-row { flex-direction: column; }
   .filter-panel-body { position: static; box-shadow: none; border: none; margin-top: 0; }
 }
+
+/* --- SPA Router loading bar --- */
+.spa-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 9999;
+  transition: none;
+  opacity: 0;
+  pointer-events: none;
+}
+.spa-loading-bar.active {
+  opacity: 1;
+  width: 70%;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.spa-loading-bar.done {
+  width: 100%;
+  transition: width 0.15s ease, opacity 0.3s ease 0.15s;
+  opacity: 0;
+}

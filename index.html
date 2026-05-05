@@ -347,6 +347,7 @@
 
   <div class="forge-theme-toggle"></div>
 
+  <div id="page" data-app="/home.js">
   <main class="home">
     <header class="hero">
       <h1>LLMs!</h1>
@@ -416,105 +417,10 @@
 
     <a href="/forge/" class="forge-link">Interested in orchestration for your project? Try the forge!</a>
   </main>
+  </div><!-- /#page -->
 
   <script src="/shared/llms.js?v=3aTone"></script>
-  <script>
-    (function() {
-      var h1 = document.querySelector('.hero h1');
-      if (!h1) return;
-      var original = 'LLMs!';
-
-      // Plurals only. Every entry must contain at least one 'l' and one 'm'.
-      // Where a fun non-s plural exists that keeps the M, we use it.
-      var words = [
-        'largelanguagemodels',
-        'lavalamps',
-        'llamas',
-        'lululemons',
-        'linoleums',
-        'slaloms',
-        'clingfilms',
-        'fulfillments',
-        'flimflams',
-        'globalisms',
-        'legalisms',
-        'liberalisms',
-        'pluralisms',
-        'localisms',
-        'loyalisms',
-        'colonialisms',
-        'clericalisms',
-        'literalisms',
-        'parallelisms',
-        'intellectualisms',
-        'multiculturalisms',
-        'neoliberalisms',
-        'unilateralisms',
-        'ultranationalisms',
-        'flagellums',
-        'flabellums',
-        'labellums',
-        'allelomorphs',
-        'hyaloplasms',
-        'hyaloplasmata',          // Greek -mata plural
-        'nucleoplasms',
-        'nucleoplasmata',         // Greek -mata plural
-        'polyacrylamides',
-        'sulfanilamides',
-        'platyhelminths',
-        'platyhelminthes',        // Greek -es plural
-        'electroencephalograms',
-        'electroencephalogrammata', // Greek -mata plural, ridiculous, beautiful
-        'electroluminescents',
-        'paleoclimatologies',
-        'malcolms',
-        'wilhelms',
-        'malayalams',
-        'parallelograms',
-        'parallelogrammata',      // fake Greek plural, rules of cool apply
-        'allhallowmases'
-      ];
-
-      // Rule: lowercase everything EXCEPT the first L, the last M, and the
-      // closest L that comes before that last M.
-      function formatLLMs(word) {
-        var w = word.toLowerCase();
-        var firstL = w.indexOf('l');
-        var lastM = w.lastIndexOf('m');
-        if (firstL < 0 || lastM < 0) return word;
-        var closestL = -1;
-        for (var i = lastM - 1; i >= 0; i--) {
-          if (w.charAt(i) === 'l') { closestL = i; break; }
-        }
-        var chars = w.split('');
-        chars[firstL] = 'L';
-        if (closestL >= 0) chars[closestL] = 'L';
-        chars[lastM] = 'M';
-        return chars.join('') + '!';
-      }
-
-      // Pick ONCE on page load and stick with it until the page is refreshed.
-      var picked = formatLLMs(words[Math.floor(Math.random() * words.length)]);
-
-      h1.addEventListener('mouseenter', function() {
-        h1.textContent = picked;
-      });
-      h1.addEventListener('mouseleave', function() {
-        h1.textContent = original;
-      });
-    })();
-
-    // Harness box: clicking anywhere in the box navigates to /harnesses/
-    // unless the click landed on one of the inner node links.
-    (function() {
-      var box = document.querySelector('.anatomy');
-      if (!box) return;
-      box.addEventListener('click', function(e) {
-        if (e.target.closest('.anatomy__node')) return;
-        window.location.href = '/harnesses/';
-      });
-    })();
-  </script>
+  <script src="/shared/router.js?v=1"></script>
 
 </body>
 </html>

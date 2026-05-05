@@ -20,8 +20,8 @@
   // nav before it. Pages don't need any nav HTML — just the toggle placeholder.
 
   var toggleContainer = document.querySelector('.forge-theme-toggle');
-  if (toggleContainer) {
-    // Build nav
+  if (toggleContainer && !document.querySelector('.site-nav')) {
+    // Build nav (guard: only inject once for SPA)
     var nav = document.createElement('nav');
     nav.className = 'site-nav';
 

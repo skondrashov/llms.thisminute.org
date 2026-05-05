@@ -44,14 +44,6 @@
     }
 
     /* ─── Header ───────────────────────────────────────────── */
-    header.hero { position: relative; }
-    .header-actions {
-      position: absolute;
-      top: 1rem;
-      right: 1.5rem;
-      display: flex;
-      gap: 0.5rem;
-    }
     .stats {
       display: flex;
       gap: 2rem;
@@ -908,69 +900,6 @@
 
     /* back-to-top now in shared/llms.css */
 
-    /* ─── Shortcuts Overlay ────────────────────────────────── */
-    .shortcuts-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-overlay);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-    .shortcuts-overlay.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .shortcuts-panel {
-      background: var(--bg-raised);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      min-width: 320px;
-      box-shadow: var(--shadow-lg);
-    }
-    .shortcuts-panel h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-    .shortcut-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.4rem 0;
-    }
-    .shortcut-key {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.15rem 0.5rem;
-      background: var(--bg-inset);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--text);
-      min-width: 24px;
-      text-align: center;
-    }
-    .shortcut-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-left: 1.5rem;
-      flex: 1;
-    }
-    .shortcuts-close-hint {
-      text-align: center;
-      margin-top: 1.25rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
     /* ─── Mobile filter section headers ─────────────────── */
     .mobile-section-label {
       width: 100%;
@@ -985,78 +914,6 @@
       margin-top: 0.75rem;
       padding-top: 0.75rem;
       border-top: 1px solid var(--border);
-    }
-
-    /* ─── Field Notes ─────────────────────────────────────── */
-    .fieldnotes-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-overlay);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-    .fieldnotes-overlay.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .fieldnotes-panel {
-      background: var(--bg-raised);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem 2.5rem;
-      max-width: 640px;
-      width: 90vw;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: var(--shadow-lg);
-    }
-    .fieldnotes-panel h2 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .fieldnotes-panel .fieldnotes-subtitle {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-    .fieldnote {
-      margin-bottom: 1.25rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .fieldnote:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-    .fieldnote-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-    .fieldnote-body {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    .fieldnotes-close-hint {
-      text-align: center;
-      margin-top: 1.5rem;
-      font-size: 0.75rem;
-      color: var(--text-muted);
     }
 
     /* ─── Scrollbar ────────────────────────────────────────── */
@@ -1076,7 +933,6 @@
     .mobile-filter-bar { display: none; }
     @media (max-width: 768px) {
       .hero h1 { font-size: 1.75rem; }
-      .header-actions { top: 0.75rem; right: 0.75rem; }
       .grid { grid-template-columns: 1fr; padding: 1rem; }
       .detail { width: 100%; border-left: none; }
       .detail-body { grid-template-columns: 1fr; }
@@ -1132,12 +988,9 @@
 </head>
 <body class="section-orchestration"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
   <div class="forge-theme-toggle"></div>
+
+  <div id="page" data-deps="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js,data.js" data-app="app.js">
   <header class="hero">
-    <div class="header-actions">
-      <button class="icon-btn" id="shortcuts-btn" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts">?</button>
-      <button class="icon-btn" id="fieldnotes-btn" title="Field notes from the forge" aria-label="Field notes" style="font-size:0.7rem;letter-spacing:0.03em">notes</button>
-      <a class="icon-btn" href="evolution.html" title="How one project evolved from solo to 10 agents" aria-label="Evolution case study" style="font-size:0.7rem;letter-spacing:0.03em;text-decoration:none">case</a>
-    </div>
     <h1>Orchestration</h1>
     <p class="tagline"></p>
     <a class="archive-jump" href="#catalog" style="margin-top: 0.6rem;">Browse the catalog &darr;</a>
@@ -1156,11 +1009,19 @@
       <p>Almost every pattern in the catalog is built out of the same small set of primitives.</p>
       <ul>
         <li><strong>Roles.</strong> Distinct agent personas with their own system prompts, tool permissions, and scope. A planner, an executor, a reviewer, a router.</li>
+        <li><strong>Skills.</strong> Reusable instruction sets that get loaded into context on demand. A security review checklist, a migration playbook, a style guide. Unlike roles (which frame identity), skills frame capability for a specific task and then leave.</li>
         <li><strong>Context boundaries.</strong> Who sees what. Subagents usually start with a minimal context and return a summary so the parent&rsquo;s window doesn&rsquo;t bloat. This is the single most important design choice in any multi-agent system.</li>
         <li><strong>Coordination channels.</strong> How agents talk to each other. A supervisor dispatching tasks, a shared task list, a mailbox, an artifact (a spec document, a diff, a plan) that multiple agents read and write.</li>
         <li><strong>Gates.</strong> Places where the flow pauses for approval: a human, a judge agent, a test suite, a compile step. Gates are where orchestration meets governance.</li>
       </ul>
       <p>Swap out any of these and you get a different pattern. The catalog below is essentially a combinatorial space of those primitives, dressed up with domain-specific names.</p>
+    </section>
+
+    <section class="explainer-section">
+      <h2>Roles and skills are the same mechanism</h2>
+      <p>If you look at a role file and a skill file side by side, they&rsquo;re both just text that ends up in the context window. A role says &ldquo;you are a code reviewer who cares about security and readability.&rdquo; A skill says &ldquo;here is how to do a dependency audit: check lockfiles, verify hashes, flag unmaintained packages.&rdquo; The model sees both as tokens. It doesn&rsquo;t know one is supposed to be identity and the other is supposed to be capability.</p>
+      <p>The practical difference is lifecycle. A role stays in context for an entire session or agent lifetime. A skill gets injected when needed and doesn&rsquo;t persist. In Claude Code, your CLAUDE.md is a role (always loaded). A slash command like <code>/review</code> is a skill (loaded on demand, shapes one task, then it&rsquo;s just history). In LangGraph or CrewAI, you see the same split: agent definitions are roles, tool descriptions and few-shot examples are skills.</p>
+      <p>This matters for orchestration because loading the right context at the right time is the whole game. An agent with 15 skills loaded permanently is wasting window space on 14 skills it doesn&rsquo;t need right now. An agent with no skills has to figure everything out from scratch. The orchestration patterns in the catalog below are, at their core, strategies for managing this: which agents see which instructions, when, and for how long.</p>
     </section>
 
     <section class="explainer-section">
@@ -1277,60 +1138,14 @@
   <button class="back-to-top" id="back-to-top" title="Back to top" aria-label="Back to top">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3.293l-4.354 4.354a.5.5 0 01-.707-.708l5-5a.5.5 0 01.707 0l5 5a.5.5 0 11-.707.708L8 3.293zm0 5l-4.354 4.354a.5.5 0 01-.707-.708l5-5a.5.5 0 01.707 0l5 5a.5.5 0 11-.707.708L8 8.293z"/></svg>
   </button>
-
-  <div class="shortcuts-overlay" id="shortcuts-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
-    <div class="shortcuts-panel">
-      <h2>Keyboard Shortcuts</h2>
-      <div class="shortcut-row"><span class="shortcut-desc">Focus search</span><span class="shortcut-key">/</span></div>
-      <div class="shortcut-row"><span class="shortcut-desc">Close panel / clear</span><span class="shortcut-key">Esc</span></div>
-      <div class="shortcut-row"><span class="shortcut-desc">Next pattern</span><span class="shortcut-key">j</span></div>
-      <div class="shortcut-row"><span class="shortcut-desc">Previous pattern</span><span class="shortcut-key">k</span></div>
-      <div class="shortcut-row"><span class="shortcut-desc">Open selected card</span><span class="shortcut-key">Enter</span></div>
-      <div class="shortcut-row"><span class="shortcut-desc">Shuffle</span><span class="shortcut-key">s</span></div>
-      <div class="shortcut-row"><span class="shortcut-desc">Toggle theme</span><span class="shortcut-key">t</span></div>
-      <div class="shortcut-row"><span class="shortcut-desc">Show shortcuts</span><span class="shortcut-key">?</span></div>
-      <p class="shortcuts-close-hint">Press any key to close</p>
-    </div>
-  </div>
-
-  <div class="fieldnotes-overlay" id="fieldnotes-overlay" role="dialog" aria-modal="true" aria-label="Field notes from the forge">
-    <div class="fieldnotes-panel">
-      <h2>Field Notes</h2>
-      <p class="fieldnotes-subtitle">Observations from operating agent systems across 6 projects. These are field notes, not theory &mdash; maintained by the forge that manages all of them.</p>
-      <div class="fieldnote">
-        <div class="fieldnote-title">Stigmergy has a hard ceiling.</div>
-        <div class="fieldnote-body">Forum-based coordination (agents read/write a shared file) is the most natural pattern that emerges. But it fails via unbounded growth &mdash; one project's forum went from 51 to 621 lines in a single session, another hit 904 across 7 cycles. Every shared-context pattern needs a maintenance agent. The pattern and its maintenance cost are inseparable.</div>
-      </div>
-      <div class="fieldnote">
-        <div class="fieldnote-title">Fitness beats compliance.</div>
-        <div class="fieldnote-body">A game mod project is effective at Structured+ using checkpoints and a section index instead of memory/ and forum. A catalog (this project) is effective with one steward. A news platform needs 10 agents because it has 10 genuinely different concerns. The right question is &ldquo;is this working?&rdquo; not &ldquo;does this match a checklist?&rdquo;</div>
-      </div>
-      <div class="fieldnote">
-        <div class="fieldnote-title">Premature structure costs more than no structure.</div>
-        <div class="fieldnote-body">This project proved it. A single steward handled bug fixes, accessibility, data quality, and maintained meaningful memory without ever needing a role split. Scaffolding 5 roles on day one would have been empty ceremony.</div>
-      </div>
-      <div class="fieldnote">
-        <div class="fieldnote-title">Memory is the lagging indicator.</div>
-        <div class="fieldnote-body">Projects adopt role files and protocols quickly. Memory files are the last thing used consistently. One project has 10 agents but only 3 memory files &mdash; 7 agents re-learn things every session.</div>
-      </div>
-      <div class="fieldnote">
-        <div class="fieldnote-title">Reflection loops need a consumer.</div>
-        <div class="fieldnote-body">Asking agents to evaluate their context at shutdown produces great signal. But without a keeper to process it, reflections pile up and nothing changes. The loop is only as good as its feedback processing.</div>
-      </div>
-      <div class="fieldnote">
-        <div class="fieldnote-title">Domain adaptation > pattern conformance.</div>
-        <div class="fieldnote-body">The most effective agent systems adapted conventions to fit their domain (30-second build-test-fix loops, single-page catalogs, async news pipelines) rather than conforming to a template. The forge's job is recognizing that, not flattening it.</div>
-      </div>
-      <p class="fieldnotes-close-hint">Click outside or press Escape to close</p>
-    </div>
-  </div>
+  </div><!-- /#page -->
 
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"
           integrity="sha384-WmdflGW9aGfoBdHc4rRyWzYuAjEmDwMdGdiPNacbwfGKxBW/SO6guzuQ76qjnSlr"
           crossorigin="anonymous"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
-  <!-- Keep llms.js after app.js so the theme toggle injects into the DOM last -->
   <script src="/shared/llms.js?v=3aTone"></script>
+  <script src="/shared/router.js?v=1"></script>
 </body>
 </html>

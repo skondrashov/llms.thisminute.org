@@ -1,3 +1,9 @@
+/* orchestration/app.js — catalog logic for the orchestration page.
+ * Wrapped in IIFE for SPA re-execution safety.
+ * Exposes window.__page = { init, teardown } for the router. */
+(function () {
+'use strict';
+
 // ─── Mermaid Init ─────────────────────────────────────
 function initMermaid() {
   if (typeof mermaid === 'undefined') return;
@@ -22,7 +28,6 @@ function initMermaid() {
     }
   });
 }
-initMermaid();
 
 // ─── Constants ────────────────────────────────────────
 const HIERARCHY_LABELS = {
@@ -418,28 +423,34 @@ function togglePanel(headerId, panelId) {
     body.style.top = (rect.bottom + 4) + 'px';
   }
 }
-// Click outside closes all dropdowns
-document.addEventListener('click', e => {
-  if (!e.target.closest('.filter-panel')) {
-    PANEL_IDS.forEach(id => {
-      const p = document.getElementById(id);
-      const h = document.getElementById(id + '-header');
-      p.classList.remove('expanded');
-      h.setAttribute('aria-expanded', 'false');
-    });
-  }
-});
-PANEL_IDS.forEach(id => {
-  const headerId = id + '-header';
-  const el = document.getElementById(headerId);
-  el.addEventListener('click', () => togglePanel(headerId, id));
-  el.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      togglePanel(headerId, id);
+// Click outside closes all dropdowns — bound in bindUIEvents for proper teardown
+function closeAllPanels() {
+  PANEL_IDS.forEach(id => {
+    const p = document.getElementById(id);
+    const h = document.getElementById(id + '-header');
+    if (p) p.classList.remove('expanded');
+    if (h) h.setAttribute('aria-expanded', 'false');
+  });
+}
+function bindPanelEvents() {
+  _on(document, 'click', e => {
+    if (!e.target.closest('.filter-panel')) {
+      closeAllPanels();
     }
   });
-});
+  PANEL_IDS.forEach(id => {
+    const headerId = id + '-header';
+    const el = document.getElementById(headerId);
+    if (!el) return;
+    _on(el, 'click', () => togglePanel(headerId, id));
+    _on(el, 'keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        togglePanel(headerId, id);
+      }
+    });
+  });
+}
 
 // ─── Vote Data Loading ──────────────────────────────────
 async function loadVoteData() {
@@ -1105,118 +1116,79 @@ async function openDetail(id) {
 
 function closeDetail(skipHistory) {
   const detail = document.getElementById('detail');
-  disableFocusTrap(detail);
-  detail.classList.remove('active');
-  document.getElementById('overlay').classList.remove('active');
+  if (detail) {
+    disableFocusTrap(detail);
+    detail.classList.remove('active');
+  }
+  const overlay = document.getElementById('overlay');
+  if (overlay) overlay.classList.remove('active');
   currentDetailId = null;
   if (!skipHistory) history.replaceState(null, '', location.pathname);
 }
 
-// ─── Search ───────────────────────────────────────────
-let searchTimeout;
-document.getElementById('search').addEventListener('input', e => {
-  clearTimeout(searchTimeout);
-  searchTimeout = setTimeout(() => {
-    state.searchQuery = e.target.value;
-    renderGrid();
-  }, SEARCH_DEBOUNCE_MS);
-});
-
-// ─── Overlay / Escape ─────────────────────────────────
-document.getElementById('overlay').addEventListener('click', closeDetail);
-
-// ─── Back to Top ──────────────────────────────────────
-const backToTop = document.getElementById('back-to-top');
-window.addEventListener('scroll', () => {
-  backToTop.classList.toggle('visible', window.scrollY > SCROLL_TOP_THRESHOLD);
-}, { passive: true });
-backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// ─── Keyboard Shortcuts ───────────────────────────────
-const shortcutsOverlay = document.getElementById('shortcuts-overlay');
-let shortcutsTrigger = null;
-function openShortcutsOverlay(trigger) {
-  shortcutsTrigger = trigger || document.activeElement;
-  shortcutsOverlay.classList.add('visible');
-  shortcutsOverlay.setAttribute('tabindex', '-1');
-  shortcutsOverlay.focus();
+// ─── Event Listener Tracking (for SPA teardown) ─────
+let _listeners = [];
+function _on(target, event, handler, opts) {
+  if (!target) return;
+  target.addEventListener(event, handler, opts);
+  _listeners.push({ target, event, handler, opts });
 }
-function closeShortcutsOverlay() {
-  shortcutsOverlay.classList.remove('visible');
-  if (shortcutsTrigger) { shortcutsTrigger.focus(); shortcutsTrigger = null; }
-}
-document.getElementById('shortcuts-btn').addEventListener('click', (e) => {
-  openShortcutsOverlay(e.currentTarget);
-});
 
-const fieldnotesOverlay = document.getElementById('fieldnotes-overlay');
-let fieldnotesTrigger = null;
-function openFieldnotesOverlay(trigger) {
-  fieldnotesTrigger = trigger || document.activeElement;
-  fieldnotesOverlay.classList.add('visible');
-  const panel = fieldnotesOverlay.querySelector('.fieldnotes-panel');
-  panel.setAttribute('tabindex', '-1');
-  panel.focus();
-}
-function closeFieldnotesOverlay() {
-  fieldnotesOverlay.classList.remove('visible');
-  if (fieldnotesTrigger) { fieldnotesTrigger.focus(); fieldnotesTrigger = null; }
-}
-document.getElementById('fieldnotes-btn').addEventListener('click', (e) => {
-  openFieldnotesOverlay(e.currentTarget);
-});
-var fieldnotesInline = document.getElementById('fieldnotes-inline');
-if (fieldnotesInline) fieldnotesInline.addEventListener('click', (e) => {
-  openFieldnotesOverlay(e.currentTarget);
-});
-fieldnotesOverlay.addEventListener('click', e => {
-  if (e.target === fieldnotesOverlay) closeFieldnotesOverlay();
-});
+// ─── Bind UI Events (called from appInit) ────────────
+function bindUIEvents() {
+  bindPanelEvents();
 
-document.addEventListener('keydown', e => {
-  const tag = (e.target.tagName || '').toLowerCase();
-  const isInput = tag === 'input' || tag === 'textarea' || tag === 'select';
+  let searchTimeout;
+  const searchEl = document.getElementById('search');
+  _on(searchEl, 'input', e => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      state.searchQuery = e.target.value;
+      renderGrid();
+    }, SEARCH_DEBOUNCE_MS);
+  });
 
-  // Close field notes overlay on Escape
-  if (fieldnotesOverlay.classList.contains('visible')) {
-    if (e.key === 'Escape') { closeFieldnotesOverlay(); e.preventDefault(); }
-    return;
-  }
+  // Overlay / Escape
+  _on(document.getElementById('overlay'), 'click', closeDetail);
 
-  // Close shortcuts overlay on any non-modifier key
-  if (shortcutsOverlay.classList.contains('visible')) {
-    if (!['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) {
-      closeShortcutsOverlay();
-      e.preventDefault();
-    }
-    return;
-  }
+  // Back to Top
+  const backToTop = document.getElementById('back-to-top');
+  _on(window, 'scroll', () => {
+    if (backToTop) backToTop.classList.toggle('visible', window.scrollY > SCROLL_TOP_THRESHOLD);
+  }, { passive: true });
+  _on(backToTop, 'click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
-  // Escape: close detail, then clear search
-  if (e.key === 'Escape') {
-    if (document.getElementById('detail').classList.contains('active')) {
-      closeDetail();
-    } else if (state.searchQuery || state.activeCategory || state.activeStructuralClass || state.activeDomain) {
-      clearFilters();
-    } else if (isInput) {
-      e.target.blur();
-    }
-    return;
-  }
+  // Keyboard Navigation
+  _on(document, 'keydown', e => {
+    const tag = (e.target.tagName || '').toLowerCase();
+    const isInput = tag === 'input' || tag === 'textarea' || tag === 'select';
 
-  // Skip if typing in input
-  if (isInput) return;
-
-  // When detail drawer is open, only allow detail-specific keys
-  if (currentDetailId) {
-    if (e.key === 'ArrowLeft' || e.key === 'h') {
-      const prev = document.getElementById('nav-prev');
-      if (prev && prev.dataset.id) openDetail(prev.dataset.id);
+    // Escape: close detail, then clear search
+    if (e.key === 'Escape') {
+      const detail = document.getElementById('detail');
+      if (detail && detail.classList.contains('active')) {
+        closeDetail();
+      } else if (state.searchQuery || state.activeCategory || state.activeStructuralClass || state.activeDomain) {
+        clearFilters();
+      } else if (isInput) {
+        e.target.blur();
+      }
       return;
     }
-    if (e.key === 'ArrowRight' || e.key === 'l') {
+
+    // Skip if typing in input
+    if (isInput) return;
+
+    // When detail drawer is open, only allow detail-specific keys
+    if (currentDetailId) {
+      if (e.key === 'ArrowLeft' || e.key === 'h') {
+        const prev = document.getElementById('nav-prev');
+        if (prev && prev.dataset.id) openDetail(prev.dataset.id);
+        return;
+      }
+      if (e.key === 'ArrowRight' || e.key === 'l') {
       const next = document.getElementById('nav-next');
       if (next && next.dataset.id) openDetail(next.dataset.id);
       return;
@@ -1232,11 +1204,6 @@ document.addEventListener('keydown', e => {
   if (e.key === '/') {
     e.preventDefault();
     document.getElementById('search').focus();
-    return;
-  }
-
-  if (e.key === '?') {
-    openShortcutsOverlay();
     return;
   }
 
@@ -1283,87 +1250,124 @@ document.addEventListener('keydown', e => {
 
 });
 
-// ─── Mobile ───────────────────────────────────────────
-const controlsEl = document.getElementById('controls');
-const mobileBar = document.getElementById('mobile-filter-bar');
-const mobileTab = document.getElementById('mobile-filter-tab');
-const mobilePanelEl = document.getElementById('mobile-filter-panel');
+  // Mobile
+  const controlsEl = document.getElementById('controls');
+  const mobileBar = document.getElementById('mobile-filter-bar');
+  const mobileTab = document.getElementById('mobile-filter-tab');
+  const mobilePanelEl = document.getElementById('mobile-filter-panel');
 
-function syncMobileCategories() {
-  let html = `<div class="mobile-section-label">Origin</div>`;
-  html += buildFilterTiles(getDomainCounts(), state.activeDomain, 'domain', DOMAIN_COLORS, DOMAIN_LABELS);
-  html += `<div class="mobile-section-label mobile-section-label-sep">Structure</div>`;
-  html += buildFilterTiles(getStructuralClassCounts(), state.activeStructuralClass, 'sc', SC_COLORS, SC_LABELS);
-  html += `<div class="mobile-section-label mobile-section-label-sep">Field</div>`;
-  html += buildFilterTiles(getCategories(), state.activeCategory, 'category', CATEGORY_COLORS);
-  mobilePanelEl.innerHTML = html;
-  wireFilterTiles(mobilePanelEl, 'domain', val => {
-    state.activeDomain = val;
-    renderAllFilterPanels();
-    renderGrid();
-    mobileBar.classList.remove('open');
-  });
-  wireFilterTiles(mobilePanelEl, 'sc', val => {
-    state.activeStructuralClass = val;
-    renderAllFilterPanels();
-    renderGrid();
-    mobileBar.classList.remove('open');
-  });
-  wireFilterTiles(mobilePanelEl, 'category', val => {
-    state.activeCategory = val;
-    renderAllFilterPanels();
-    renderGrid();
-    mobileBar.classList.remove('open');
-  });
-}
-
-const controlsObserver = new IntersectionObserver(([entry]) => {
-  if (window.innerWidth <= 768) {
-    mobileBar.classList.toggle('visible', !entry.isIntersecting);
-    if (entry.isIntersecting) mobileBar.classList.remove('open');
+  function syncMobileCategories() {
+    if (!mobilePanelEl) return;
+    let html = `<div class="mobile-section-label">Origin</div>`;
+    html += buildFilterTiles(getDomainCounts(), state.activeDomain, 'domain', DOMAIN_COLORS, DOMAIN_LABELS);
+    html += `<div class="mobile-section-label mobile-section-label-sep">Structure</div>`;
+    html += buildFilterTiles(getStructuralClassCounts(), state.activeStructuralClass, 'sc', SC_COLORS, SC_LABELS);
+    html += `<div class="mobile-section-label mobile-section-label-sep">Field</div>`;
+    html += buildFilterTiles(getCategories(), state.activeCategory, 'category', CATEGORY_COLORS);
+    mobilePanelEl.innerHTML = html;
+    wireFilterTiles(mobilePanelEl, 'domain', val => {
+      state.activeDomain = val;
+      renderAllFilterPanels();
+      renderGrid();
+      mobileBar.classList.remove('open');
+    });
+    wireFilterTiles(mobilePanelEl, 'sc', val => {
+      state.activeStructuralClass = val;
+      renderAllFilterPanels();
+      renderGrid();
+      mobileBar.classList.remove('open');
+    });
+    wireFilterTiles(mobilePanelEl, 'category', val => {
+      state.activeCategory = val;
+      renderAllFilterPanels();
+      renderGrid();
+      mobileBar.classList.remove('open');
+    });
   }
-}, { threshold: 0 });
-controlsObserver.observe(controlsEl);
 
-mobileTab.addEventListener('click', () => {
-  syncMobileCategories();
-  mobileBar.classList.toggle('open');
-});
+  if (controlsEl) {
+    controlsObserver = new IntersectionObserver(([entry]) => {
+      if (window.innerWidth <= 768) {
+        mobileBar.classList.toggle('visible', !entry.isIntersecting);
+        if (entry.isIntersecting) mobileBar.classList.remove('open');
+      }
+    }, { threshold: 0 });
+    controlsObserver.observe(controlsEl);
+  }
+
+  _on(mobileTab, 'click', () => {
+    syncMobileCategories();
+    mobileBar.classList.toggle('open');
+  });
+} // end bindUIEvents
+
+let controlsObserver = null;
 
 // ─── Init ─────────────────────────────────────────────
-renderStats();
-renderDomainTiles();
-renderCategories();
-renderStructureTiles();
-renderGrid();
-try { localStorage.setItem('orchestration_lens_seen', '1'); } catch {}
+function appInit() {
+  bindUIEvents();
+  initMermaid();
+  renderStats();
+  renderDomainTiles();
+  renderCategories();
+  renderStructureTiles();
+  renderGrid();
+  try { localStorage.setItem('orchestration_lens_seen', '1'); } catch {}
 
-// Load vote data async (graceful degradation)
-loadVoteData();
+  // Load vote data async (graceful degradation)
+  loadVoteData();
 
-// Open from URL hash
-if (location.hash) {
-  const id = location.hash.slice(1);
-  if (state.structures.some(s => s.id === id)) {
-    openDetail(id);
+  // Open from URL hash
+  if (location.hash) {
+    const id = location.hash.slice(1);
+    if (state.structures.some(s => s.id === id)) {
+      openDetail(id);
+    }
   }
 }
 
 // ─── Popstate (browser back/forward) ──────────────────
-window.addEventListener('popstate', async () => {
+function handlePopstate() {
   handlingPopstate = true;
-  try {
-    if (location.hash) {
-      const id = location.hash.slice(1);
-      if (state.structures.some(s => s.id === id)) {
-        await openDetail(id);
+  (async () => {
+    try {
+      if (location.hash) {
+        const id = location.hash.slice(1);
+        if (state.structures.some(s => s.id === id)) {
+          await openDetail(id);
+        } else {
+          closeDetail(true);
+        }
       } else {
-        closeDetail(true);
+        if (currentDetailId) closeDetail(true);
       }
-    } else {
-      if (currentDetailId) closeDetail(true);
+    } finally {
+      handlingPopstate = false;
     }
-  } finally {
-    handlingPopstate = false;
+  })();
+}
+window.addEventListener('popstate', handlePopstate);
+
+// ─── Lifecycle (SPA router integration) ──────────────
+function appTeardown() {
+  // Remove all tracked event listeners
+  _listeners.forEach(({ target, event, handler, opts }) => {
+    target.removeEventListener(event, handler, opts);
+  });
+  _listeners = [];
+  // Disconnect IntersectionObserver
+  if (controlsObserver) {
+    controlsObserver.disconnect();
+    controlsObserver = null;
   }
-});
+  window.removeEventListener('popstate', handlePopstate);
+  // Close any open detail panel
+  if (currentDetailId) closeDetail(true);
+}
+
+window.__page = { init: appInit, teardown: appTeardown };
+
+// Auto-init (works for both standalone and SPA-injected)
+appInit();
+
+})(); // end IIFE

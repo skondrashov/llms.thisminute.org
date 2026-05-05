@@ -202,6 +202,15 @@
     color: var(--text-secondary);
     line-height: 1.5;
   }
+  .fill-bullets {
+    margin: 0.5rem 0 0.5rem 1.2rem;
+    padding: 0;
+    list-style: disc;
+  }
+  .fill-bullets li {
+    margin-bottom: 0.3rem;
+    line-height: 1.45;
+  }
   .fill-amount {
     font-family: var(--font-mono);
     font-size: 0.85rem;
@@ -251,6 +260,7 @@
 
 <div class="forge-theme-toggle"></div>
 
+<div id="page" data-app="app.js">
 <header class="hero">
   <h1>Context</h1>
   <p class="tagline"></p>
@@ -284,25 +294,16 @@
   <section id="filling">
     <h2>What&rsquo;s filling our context?</h2>
     <p>If the context is the only memory, the obvious next question is what actually lives in there, and how much space the different kinds of things take up.</p>
-    <p>Rough token amounts for the stuff that piles up in an agent context, smallest to biggest:</p>
+    <p>Rough token amounts for the stuff that piles up in an agent context, ordered from what you&rsquo;ll encounter most often to what shows up occasionally. The bars show size, not frequency, which is the interesting part: the things that happen every turn are tiny, and the things that happen sometimes are enormous.</p>
 
     <div class="fill-breakdown">
       <div class="fill-row">
         <div>
           <div class="fill-name">System prompt</div>
-          <div class="fill-desc">The scaffolding the model sees before anything else: role instructions, tool definitions, formatting rules. Usually set once and never touched.</div>
+          <div class="fill-desc">The scaffolding the model sees before anything else: role instructions, tool definitions, formatting rules. Always there, set once.</div>
         </div>
         <div class="fill-amount">~1K to 5K</div>
-        <div class="fill-bar" style="--w: 4%"></div>
-      </div>
-
-      <div class="fill-row">
-        <div>
-          <div class="fill-name">Tool call request</div>
-          <div class="fill-desc">When the model asks to use a tool, it writes out the function name plus a bit of JSON with arguments. Tiny, usually a sentence or two in the window.</div>
-        </div>
-        <div class="fill-amount">50 to 200</div>
-        <div class="fill-bar" style="--w: 1%"></div>
+        <div class="fill-bar" style="--w: 5%"></div>
       </div>
 
       <div class="fill-row">
@@ -316,8 +317,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">Assistant reply (no thinking)</div>
-          <div class="fill-desc">A normal model response. A paragraph, a code block, whatever. This is the part you see it writing back to you.</div>
+          <div class="fill-name">Assistant reply</div>
+          <div class="fill-desc">A normal model response: a paragraph, a code block, a tool call (which is just the function name plus a bit of JSON). This is the part you see it writing back to you, and it&rsquo;s usually smaller than you&rsquo;d think.</div>
         </div>
         <div class="fill-amount">200 to 2K</div>
         <div class="fill-bar" style="--w: 4%"></div>
@@ -325,44 +326,8 @@
 
       <div class="fill-row">
         <div>
-          <div class="fill-name">Screenshot (vision)</div>
-          <div class="fill-desc">One image, converted into tokens. A single screenshot costs about this much regardless of what&rsquo;s in it. More on this below.</div>
-        </div>
-        <div class="fill-amount">~1.5K</div>
-        <div class="fill-bar" style="--w: 3%"></div>
-      </div>
-
-      <div class="fill-row">
-        <div>
-          <div class="fill-name">Grep hit list</div>
-          <div class="fill-desc">The model runs a search across a repo and gets the file-line matches back. More hits, bigger result.</div>
-        </div>
-        <div class="fill-amount">500 to 10K</div>
-        <div class="fill-bar" style="--w: 20%"></div>
-      </div>
-
-      <div class="fill-row">
-        <div>
-          <div class="fill-name">Reading a file</div>
-          <div class="fill-desc">The model asks to open a file and the entire file comes back. A small config is nothing. A 2000-line source file hurts.</div>
-        </div>
-        <div class="fill-amount">500 to 20K+</div>
-        <div class="fill-bar" style="--w: 40%"></div>
-      </div>
-
-      <div class="fill-row">
-        <div>
-          <div class="fill-name">Web search or scrape</div>
-          <div class="fill-desc">The model asks a search tool, gets back a pile of page text. Scraping a single webpage can return a surprising amount.</div>
-        </div>
-        <div class="fill-amount">2K to 20K</div>
-        <div class="fill-bar" style="--w: 40%"></div>
-      </div>
-
-      <div class="fill-row">
-        <div>
-          <div class="fill-name">Reasoning trace (thinking models)</div>
-          <div class="fill-desc">Some models think out loud before answering. Those thinking tokens live in the context too. A reasoning-heavy model can burn a huge chunk of the window on a single turn.</div>
+          <div class="fill-name">Reasoning trace</div>
+          <div class="fill-desc">Thinking models reason out loud before answering. Those thinking tokens live in the context too. On a hard problem, a single turn of reasoning can use more window space than the entire conversation so far.</div>
         </div>
         <div class="fill-amount">2K to 20K+</div>
         <div class="fill-bar" style="--w: 40%"></div>
@@ -370,22 +335,56 @@
 
       <div class="fill-row big">
         <div>
-          <div class="fill-name"><code>git log -p</code> on a big commit</div>
-          <div class="fill-desc">The worst offender. You ask the model what changed in a commit and fifty thousand tokens of diff show up in the window. This is the thing that eats your context alive.</div>
+          <div class="fill-name">Tool output</div>
+          <div class="fill-desc">Everything the model gets back when it uses a tool. These all look different on the surface, but from the context window&rsquo;s perspective they&rsquo;re the same thing: text the harness injected because the model asked for it.
+            <ul class="fill-bullets">
+              <li><strong>File contents.</strong> A targeted grep returns a few matching lines. Reading an entire file dumps the whole thing in, potentially tens of thousands of tokens.</li>
+              <li><strong>Command output.</strong> A passing test suite might be 200 tokens of stdout. A failing build log might be 5K.</li>
+              <li><strong>Web pages.</strong> A single documentation page or article can return more text than the entire conversation so far.</li>
+              <li><strong>Search results, API responses, scraped data.</strong> Anything a tool can reach, the window has to hold.</li>
+            </ul>
+            This is the category that eats context the fastest. Whether it&rsquo;s big or small depends almost entirely on whether the model already knew what it needed before it asked.</div>
         </div>
-        <div class="fill-amount">10K to 50K+</div>
-        <div class="fill-bar" style="--w: 100%"></div>
+        <div class="fill-amount">200 to 20K+</div>
+        <div class="fill-bar" style="--w: 40%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">Skill injection</div>
+          <div class="fill-desc">A reusable instruction set loaded on demand: a review checklist, a migration playbook, a coding convention guide. Mechanically identical to the system prompt, but loaded per-task rather than per-session. Slash commands, custom commands, tool descriptions with embedded examples.</div>
+        </div>
+        <div class="fill-amount">500 to 5K</div>
+        <div class="fill-bar" style="--w: 8%"></div>
+      </div>
+
+      <div class="fill-row">
+        <div>
+          <div class="fill-name">Screenshot</div>
+          <div class="fill-desc">One image, converted into tokens. A single screenshot costs roughly the same amount regardless of what&rsquo;s in it. More on this below.</div>
+        </div>
+        <div class="fill-amount">~1.5K</div>
+        <div class="fill-bar" style="--w: 3%"></div>
       </div>
     </div>
 
-    <p>In a typical agent workflow, <strong>tool output dominates</strong>. A single file read or a single diff can be bigger than everything the user and the model have typed all session combined. Reasoning tokens are the other big spender when a thinking model is in play. The system prompt, user messages, and assistant replies feel important because they&rsquo;re the part you actually see, but next to tool output they&rsquo;re small.</p>
+    <p>In a typical agent workflow, <strong>tool output dominates</strong>. A single file read can be bigger than everything the user and the model have typed all session combined. Reasoning tokens are the other big spender. The system prompt, user messages, and assistant replies feel important because they&rsquo;re the part you actually see, but next to tool output and reasoning they&rsquo;re negligible. If you&rsquo;ve ever worried about how many words you&rsquo;re typing into a prompt, don&rsquo;t!</p>
   </section>
 
   <section>
-    <h2>The model fills its own context, constantly</h2>
-    <p>Here&rsquo;s the thing that makes all of this click. Memory files, role instructions, skill prompts, reasoning tokens, tool output: they look like different kinds of things, but from the model&rsquo;s perspective they&rsquo;re literally the same. It&rsquo;s all just tokens in the window.</p>
-    <p>When you put a <strong>memory file</strong> in front of the model, you&rsquo;re pre-populating its context. When the model writes <strong>reasoning tokens</strong> before its answer (Gemini&rsquo;s classic &ldquo;but wait, let me reconsider...&rdquo;), it&rsquo;s populating its own context with words that help it think. When the harness <strong>dumps tool output</strong> into the next turn, it&rsquo;s populating the context on the model&rsquo;s behalf. All three are doing the same mechanical thing: adding tokens to the window so the next prediction has more to work with.</p>
-    <p>This is why persistent context scaffolding works so well and feels intuitive. You&rsquo;re not doing anything weird or magical, you&rsquo;re just adding to the pile of tokens the model is about to read. The model was already going to do that to itself anyway.</p>
+    <h2>Agents fill their own context</h2>
+    <p>Memory files, role instructions, skills, reasoning tokens, tool output: they look like different kinds of things, but from the model&rsquo;s perspective they&rsquo;re literally the same. It&rsquo;s all just tokens in the window.</p>
+    <p>When you put a <strong>memory file</strong> in front of the model, you&rsquo;re pre-populating its context. When you invoke a <strong>skill</strong> (a slash command, a custom instruction set, a review checklist), the harness injects that text into the window so the model knows how to do the task. When the model writes <strong>reasoning tokens</strong> before its answer (Gemini&rsquo;s classic &ldquo;but wait, let me reconsider...&rdquo;), it&rsquo;s populating its own context with words that help it think. When the harness <strong>dumps tool output</strong> into the next turn, it&rsquo;s populating the context on the model&rsquo;s behalf. All four are doing the same mechanical thing: adding tokens to the window so the next prediction has more to work with.</p>
+    <p>This is why the line between roles and skills is blurry. A role is text that stays in context for the whole session. A skill is text that gets loaded for one task. Both are just tokens the model reads before predicting. The interesting <a href="/orchestration/">orchestration</a> question is which instructions to load when, which context belongs together in the same window, and which context needs to be split across separate agents.</p>
+  </section>
+
+  <section>
+    <h2>Context quality matters as much as context size</h2>
+    <p>It&rsquo;s tempting to think of the context window as just a storage problem: will it fit? But what&rsquo;s in the window affects how well the model reasons, not just whether it has room.</p>
+    <p><strong>Too little context</strong> and the model guesses where it should know. It hallucinates function signatures, invents file paths, makes confident claims about code it hasn&rsquo;t read. This is the default failure mode of a fresh conversation with no grounding.</p>
+    <p><strong>Too much context</strong> and the model starts losing the thread. Attention is finite. The more tokens in the window, the less weight any single token gets. Important details buried in a wall of tool output or old conversation history get missed. This is why long sessions degrade: not because the window is full, but because the signal-to-noise ratio has dropped.</p>
+    <p><strong>Irrelevant context</strong> might be the worst of the three. A window full of unrelated code, leftover conversation about a different feature, or tool output from an abandoned approach actively misleads the model. It doesn&rsquo;t just waste space, it pulls reasoning off course. The model has no way to know which parts of its context are stale or off-topic.</p>
+    <p>This is also a cost question. Every token in the window is billed on input, every turn. A bloated context doesn&rsquo;t just reason worse, it costs more per response. Keeping context clean is the single best lever for both quality and cost.</p>
   </section>
 
   <section>
@@ -415,91 +414,10 @@
 
 </main>
 
-<script src="/shared/llms.js?v=3aTone"></script>
-<script>
-// Statelessness token demo, ported from /llms/llm/
-var T = [
-  {t:'user',r:1},{t:'What'},{t:'is'},{t:'the'},{t:'capital'},{t:'of'},{t:'France'},{t:'?'},
-  {t:'assistant',r:2},{t:'The'},{t:'capital'},{t:'of'},{t:'France'},{t:'is'},{t:'Paris'},{t:'.'},
-  {t:'user',r:1},{t:'And'},{t:'Germany'},{t:'?'},
-  {t:'assistant',r:2},{t:'The'},{t:'capital'},{t:'of'},{t:'Germany'},{t:'is'},{t:'Berlin'},{t:'.'}
-];
-var START = 9;
-var EV = [
-  {n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},
-  {n:5},
-  {n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1},{n:1, g:1}
-];
-var vis = START, ei = 0, busy = false, playing = false;
+</div><!-- /#page -->
 
-function render(newCount, isGen) {
-  var h = '';
-  for (var i = 0; i < vis; i++) {
-    if (T[i].r && i > 0) h += '<div class="brk"></div>';
-    var c = 'tk';
-    if (T[i].r === 1) c += ' ru';
-    else if (T[i].r === 2) c += ' ra';
-    if (newCount && i >= vis - newCount) c += isGen ? ' lt' : ' bt';
-    h += '<span class="' + c + '">' + T[i].t + '</span>';
-  }
-  document.getElementById('tokens').innerHTML = h;
-}
-function status() {
-  var el = document.getElementById('status');
-  if (ei === 0) el.textContent = vis + ' tokens in context';
-  else if (ei >= EV.length) el.textContent = 'complete \u2014 ' + T.length + ' tokens';
-  else if (EV[ei - 1].g) el.innerHTML = 'reads ' + (vis - 1) + ' tokens \u2192 <strong>' + T[vis - 1].t + '</strong>';
-  else el.textContent = vis + ' tokens in context';
-  document.getElementById('sbtn').disabled = ei >= EV.length;
-}
-function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
-async function doStep() {
-  if (ei >= EV.length || busy) return;
-  busy = true;
-  var ev = EV[ei];
-  if (ev.g) {
-    var area = document.getElementById('area');
-    var tks = document.querySelectorAll('#tokens .tk');
-    area.classList.add('reading');
-    tks.forEach(function(t) { t.classList.add('fl'); });
-    await sleep(280);
-    tks.forEach(function(t) { t.classList.remove('fl'); });
-    area.classList.remove('reading');
-    await sleep(80);
-  }
-  vis += ev.n; ei++;
-  render(ev.n, !!ev.g);
-  status();
-  busy = false;
-}
-function doReset() {
-  playing = false;
-  document.getElementById('pbtn').textContent = 'Play';
-  vis = START; ei = 0;
-  render(0, false); status();
-}
-function doPlay() {
-  if (playing) {
-    playing = false;
-    document.getElementById('pbtn').textContent = 'Play';
-    return;
-  }
-  playing = true;
-  document.getElementById('pbtn').textContent = 'Pause';
-  (async function go() {
-    if (!playing || ei >= EV.length) {
-      playing = false;
-      document.getElementById('pbtn').textContent = 'Play';
-      return;
-    }
-    await doStep();
-    var delay = EV[ei - 1].g ? 600 : 1000;
-    await sleep(delay);
-    go();
-  })();
-}
-render(0, false);
-status();
-</script>
+<script src="/shared/llms.js?v=3aTone"></script>
+<script src="app.js"></script>
+<script src="/shared/router.js?v=1"></script>
 </body>
 </html>
