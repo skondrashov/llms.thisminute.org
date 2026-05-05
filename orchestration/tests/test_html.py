@@ -21,11 +21,16 @@ class TestIndexLinks:
         assert os.path.isfile(target), f"Evolution link target '{href}' does not exist"
 
     def test_cross_site_nav_via_shared_library(self):
-        """Cross-site nav uses shared forge.js and links back to portal."""
+        """Cross-site nav uses shared forge.js which injects nav with portal link."""
         html = _read_html("index.html")
         assert '/shared/forge.js' in html, "Missing shared forge.js include"
         assert '/shared/forge.css' in html, "Missing shared forge.css include"
-        assert 'href="/"' in html, "Missing link back to portal hub"
+        # Nav is now injected by forge.js (DRY pattern) — portal link lives there
+        forge_js = os.path.join(ROOT, '..', 'shared', 'forge.js')
+        assert os.path.isfile(forge_js), "shared/forge.js file not found"
+        with open(forge_js, encoding='utf-8') as f:
+            js = f.read()
+        assert "href: '/'" in js, "Missing portal link in shared nav (forge.js)"
 
     def test_fieldnotes_inline_trigger_exists(self):
         """There should be an inline field notes trigger near the intro blurb."""

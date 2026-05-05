@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harnesses &middot; LLMs &middot; thisminute.org</title>
+<meta name="description" content="The software that wraps around a model. Harnesses manage the context window, provide tools, run the agent loop, and handle the conversation. The thing you actually talk to.">
+<meta property="og:title" content="Harnesses · LLMs · thisminute.org">
+<meta property="og:description" content="The software that wraps around a model. Harnesses manage the context window, provide tools, run the agent loop, and handle the conversation. The thing you actually talk to.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://llms.thisminute.org/harnesses/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%94%A7</text></svg>">
+<!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
+<script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/shared/forge.css?v=3aTone">
+<style>
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Setting jump nav */
+  .setting-nav {
+    max-width: 1100px;
+    margin: 0.5rem auto 0;
+    padding: 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+  .setting-nav a {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+  }
+  .setting-nav a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  main.catalog {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2.5rem 24px 64px;
+  }
+
+  /* Setting section */
+  .setting-section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 2rem;
+  }
+  .setting-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.85rem;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed var(--border-light);
+  }
+  .setting-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2rem;
+    color: var(--accent);
+    letter-spacing: 0;
+  }
+  .setting-count {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.1rem;
+  }
+
+  /* --- Card --- */
+  .harness-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.35rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med);
+  }
+  .harness-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+  }
+
+  .card-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .card-vendor {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .card-detail-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+  }
+  .card-detail-value {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .card-detail-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .tag.amber {
+    background: color-mix(in srgb, var(--color-harnesses) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-harnesses) 28%, transparent);
+    color: var(--color-harnesses);
+  }
+  .tag.mint {
+    background: color-mix(in srgb, var(--color-context) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-context) 28%, transparent);
+    color: var(--color-context);
+  }
+
+  .summary {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .card-foot {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: flex-end;
+    letter-spacing: 0.05em;
+  }
+  .card-foot .out { color: var(--accent); }
+
+  /* Empty state */
+  .catalog-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 520px) {
+    .hero h1 { font-size: 2.5rem; }
+    .grid { grid-template-columns: 1fr; gap: 1rem; }
+    main.catalog { padding: 2rem 16px 48px; }
+    .setting-name { font-size: 1.65rem; }
+  }
+</style>
+</head>
+<body class="section-harnesses"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+
+<div class="forge-theme-toggle"></div>
+
+<header class="hero">
+  <h1>Harnesses</h1>
+  <p class="tagline">The software you actually interact with. Everything else lives inside one of these.</p>
+</header>
+
+<div class="explainer">
+
+  <section class="explainer-section">
+    <h2>What a harness actually is</h2>
+    <p>A harness is the outer loop. You talk to the harness, the harness talks to the model. It decides what goes into the context window, which tools are available, how long to keep looping, and when to stop and show you something. Claude Code, Cursor, ChatGPT, Aider: those are all harnesses. The model running inside them is a separate thing entirely.</p>
+    <p>Without a harness, a model is just a function that predicts the next token. It has no way to read your files, no way to search the web, no way to remember what you said five minutes ago. The harness is what turns that prediction function into something you can actually have a conversation with. It manages the context window, feeds in tool results, handles the back-and-forth of user input and model output, and keeps the whole loop going until the task is done or the context runs out.</p>
+    <p>Most of the behavior people attribute to "the AI" is actually the harness. The system prompt, the tool definitions, the decision to summarize old context or start a fresh session, the way errors get retried: all of that is harness code, not model behavior. Swap the same model into a different harness and the experience changes dramatically, even though the weights haven&rsquo;t moved.</p>
+  </section>
+
+  <section class="explainer-section">
+    <h2>The axes people compare them on</h2>
+    <p>Harnesses come in a lot of shapes, but they tend to differ on a few things that matter in practice:</p>
+    <ul>
+      <li><strong>Setting.</strong> Where does it live? A CLI you run in a terminal, an IDE extension wired into your editor, a web app in a browser tab, a desktop app, or an SDK you embed in your own code. The setting shapes everything: what tools the harness can reach, how it presents output, how fast the feedback loop feels.</li>
+      <li><strong>Model support.</strong> Some harnesses are locked to one vendor (ChatGPT only runs OpenAI models, Claude Code only runs Claude). Others let you plug in whatever model you want. This matters because model choice is load-bearing for quality, and being locked to one vendor means you can&rsquo;t swap when a better option shows up.</li>
+      <li><strong>Tool ecosystem.</strong> What can the harness actually do beyond chatting? File reads, terminal commands, web search, code execution, MCP servers. The tool set is often the real differentiator. A harness with strong tool support turns a model into an agent; one without is just a chat box.</li>
+      <li><strong>Context management.</strong> How does the harness handle long conversations? Does it silently truncate old messages, summarize them, let you start fresh? This is invisible until it isn&rsquo;t, and it&rsquo;s one of the hardest problems in harness design. See <a href="/context/">context</a>.</li>
+      <li><strong>Pricing model.</strong> Some harnesses charge a flat subscription (Cursor, ChatGPT Plus). Others pass through API costs directly (Claude Code, Aider). Some are free and open source. The pricing model changes how you use the tool, because per-token costs make you think twice about long agent loops in a way that a monthly fee doesn&rsquo;t.</li>
+    </ul>
+  </section>
+
+  <section class="explainer-section">
+    <h2>Harness vs model vs agent</h2>
+    <p>People confuse these three constantly, and it&rsquo;s worth getting straight. A <strong>model</strong> is the engine: a pile of trained weights that predicts the next token. A <strong>harness</strong> is the car built around the engine: the steering wheel, the dashboard, the gas pedal, everything you actually touch when you drive. An <strong>agent</strong> is the car driving itself: the harness running in a loop, calling tools, making decisions, with the model as the thing generating each next step.</p>
+    <p>When someone says "I asked ChatGPT to do X," they&rsquo;re talking about a harness. ChatGPT is a web-based harness built by OpenAI. The model inside it might be GPT-5 or GPT-5.5 or o3, depending on what they selected. The harness is what formatted their message, managed the conversation history, and decided how to present the reply. If they turned on "deep research" mode and the thing started browsing the web and writing a report, that&rsquo;s the harness running an agent loop with the model inside it.</p>
+    <p>This distinction matters because you can put the same model in different harnesses and get wildly different results. Claude Sonnet 4.6 inside Claude Code (a CLI harness with full filesystem access) behaves nothing like Claude Sonnet 4.6 inside the claude.ai web interface (a chat harness with limited tools). Same engine, different car, different driving experience.</p>
+  </section>
+
+  <section class="explainer-section" style="text-align:center; margin-top: 3.5rem;">
+    <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">Catalog of harnesses below, grouped by setting.</p>
+    <a class="archive-jump" href="#catalog">Browse the catalog &darr;</a>
+  </section>
+
+</div>
+
+<nav class="setting-nav" id="setting-nav"></nav>
+
+<main class="catalog" id="catalog"></main>
+
+<script src="/shared/forge.js?v=3aTone"></script>
+<script>
+// Catalog researched 2026-05-04. Sources: official product sites, Zapier,
+// Artificial Analysis, NxCode, Morph, KDnuggets, Turing, Langfuse, and others.
+const HARNESSES = [
+  // ── CLI harnesses ────────────────────────────────────────────────
+  { name: "Claude Code", vendor: "Anthropic", url: "https://docs.anthropic.com/en/docs/claude-code", setting: "CLI", models: "Claude", pricing: "usage-based", summary: "Anthropic's terminal-based coding agent with a 1M-token context window. Reads, edits, and executes code across entire repos under developer supervision. Top SWE-bench scores.", tags: ["coding", "agentic", "mcp"] },
+  { name: "Aider", vendor: "Paul Gauthier", url: "https://aider.chat", setting: "CLI", models: "any", pricing: "open-source", summary: "The original terminal AI coding agent. Deep Git integration with automatic commits, diff-aware context management, and support for every major LLM provider.", tags: ["coding", "open-source", "git"] },
+  { name: "Codex CLI", vendor: "OpenAI", url: "https://github.com/openai/codex", setting: "CLI", models: "OpenAI", pricing: "usage-based", summary: "OpenAI's open-source terminal agent. Fast, local-first execution that runs tasks in sandboxed environments with network isolation.", tags: ["coding", "open-source", "agentic"] },
+  { name: "Gemini CLI", vendor: "Google", url: "https://github.com/google-gemini/gemini-cli", setting: "CLI", models: "Gemini", pricing: "free tier + usage", summary: "Google's open-source terminal agent with the most generous free tier: 60 requests/min and 1,000 requests/day with just a Google account.", tags: ["coding", "open-source", "free"] },
+  { name: "Goose", vendor: "Block", url: "https://block.github.io/goose", setting: "CLI", models: "any", pricing: "open-source", summary: "Block's fully open-source agent (Apache 2.0). Runs as both CLI and desktop app with native MCP integration for extensibility.", tags: ["coding", "open-source", "mcp", "agentic"] },
+  { name: "OpenCode", vendor: "OpenCode", url: "https://github.com/opencode-ai/opencode", setting: "CLI", models: "any", pricing: "open-source", summary: "Terminal agent with LSP integration, multi-session support for parallel agents, and privacy-first design. Works with GitHub Copilot or ChatGPT Plus accounts.", tags: ["coding", "open-source", "privacy"] },
+  { name: "Amp", vendor: "Sourcegraph", url: "https://ampcode.com", setting: "CLI", models: "any", pricing: "usage-based", summary: "Sourcegraph's autonomous coding agent. Picks the best model per task, spins up parallel subagents, and uses Oracle Mode for architecture reviews.", tags: ["coding", "agentic", "multi-model"] },
+
+  // ── IDE harnesses ────────────────────────────────────────────────
+  { name: "Cursor", vendor: "Anysphere", url: "https://cursor.com", setting: "IDE", models: "any (curated)", pricing: "freemium", summary: "VS Code fork with AI woven into every keystroke. Composer mode for multi-file editing, Supermaven-powered autocomplete, and visual diffs. The most popular AI-native editor.", tags: ["coding", "editor", "autocomplete"] },
+  { name: "Windsurf", vendor: "OpenAI", url: "https://windsurf.com", setting: "IDE", models: "any (curated)", pricing: "freemium", summary: "VS Code fork with Cascade for multi-file editing and deep codebase awareness. Strong for agentic-heavy workflows at a lower price than Cursor.", tags: ["coding", "editor", "agentic"] },
+  { name: "GitHub Copilot", vendor: "GitHub / Microsoft", url: "https://github.com/features/copilot", setting: "IDE", models: "GPT, Claude, Gemini", pricing: "freemium", summary: "The original AI coding assistant. Inline suggestions, agent mode, agentic code review, and a coding agent that turns GitHub Issues into PRs. Available in VS Code, JetBrains, Neovim, and Visual Studio.", tags: ["coding", "autocomplete", "enterprise"] },
+  { name: "Google Antigravity", vendor: "Google", url: "https://antigravity.google", setting: "IDE", models: "Gemini, Claude, GPT", pricing: "free (preview)", summary: "Google's agent-first IDE built on the Windsurf codebase. Manager view for orchestrating parallel agents, 2M-token context window, and artifact-based trust system.", tags: ["coding", "editor", "agentic", "multi-model"] },
+  { name: "Cline", vendor: "Cline", url: "https://cline.bot", setting: "IDE", models: "any", pricing: "open-source", summary: "The most adopted open-source VS Code coding extension (5M+ installs). Autonomous agent-style coding at zero cost with your own API key.", tags: ["coding", "open-source", "vscode", "agentic"] },
+  { name: "Roo Code", vendor: "Roo Code", url: "https://roocode.com", setting: "IDE", models: "any", pricing: "open-source", summary: "VS Code extension forked from Cline with a multi-mode system: Code, Architect, Ask, Debug, and custom modes you define yourself.", tags: ["coding", "open-source", "vscode", "multi-mode"] },
+  { name: "Continue", vendor: "Continue", url: "https://continue.dev", setting: "IDE", models: "any", pricing: "open-source", summary: "Open-source AI assistant for VS Code and JetBrains. Inline chat, edit, and autocomplete with any LLM, local model, or cheap API like DeepSeek.", tags: ["coding", "open-source", "vscode", "jetbrains"] },
+  { name: "Kilo Code", vendor: "Kilo", url: "https://kilo.ai", setting: "IDE", models: "any (500+)", pricing: "usage-based", summary: "Open-source (Apache 2.0) agent for VS Code, JetBrains, and CLI. Parallel tool calls, subagents, and 500+ models with zero markup on provider rates.", tags: ["coding", "open-source", "multi-model"] },
+  { name: "JetBrains AI + Junie", vendor: "JetBrains", url: "https://www.jetbrains.com/ai-ides/", setting: "IDE", models: "GPT, Claude, Gemini, local", pricing: "freemium", summary: "AI assistant and autonomous coding agent built into all JetBrains IDEs. Junie handles multi-step tasks: planning, writing, testing, and iterating. Supports BYOK.", tags: ["coding", "jetbrains", "agentic"] },
+  { name: "Amazon Q Developer", vendor: "AWS", url: "https://aws.amazon.com/q/developer/", setting: "IDE", models: "Amazon (proprietary)", pricing: "freemium", summary: "AWS's AI coding assistant. Deep integration with Lambda, CloudWatch, and infrastructure-as-code. The definitive choice for teams embedded in the AWS ecosystem.", tags: ["coding", "enterprise", "aws"] },
+  { name: "Augment Code", vendor: "Augment", url: "https://www.augmentcode.com", setting: "IDE", models: "proprietary", pricing: "subscription", summary: "Enterprise AI assistant with a semantic Context Engine that indexes up to 1M files across multiple repos. IDE agents for VS Code and JetBrains plus a CLI.", tags: ["coding", "enterprise", "codebase-search"] },
+  { name: "Tabnine", vendor: "Tabnine", url: "https://www.tabnine.com", setting: "IDE", models: "proprietary + BYOK", pricing: "subscription", summary: "Privacy-first AI code assistant for regulated industries. Zero code retention, on-premises deployment, and enterprise-grade compliance with air-gapped options.", tags: ["coding", "enterprise", "privacy"] },
+  { name: "Sourcegraph Cody", vendor: "Sourcegraph", url: "https://sourcegraph.com/cody", setting: "IDE", models: "Claude, GPT, Gemini", pricing: "freemium", summary: "AI assistant built on Sourcegraph's code search. Context-heavy tasks like refactoring and codebase Q&A across multi-repo environments. Evolved into Amp in 2026.", tags: ["coding", "codebase-search"] },
+  { name: "Zed", vendor: "Zed Industries", url: "https://zed.dev", setting: "IDE", models: "any", pricing: "open-source", summary: "GPU-accelerated editor at 120fps from the creators of Atom and Tree-sitter. Built-in AI assistant, multiplayer editing, and support for Copilot, Supermaven, and Zed AI.", tags: ["coding", "open-source", "editor", "performance"] },
+  { name: "Qodo", vendor: "Qodo (ex-CodiumAI)", url: "https://www.qodo.ai", setting: "IDE", models: "proprietary", pricing: "freemium", summary: "Quality-first AI coding platform. Focuses on test generation, automated code reviews, and code integrity rather than speed and autocomplete.", tags: ["coding", "testing", "quality"] },
+
+  // ── Web harnesses ────────────────────────────────────────────────
+  { name: "ChatGPT", vendor: "OpenAI", url: "https://chat.openai.com", setting: "Web", models: "GPT-5, GPT-5.5, o3, o4-mini", pricing: "freemium", summary: "The most widely used AI chat interface. Deep research mode, data analysis, image generation, Operator for browser tasks, and Workspace Agents for persistent team workflows.", tags: ["general", "coding", "research", "multimodal"] },
+  { name: "Claude.ai", vendor: "Anthropic", url: "https://claude.ai", setting: "Web", models: "Claude", pricing: "freemium", summary: "Anthropic's web interface for Claude. Projects for persistent context, artifacts for generated content, and strong long-document reasoning. Pro, Teams, and Enterprise tiers.", tags: ["general", "coding", "writing", "analysis"] },
+  { name: "Gemini", vendor: "Google", url: "https://gemini.google.com", setting: "Web", models: "Gemini 3.1 Pro, 3 Flash", pricing: "freemium", summary: "Google's AI assistant with deep integrations into Workspace (Docs, Gmail, Drive, Maps, YouTube). One-click connections to the Google ecosystem.", tags: ["general", "google-ecosystem", "multimodal"] },
+  { name: "Perplexity", vendor: "Perplexity AI", url: "https://perplexity.ai", setting: "Web", models: "proprietary + GPT, Claude", pricing: "freemium", summary: "Search-native AI. Every answer includes cited sources with links, transforming the chat into an intelligent search engine. $21B valuation, $200M ARR.", tags: ["search", "research", "citations"] },
+  { name: "Grok", vendor: "xAI", url: "https://grok.com", setting: "Web", models: "Grok", pricing: "freemium", summary: "xAI's chatbot integrated into X (formerly Twitter). Real-time access to everything happening on the platform, synthesizing millions of posts into coherent answers.", tags: ["general", "real-time", "social"] },
+  { name: "DeepSeek Chat", vendor: "DeepSeek", url: "https://chat.deepseek.com", setting: "Web", models: "DeepSeek R1, V3", pricing: "free", summary: "Completely free web interface with no subscription fees or usage limits. V3 is the cheapest frontier-grade model at roughly 10x less than GPT-4o.", tags: ["general", "free", "reasoning"] },
+  { name: "Poe", vendor: "Quora", url: "https://poe.com", setting: "Web", models: "GPT, Claude, Gemini, Llama, and more", pricing: "freemium", summary: "Multi-model aggregator. Chat with many AI models in one place, compare responses side-by-side, and create custom bots. The model-agnostic meta-harness.", tags: ["general", "multi-model", "aggregator"] },
+  { name: "HuggingChat", vendor: "Hugging Face", url: "https://huggingface.co/chat", setting: "Web", models: "Llama, Mistral, Qwen, and more open models", pricing: "free", summary: "Open-source ChatGPT alternative. Completely free with no account required. Omni mode auto-picks the best model, or choose any available open-source model directly.", tags: ["general", "free", "open-source"] },
+  { name: "Le Chat", vendor: "Mistral AI", url: "https://chat.mistral.ai", setting: "Web", models: "Mistral Large, Medium, Small", pricing: "freemium", summary: "Mistral's chat interface. EU-based, GDPR-compliant, with real-time web search on the free tier. Remote agents powered by Mistral Medium 3.5.", tags: ["general", "privacy", "eu-based"] },
+  { name: "Meta AI", vendor: "Meta", url: "https://www.meta.ai", setting: "Web", models: "Llama 4", pricing: "free", summary: "Meta's free AI assistant with real-time web search. Integrated across Facebook, Instagram, WhatsApp, and Messenger. Uses interaction data for ad personalization.", tags: ["general", "free", "social"] },
+
+  // ── Cloud agent harnesses ────────────────────────────────────────
+  { name: "Codex (Cloud)", vendor: "OpenAI", url: "https://openai.com/codex", setting: "Cloud", models: "GPT-5.4", pricing: "subscription", summary: "OpenAI's cloud coding agent. Runs tasks in isolated sandboxes with internet disabled. Multi-agent parallel execution, Skills for reusable workflows, and Automations for scheduled background work.", tags: ["coding", "agentic", "cloud", "enterprise"] },
+  { name: "Devin", vendor: "Cognition AI", url: "https://devin.ai", setting: "Cloud", models: "proprietary", pricing: "subscription", summary: "The first autonomous coding agent to go mainstream. Runs in a cloud sandbox with its own shell, browser, and editor. Plans and executes multi-step engineering tasks.", tags: ["coding", "autonomous", "cloud"] },
+  { name: "OpenHands", vendor: "OpenHands", url: "https://openhands.dev", setting: "Cloud", models: "any (Claude, GPT, Gemini, Llama, Ollama)", pricing: "open-source", summary: "Open-source cloud coding agent platform (MIT, 68K stars). Agent SDK, CLI, and local GUI. Self-hosted or cloud. 72% on SWE-bench with Claude. Used by AMD, Apple, Google.", tags: ["coding", "open-source", "cloud", "enterprise"] },
+  { name: "Claude Cowork", vendor: "Anthropic", url: "https://claude.ai", setting: "Cloud", models: "Claude", pricing: "subscription", summary: "Autonomous background agent in Claude Desktop. Works in a cloud VM, coordinates sub-agents, and executes multi-step tasks. GA April 2026.", tags: ["general", "autonomous", "agentic"] },
+  { name: "Replit Agent", vendor: "Replit", url: "https://replit.com", setting: "Cloud", models: "proprietary", pricing: "freemium", summary: "Cloud IDE with Agent 3: autonomous for up to 200 minutes, spawns subagents, self-tests and fixes code. Three effort modes (Economy, Power, Turbo). One-click deploy.", tags: ["coding", "cloud", "app-builder"] },
+
+  // ── Desktop harnesses ────────────────────────────────────────────
+  { name: "Claude Desktop", vendor: "Anthropic", url: "https://claude.ai/download", setting: "Desktop", models: "Claude", pricing: "freemium", summary: "Native macOS and Windows app wrapping Claude. Three tabs: Chat (general), Cowork (autonomous background agent), and Code (interactive coding with local file access). MCP server support.", tags: ["general", "coding", "mcp"] },
+  { name: "ChatGPT Desktop", vendor: "OpenAI", url: "https://openai.com/chatgpt/desktop/", setting: "Desktop", models: "GPT-5, o3, o4-mini", pricing: "freemium", summary: "Native desktop app for ChatGPT on macOS and Windows. Quick access via hotkey, screen sharing for visual context, and all ChatGPT web features locally.", tags: ["general", "coding", "multimodal"] },
+  { name: "LM Studio", vendor: "LM Studio", url: "https://lmstudio.ai", setting: "Desktop", models: "any local (GGUF)", pricing: "free", summary: "Desktop GUI for discovering, downloading, and running local LLMs. Browse Hugging Face, chat with models locally, and serve them via an OpenAI-compatible API. No data leaves your machine.", tags: ["local", "privacy", "open-weights"] },
+  { name: "Ollama", vendor: "Ollama", url: "https://ollama.com", setting: "Desktop", models: "any local (GGUF)", pricing: "open-source", summary: "Docker for AI models. Pull with a single command, and it handles quantization, memory management, and GPU acceleration automatically. 164K+ GitHub stars. The standard local LLM runner.", tags: ["local", "open-source", "privacy", "infrastructure"] },
+  { name: "Askimo", vendor: "Askimo", url: "https://askimo.chat", setting: "Desktop", models: "ChatGPT, Claude, Gemini, Ollama", pricing: "open-source", summary: "Open-source desktop chat client (Kotlin). Switch between ChatGPT, Claude, Gemini, and Ollama with one click. Compare AI model responses side-by-side.", tags: ["general", "open-source", "multi-model"] },
+
+  // ── Embedded harnesses ───────────────────────────────────────────
+  { name: "Microsoft 365 Copilot", vendor: "Microsoft", url: "https://www.microsoft.com/microsoft-365/copilot", setting: "Embedded", models: "GPT, Claude (via Copilot Studio)", pricing: "subscription", summary: "AI embedded across Word, Excel, PowerPoint, Outlook, and Teams. Cowork mode carries out cross-app tasks autonomously. Model choice includes Claude via Copilot Studio.", tags: ["productivity", "enterprise", "office"] },
+  { name: "Claude for Office", vendor: "Anthropic", url: "https://claude.ai", setting: "Embedded", models: "Claude", pricing: "subscription", summary: "Claude embedded in Excel, PowerPoint, Word, Google Sheets, Slack, Gmail, and Google Drive. Shared context across apps lets it carry findings from one tool to the next.", tags: ["productivity", "office", "cross-app"] },
+  { name: "Gemini in Workspace", vendor: "Google", url: "https://workspace.google.com/solutions/ai/", setting: "Embedded", models: "Gemini", pricing: "subscription", summary: "Gemini integrated into Google Docs, Sheets, Slides, Gmail, and Meet. Generate text, analyze data, create presentations, and summarize meetings inside the apps you already use.", tags: ["productivity", "google-ecosystem", "office"] },
+  { name: "NotebookLM", vendor: "Google", url: "https://notebooklm.google", setting: "Embedded", models: "Gemini 3", pricing: "free", summary: "AI research assistant grounded in your uploaded sources. Generates audio overviews, answers questions from your documents, and cites specific passages. Integrated into Gemini as of April 2026.", tags: ["research", "documents", "citations", "free"] },
+  { name: "Notion AI", vendor: "Notion", url: "https://notion.so/product/ai", setting: "Embedded", models: "proprietary (GPT, Claude)", pricing: "subscription", summary: "AI woven into every Notion page. Generates drafts, summarizes notes, creates databases, translates, finds action items, and suggests project timelines inside your workspace.", tags: ["productivity", "writing", "workspace"] },
+  { name: "Grammarly", vendor: "Grammarly", url: "https://www.grammarly.com", setting: "Embedded", models: "proprietary", pricing: "freemium", summary: "AI writing assistant embedded across browsers, desktop apps, and mobile. Grammar, tone, clarity, and full rewrite suggestions everywhere you type.", tags: ["writing", "grammar", "cross-platform"] },
+
+  // ── App builder harnesses ────────────────────────────────────────
+  { name: "Lovable", vendor: "Lovable (ex-GPT Engineer)", url: "https://lovable.dev", setting: "App builder", models: "Claude, GPT", pricing: "freemium", summary: "AI-powered full-stack web app builder. Describe what you want, get a working React + Supabase app. $330M Series B at $6.6B valuation, $200M ARR.", tags: ["app-builder", "no-code", "full-stack"] },
+  { name: "v0", vendor: "Vercel", url: "https://v0.dev", setting: "App builder", models: "proprietary", pricing: "freemium", summary: "Vercel's design-aware AI app builder. Generates production-ready React with Next.js, Tailwind, and shadcn/ui. Git integration, database connectivity, and agentic workflows as of 2026.", tags: ["app-builder", "frontend", "react", "design"] },
+  { name: "Bolt.new", vendor: "StackBlitz", url: "https://bolt.new", setting: "App builder", models: "Claude, GPT", pricing: "freemium", summary: "Full-stack app builder running entirely in the browser via WebContainers. Millisecond boot times, zero network latency. Creates project structure, installs deps, writes backend logic, and deploys.", tags: ["app-builder", "full-stack", "browser-based"] },
+  { name: "Manus", vendor: "Manus AI", url: "https://manus.im", setting: "App builder", models: "proprietary", pricing: "freemium", summary: "Autonomous AI agent that handles research, planning, coding, and deployment as a single workflow. Executes complex, multi-step tasks from a single prompt.", tags: ["autonomous", "app-builder", "research"] },
+
+  // ── Framework harnesses ──────────────────────────────────────────
+  { name: "LangGraph", vendor: "LangChain", url: "https://langchain-ai.github.io/langgraph/", setting: "Framework", models: "any", pricing: "open-source", summary: "Framework for stateful, multi-agent apps modeled as directed cyclic graphs. Sub-1.2s latency for 10-step pipelines, 600+ integrations. The most comprehensive agent orchestration library.", tags: ["python", "agents", "open-source", "state-machine"] },
+  { name: "LangChain", vendor: "LangChain", url: "https://www.langchain.com", setting: "Framework", models: "any", pricing: "open-source", summary: "The foundational LLM application framework. Chains, prompts, retrievers, and integrations for building LLM-powered applications. LangGraph handles the agent layer.", tags: ["python", "javascript", "open-source", "ecosystem"] },
+  { name: "CrewAI", vendor: "CrewAI", url: "https://www.crewai.com", setting: "Framework", models: "any", pricing: "open-source", summary: "Role-based multi-agent framework. Define agent teams with specific roles and goals, and they collaborate to complete tasks. Best for rapid prototyping of team-based automation.", tags: ["python", "agents", "open-source", "multi-agent"] },
+  { name: "AutoGen", vendor: "Microsoft", url: "https://github.com/microsoft/autogen", setting: "Framework", models: "any", pricing: "open-source", summary: "Models agent collaboration as dynamic conversation. Agents exchange messages, delegate tasks, and reach consensus through structured dialogue. Strong human-in-the-loop support.", tags: ["python", "agents", "open-source", "conversational"] },
+  { name: "Semantic Kernel", vendor: "Microsoft", url: "https://github.com/microsoft/semantic-kernel", setting: "Framework", models: "any", pricing: "open-source", summary: "Microsoft's enterprise SDK for integrating AI into applications. Orchestrates AI calls, manages workflows, and provides a structured plugin architecture. C#, Python, and Java.", tags: ["dotnet", "python", "java", "enterprise", "open-source"] },
+  { name: "LlamaIndex", vendor: "LlamaIndex", url: "https://www.llamaindex.ai", setting: "Framework", models: "any", pricing: "open-source", summary: "Data framework for LLM applications. Specializes in connecting LLMs to documents, databases, and APIs. The go-to for RAG-heavy workflows and knowledge-centric agents.", tags: ["python", "rag", "open-source", "data"] },
+  { name: "OpenAI Agents SDK", vendor: "OpenAI", url: "https://openai.github.io/openai-agents-python/", setting: "Framework", models: "OpenAI (primary), any", pricing: "open-source", summary: "OpenAI's Python SDK for building agentic apps. Agents, handoffs, guardrails, tracing, and tool use with built-in orchestration primitives.", tags: ["python", "agents", "open-source"] },
+  { name: "Claude Agent SDK", vendor: "Anthropic", url: "https://docs.anthropic.com/en/docs/agent-sdk", setting: "Framework", models: "Claude", pricing: "open-source", summary: "Anthropic's official framework for building agents with Claude. Streamlined interface for MCP tool support, conversation management, and agentic workflows.", tags: ["python", "agents", "open-source", "mcp"] },
+  { name: "Google ADK", vendor: "Google", url: "https://google.github.io/adk-docs/", setting: "Framework", models: "any (Gemini primary)", pricing: "open-source", summary: "Google's Agent Development Kit. Model-agnostic, deployment-agnostic. Python, TypeScript, Java, and Go SDKs. A2A Agent Cards for cross-team discovery, Vertex AI Engine for managed deployment.", tags: ["python", "typescript", "agents", "open-source", "google-cloud"] },
+  { name: "Strands Agents", vendor: "AWS", url: "https://github.com/strands-agents/sdk-python", setting: "Framework", models: "any", pricing: "open-source", summary: "AWS's model-agnostic agent framework. Powers Amazon Q Developer, AWS Glue, and VPC Reachability Analyzer internally. 14M+ downloads. First-class OpenTelemetry tracing.", tags: ["python", "agents", "open-source", "aws", "enterprise"] },
+  { name: "Pydantic AI", vendor: "Pydantic", url: "https://ai.pydantic.dev", setting: "Framework", models: "any", pricing: "open-source", summary: "Type-safe Python agent framework with a FastAPI-like developer experience. Durable execution, smooth IDE support, and emphasis on reliability and maintainability.", tags: ["python", "agents", "open-source", "type-safe"] },
+  { name: "smolagents", vendor: "Hugging Face", url: "https://huggingface.co/docs/smolagents", setting: "Framework", models: "any", pricing: "open-source", summary: "Hugging Face's minimal agent library (under 1K LOC). Code agents that write and execute Python to achieve goals. Reduces LLM calls by 30% compared to JSON-action approaches.", tags: ["python", "agents", "open-source", "minimal"] },
+  { name: "Haystack", vendor: "deepset", url: "https://haystack.deepset.ai", setting: "Framework", models: "any", pricing: "open-source", summary: "Framework built for search and question-answering. The go-to for building AI agents that search through documents, databases, or knowledge bases.", tags: ["python", "rag", "search", "open-source"] },
+  { name: "DSPy", vendor: "Stanford NLP", url: "https://dspy.ai", setting: "Framework", models: "any", pricing: "open-source", summary: "Replaces prompt engineering with compiled pipelines. Declarative signatures and optimizers that automatically tune prompts and few-shot examples for your task.", tags: ["python", "optimization", "open-source", "research"] },
+  { name: "Agno", vendor: "Agno", url: "https://github.com/agno-agi/agno", setting: "Framework", models: "any", pricing: "open-source", summary: "Fast agent SDK with an optional managed platform. Lightweight, model-agnostic agent framework focused on speed and simplicity.", tags: ["python", "agents", "open-source"] },
+  { name: "Mastra", vendor: "Mastra", url: "https://mastra.ai", setting: "Framework", models: "any", pricing: "open-source", summary: "TypeScript-first AI agent framework. Built for the Node.js ecosystem with workflow orchestration, tool integration, and deployment pipelines.", tags: ["typescript", "agents", "open-source"] },
+
+  // ── Automation / no-code harnesses ───────────────────────────────
+  { name: "Lindy", vendor: "Lindy AI", url: "https://www.lindy.ai", setting: "Automation", models: "GPT, Claude", pricing: "freemium", summary: "No-code platform for building AI agents that automate business workflows: managing inboxes, meeting notes, lead gen, customer support, and data extraction.", tags: ["no-code", "automation", "business"] },
+];
+
+
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function slug(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+function tagHtml(t) {
+  if (typeof t === 'string') return '<span class="tag">'+esc(t)+'</span>';
+  return '<span class="tag '+(t.cls||'')+'">'+esc(t.label)+'</span>';
+}
+
+function render() {
+  var navEl = document.getElementById('setting-nav');
+  var catalogEl = document.getElementById('catalog');
+
+  if (HARNESSES.length === 0) {
+    navEl.innerHTML = '';
+    catalogEl.innerHTML = '<div class="catalog-empty">Catalog coming soon.</div>';
+    return;
+  }
+
+  // Group by setting (preserves first-appearance order)
+  var groups = {};
+  var order = [];
+  for (var i = 0; i < HARNESSES.length; i++) {
+    var h = HARNESSES[i];
+    if (!(h.setting in groups)) {
+      groups[h.setting] = [];
+      order.push(h.setting);
+    }
+    groups[h.setting].push(h);
+  }
+
+  // Setting nav
+  navEl.innerHTML =
+    order.map(function(s) { return '<a href="#'+slug(s)+'">'+esc(s)+'</a>'; }).join('');
+
+  // Sections
+  var html = order.map(function(setting) {
+    var items = groups[setting];
+    var cards = items.map(function(h) {
+      var inner = '<div class="card-name">'+esc(h.name)+'</div>';
+      if (h.vendor) {
+        inner += '<div class="card-vendor">'+esc(h.vendor)+'</div>';
+      }
+      if (h.models) {
+        inner += '<div class="card-detail-row">'+
+          '<span class="card-detail-value">'+esc(h.models)+'</span>'+
+          '<span class="card-detail-label">models</span>'+
+        '</div>';
+      }
+      if (h.pricing) {
+        inner += '<div class="card-detail-row">'+
+          '<span class="card-detail-value">'+esc(h.pricing)+'</span>'+
+          '<span class="card-detail-label">pricing</span>'+
+        '</div>';
+      }
+      if (h.tags && h.tags.length) {
+        inner += '<div class="tags">'+h.tags.map(tagHtml).join('')+'</div>';
+      }
+      if (h.summary) {
+        inner += '<div class="summary">'+esc(h.summary)+'</div>';
+      }
+      inner += '<div class="card-foot"><span class="out">read more &rarr;</span></div>';
+
+      var tag = h.url ? 'a' : 'div';
+      var href = h.url ? ' href="'+h.url+'" target="_blank" rel="noopener"' : '';
+      return '<'+tag+' class="harness-card"'+href+'>'+inner+'</'+tag+'>';
+    }).join('');
+
+    return (
+      '<section class="setting-section" id="'+slug(setting)+'">'+
+        '<div class="setting-head">'+
+          '<span class="setting-name">'+esc(setting)+'</span>'+
+          '<span class="setting-count">'+items.length+' harness'+(items.length !== 1 ? 'es' : '')+'</span>'+
+        '</div>'+
+        '<div class="grid">'+cards+'</div>'+
+      '</section>'
+    );
+  }).join('');
+
+  catalogEl.innerHTML = html;
+}
+
+render();
+</script>
+</body>
+</html>

@@ -22,6 +22,15 @@ Tone/voice-specific notes that used to live here have moved to `memory/llms-cura
 - **Deploys**: always route through `~/projects/ops/DEPLOY_QUEUE.md`. The user does not want this repo deploying directly.
 - **Commits**: don't create commits unless explicitly asked. A fresh orchestrator session should not commit as part of ordinary work.
 
+## Technical lessons (2026-04-20)
+
+- **HIERARCHY_COLORS was dead, HIERARCHY_LABELS was not.** During the code quality pass I removed both as "dead constants" but HIERARCHY_LABELS is still referenced in two places: the field notes markdown builder and the search text matching. ESLint's `no-undef` rule caught this immediately. Lesson: always run lint after removing constants.
+- **Theme toggle had two divergent code paths.** The `t` keyboard shortcut inside the detail drawer manually toggled `document.body.classList` and wrote to localStorage directly, while the `t` handler outside the drawer set `state.lightMode` and called a local `applyTheme()` that never actually toggled anything (it just read the current class). The outside-drawer handler was silently broken. Fix: both handlers now click the forge theme button (`#forge-theme-btn`), which delegates to forge.js's proper toggle (class + localStorage + sun/moon icons + MutationObserver fires mermaid reinit).
+- **`updateFilterDescriptionss` typo** — the original filter bug was a function defined with a double 's' but called without it. Every filter click threw a silent ReferenceError. The ESLint `no-undef` rule was added specifically to prevent this class of bug from recurring.
+- **Stale naming persists in body copy.** After domain/brand renames, grep for the old name in all `.html` files. This session found "Agent Forge" (2 instances in forge/index.html) and "Toolshed" (3 instances in tools/index.html) surviving a rename that touched titles, og:tags, and nav but missed prose and comments.
+- **context/index.html had duplicate CSS** — `.site-label` and `.hero` rules copied verbatim from forge.css with only minor value differences (max-width 520 vs 560, margin 0.35rem vs 0.4rem). Replaced with a small override block. When adding shared CSS to forge.css, grep all pages for inline duplicates.
+- **Playwright tests need filter-aware setup.** The orchestration page defaults to the "core" domain filter on first load, so a smoke test expecting >200 cards will fail unless it clears the filter first (press Escape).
+
 ## Philosophical direction: orchestration ↔ harness tie-ins
 
 User framing (2026-04-11, just before restart): the forge (multi-agent system management template) is not special software. It is **context**. Role files, memory conventions, coordination protocols, pattern library — all of it is prompts and markdown that get fed into an LLM. The relevant consequence:

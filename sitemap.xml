@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://llms.thisminute.org/</loc></url>
+  <url><loc>https://llms.thisminute.org/models/</loc></url>
+  <url><loc>https://llms.thisminute.org/context/</loc></url>
+  <url><loc>https://llms.thisminute.org/harnesses/</loc></url>
+  <url><loc>https://llms.thisminute.org/tools/</loc></url>
+  <url><loc>https://llms.thisminute.org/orchestration/</loc></url>
+  <url><loc>https://llms.thisminute.org/forge/</loc></url>
+  <url><loc>https://llms.thisminute.org/orchestration/evolution.html</loc></url>
+</urlset>

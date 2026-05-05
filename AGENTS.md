@@ -74,8 +74,6 @@ claude --dangerously-skip-permissions --system-prompt (Get-Content -Raw .\agents
 
 Capture the output, surface results back to the user or feed the next decision. Each spawn is a fresh process — no persistent subagent state.
 
-When the meta-orchestrator at `~/projects/` dispatches into this project, it spawns *you* (the orchestrator) the same way using this AGENTS.md. The pattern is fractal.
-
 ## Key Files
 
 ```

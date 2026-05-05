@@ -5,21 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Models &middot; LLMs &middot; thisminute.org</title>
 <meta name="description" content="A big snapshot of the real models out there right now, grouped by vendor. Context windows, modalities, reasoning modes, hosted vs open weights.">
+<meta property="og:title" content="Models · LLMs · thisminute.org">
+<meta property="og:description" content="A big snapshot of the real models out there right now, grouped by vendor. Context windows, modalities, reasoning modes, hosted vs open weights.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://llms.thisminute.org/models/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>%F0%9F%A7%A0</text></svg>">
 <!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
 <script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/shared/forge.css?v=3aTone">
 <style>
-  :root { --accent: #f0a4c0; }
-  body.light-mode { --accent: #d97ea0; }
-
   body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
 
-  /* .site-label, .hero, .disclaimer now live in shared/forge.css */
+  /* .hero, .disclaimer now live in shared/forge.css */
 
   /* Vendor jump nav */
   .vendor-nav {
@@ -155,13 +159,9 @@
     color: var(--text-muted);
   }
   .tag.mint {
-    background: color-mix(in srgb, #a8d8b5 14%, transparent);
-    border-color: color-mix(in srgb, #a8d8b5 28%, transparent);
-    color: #7fbb8f;
-  }
-  body.light-mode .tag.mint {
-    background: color-mix(in srgb, #7fbb8f 12%, transparent);
-    color: #5a9577;
+    background: color-mix(in srgb, var(--color-context) 14%, transparent);
+    border-color: color-mix(in srgb, var(--color-context) 28%, transparent);
+    color: var(--color-context);
   }
   .tag.pink {
     background: var(--accent-dim);
@@ -188,15 +188,6 @@
   }
   .card-foot .out { color: var(--accent); }
 
-  footer {
-    text-align: center;
-    padding: 32px 24px 40px;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-  }
-  footer a { color: var(--text-secondary); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-
   @media (max-width: 520px) {
     .hero h1 { font-size: 2.5rem; }
     .grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -205,11 +196,9 @@
   }
 </style>
 </head>
-<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+<body class="section-models"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
 
 <div class="forge-theme-toggle"></div>
-
-<p class="site-label"><a href="/">&larr; LLMs</a> / model</p>
 
 <header class="hero">
   <h1>Models</h1>
@@ -249,7 +238,7 @@
   </section>
 
   <section class="explainer-section" style="text-align:center; margin-top: 3.5rem;">
-    <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">Snapshot of the current landscape below, grouped by vendor. Current as of 2026-04-11 and already a little out of date, as usual.</p>
+    <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.92rem;">Snapshot of the current landscape below, grouped by vendor.</p>
     <a class="archive-jump" href="#catalog">Browse the catalog &darr;</a>
   </section>
 
@@ -259,15 +248,12 @@
 
 <main class="catalog" id="catalog"></main>
 
-<footer>
-  part of <a href="/">LLMs &middot; thisminute.org</a>
-</footer>
-
 <script src="/shared/forge.js?v=3aTone"></script>
 <script>
 const MODELS = [
   // ─── Anthropic ────────────────────────────────────────
-  { vendor: "Anthropic", name: "Claude Opus 4.6", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Frontier reasoning model. Extended-thinking mode, 1M token window, image input. Anthropic's current top-tier.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude Opus 4.7", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Current Anthropic flagship. Substantially better at software engineering and vision than 4.6, with high-resolution image support up to 3.75MP.", url: "https://www.anthropic.com/claude" },
+  { vendor: "Anthropic", name: "Claude Opus 4.6", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Previous-generation flagship. Extended-thinking mode, 1M token window, image input. Superseded by Opus 4.7 but still widely deployed.", url: "https://www.anthropic.com/claude" },
   { vendor: "Anthropic", name: "Claude Sonnet 4.6", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "The workhorse. Most of Claude Code runs on this. Cheaper and faster than Opus, still extremely capable at long agentic work.", url: "https://www.anthropic.com/claude" },
   { vendor: "Anthropic", name: "Claude Haiku 4.5", ctx: "200K", tags: ["hosted", "fast", {label:"vision",cls:"pink"}], summary: "The small one. Built for speed and cheap bulk work. Great for triage and pre-filtering before handing off to a bigger model.", url: "https://www.anthropic.com/claude" },
   { vendor: "Anthropic", name: "Claude Sonnet 4.5", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Previous workhorse generation. Still widely deployed in production. Excellent at long-running tool-use loops.", url: "https://www.anthropic.com/claude" },
@@ -276,9 +262,10 @@ const MODELS = [
   { vendor: "Anthropic", name: "Claude 3 Opus", ctx: "200K", tags: ["hosted", {label:"vision",cls:"pink"}], summary: "Original Claude 3 frontier. Strong at long creative writing. Still popular for specific analysis tasks.", url: "https://www.anthropic.com/claude" },
 
   // ─── OpenAI ────────────────────────────────────────
-  { vendor: "OpenAI", name: "GPT-5", ctx: "256K", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"multimodal",cls:"pink"}], summary: "OpenAI's flagship. Heavy multimodal support, built-in reasoning modes, and broad tool-calling. The one everyone compares against.", url: "https://openai.com/index/introducing-gpt-5/" },
-  { vendor: "OpenAI", name: "GPT-5 Mini", ctx: "128K", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The smaller, cheaper GPT-5. Same shape, less horsepower. Solid default for API apps that don't need the full model.", url: "https://openai.com/api/" },
-  { vendor: "OpenAI", name: "GPT-5 Nano", ctx: "128K", tags: ["hosted", "fast", "tiny"], summary: "The cheapest GPT-5 class. Built for extreme-scale bulk workloads where latency and cost dominate.", url: "https://openai.com/api/" },
+  { vendor: "OpenAI", name: "GPT-5.5", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"multimodal",cls:"pink"}], summary: "OpenAI's newest flagship. Stronger multi-step reasoning, agentic workflows, and coding. Matches GPT-5.4 latency at a much higher intelligence level.", url: "https://openai.com/index/introducing-gpt-5-5/" },
+  { vendor: "OpenAI", name: "GPT-5", ctx: "256K", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"multimodal",cls:"pink"}], summary: "Original GPT-5 generation. Heavy multimodal support, built-in reasoning modes, and broad tool-calling. Superseded by GPT-5.5 but still widely used.", url: "https://openai.com/index/introducing-gpt-5/" },
+  { vendor: "OpenAI", name: "GPT-5 Mini", ctx: "400K", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The smaller, cheaper GPT-5. Same shape, less horsepower. Solid default for API apps that don't need the full model.", url: "https://openai.com/api/" },
+  { vendor: "OpenAI", name: "GPT-5 Nano", ctx: "400K", tags: ["hosted", "fast", "tiny"], summary: "The cheapest GPT-5 class. Built for extreme-scale bulk workloads where latency and cost dominate.", url: "https://openai.com/api/" },
   { vendor: "OpenAI", name: "o3", ctx: "200K", tags: ["hosted", {label:"thinking",cls:"mint"}], summary: "Dedicated reasoning model. Burns a lot of thinking tokens before answering, gets top marks on math and code benchmarks.", url: "https://openai.com/index/introducing-o3-and-o4-mini/" },
   { vendor: "OpenAI", name: "o4-mini", ctx: "200K", tags: ["hosted", {label:"thinking",cls:"mint"}, "fast"], summary: "Latest small reasoning model. Replaced o3-mini as the go-to for fast, cheap chain-of-thought work. Strong at math and code.", url: "https://openai.com/index/introducing-o3-and-o4-mini/" },
   { vendor: "OpenAI", name: "o3-mini", ctx: "128K", tags: ["hosted", {label:"thinking",cls:"mint"}, "fast"], summary: "Smaller reasoning model. Quick enough to drop into loops, strong on competitive math and programming tasks.", url: "https://openai.com/index/openai-o3-mini/" },
@@ -290,6 +277,9 @@ const MODELS = [
   { vendor: "OpenAI", name: "GPT-3.5 Turbo", ctx: "16K", tags: ["hosted", "legacy", "cheap"], summary: "The dirt-cheap original. Way past its prime but still alive as a fallback for ultra-simple tasks.", url: "https://openai.com/api/" },
 
   // ─── Google ────────────────────────────────────────
+  { vendor: "Google", name: "Gemini 3.1 Pro", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"multimodal",cls:"pink"}], summary: "Google's current flagship. Outperforms Gemini 3 Pro on reasoning and multimodal benchmarks. Available via Gemini API, Vertex AI, and NotebookLM.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemini 3 Flash", ctx: "1M", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "Gemini 3 Pro reasoning with Flash-line efficiency. Built for complex agentic workflows at lower cost and latency.", url: "https://deepmind.google/technologies/gemini/" },
+  { vendor: "Google", name: "Gemini 3.1 Flash Lite", ctx: "1M", tags: ["hosted", "fast", "cheap"], summary: "Google's most cost-efficient Gemini 3 model. Multimodal input at $0.25/M input tokens. Built for high-volume translation, content moderation, and data extraction.", url: "https://deepmind.google/technologies/gemini/" },
   { vendor: "Google", name: "Gemini 2.5 Pro", ctx: "2M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"video",cls:"pink"}], summary: "Biggest context window in the game at 2M tokens. Takes video as input natively. Google's bet on huge-context reasoning.", url: "https://deepmind.google/technologies/gemini/" },
   { vendor: "Google", name: "Gemini 2.5 Flash", ctx: "1M", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The fast, cheap Gemini. Still a huge 1M window, but prices itself to compete at the budget end.", url: "https://deepmind.google/technologies/gemini/" },
   { vendor: "Google", name: "Gemini 2.5 Flash Lite", ctx: "1M", tags: ["hosted", "fast", "cheap"], summary: "Even cheaper than Flash. Built for high-volume bulk workloads where you need multimodal but can't afford Pro.", url: "https://deepmind.google/technologies/gemini/" },
@@ -297,18 +287,23 @@ const MODELS = [
   { vendor: "Google", name: "Gemini 2.0 Flash", ctx: "1M", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The 2.0 generation's speedster. Introduced native tool use and strong vision performance at low latency.", url: "https://deepmind.google/technologies/gemini/" },
   { vendor: "Google", name: "Gemini 1.5 Pro", ctx: "2M", tags: ["hosted", "legacy", {label:"multimodal",cls:"pink"}], summary: "The model that made 1M+ context windows normal. Still used where the very long context matters more than raw smarts.", url: "https://deepmind.google/technologies/gemini/" },
   { vendor: "Google", name: "Gemma 3 27B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Google's open-weights model built on Gemini research. Multilingual, vision-capable, and small enough to run on a single GPU.", url: "https://ai.google.dev/gemma" },
+  { vendor: "Google", name: "Gemma 4 31B", ctx: "256K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Google's most capable open model. 31B dense, multimodal, 140+ languages, Apache 2.0. Dominates math and competitive programming benchmarks for its size.", url: "https://ai.google.dev/gemma" },
+  { vendor: "Google", name: "Gemma 4 26B MoE", ctx: "256K", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "MoE variant with only 3.8B active parameters. Runs on consumer GPUs while retaining strong performance. Apache 2.0.", url: "https://ai.google.dev/gemma" },
+  { vendor: "Google", name: "Gemma 3 27B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Previous-gen open model built on Gemini research. Multilingual, vision-capable, and small enough to run on a single GPU.", url: "https://ai.google.dev/gemma" },
   { vendor: "Google", name: "Gemma 3 9B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "small", "self-host"], summary: "Smaller open Gemma. Runs on a laptop with enough VRAM. Popular for local dev and edge deployment.", url: "https://ai.google.dev/gemma" },
 
   // ─── Meta ────────────────────────────────────────
-  { vendor: "Meta", name: "Llama 4 Behemoth", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "frontier"], summary: "Meta's huge MoE flagship. Still in training last we checked, but the preview numbers put it in the frontier conversation.", url: "https://llama.meta.com/" },
-  { vendor: "Meta", name: "Llama 4 Maverick", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "Mid-size MoE. The practical flagship for people self-hosting Llama 4. Strong coding and agentic performance.", url: "https://llama.meta.com/" },
+  { vendor: "Meta", name: "Llama 4 Behemoth", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "frontier"], summary: "Meta's huge MoE flagship. Still unreleased as of mid-2026. Serves primarily as a teacher model for Scout and Maverick via codistillation.", url: "https://llama.meta.com/" },
+  { vendor: "Meta", name: "Llama 4 Maverick", ctx: "1M", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "Mid-size MoE with a 1M token context window. The practical flagship for people self-hosting Llama 4. Strong coding and agentic performance.", url: "https://llama.meta.com/" },
   { vendor: "Meta", name: "Llama 4 Scout", ctx: "10M", tags: [{label:"open weights",cls:"mint"}, {label:"huge ctx",cls:"pink"}], summary: "Weird one. Tiny parameters but a 10M token context window thanks to a new attention scheme. For very-long-document workloads.", url: "https://llama.meta.com/" },
   { vendor: "Meta", name: "Llama 3.3 70B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Reliable open-weights workhorse. Most production self-hosted Llama deployments still run some variant of this.", url: "https://llama.meta.com/" },
   { vendor: "Meta", name: "Llama 3.2 Vision", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "First Llama with multimodal input. 11B and 90B flavors. Unlocked self-hosted vision for a lot of open-source projects.", url: "https://llama.meta.com/" },
   { vendor: "Meta", name: "Llama 3.1 405B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "huge"], summary: "Massive dense open-weights model. Proved that open models could hit frontier quality if you threw enough compute at them.", url: "https://llama.meta.com/" },
 
   // ─── Mistral ────────────────────────────────────────
-  { vendor: "Mistral", name: "Mistral Large 2", ctx: "128K", tags: ["hosted", {label:"open weights",cls:"mint"}], summary: "French flagship. Weights released under research license, also available hosted through Mistral's API for commercial use.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mistral Large 3", ctx: "256K", tags: [{label:"open weights",cls:"mint"}, "MoE"], summary: "675B parameter open-weights MoE flagship. 41B active per token. Multimodal, multilingual, Apache 2.0. The largest open MoE from a major lab.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mistral Small 4", ctx: "256K", tags: [{label:"open weights",cls:"mint"}, {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "119B MoE unifying reasoning, vision, and agentic coding. Only 6.5B active parameters. Configurable reasoning effort. Apache 2.0.", url: "https://mistral.ai/" },
+  { vendor: "Mistral", name: "Mistral Large 2", ctx: "128K", tags: ["hosted", {label:"open weights",cls:"mint"}], summary: "Previous-generation French flagship. Weights released under research license, also available hosted. Superseded by Large 3.", url: "https://mistral.ai/" },
   { vendor: "Mistral", name: "Mistral Medium 3", ctx: "128K", tags: ["hosted"], summary: "The mid-range hosted model. Priced to compete with Sonnet and GPT-4o Mini for everyday production use.", url: "https://mistral.ai/" },
   { vendor: "Mistral", name: "Mistral Small 3", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, "fast", "self-host"], summary: "Fully open small model. 24B parameters. Built to run fast on modest hardware.", url: "https://mistral.ai/" },
   { vendor: "Mistral", name: "Mistral Nemo", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "small"], summary: "12B open-weights model built with NVIDIA. Tokenizer is notably efficient on non-English languages.", url: "https://mistral.ai/" },
@@ -317,6 +312,8 @@ const MODELS = [
   { vendor: "Mistral", name: "Codestral", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, {label:"coding",cls:"pink"}], summary: "Mistral's specialized coding model. Trained on 80+ programming languages. Great for self-hosted code assistants.", url: "https://mistral.ai/" },
 
   // ─── DeepSeek ────────────────────────────────────────
+  { vendor: "DeepSeek", name: "DeepSeek V4 Pro", ctx: "1M", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "Fourth-generation flagship. 1.6T parameters, 49B active. 1M context with only 27% of V3's inference FLOPs. MIT license.", url: "https://www.deepseek.com/" },
+  { vendor: "DeepSeek", name: "DeepSeek V4 Flash", ctx: "1M", tags: [{label:"open weights",cls:"mint"}, "MoE", "fast"], summary: "284B parameter fast MoE. 13B active per token, 1M context. Built for high-throughput workloads at minimal cost. MIT license.", url: "https://www.deepseek.com/" },
   { vendor: "DeepSeek", name: "DeepSeek R1", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, {label:"thinking",cls:"mint"}, "self-host"], summary: "Open-weights reasoning model that shocked everyone by being nearly as good as frontier models on math and code for a fraction of the training cost.", url: "https://www.deepseek.com/" },
   { vendor: "DeepSeek", name: "DeepSeek V3", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "The non-reasoning DeepSeek. Large MoE model, cheap to run, fast, general-purpose. Very popular as a self-hosted workhorse.", url: "https://www.deepseek.com/" },
   { vendor: "DeepSeek", name: "DeepSeek R1 Distill", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "small"], summary: "Reasoning traces from R1 distilled into smaller base models (Llama, Qwen). Runs on consumer hardware, retains a lot of the reasoning behavior.", url: "https://www.deepseek.com/" },
@@ -324,17 +321,19 @@ const MODELS = [
   { vendor: "DeepSeek", name: "DeepSeek V2", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "legacy"], summary: "Previous-generation V2. Still in use in self-hosted setups that haven't upgraded yet.", url: "https://www.deepseek.com/" },
 
   // ─── Alibaba (Qwen) ────────────────────────────────────────
-  { vendor: "Alibaba", name: "Qwen 3", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "multilingual"], summary: "Qwen's current flagship. Strong multilingual coverage, sizes range from tiny to very large. All open.", url: "https://qwenlm.github.io/" },
+  { vendor: "Alibaba", name: "Qwen 3.6", ctx: "256K", tags: [{label:"open weights",cls:"mint"}, "multilingual", {label:"coding",cls:"pink"}], summary: "Qwen's current flagship generation. 256K native context extensible to 1M tokens. Sizes from 2B to 35B. Excels at agentic coding and repository-level reasoning.", url: "https://qwenlm.github.io/" },
   { vendor: "Alibaba", name: "Qwen 2.5 72B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Previous-gen workhorse. Competitive with Llama 70B at the time, still widely deployed.", url: "https://qwenlm.github.io/" },
   { vendor: "Alibaba", name: "Qwen 2.5 Coder", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, {label:"coding",cls:"pink"}], summary: "Code-specialized Qwen. Trained on a huge multi-language code corpus. Powers a lot of open coding assistants.", url: "https://qwenlm.github.io/" },
   { vendor: "Alibaba", name: "Qwen 2 VL", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Vision-capable Qwen. Handles complex documents and charts. Popular for document-parsing pipelines you want to self-host.", url: "https://qwenlm.github.io/" },
   { vendor: "Alibaba", name: "Qwen Audio", ctx: "32K", tags: [{label:"open weights",cls:"mint"}, {label:"audio",cls:"pink"}], summary: "Audio-in, text-out. Transcription, audio understanding, music analysis. One of the few open audio-capable models.", url: "https://qwenlm.github.io/" },
 
   // ─── xAI ────────────────────────────────────────
-  { vendor: "xAI", name: "Grok 3", ctx: "128K", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "xAI's flagship. Trained on an absurd amount of compute. Integrated into X (Twitter) and available via API.", url: "https://x.ai/" },
+  { vendor: "xAI", name: "Grok 4.3", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"video",cls:"pink"}], summary: "xAI's latest flagship. Native video input, 1M token context, aggressive pricing at $1.25/M input tokens.", url: "https://x.ai/" },
+  { vendor: "xAI", name: "Grok 3", ctx: "128K", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Previous xAI flagship. Superseded by Grok 4 series but still available via API and integrated into X.", url: "https://x.ai/" },
   { vendor: "xAI", name: "Grok 2", ctx: "128K", tags: ["hosted", "legacy"], summary: "The previous Grok generation. Vision support added late in its lifecycle. Still used in parts of the X ecosystem.", url: "https://x.ai/" },
 
   // ─── Cohere ────────────────────────────────────────
+  { vendor: "Cohere", name: "Command A", ctx: "256K", tags: ["hosted", {label:"open weights",cls:"mint"}, "RAG"], summary: "Cohere's current flagship. 111B parameters, runs on just two GPUs, 150% throughput of Command R+. Excels at agentic, multilingual, and RAG workflows.", url: "https://cohere.com/command" },
   { vendor: "Cohere", name: "Command R+", ctx: "128K", tags: ["hosted", {label:"open weights",cls:"mint"}, "RAG"], summary: "Cohere's flagship, purpose-built for RAG and tool-use workflows. Weights released. Popular for enterprise search applications.", url: "https://cohere.com/command" },
   { vendor: "Cohere", name: "Command R", ctx: "128K", tags: ["hosted", {label:"open weights",cls:"mint"}, "RAG"], summary: "Smaller, cheaper Command. Same RAG-first design. Sweet spot for retrieval-heavy pipelines on a budget.", url: "https://cohere.com/command" },
 

@@ -5,14 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Context &middot; LLMs &middot; thisminute.org</title>
 <meta name="description" content="The context window is the only memory a model has. What fills it, how fast, and why everything from memory files to reasoning tokens to tool output is really the same thing.">
+<meta property="og:title" content="Context · LLMs · thisminute.org">
+<meta property="og:description" content="The context window is the only memory a model has. What fills it, how fast, and why everything from memory files to reasoning tokens to tool output is really the same thing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://llms.thisminute.org/context/">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='82'>%F0%9F%AA%9F</text></svg>">
 <!-- SRI omitted: Plausible analytics is a dynamic script updated on their CDN; pinning a hash would break when they deploy updates -->
 <script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/shared/forge.css?v=3aTone">
 <style>
-  :root { --accent: #a8d8b5; }
-  body.light-mode { --accent: #7fbb8f; }
-
   body {
     min-height: 100vh;
     display: flex;
@@ -110,12 +114,8 @@
     border-color: color-mix(in srgb, var(--accent) 24%, transparent);
   }
   .tk.ra {
-    background: color-mix(in srgb, #f0a4c0 12%, var(--bg-card));
-    border-color: color-mix(in srgb, #f0a4c0 24%, transparent);
-  }
-  body.light-mode .tk.ra {
-    background: color-mix(in srgb, #d97ea0 10%, var(--bg-card));
-    border-color: color-mix(in srgb, #d97ea0 22%, transparent);
+    background: color-mix(in srgb, var(--color-home) 12%, var(--bg-card));
+    border-color: color-mix(in srgb, var(--color-home) 24%, transparent);
   }
   .tk.lt {
     color: var(--accent);
@@ -241,26 +241,15 @@
   }
   .vision-note strong { color: var(--accent); }
 
-  footer {
-    text-align: center;
-    padding: 32px 24px 40px;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-  }
-  footer a { color: var(--text-secondary); text-decoration: none; }
-  footer a:hover { color: var(--accent); }
-
   @media (max-width: 520px) {
     .fill-row { grid-template-columns: 1fr; }
     .fill-amount { text-align: left; padding-top: 0.2rem; }
   }
 </style>
 </head>
-<body><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+<body class="section-context"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
 
 <div class="forge-theme-toggle"></div>
-
-<p class="site-label"><a href="/">&larr; LLMs</a> / context</p>
 
 <header class="hero">
   <h1>Context</h1>
@@ -425,10 +414,6 @@
   </section>
 
 </main>
-
-<footer>
-  part of <a href="/">LLMs &middot; thisminute.org</a>
-</footer>
 
 <script src="/shared/forge.js?v=3aTone"></script>
 <script>

@@ -41,11 +41,19 @@
   --shadow: 0 2px 24px rgba(0, 0, 0, 0.30);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.40);
 
-  /* Accent — watermelon gum pink */
-  --accent: #f0a4c0;
-  --accent-alt: #a8d8b5;
-  --accent-dim: rgba(240, 164, 192, 0.18);
-  --accent-muted: rgba(240, 164, 192, 0.55);
+  /* Section accent palette — 7 distinct pastels */
+  --color-home:          #f0a4c0;  /* warm pink */
+  --color-harnesses:     #d4a574;  /* amber */
+  --color-models:        #c4a8e0;  /* lavender */
+  --color-context:       #a8d8b5;  /* mint */
+  --color-tools:         #f4a58c;  /* coral */
+  --color-orchestration: #8cb8e0;  /* periwinkle */
+  --color-forge:         #e8c87a;  /* marigold */
+
+  /* Active accent — overridden per page */
+  --accent: var(--color-home);
+  --accent-dim: color-mix(in srgb, var(--accent) 18%, transparent);
+  --accent-muted: color-mix(in srgb, var(--accent) 55%, transparent);
 
   /* Typography — chunky rounded sans */
   --font-display: 'Fredoka', 'Nunito', 'Quicksand', system-ui, sans-serif;
@@ -99,11 +107,19 @@ body.light-mode {
   --shadow: 0 2px 24px rgba(180, 100, 120, 0.08);
   --shadow-lg: 0 8px 40px rgba(180, 100, 120, 0.12);
 
-  /* Accent light — dusty pink */
-  --accent: #d97ea0;
-  --accent-alt: #7fbb8f;
-  --accent-dim: rgba(217, 126, 160, 0.14);
-  --accent-muted: rgba(217, 126, 160, 0.50);
+  /* Section accent palette — light mode */
+  --color-home:          #d97ea0;
+  --color-harnesses:     #b8864e;
+  --color-models:        #9a7cb8;
+  --color-context:       #7fbb8f;
+  --color-tools:         #d97c60;
+  --color-orchestration: #5a8ab5;
+  --color-forge:         #c4a044;
+
+  /* Active accent — overridden per page */
+  --accent: var(--color-home);
+  --accent-dim: color-mix(in srgb, var(--accent) 14%, transparent);
+  --accent-muted: color-mix(in srgb, var(--accent) 50%, transparent);
 
   color-scheme: light;
 }
@@ -146,22 +162,27 @@ a:hover {
   text-decoration-color: var(--accent);
 }
 
-/* --- Header --- */
-.forge-header h1 a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.5em;
-  vertical-align: middle;
-  letter-spacing: 0.18em;
-}
-.forge-header h1 a:hover { color: var(--text-secondary); }
-
-/* --- Theme toggle (fixed top-right) --- */
+/* --- Top-right controls (source link + theme toggle) --- */
 .forge-theme-toggle {
   position: fixed;
   top: 1.25rem;
   right: 1.25rem;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.source-link {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.source-link:hover {
+  color: var(--text-secondary);
 }
 .icon-btn {
   width: 38px;
@@ -187,15 +208,72 @@ a:hover {
   outline-offset: 3px;
 }
 
+/* --- Site navigation ------------------------------------------------
+ *
+ * Injected by forge.js into every page (before .forge-theme-toggle).
+ * Pages only need <div class="forge-theme-toggle"></div> in their HTML.
+ * forge.js auto-detects the current page for aria-current="page".
+ * ------------------------------------------------------------------- */
+
+.site-nav {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 1.25rem 5rem 0 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  align-items: baseline;
+}
+.site-nav a {
+  color: var(--nav-c, var(--text-muted));
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  white-space: nowrap;
+  opacity: 0.55;
+}
+.site-nav a:hover {
+  opacity: 0.85;
+}
+.site-nav a:first-child {
+  font-weight: 600;
+  margin-right: 0.35rem;
+  opacity: 0.75;
+}
+.site-nav a[aria-current="page"] {
+  opacity: 1;
+}
+
+/* --- Section themes ------------------------------------------------
+ *
+ * Each page sets its section on <body class="section-*">. This gives it
+ * the right accent color and a subtle background tint. Pages that need
+ * extra custom properties (tools, orchestration) can still add them in
+ * an inline <style> block.
+ * ------------------------------------------------------------------- */
+
+body.section-harnesses     { --accent: var(--color-harnesses);     --bg: #1f1a15; }
+body.section-models        { --accent: var(--color-models);        --bg: #1b161f; }
+body.section-context       { --accent: var(--color-context);       --bg: #161f18; }
+body.section-tools         { --accent: var(--color-tools);         --bg: #1f1614; }
+body.section-orchestration { --accent: var(--color-orchestration); --bg: #151a1f; }
+body.section-forge         { --accent: var(--color-forge);         --bg: #1f1c14; }
+
+body.section-harnesses.light-mode     { --bg: #fef8f1; }
+body.section-models.light-mode        { --bg: #f8f4fe; }
+body.section-context.light-mode       { --bg: #f2fef6; }
+body.section-tools.light-mode         { --bg: #fef4f1; }
+body.section-orchestration.light-mode { --bg: #f1f6fe; }
+body.section-forge.light-mode         { --bg: #fefcf1; }
+
 /* --- Shared subsite pattern: splash -> explainer -> archive -----------
  *
- * Every subsite (models, tools, context, orchestration, forge) opens with
- * a hero, teaches the concept in a prose column, and only then shows the
- * archive / catalog / browser. These classes carry that top half so each
- * subsite stays visually consistent. See /context/ for the canonical
- * example.
+ * Every subsite opens with a hero, teaches the concept in a prose
+ * column, and only then shows the archive / catalog / browser. See
+ * /context/ for the canonical example.
  *
- *   <p class="site-label"><a href="/">&larr; LLMs</a> / models</p>
+ *   <nav class="site-nav">...</nav>
  *   <header class="hero"><h1>...</h1><p class="tagline">...</p></header>
  *   <div class="explainer">
  *     <section class="explainer-section"><h2>...</h2><p>...</p></section>
@@ -204,21 +282,9 @@ a:hover {
  *   <!-- archive / catalog / browser goes below, full-width if needed -->
  * ------------------------------------------------------------------- */
 
-.site-label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 40px 24px 4px;
-}
-.site-label a { color: inherit; text-decoration: none; }
-.site-label a:hover { color: var(--text-secondary); }
-
 header.hero {
   text-align: center;
-  padding: 0 24px 32px;
+  padding: 0 24px;
 }
 .hero h1 {
   font-family: var(--font-display);

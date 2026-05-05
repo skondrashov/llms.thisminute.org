@@ -15,7 +15,9 @@
   <script defer data-domain="llms.thisminute.org" src="https://plausible.io/js/script.js" crossorigin="anonymous"></script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='none' stroke='%2322d3ee' stroke-width='4'/><circle cx='50' cy='30' r='6' fill='%2322d3ee'/><circle cx='30' cy='60' r='6' fill='%2322d3ee'/><circle cx='70' cy='60' r='6' fill='%2322d3ee'/><line x1='50' y1='30' x2='30' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='50' y1='30' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/><line x1='30' y1='60' x2='70' y2='60' stroke='%2322d3ee' stroke-width='2'/></svg>">
 
-  <link rel="stylesheet" href="/shared/forge.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/shared/forge.css?v=3aTone">
   <style>
     :root {
       --bg: #0a0a0f;
@@ -396,9 +398,9 @@
           <span class="evo-nav-label">orchestration</span>
           <span class="evo-nav-summary">1 agent, no protocol</span>
         </a>
-        <a href="#evo-toolshed" class="evo-nav-item" data-target="evo-toolshed">
+        <a href="#evo-tools" class="evo-nav-item" data-target="evo-tools">
           <span class="evo-nav-dot"></span>
-          <span class="evo-nav-label">toolshed</span>
+          <span class="evo-nav-label">tools</span>
           <span class="evo-nav-summary">7 agents, full protocol day one</span>
         </a>
         <a href="#evo-sts2" class="evo-nav-item" data-target="evo-sts2">
@@ -744,8 +746,8 @@
     <!-- TOOLSHED -->
     <!-- ═══════════════════════════════════════════════════════ -->
 
-    <div id="evo-toolshed" class="summary-section">
-      <h2>Project 4: toolshed</h2>
+    <div id="evo-tools" class="summary-section">
+      <h2>Project 4: tools</h2>
       <p style="color: var(--text-secondary); font-size: 0.88rem;">A software directory that catalogs 15,803 tools across 124 categories. Originally called "mainmenu." The first project to adopt thisminute's protocol+forum model from scratch rather than inheriting it &mdash; proof that the pattern transfers.</p>
     </div>
 
@@ -774,13 +776,13 @@
             <div class="number-item"><div class="number-value">91</div><div class="number-label">forum lines (healthy)</div></div>
           </div>
         </div>
-        <p>The forum is at 91 lines and stable. thisminute's forum hit 1,008 lines in its first big session. toolshed never had that spike because the librarian was there from the start &mdash; a lesson carried over from thisminute.</p>
+        <p>The forum is at 91 lines and stable. thisminute's forum hit 1,008 lines in its first big session. tools never had that spike because the librarian was there from the start &mdash; a lesson carried over from thisminute.</p>
         <div class="callout callout-pattern">
           Orchestration patterns: <a href="./#airline-hub-spoke-ops">Orchestrated</a> (no single orchestrator, but protocol-mediated) + <a href="./#debate-tournament">Adversarial</a> (skeptic reviews strategy proposals). The protocol+forum model is now a documented, transferable pattern.
         </div>
       </div>
 
-    </div><!-- /timeline toolshed -->
+    </div><!-- /timeline tools -->
 
     <!-- ═══════════════════════════════════════════════════════ -->
     <!-- STS2 -->
@@ -925,7 +927,7 @@
         <p>Three formal skeptic reviews across Phases 1&ndash;3. The third review found: the AI's focus fire using a hardcoded Peacekeeper range for all unit types (Heavy Troopers have shorter range), a new unit with no design doc entry (the team was adding gameplay content without updating the spec), and inaccurate stats in the builder's own forum post.</p>
         <p>Phase 4 is now starting: the Syndicate as a second playable faction. Data-driven refactoring to support multiple factions, AI controller abstraction, faction-specific build modes. The strategist wrote architecture decisions 16&ndash;23 covering the full migration plan.</p>
         <div class="callout callout-broke">
-          <strong>What broke:</strong> The forum hit 1,178 lines &mdash; the largest in the ecosystem. The librarian existed but was never spawned for maintenance. The forge archived 18 threads of completed Phase 1&ndash;3 history, keeping only the active Phase 4 plan and the skeptic's open review. Same pattern seen in thisminute and toolshed before it.
+          <strong>What broke:</strong> The forum hit 1,178 lines &mdash; the largest in the ecosystem. The librarian existed but was never spawned for maintenance. The forge archived 18 threads of completed Phase 1&ndash;3 history, keeping only the active Phase 4 plan and the skeptic's open review. Same pattern seen in thisminute and tools before it.
         </div>
         <div class="callout callout-pattern">
           Protocol+forum transfers to game development. The skeptic's value is magnified: spec/code mismatches in games are harder to catch because "it looks right when you play it" masks numerical errors. Three reviews caught bugs that headless testing missed.
@@ -1004,7 +1006,7 @@
 
     <div id="evo-singularity" class="summary-section">
       <h2>The Second Forge: singularity-forge</h2>
-      <p style="color: var(--text-secondary); font-size: 0.88rem;">What happens when a forge doesn't just audit projects &mdash; it creates them? singularity-forge scans the <a href="/tools/">toolshed</a> catalog for missing software and builds projects to fill the gaps.</p>
+      <p style="color: var(--text-secondary); font-size: 0.88rem;">What happens when a forge doesn't just audit projects &mdash; it creates them? singularity-forge scans the <a href="/tools/">tools</a> catalog for missing software and builds projects to fill the gaps.</p>
     </div>
 
     <div class="timeline">
@@ -1013,7 +1015,7 @@
         <div class="phase-marker"></div>
         <div class="phase-label">March, week 3</div>
         <h2>Chained Forge</h2>
-        <p>Four agents: forgemaster, assayer, smith, skeptic. Same forge pattern as thisminute-forge, but pointed at a different problem. Instead of auditing agent systems, it audits the toolshed catalog: what categories have no tools? What real-world software is missing? When it finds a gap, it scaffolds a new project with a steward agent, links it back to the toolshed entry, and moves on.</p>
+        <p>Four agents: forgemaster, assayer, smith, skeptic. Same forge pattern as thisminute-forge, but pointed at a different problem. Instead of auditing agent systems, it audits the tools catalog: what categories have no tools? What real-world software is missing? When it finds a gap, it scaffolds a new project with a steward agent, links it back to the tools entry, and moves on.</p>
         <div class="roster">
           <span class="roster-agent new">forgemaster</span>
           <span class="roster-agent new">assayer</span>
@@ -1069,9 +1071,9 @@
       <line x1="135" y1="70" x2="420" y2="108" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
       <line x1="135" y1="70" x2="690" y2="108" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3" opacity="0.2"/>
 
-      <!-- Singularity-forge scan line to toolshed -->
+      <!-- Singularity-forge scan line to tools -->
       <path d="M 700 70 L 700 95 L 150 95 L 150 185" stroke="var(--amber)" stroke-width="1" stroke-dasharray="4,3" opacity="0.4" fill="none"/>
-      <text x="420" y="92" text-anchor="middle" fill="var(--amber)" font-size="9" font-family="inherit" opacity="0.6">scans toolshed</text>
+      <text x="420" y="92" text-anchor="middle" fill="var(--amber)" font-size="9" font-family="inherit" opacity="0.6">scans tools</text>
 
       <!-- Protocol + Forum group -->
       <rect x="15" y="108" width="260" height="265" rx="10" fill="var(--accent-dim)" stroke="var(--accent-border)" stroke-width="1"/>
@@ -1082,7 +1084,7 @@
       <text x="145" y="178" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">11 agents &middot; news platform</text>
 
       <rect x="30" y="196" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="var(--accent-border)" stroke-width="1"/>
-      <text x="145" y="216" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">toolshed</text>
+      <text x="145" y="216" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500" font-family="inherit">tools</text>
       <text x="145" y="232" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">7 agents &middot; software directory</text>
 
       <rect x="30" y="250" width="230" height="44" rx="6" fill="var(--bg-card)" stroke="var(--accent-border)" stroke-width="1"/>
@@ -1131,7 +1133,7 @@
       <text x="695" y="336" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit">agents</text>
 
       <!-- Nesting annotation -->
-      <text x="420" y="395" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit" font-style="italic">llms.thisminute.org contains toolshed + orchestration (3 agent systems, 1 git repo)</text>
+      <text x="420" y="395" text-anchor="middle" fill="var(--text-muted)" font-size="10" font-family="inherit" font-style="italic">llms.thisminute.org contains tools + orchestration (3 agent systems, 1 git repo)</text>
 
       <!-- Singularity output -->
       <line x1="700" y1="70" x2="700" y2="420" stroke="var(--amber)" stroke-width="1" stroke-dasharray="4,3" opacity="0.3"/>
@@ -1165,8 +1167,8 @@
     <div id="evo-transfer" class="summary-section">
       <h2>How Lessons Transfer</h2>
       <p>Three mechanisms move organizational knowledge between projects:</p>
-      <p><strong>The human</strong> carries experience directly. agi's consolidation from 10 to 7 agents informed thisminute's initial roster of 5. The decision to add a librarian to toolshed on day one came from watching thisminute's forum grow unmanageable without one. These are judgment calls &mdash; knowing which roles to start with and which to wait on.</p>
-      <p><strong>Role files and templates</strong> transfer structure. When thisminute was created, its agent roles were modeled on agi's post-consolidation set. toolshed adopted the protocol+forum pattern from thisminute. Each new project starts from a better baseline because the role files encode what previous projects learned.</p>
+      <p><strong>The human</strong> carries experience directly. agi's consolidation from 10 to 7 agents informed thisminute's initial roster of 5. The decision to add a librarian to tools on day one came from watching thisminute's forum grow unmanageable without one. These are judgment calls &mdash; knowing which roles to start with and which to wait on.</p>
+      <p><strong>Role files and templates</strong> transfer structure. When thisminute was created, its agent roles were modeled on agi's post-consolidation set. tools adopted the protocol+forum pattern from thisminute. Each new project starts from a better baseline because the role files encode what previous projects learned.</p>
       <p><strong>The forge</strong> handles consistency. It audits each project's agent system and flags drift &mdash; where the documented structure no longer matches how the agents actually work. A project might add a role informally, or stop using a protocol step, and the documentation doesn't catch up. The forge's audit cycle surfaces these mismatches so they can be resolved rather than accumulating as organizational debt.</p>
       <p>None of these mechanisms is automatic. The human has to notice patterns. The role files have to be maintained. The forge has to be run. Organizational knowledge doesn't transfer itself &mdash; it transfers because someone (or something) actively moves it.</p>
     </div>
@@ -1190,7 +1192,7 @@
           <tr><td>agi</td><td>10 &rarr; 7</td><td>Protocol + Forum</td><td>Premature structure costs more than no structure. Police, coach, and editor produced overhead, not output.</td></tr>
           <tr><td>thisminute</td><td>5 &rarr; 11</td><td>Protocol + Forum</td><td>Grow into complexity rather than starting with it. The skeptic was the most important addition.</td></tr>
           <tr><td>orchestration</td><td>1</td><td>Steward</td><td>Not every project needs coordination. A catalog is not a news platform.</td></tr>
-          <tr><td>toolshed</td><td>7</td><td>Protocol + Forum</td><td>The pattern transfers. A librarian from day one prevents the forum explosion.</td></tr>
+          <tr><td>tools</td><td>7</td><td>Protocol + Forum</td><td>The pattern transfers. A librarian from day one prevents the forum explosion.</td></tr>
           <tr><td>sts2</td><td>9</td><td>Checkpoint</td><td>Invented the checkpoint model. Agent systems survive architecture pivots &mdash; the coordination structure is decoupled from the tech stack.</td></tr>
           <tr><td>balatro</td><td>9</td><td>Checkpoint</td><td>Validated the checkpoint model. Disposable agents + persistent checkpoint = rapid iteration. Memory adoption is organic.</td></tr>
           <tr><td>rts</td><td>7</td><td>Protocol + Forum</td><td>Protocol+forum works for game dev. The skeptic catches spec/code drift that testing misses.</td></tr>
@@ -1212,7 +1214,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Protocol + Forum</td><td>thisminute (11), toolshed (7), rts (7), agi (7)</td><td>Steady-state products with multiple domains. Agents persist between sessions. Forum is the evidence ledger; protocol defines the startup sequence. Needs a librarian or the forum grows without bound.</td></tr>
+          <tr><td>Protocol + Forum</td><td>thisminute (11), tools (7), rts (7), agi (7)</td><td>Steady-state products with multiple domains. Agents persist between sessions. Forum is the evidence ledger; protocol defines the startup sequence. Needs a librarian or the forum grows without bound.</td></tr>
           <tr><td>Checkpoint</td><td>balatro (9), sts2 (9), llms.thisminute.org (3)</td><td>Rapid build-test-fix iteration. Agents are disposable &mdash; they spawn, read the checkpoint, work, update it, and shut down. No forum, no protocol. The cycle IS the protocol.</td></tr>
           <tr><td>Steward</td><td>orchestration (1), ops (2), recipe-scaler (1)</td><td>Small scope or bootstrap projects. One agent owns everything and knows when to split. Minimal coordination overhead. The split criteria are baked into the role file.</td></tr>
           <tr><td>Forge</td><td>thisminute-forge (4), singularity-forge (4)</td><td>Scan-evaluate-act loop over a registry of projects. Audit agent systems or catalog gaps, propagate improvements. Can be pointed at different problems &mdash; quality or coverage.</td></tr>
@@ -1231,7 +1233,7 @@
         </thead>
         <tbody>
           <tr><td>More agents = more capability</td><td>agi started with 10 and consolidated to 7 in a day. The eliminated roles (police, coach, editor) generated noise. thisminute grew from 5 to 11 because each role was needed. orchestration never needed more than 1.</td></tr>
-          <tr><td>The forum is the coordination mechanism</td><td>Forums grow without bound. agi: 8,753 lines in a day. thisminute: 1,008 lines in a session. Every shared-context pattern needs a maintenance agent, and the maintenance cost is inseparable from the pattern. toolshed shipped the librarian on day one and never had the spike.</td></tr>
+          <tr><td>The forum is the coordination mechanism</td><td>Forums grow without bound. agi: 8,753 lines in a day. thisminute: 1,008 lines in a session. Every shared-context pattern needs a maintenance agent, and the maintenance cost is inseparable from the pattern. tools shipped the librarian on day one and never had the spike.</td></tr>
           <tr><td>The skeptic is a nice-to-have</td><td>In agi, the skeptic invalidated ALL Go results (broken oracle). In thisminute, it caught 10&ndash;100x inflated numbers. The adversarial dynamic is load-bearing in every project that has one.</td></tr>
           <tr><td>Organizational structure should be designed up front</td><td>agi over-designed and had to consolidate. thisminute inherited and grew. orchestration never needed to grow. The right amount of structure depends on the project, not on a template.</td></tr>
           <tr><td>There's one right coordination model</td><td>There are at least four. Protocol+forum for steady-state products, checkpoint for rapid iteration, steward for small scope, forge for scan-evaluate-act over registries. Each emerged from a project's constraints. Applying the wrong model wastes effort &mdash; orchestration doesn't need a forum, balatro doesn't need a protocol.</td></tr>
