@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forge · LLMs · thisminute.org</title>
-  <meta name="description" content="A template agent system manager that audits and upgrades multi-agent systems across your coding projects.">
+  <meta name="description" content="A starter kit for giving your coding projects an agent system. Clone it, start a session, and ask it how it can help.">
   <meta property="og:title" content="Forge · LLMs · thisminute.org">
-  <meta property="og:description" content="A template agent system manager that audits and upgrades multi-agent systems across your coding projects.">
+  <meta property="og:description" content="A starter kit for giving your coding projects an agent system. Clone it, start a session, and ask it how it can help.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://llms.thisminute.org/forge/">
   <meta name="twitter:card" content="summary">
@@ -18,33 +18,7 @@
   <link rel="stylesheet" href="/shared/llms.css?v=3aTone">
 
   <style>
-    /* Forge inherits palette + typography from shared/llms.css. */
-    body {
-      min-height: 100vh;
-    }
-
-    header.hero { position: relative; }
-    .hero .links {
-      margin-top: 1.25rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      font-size: 0.85rem;
-    }
-    .hero .links a {
-      padding: 0.5rem 1.1rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      text-decoration: none;
-      color: var(--text-secondary);
-      transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
-    }
-    .hero .links a:hover {
-      border-color: var(--accent);
-      background: var(--accent-dim);
-      color: var(--accent);
-      text-decoration: none;
-    }
+    body { min-height: 100vh; }
 
     .content {
       max-width: var(--max-content);
@@ -67,40 +41,31 @@
       margin-bottom: 0.75rem;
     }
 
-    .how-it-works ol {
-      list-style: none;
-      counter-reset: step;
-    }
-    .how-it-works ol > li {
-      counter-increment: step;
-      padding: 0.75rem 1rem 0.75rem 3rem;
-      position: relative;
-      color: var(--text-secondary);
-      border-left: 1px solid var(--border);
-      margin-left: 0.75rem;
-    }
-    .how-it-works ol > li:last-child { border-left-color: transparent; }
-    .how-it-works ol > li::before {
-      content: counter(step);
-      position: absolute;
-      left: -0.75rem;
-      top: 0.65rem;
-      width: 1.6rem;
-      height: 1.6rem;
-      border-radius: 50%;
-      background: var(--accent-dim);
+    code {
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85em;
       color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-family: var(--font-mono);
     }
-    .how-it-works li strong { color: var(--text); }
-    .how-it-works ul li {
-      color: var(--text-secondary);
-      padding: 0.25rem 0;
+
+    pre {
+      display: inline-block;
+      text-align: left;
+      background: var(--bg-inset);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--text);
+      overflow-x: auto;
+      max-width: 100%;
     }
+    .cmd-comment { color: var(--text-muted); }
 
     .role-grid {
       display: grid;
@@ -113,24 +78,12 @@
       border-radius: var(--radius);
       padding: 1.4rem;
       box-shadow: var(--shadow);
-      transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
-    .role-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
     }
     .role-card h3 {
-      font-size: 1.15rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--accent);
       margin-bottom: 0.35rem;
-    }
-    .role-card .role-origin {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      margin-bottom: 0.5rem;
     }
     .role-card p {
       font-size: 0.85rem;
@@ -152,11 +105,9 @@
       border-radius: var(--radius);
       text-decoration: none;
       box-shadow: var(--shadow);
-      transition: border-color var(--transition-fast), transform var(--transition-fast);
     }
     a.pattern-item:hover {
       border-color: var(--accent);
-      transform: translateY(-1px);
       text-decoration: none;
     }
     .pattern-item strong {
@@ -170,100 +121,52 @@
       font-size: 0.85rem;
     }
 
-    code {
-      background: var(--bg-inset);
-      border: 1px solid var(--border);
-      padding: 0.15rem 0.45rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.85em;
-      color: var(--accent);
-      font-family: var(--font-mono);
-    }
-
-    .cta {
-      text-align: center;
-      padding: 2rem;
-    }
-    .cta h2 {
-      font-size: 1.35rem;
-      font-weight: 600;
-      letter-spacing: 0;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .cta pre {
-      display: inline-block;
-      text-align: left;
-      background: var(--bg-inset);
+    .security-notice {
+      margin-top: 1.25rem;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.25rem 1.75rem;
-      font-family: var(--font-mono);
+      background: var(--bg-card);
       font-size: 0.85rem;
-      line-height: 1.7;
-      color: var(--text);
-      overflow-x: auto;
-      max-width: 100%;
     }
-    .cmd-comment {
-      color: var(--text-muted);
-    }
-
-    /* position: relative merged into header.hero rule */
-    .other-projects {
-      position: absolute;
-      top: 0.75rem;
-      right: 3.5rem;
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-      font-size: 0.7rem;
-    }
-    .other-projects-label {
-      color: var(--text-muted);
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .other-projects a {
+    .security-notice summary {
+      cursor: pointer;
+      padding: 0.75rem 1rem;
       color: var(--text-secondary);
+      font-weight: 500;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .other-projects a:hover {
-      color: var(--accent);
+    .security-notice summary::-webkit-details-marker { display: none; }
+    .security-notice summary::before {
+      content: '⚠️';
     }
-    .other-projects a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      border-radius: 2px;
+    .security-notice summary::after {
+      content: '›';
+      margin-left: auto;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
     }
-
-    .hero .links a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      border-radius: 4px;
+    .security-notice[open] summary::after {
+      transform: rotate(90deg);
     }
-    a.pattern-item:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      border-radius: 4px;
+    .security-notice .security-body {
+      padding: 0 1rem 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
     }
-    summary:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-    .icon-btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
+    .security-notice .security-body p {
+      font-size: 0.85rem;
     }
 
     @media (max-width: 600px) {
       .hero h1 { font-size: 1.6rem; }
       .content { padding: 1.5rem 1rem; }
+      .role-grid { grid-template-columns: 1fr; }
       .pattern-item { flex-direction: column; gap: 0.25rem; }
       .pattern-item strong { min-width: auto; }
-      .role-grid { grid-template-columns: 1fr; }
-      .other-projects { position: static; justify-content: center; margin-top: 0.5rem; }
     }
   </style>
 </head>
@@ -274,130 +177,89 @@
 
   <header class="hero">
     <h1>Forge</h1>
-    <p class="tagline">Audit and upgrade multi-agent systems across your coding projects</p>
-    <div class="links">
-      <a href="https://github.com/skondrashov/agent-forge">GitHub</a>
-      <a href="https://en.wikipedia.org/wiki/Agentic_AI">Agentic AI</a>
-    </div>
+    <p class="tagline">A starter kit for giving your projects an agent system</p>
   </header>
-
-  <div class="cta">
-    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">First time here? <a href="https://github.com/skondrashov/agent-forge#readme">Read the README</a> before running anything.</p>
-    <h2><a href="https://github.com/skondrashov/agent-forge" style="color: var(--accent); text-decoration: none;">Quick Start</a></h2>
-    <details>
-      <summary style="cursor: pointer; display: inline-block; max-width: 540px; margin: 0 auto; padding: 0.85rem 1.35rem; font-size: 0.9rem; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-muted); border-radius: var(--radius); line-height: 1.5; text-align: center;">This clones a repo and starts an AI agent that reads instructions from it. We run automated security scans on every release, <a href="#security" style="color: var(--accent);">see details</a>.</summary>
-      <div style="margin-top: 1rem;">
-        <pre><span class="cmd-comment"># Clone next to your projects (or where you'll start new ones)</span>
-git clone --branch v0.4 https://github.com/skondrashov/agent-forge.git
-
-<span class="cmd-comment"># Start it up</span>
-cd agent-forge
-claude go</pre>
-        <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted);">Pinned to a tagged release. Review the repo's <a href="https://github.com/skondrashov/agent-forge/blob/v0.4/CLAUDE.md">CLAUDE.md</a> to see what the agent will do.</p>
-      </div>
-    </details>
-  </div>
 
   <div class="content">
 
     <section>
-      <h2>What It Is</h2>
-      <p>The forge is a template agent system manager. You register your projects, and the forge scans them against a pattern library, identifies gaps, and propagates best practices, one project at a time.</p>
-      <p style="margin-top:0.85rem;color:var(--text-secondary);font-size:0.93rem;">The honest framing, though, is that the forge is just <strong>context</strong>. Role files, protocol docs, memory scaffolding, patterns the orchestrator can spawn against. There is no special software here. If this pattern of preloading an agent with a bunch of carefully written context turns out to be durably useful (and so far it does), the major harness vendors will eventually ship their own version of something like it as the default context their harness comes with. That is a good outcome, not a threat. The forge's job is to stay one step ahead of whatever the harnesses ship natively, and to make it easy to see what is worth adopting back.</p>
-    </section>
-
-    <section class="how-it-works">
-      <h2>Getting Started</h2>
-      <ol>
-        <li><strong>Run the forge</strong>: clone this repo, run <code>claude go</code>. The forgemaster scans your projects and sets up agent systems: an <code>AGENTS.md</code>, role files, and memory. This is a one-time setup step.</li>
-        <li><strong>Open your project</strong>: once the forge has set up your project, go there and start a new Claude instance. Say <code>go</code>, <code>start</code>, or just describe what you need. The agent reads its role files and knows what to do.</li>
-        <li><strong>Talk to one agent</strong>: your project will have an orchestrator (often called a steward). This is the only agent you talk to directly. You do three things with it:
-          <ul style="margin-top: 0.5rem; list-style: disc; padding-left: 1.25rem;">
-            <li><strong>Spawn an agent</strong>: tell it to run a role. "Run the builder to add a login page." The spawned agent gets a fresh context window with only what it needs, does the work, and reports back. This is how you keep context clean instead of one conversation accumulating everything.</li>
-            <li><strong>Create a role</strong>: describe a new kind of agent you need. "I need a role that handles database migrations." The orchestrator writes the role file; now you can spawn it anytime.</li>
-            <li><strong>Ask a question</strong>: anything that doesn't need a dedicated agent. "What changed since yesterday?" "Why is this test failing?" The orchestrator answers directly.</li>
-          </ul>
-        </li>
-        <li><strong>Ctrl+B</strong>: if the orchestrator is busy with a long-running task, press <strong>Ctrl+B</strong> to start a parallel conversation without waiting for it to finish.</li>
-      </ol>
-    </section>
-
-    <section class="how-it-works">
-      <h2>The Audit Cycle</h2>
-      <ol>
-        <li><strong>Audit</strong>: scans every registered project's agent system</li>
-        <li><strong>Review</strong>: compares against the pattern library, ranks by priority</li>
-        <li><strong>Propagate</strong>: applies upgrades to one project at a time</li>
-        <li><strong>Update</strong>: refreshes patterns and the registry</li>
-        <li><strong>Repeat</strong></li>
-      </ol>
+      <h2>What it is</h2>
+      <p>The forge is a collection of markdown files: role definitions, workflow patterns, memory scaffolding. There is no runtime or framework. It is just <a href="/context/">context</a>, carefully written prompt files that shape how an agent behaves in your codebase. Any <a href="/harnesses/">harness</a> that can read markdown files and use them as instructions will work.</p>
+      <p>The value is in saving you the cold-start problem of figuring out what good agent organization looks like. The forge gives you one opinionated answer to that, and you can take it apart and change whatever you want.</p>
+      <p>This is experimental. The whole field of multi-agent coordination is still finding its legs, and the major harness vendors will probably absorb the useful parts of this approach over time. The forge is useful now, in the gap between "agents can do real work" and "harnesses ship good defaults for organizing that work."</p>
     </section>
 
     <section>
-      <h2>Forge Roles</h2>
+      <h2>How to use it</h2>
+      <p>Clone the repo, open an agent session inside it, and ask it how it can help you. The forge will explain itself, what it can scan, what patterns it knows about, and what it would set up in your projects.</p>
+      <details class="security-notice">
+        <summary>This runs an agent that reads instructions from a cloned repo</summary>
+        <div class="security-body">
+          <p>When you run the forge, your agent reads the role files in this repo as instructions. That is a supply chain risk: a compromised prompt file could instruct your agent to do something harmful. The role files are plain markdown with no obfuscation, so you can read every instruction before you run anything. Releases are tagged and include automated security scans that check for network requests, sensitive file access, encoding tricks, and confirmation bypasses.</p>
+          <p>Full policy: <a href="https://github.com/skondrashov/agent-forge/blob/main/SECURITY.md">SECURITY.md</a></p>
+        </div>
+      </details>
+    </section>
+
+    <section>
+      <h2>Getting started</h2>
+      <pre><span class="cmd-comment"># Clone next to your projects</span>
+git clone --branch v0.4 https://github.com/skondrashov/agent-forge.git
+
+<span class="cmd-comment"># Navigate into the repo</span>
+cd agent-forge
+
+<span class="cmd-comment"># Start your preferred CLI harness and ask what it can do</span>
+<span class="cmd-comment"># (aider, claude, codex, copilot, cline, cursor, goose, ...)</span></pre>
+      <p style="margin-top: 1rem;">You can review the <a href="https://github.com/skondrashov/agent-forge">repo</a> to see exactly what files the agent will read as instructions.</p>
+    </section>
+
+    <section>
+      <h2>What it does</h2>
+      <p>When you point the forge at a project, it scans the codebase and sets up an agent system: an <code>AGENTS.md</code> that orients any future agent session, role files for different kinds of work, and a memory directory where agents can persist learnings across sessions. It draws from its own pattern library and adapts them to fit the project.</p>
+      <p>Once a project is set up, you work with it by opening an agent session in that project and talking to the orchestrator role. You can ask it to spawn specialist agents for specific work, create new roles, or just answer questions directly. The forge can also revisit projects it has already set up, compare them against new patterns, and suggest upgrades.</p>
+    </section>
+
+    <section>
+      <h2>Roles</h2>
+      <p>The forge ships with four roles that coordinate the scan-and-setup workflow. These are just markdown files that an agent reads as instructions.</p>
       <div class="role-grid">
         <div class="role-card">
-          <h3>Forgemaster</h3>
-          <div class="role-origin">forgemaster.md</div>
-          <p>Coordinates the audit-and-propagate cycle. Decides what to scan, what to upgrade, and in what order.</p>
+          <h3>Orchestrator</h3>
+          <p>The coordinator. Decides which projects to scan, what to set up, and in what order.</p>
         </div>
         <div class="role-card">
-          <h3>Assayer</h3>
-          <div class="role-origin">assayer.md</div>
-          <p>Scans projects against the pattern library. Produces gap analyses with maturity levels and concrete upgrade plans.</p>
+          <h3>Auditor</h3>
+          <p>Scans projects against the pattern library. Produces gap analyses and upgrade plans.</p>
         </div>
         <div class="role-card">
-          <h3>Smith</h3>
-          <div class="role-origin">smith.md</div>
-          <p>Applies upgrades to target projects. Adapts templates to each project's domain, conventions, and tone.</p>
+          <h3>Builder</h3>
+          <p>Applies upgrades to target projects. Adapts templates to fit each project's domain and conventions.</p>
         </div>
         <div class="role-card">
-          <h3>Keeper</h3>
-          <div class="role-origin">keeper.md</div>
-          <p>Maintains the pattern library. Challenges the assayer's findings to keep the forge honest about itself.</p>
+          <h3>Librarian</h3>
+          <p>Maintains the pattern library. Challenges the auditor's findings to keep quality honest.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Pattern Library</h2>
-      <p>The forge scans against patterns from the <a href="/orchestration/">Orchestration</a> catalog.</p>
+      <h2>Patterns</h2>
+      <p>The forge ships with eleven patterns in its <code>patterns/</code> directory. Some of these overlap with entries in the <a href="/orchestration/">orchestration catalog</a>, but the forge's versions are operational templates with concrete file trees and content you can drop into a project. A few examples:</p>
       <div class="pattern-list">
-        <a href="/orchestration/#steward-bootstrap" class="pattern-item">
+        <div class="pattern-item">
           <strong>Steward</strong>
           <span>One agent, one memory file. The right default for almost every project.</span>
-        </a>
-        <a href="/orchestration/#protocol-forum-product-team" class="pattern-item">
-          <strong>Startup Protocol</strong>
-          <span>Standalone PROTOCOL.md with timestamps, forum voting, and ref doc routing</span>
-        </a>
-        <a href="/orchestration/#reflection-loop" class="pattern-item">
-          <strong>Shutdown Reflection</strong>
-          <span>Agents evaluate their context at session end; feedback fixes the docs</span>
-        </a>
-        <div class="pattern-item">
-          <strong>Reference Doc Splitting</strong>
-          <span>Slim AGENTS.md + role-specific ref docs to reduce context bloat</span>
         </div>
         <div class="pattern-item">
-          <strong>Keeper Feedback Loop</strong>
-          <span>A doc-maintenance agent that processes reflection feedback and keeps docs current</span>
+          <strong>Startup protocol</strong>
+          <span>Standalone PROTOCOL.md with timestamps, forum voting, and ref doc routing.</span>
+        </div>
+        <div class="pattern-item">
+          <strong>Shutdown reflection</strong>
+          <span>Agents evaluate their context at session end; feedback fixes the docs.</span>
         </div>
       </div>
-    </section>
-
-    <section id="security">
-      <h2>Security</h2>
-      <p>When you run the forge, your AI agent reads the role files and patterns in this repo as instructions. That's a supply chain risk. A compromised prompt file could instruct your agent to exfiltrate data or modify code in harmful ways. We take that seriously.</p>
-      <p><strong>What we have in place:</strong></p>
-      <ul style="text-align: left; max-width: 640px; margin: 0.75rem auto; line-height: 1.7;">
-        <li>Automated security scan on every release: checks all prompt files for network requests, sensitive file access, encoding/eval, system paths outside project scope, and confirmation bypasses</li>
-        <li>Automated leak scan: catches ecosystem-specific data that shouldn't be in a generic template</li>
-        <li>Pinned tag releases: clone a vetted tag, not <code>main</code></li>
-        <li>Upstream upgrade diffs: when a new version is available, the forge shows you the diff and asks before applying</li>
-        <li>Role files are plain markdown with no obfuscation. You can read every instruction your agent will follow</li>
-      </ul>
-      <p>Read the full policy: <a href="https://github.com/skondrashov/agent-forge/blob/main/SECURITY.md">SECURITY.md</a></p>
     </section>
 
   </div>

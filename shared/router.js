@@ -176,7 +176,6 @@
   function navigate(url, pushState) {
     if (navigating) return;
     navigating = true;
-    showLoading();
 
     var fetchPromise;
     if (htmlCache[url]) {
@@ -250,10 +249,14 @@
       var appSrc = newPage.getAttribute('data-app');
       var appUrl = appSrc ? resolveUrl(appSrc, url) : null;
 
+      // Only show the loading bar if there are deps we haven't loaded yet
+      var hasNewDeps = deps.some(function (d) { return !loadedDeps[d]; });
+      if (hasNewDeps) showLoading();
+
       loadDeps(deps, function () {
         loadApp(appUrl, function () {
           initNewPage();
-          hideLoading();
+          if (hasNewDeps) hideLoading();
           navigating = false;
 
           // Scroll
