@@ -49,6 +49,34 @@ window.CatalogUtils = {
     });
   },
 
+  /** Show .catalog-nav and .catalog-stats only when #catalog is near the viewport.
+   *  Uses IntersectionObserver with a rootMargin to reveal slightly before scroll reaches it. */
+  initCatalogReveal: function () {
+    var catalog = document.getElementById('catalog');
+    if (!catalog) return;
+    var nav = document.querySelector('.catalog-nav');
+    var stats = document.querySelector('.catalog-stats');
+    if (!nav && !stats) return;
+
+    function show() {
+      if (nav) nav.classList.add('visible');
+      if (stats) stats.classList.add('visible');
+    }
+    function hide() {
+      if (nav) nav.classList.remove('visible');
+      if (stats) stats.classList.remove('visible');
+    }
+
+    if (!('IntersectionObserver' in window)) { show(); return; }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) show(); else hide();
+      });
+    }, { rootMargin: '200px 0px 0px 0px' });
+    observer.observe(catalog);
+  },
+
   /** Highlight search query matches in text. Returns escaped HTML. */
   highlightText: function (text, query) {
     var escaped = CatalogUtils.esc(text);
@@ -191,6 +219,7 @@ window.CatalogUtils = {
         renderNav();
         renderCatalog();
         U.initBackToTop();
+        U.initCatalogReveal();
       },
       teardown: function () {}
     };

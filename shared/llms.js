@@ -39,6 +39,62 @@
       nav.appendChild(a);
     });
 
+    // Hamburger button (hidden on desktop via CSS)
+    var hamburger = document.createElement('button');
+    hamburger.className = 'nav-hamburger';
+    hamburger.setAttribute('aria-label', 'Open navigation menu');
+    hamburger.innerHTML = '<svg viewBox="0 0 16 16"><path d="M1 3h14M1 8h14M1 13h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>';
+    nav.appendChild(hamburger);
+
+    // Mobile dropdown + scrim (hidden until opened)
+    var dropdown = document.createElement('div');
+    dropdown.className = 'site-nav-dropdown';
+    dropdown.setAttribute('role', 'dialog');
+    dropdown.setAttribute('aria-label', 'Navigation menu');
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'nav-close';
+    closeBtn.setAttribute('aria-label', 'Close navigation menu');
+    closeBtn.innerHTML = '&times;';
+    dropdown.appendChild(closeBtn);
+
+    NAV_LINKS.forEach(function (link) {
+      var a = document.createElement('a');
+      a.href = link.href;
+      a.textContent = link.label;
+      a.style.setProperty('--nav-c', 'var(' + link.color + ')');
+      if (link.href === '/' ? path === '/' : path.indexOf(link.href) === 0) {
+        a.setAttribute('aria-current', 'page');
+      }
+      a.addEventListener('click', function () { closeMenu(); });
+      dropdown.appendChild(a);
+    });
+
+    var scrim = document.createElement('div');
+    scrim.className = 'nav-scrim';
+
+    document.body.appendChild(dropdown);
+    document.body.appendChild(scrim);
+
+    function openMenu() {
+      dropdown.classList.add('open');
+      scrim.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      dropdown.classList.remove('open');
+      scrim.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    hamburger.addEventListener('click', function () {
+      dropdown.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    closeBtn.addEventListener('click', closeMenu);
+    scrim.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && dropdown.classList.contains('open')) closeMenu();
+    });
+
     toggleContainer.parentNode.insertBefore(nav, toggleContainer);
 
     // Build top-right controls: source link + theme button
