@@ -336,10 +336,54 @@
       .orchestration-svg { width: 210px; }
     }
     @media (max-width: 640px) {
-      .hero h1 { font-size: 3.2rem; }
-      .anatomy { padding: 2rem 1rem; }
-      .anatomy__node { min-width: 180px; padding: 1rem 1.2rem; }
-
+      body {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+      }
+      main.home {
+        grid-template-rows: auto auto 1fr auto;
+        gap: var(--space-lg);
+        padding: var(--space-md);
+      }
+      .hero h1 { font-size: 2.8rem; }
+      .hero { margin-top: 3rem; }
+      .more { padding: 0 var(--space-sm); }
+      .more p { font-size: 0.9rem; }
+      .anatomy {
+        max-width: 100%;
+        padding: 1.5rem 1rem;
+      }
+      .anatomy__blurb { max-width: 100%; }
+      .anatomy__node {
+        min-width: 160px;
+        padding: 0.85rem 1rem;
+        font-size: 0.85rem;
+      }
+      .anatomy__node-desc { font-size: 0.8rem; }
+      .orchestration-svg { width: 180px; }
+      .orchestration-box {
+        max-width: 100%;
+        padding: 1.2rem 1rem 0.8rem;
+      }
+      .orchestration-box__blurb { max-width: 100%; }
+      .forge-link { font-size: 0.65rem; }
+    }
+    @media (max-width: 480px) {
+      main.home {
+        padding: var(--space-md) var(--space-sm);
+      }
+      .hero h1 { font-size: 2.2rem; }
+      .anatomy { padding: 1.2rem 0.8rem; }
+      .anatomy__node {
+        min-width: 140px;
+        padding: 0.75rem 0.9rem;
+        font-size: 0.75rem;
+      }
+      .anatomy__node-label { font-size: 0.65rem; }
+      .anatomy__node-desc { font-size: 0.75rem; line-height: 1.3; }
+      .anatomy__link { height: 20px; }
+      .orchestration-svg { width: 160px; }
     }
   </style>
 </head>

@@ -165,6 +165,19 @@
       .role-grid { grid-template-columns: 1fr; }
       .pattern-item { flex-direction: column; gap: 0.25rem; }
       .pattern-item strong { min-width: auto; }
+      pre { padding: 1rem 1.25rem; font-size: 0.75rem; }
+      section { margin-bottom: 2rem; }
+      section h2 { font-size: 1.2rem; }
+      p { font-size: 0.9rem; }
+    }
+
+    @media (max-width: 400px) {
+      .content { padding: 1.2rem 0.75rem 3rem; }
+      .hero h1 { font-size: 1.4rem; }
+      section h2 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+      pre { padding: 0.9rem 1rem; font-size: 0.7rem; }
+      .role-card { padding: 1rem; }
+      .role-card h3 { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -189,7 +202,7 @@
 
     <section>
       <h2>How to use it</h2>
-      <p>Clone the repo, open an agent session inside it, and ask it how it can help you. The forge will explain itself, what it can scan, what patterns it knows about, and what it would set up in your projects.</p>
+      <p>Clone the repo, point your agent at <code>AGENTS.md</code>, and say "go." How you load the file depends on your harness &mdash; some read it automatically, others need you to pass it in (e.g., <code>claude --system-prompt "$(cat AGENTS.md)"</code>). On first run, the forge walks you through a setup wizard: it asks about your projects, scans what you have, designs agent structures that fit, and creates the files.</p>
       <details class="security-notice">
         <summary>This runs an agent that reads instructions from a cloned repo</summary>
         <div class="security-body">
@@ -202,20 +215,20 @@
     <section>
       <h2>Getting started</h2>
       <pre><span class="cmd-comment"># Clone next to your projects</span>
-git clone --branch v0.4 https://github.com/skondrashov/agent-forge.git
+git clone --branch v0.5 https://github.com/skondrashov/agent-forge.git
 
 <span class="cmd-comment"># Navigate into the repo</span>
 cd agent-forge
 
-<span class="cmd-comment"># Start your preferred CLI harness and ask what it can do</span>
+<span class="cmd-comment"># Point your agent at AGENTS.md and say "go"</span>
 <span class="cmd-comment"># (aider, claude, codex, copilot, cline, cursor, goose, ...)</span></pre>
-      <p style="margin-top: 1rem;">You can review the <a href="https://github.com/skondrashov/agent-forge">repo</a> to see exactly what files the agent will read as instructions.</p>
+      <p style="margin-top: 1rem;"><code>AGENTS.md</code> is the entry point &mdash; tell your harness to read it. You can review the <a href="https://github.com/skondrashov/agent-forge">repo</a> to see exactly what files the agent will follow as instructions.</p>
     </section>
 
     <section>
       <h2>What it does</h2>
       <p>When you point the forge at a project, it scans the codebase and sets up an agent system: an <code>AGENTS.md</code> that orients any future agent session, role files for different kinds of work, and a memory directory where agents can persist learnings across sessions. It draws from its own pattern library and adapts them to fit the project.</p>
-      <p>Once a project is set up, you work with it by opening an agent session in that project and talking to the orchestrator role. You can ask it to spawn specialist agents for specific work, create new roles, or just answer questions directly. The forge can also revisit projects it has already set up, compare them against new patterns, and suggest upgrades.</p>
+      <p>Once a project is set up, you work with it by opening an agent session in that project and talking to the orchestrator. You can ask it to build features, review code, create new roles, or answer questions. You can also ask the forge to audit your projects &mdash; it compares them against its pattern library and suggests upgrades when they'd actually help.</p>
     </section>
 
     <section>
@@ -224,7 +237,7 @@ cd agent-forge
       <div class="role-grid">
         <div class="role-card">
           <h3>Orchestrator</h3>
-          <p>The coordinator. Decides which projects to scan, what to set up, and in what order.</p>
+          <p>The coordinator. Runs the setup wizard on first use, handles audits and upgrades on request.</p>
         </div>
         <div class="role-card">
           <h3>Auditor</h3>
