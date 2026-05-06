@@ -152,16 +152,29 @@
   })();
 
   // --- Body class management ---
+  // Classes the router transfers from the incoming page's <body>
+  var TRANSFER_PREFIXES = ['section-'];
+  var TRANSFER_EXACT = ['page-shell'];
+
   function updateBodyClass(doc) {
     var newBody = doc.querySelector('body');
     var classes = document.body.className.split(/\s+/).filter(Boolean);
-    // Remove old section-* classes
-    classes = classes.filter(function (c) { return c.indexOf('section-') !== 0; });
-    // Add new section-* classes from fetched page
+    // Remove old transferable classes
+    classes = classes.filter(function (c) {
+      if (TRANSFER_EXACT.indexOf(c) !== -1) return false;
+      for (var i = 0; i < TRANSFER_PREFIXES.length; i++) {
+        if (c.indexOf(TRANSFER_PREFIXES[i]) === 0) return false;
+      }
+      return true;
+    });
+    // Add new transferable classes from fetched page
     if (newBody) {
       var nc = newBody.className.split(/\s+/);
       for (var i = 0; i < nc.length; i++) {
-        if (nc[i].indexOf('section-') === 0) classes.push(nc[i]);
+        if (TRANSFER_EXACT.indexOf(nc[i]) !== -1) { classes.push(nc[i]); continue; }
+        for (var j = 0; j < TRANSFER_PREFIXES.length; j++) {
+          if (nc[i].indexOf(TRANSFER_PREFIXES[j]) === 0) { classes.push(nc[i]); break; }
+        }
       }
     }
     // Preserve light-mode

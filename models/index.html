@@ -16,19 +16,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/shared/llms.css?v=3aTone">
-<style>
-  body { min-height: 100vh; display: flex; flex-direction: column; }
-  @media (max-width: 520px) { .hero h1 { font-size: 2.5rem; } }
-</style>
 </head>
-<body class="section-models"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+<body class="section-models page-shell"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
 
 <div class="forge-theme-toggle"></div>
 
 <div id="page" data-deps="/shared/catalog.js" data-app="/models/app.js">
 <header class="hero">
   <h1>Models</h1>
-  <p class="tagline"></p>
   <a class="archive-jump" href="#catalog" style="margin-top: 0.6rem;">Browse the catalog &darr;</a>
 </header>
 
@@ -79,7 +74,7 @@
 </div><!-- /#page -->
 
 <script src="/shared/llms.js?v=3aTone"></script>
-<script src="/shared/catalog.js?v=1"></script>
+<script src="/shared/catalog.js?v=2"></script>
 <script src="/models/app.js"></script>
 <script src="/shared/router.js?v=1"></script>
 </body>

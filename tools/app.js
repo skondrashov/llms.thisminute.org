@@ -45,24 +45,14 @@
   var PANEL_IDS = ['os-panel', 'pricing-panel', 'lang-panel'];
 
   var state;
-  var activeFocusTrap = null;
-  var preTrapFocus = null;
   var catPanelPath = [];
 
-  // Event listener references for teardown
-  var listeners = [];
-
-  function on(el, event, fn, opts) {
-    if (!el) return;
-    el.addEventListener(event, fn, opts);
-    listeners.push({ el: el, event: event, fn: fn, opts: opts });
-  }
-
-  function esc(s) {
-    var d = document.createElement('div');
-    d.textContent = s;
-    return d.innerHTML;
-  }
+  // Shared utilities
+  var U = CatalogUtils;
+  var esc = U.esc;
+  var tracker = U.createListenerTracker();
+  var on = tracker.on;
+  var focusTrap = U.createFocusTrap();
 
   function buildCategoryColors() {
     if (!window.TAXONOMY) return;
@@ -363,24 +353,7 @@
     return results;
   }
 
-  function highlightText(text, query) {
-    if (!query) return esc(text);
-    var escaped = esc(text);
-    var qEsc = esc(query);
-    var lower = escaped.toLowerCase();
-    var qLower = qEsc.toLowerCase();
-    var result = '';
-    var lastIdx = 0;
-    var idx = lower.indexOf(qLower);
-    while (idx !== -1) {
-      result += escaped.slice(lastIdx, idx);
-      result += '<mark class="search-hl">' + escaped.slice(idx, idx + qEsc.length) + '</mark>';
-      lastIdx = idx + qEsc.length;
-      idx = lower.indexOf(qLower, lastIdx);
-    }
-    result += escaped.slice(lastIdx);
-    return result;
-  }
+  var highlightText = U.highlightText;
 
   function renderCards(entries) {
     if (!entries.length) {
@@ -479,41 +452,9 @@
     });
   }
 
-  // ---- Focus trap ---- //
-
-  function enableFocusTrap(container) {
-    if (activeFocusTrap) {
-      container.removeEventListener('keydown', activeFocusTrap);
-    } else {
-      preTrapFocus = document.activeElement;
-    }
-    activeFocusTrap = function (e) {
-      if (e.key !== 'Tab') return;
-      var focusable = container.querySelectorAll(
-        'button:not([disabled]), [href], input:not([tabindex="-1"]), select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      if (!focusable.length) return;
-      var first = focusable[0];
-      var last = focusable[focusable.length - 1];
-      if (e.shiftKey) {
-        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-      } else {
-        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
-    };
-    container.addEventListener('keydown', activeFocusTrap);
-  }
-
-  function disableFocusTrap(container) {
-    if (activeFocusTrap) {
-      container.removeEventListener('keydown', activeFocusTrap);
-      activeFocusTrap = null;
-    }
-    if (preTrapFocus) {
-      preTrapFocus.focus();
-      preTrapFocus = null;
-    }
-  }
+  // Focus trap delegates to shared utility
+  var enableFocusTrap = focusTrap.enable;
+  var disableFocusTrap = focusTrap.disable;
 
   // ---- Detail panel ---- //
 
@@ -774,10 +715,8 @@
       query: '',
       sort: 'category'
     };
-    activeFocusTrap = null;
-    preTrapFocus = null;
     catPanelPath = [];
-    listeners = [];
+    tracker.teardown();
 
     buildCategoryColors();
 
@@ -844,14 +783,7 @@
   }
 
   function teardown() {
-    // Remove all registered listeners
-    listeners.forEach(function (l) {
-      l.el.removeEventListener(l.event, l.fn, l.opts);
-    });
-    listeners = [];
-    // Clean up globals
-    activeFocusTrap = null;
-    preTrapFocus = null;
+    tracker.teardown();
   }
 
   // Expose lifecycle

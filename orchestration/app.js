@@ -100,12 +100,9 @@ const state = {
 // API base URL (empty = same origin)
 const API_BASE = '';
 
-// ─── Helpers ──────────────────────────────────────────
-function esc(s) {
-  const d = document.createElement('div');
-  d.textContent = s;
-  return d.innerHTML;
-}
+// ─── Helpers ────────────────────────────────────��─────
+const U = window.CatalogUtils || {};
+const esc = U.esc || function(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 
 function totalAgentCount(s) {
   if (!s.agents) return 0;
@@ -124,6 +121,7 @@ function toList(val) {
 }
 
 function highlightText(text, query) {
+  if (U.highlightText) return U.highlightText(text, query);
   if (!query) return esc(text);
   const escaped = esc(text);
   const qEsc = esc(query).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -131,43 +129,9 @@ function highlightText(text, query) {
 }
 
 // ─── Focus Trap (accessibility) ──────────────────────
-let activeFocusTrap = null;
-let preTrapFocus = null;
-
-function enableFocusTrap(container) {
-  if (activeFocusTrap) {
-    // Re-entering (e.g. prev/next nav) — remove old listener, keep original preTrapFocus
-    container.removeEventListener('keydown', activeFocusTrap);
-  } else {
-    preTrapFocus = document.activeElement;
-  }
-  activeFocusTrap = function(e) {
-    if (e.key !== 'Tab') return;
-    const focusable = container.querySelectorAll(
-      'button:not([disabled]), [href], input:not([tabindex="-1"]), select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    if (!focusable.length) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  };
-  container.addEventListener('keydown', activeFocusTrap);
-}
-
-function disableFocusTrap(container) {
-  if (activeFocusTrap) {
-    container.removeEventListener('keydown', activeFocusTrap);
-    activeFocusTrap = null;
-  }
-  if (preTrapFocus) {
-    preTrapFocus.focus();
-    preTrapFocus = null;
-  }
-}
+const _focusTrap = U.createFocusTrap ? U.createFocusTrap() : { enable() {}, disable() {} };
+const enableFocusTrap = _focusTrap.enable;
+const disableFocusTrap = _focusTrap.disable;
 
 // ─── Theme ────────────────────────────────────────────
 function applyTheme() {
@@ -1127,12 +1091,8 @@ function closeDetail(skipHistory) {
 }
 
 // ─── Event Listener Tracking (for SPA teardown) ─────
-let _listeners = [];
-function _on(target, event, handler, opts) {
-  if (!target) return;
-  target.addEventListener(event, handler, opts);
-  _listeners.push({ target, event, handler, opts });
-}
+const _tracker = U.createListenerTracker ? U.createListenerTracker() : { on() {}, teardown() {} };
+const _on = _tracker.on;
 
 // ─── Bind UI Events (called from appInit) ────────────
 function bindUIEvents() {
@@ -1350,18 +1310,12 @@ window.addEventListener('popstate', handlePopstate);
 
 // ─── Lifecycle (SPA router integration) ──────────────
 function appTeardown() {
-  // Remove all tracked event listeners
-  _listeners.forEach(({ target, event, handler, opts }) => {
-    target.removeEventListener(event, handler, opts);
-  });
-  _listeners = [];
-  // Disconnect IntersectionObserver
+  _tracker.teardown();
   if (controlsObserver) {
     controlsObserver.disconnect();
     controlsObserver = null;
   }
   window.removeEventListener('popstate', handlePopstate);
-  // Close any open detail panel
   if (currentDetailId) closeDetail(true);
 }
 

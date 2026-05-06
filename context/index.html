@@ -17,46 +17,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/shared/llms.css?v=3aTone">
 <style>
-  body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Overrides for narrower context tagline (shared base in llms.css) */
-  .hero .tagline {
-    max-width: 520px;
-    margin-top: 0.35rem;
-  }
-
-  main.page {
-    flex: 1;
-    max-width: 720px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 24px 64px;
-  }
-
-  section {
-    margin-bottom: 3rem;
-  }
-
-  section h2 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.75rem;
-    color: var(--text);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0;
-  }
-
-  section p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 0.9rem;
-    font-size: 1rem;
-  }
-  section p strong { color: var(--text); font-weight: 600; }
+  /* Override: explainer on context doubles as the main content area */
+  main.explainer { flex: 1; padding-bottom: 64px; }
 
   /* --- Embedded token demo --- */
   .demo-wrap {
@@ -237,38 +199,24 @@
     border-radius: 2px;
   }
 
-  /* --- Vision section --- */
-  .vision-note {
-    background: color-mix(in srgb, var(--accent) 8%, var(--bg-raised));
-    border: 1px dashed var(--accent-muted);
-    border-radius: var(--radius);
-    padding: 1.2rem 1.4rem;
-    margin: 1.2rem 0;
-    font-size: 0.94rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-  .vision-note strong { color: var(--accent); }
-
   @media (max-width: 520px) {
     .fill-row { grid-template-columns: 1fr; }
     .fill-amount { text-align: left; padding-top: 0.2rem; }
   }
 </style>
 </head>
-<body class="section-context"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
+<body class="section-context page-shell"><script>try{var t=localStorage.getItem('thisminute_theme');if(t==='light'||(!t&&!matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('light-mode')}catch(e){}</script>
 
 <div class="forge-theme-toggle"></div>
 
 <div id="page" data-app="app.js">
 <header class="hero">
   <h1>Context</h1>
-  <p class="tagline"></p>
 </header>
 
-<main class="page">
+<main class="explainer">
 
-  <section>
+  <section class="explainer-section">
     <h2>What is context?</h2>
     <p>Every time you ask a model something, it&rsquo;s seeing the entire conversation for the first time. It has no idea it answered you ten minutes ago, it doesn&rsquo;t remember your name. What separates its turns from yours is the little <code>user</code> and <code>assistant</code> markers you can see in the animation below, and those are tokens too, learned during training to act as turn boundaries. Beyond those markers there&rsquo;s no structural &ldquo;who said what&rdquo; metadata. The model has the context window, and all it does is guess the next token that should come after everything in it.</p>
     <p>Here&rsquo;s the animation from the anatomy page. Hit play.</p>
@@ -282,16 +230,16 @@
         <div class="status" id="status"></div>
       </div>
       <div class="controls">
-        <button onclick="doReset()">Reset</button>
-        <button onclick="doStep()" id="sbtn">Step</button>
-        <button onclick="doPlay()" id="pbtn">Play</button>
+        <button id="rbtn">Reset</button>
+        <button id="sbtn">Step</button>
+        <button id="pbtn">Play</button>
       </div>
     </div>
 
     <p>Notice how when the model &ldquo;reads&rdquo; the window to predict the next token, <em>all the tokens flash at once</em>. There&rsquo;s no sequential pass through them. The whole window is attended to simultaneously, role markers and all, and the next guess comes out of that single pile.</p>
   </section>
 
-  <section id="filling">
+  <section class="explainer-section" id="filling">
     <h2>What&rsquo;s filling our context?</h2>
     <p>If the context is the only memory, the obvious next question is what actually lives in there, and how much space the different kinds of things take up.</p>
     <p>Rough token amounts for the stuff that piles up in an agent context, ordered from what you&rsquo;ll encounter most often to what shows up occasionally. The bars show size, not frequency, which is the interesting part: the things that happen every turn are tiny, and the things that happen sometimes are enormous.</p>
@@ -371,14 +319,14 @@
     <p>In a typical agent workflow, <strong>tool output dominates</strong>. A single file read can be bigger than everything the user and the model have typed all session combined. Reasoning tokens are the other big spender. The system prompt, user messages, and assistant replies feel important because they&rsquo;re the part you actually see, but next to tool output and reasoning they&rsquo;re negligible. If you&rsquo;ve ever worried about how many words you&rsquo;re typing into a prompt, don&rsquo;t!</p>
   </section>
 
-  <section>
+  <section class="explainer-section">
     <h2>Agents fill their own context</h2>
     <p>Memory files, role instructions, skills, reasoning tokens, tool output: they look like different kinds of things, but from the model&rsquo;s perspective they&rsquo;re literally the same. It&rsquo;s all just tokens in the window.</p>
     <p>When you put a <strong>memory file</strong> in front of the model, you&rsquo;re pre-populating its context. When you invoke a <strong>skill</strong> (a slash command, a custom instruction set, a review checklist), the harness injects that text into the window so the model knows how to do the task. When the model writes <strong>reasoning tokens</strong> before its answer (Gemini&rsquo;s classic &ldquo;but wait, let me reconsider...&rdquo;), it&rsquo;s populating its own context with words that help it think. When the harness <strong>dumps tool output</strong> into the next turn, it&rsquo;s populating the context on the model&rsquo;s behalf. All four are doing the same mechanical thing: adding tokens to the window so the next prediction has more to work with.</p>
     <p>This is why the line between roles and skills is blurry. A role is text that stays in context for the whole session. A skill is text that gets loaded for one task. Both are just tokens the model reads before predicting. The interesting <a href="/orchestration/">orchestration</a> question is which instructions to load when, which context belongs together in the same window, and which context needs to be split across separate agents.</p>
   </section>
 
-  <section>
+  <section class="explainer-section">
     <h2>Context quality matters as much as context size</h2>
     <p>It&rsquo;s tempting to think of the context window as just a storage problem: will it fit? But what&rsquo;s in the window affects how well the model reasons, not just whether it has room.</p>
     <p><strong>Too little context</strong> and the model guesses where it should know. It hallucinates function signatures, invents file paths, makes confident claims about code it hasn&rsquo;t read. This is the default failure mode of a fresh conversation with no grounding.</p>
@@ -387,11 +335,11 @@
     <p>This is also a cost question. Every token in the window is billed on input, every turn. A bloated context doesn&rsquo;t just reason worse, it costs more per response. Keeping context clean is the single best lever for both quality and cost.</p>
   </section>
 
-  <section>
+  <section class="explainer-section">
     <h2>Vision, but make it tokens</h2>
     <p>A model is a pure token machine, so when it &ldquo;sees&rdquo; an image it&rsquo;s not really looking at pixels. Under the hood, a vision transformer chops the image into patches (usually a 16 by 16 grid), runs each patch through an encoder, and produces a sequence of embeddings. Those embeddings get stuffed into the context window right next to the text tokens, and the model treats them the same.</p>
 
-    <div class="vision-note">
+    <div class="explainer-callout">
       When you upload a screenshot to a multimodal model, it isn&rsquo;t magically understanding the image. It&rsquo;s receiving <strong>a sequence of image-patch tokens</strong> mixed into the same window that holds your text. Typical cost: around <strong>1,500 tokens per image</strong> in Claude, varying with model and resolution settings.
     </div>
 
@@ -399,7 +347,7 @@
     <p>Higher resolution buys more detail at the cost of more tokens. Some models give you knobs for this. Most have a default patch budget and will downsample if the image needs more.</p>
   </section>
 
-  <section>
+  <section class="explainer-section">
     <h2>How big is the window?</h2>
     <p>This used to be a tight constraint. GPT-3 had a 4K token window, which sounds like nothing now. Current frontier models:</p>
     <ul style="list-style:none; padding:0; margin: 0.5rem 0 0.9rem 0.5rem; color: var(--text-secondary); line-height: 1.9; font-size: 0.95rem;">

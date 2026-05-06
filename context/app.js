@@ -89,15 +89,15 @@ function doPlay() {
   })();
 }
 
-// Expose for button onclick attributes in HTML
-window.doStep = doStep;
-window.doReset = doReset;
-window.doPlay = doPlay;
-
 function init() {
   vis = START; ei = 0; busy = false; playing = false;
   render(0, false);
   status();
+
+  // Bind button events
+  document.getElementById('rbtn').addEventListener('click', doReset);
+  document.getElementById('sbtn').addEventListener('click', doStep);
+  document.getElementById('pbtn').addEventListener('click', doPlay);
 }
 
 window.__page = { init: init, teardown: function() { playing = false; } };

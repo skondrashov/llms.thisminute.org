@@ -103,98 +103,38 @@ const HARNESSES = [
 
 
 var U = CatalogUtils;
-var grouped = U.groupBy(HARNESSES, 'setting');
-var groups = grouped.groups;
-var order = grouped.order;
-
-var activeFilter = null;
 
 function renderCard(h) {
   var e = U.esc;
-  var inner = '<div class="catalog-card-name">'+e(h.name)+'</div>';
-  if (h.vendor) {
-    inner += '<div class="catalog-card-vendor">'+e(h.vendor)+'</div>';
-  }
+  var inner = '<div class="catalog-card-name">' + e(h.name) + '</div>';
+  if (h.vendor) inner += '<div class="catalog-card-vendor">' + e(h.vendor) + '</div>';
   if (h.models) {
-    inner += '<div class="catalog-card-detail">'+
-      '<span class="value">'+e(h.models)+'</span>'+
-      '<span class="label">models</span>'+
-    '</div>';
+    inner += '<div class="catalog-card-detail"><span class="value">' + e(h.models) + '</span><span class="label">models</span></div>';
   }
   if (h.pricing) {
-    inner += '<div class="catalog-card-detail">'+
-      '<span class="value">'+e(h.pricing)+'</span>'+
-      '<span class="label">pricing</span>'+
-    '</div>';
+    inner += '<div class="catalog-card-detail"><span class="value">' + e(h.pricing) + '</span><span class="label">pricing</span></div>';
   }
-  if (h.tags && h.tags.length) {
-    inner += '<div class="catalog-tags">'+h.tags.map(U.tagHtml).join('')+'</div>';
-  }
-  if (h.summary) {
-    inner += '<div class="catalog-card-summary">'+e(h.summary)+'</div>';
-  }
+  if (h.tags && h.tags.length) inner += '<div class="catalog-tags">' + h.tags.map(U.tagHtml).join('') + '</div>';
+  if (h.summary) inner += '<div class="catalog-card-summary">' + e(h.summary) + '</div>';
   inner += '<div class="catalog-card-foot"><span class="out">read more &rarr;</span></div>';
 
   var tag = h.url ? 'a' : 'div';
-  var href = h.url ? ' href="'+h.url+'" target="_blank" rel="noopener"' : '';
-  return '<'+tag+' class="catalog-card"'+href+'>'+inner+'</'+tag+'>';
+  var href = h.url ? ' href="' + h.url + '" target="_blank" rel="noopener"' : '';
+  return '<' + tag + ' class="catalog-card"' + href + '>' + inner + '</' + tag + '>';
 }
 
-function renderNav() {
-  var navEl = document.getElementById('catalog-nav');
-  navEl.innerHTML = order.map(function(s) {
-    var cls = activeFilter === s ? ' class="active"' : '';
-    return '<button data-setting="'+U.esc(s)+'"'+cls+'>'+U.esc(s)+'</button>';
-  }).join('');
+var catalog = U.createGroupedCatalog({
+  data: HARNESSES,
+  groupKey: 'setting',
+  containerId: 'catalog-grid',
+  navId: 'catalog-nav',
+  statsId: 'catalog-stats',
+  renderCard: renderCard,
+  entityName: 'harness',
+  entityPlural: 'harnesses',
+  groupLabel: 'settings'
+});
 
-  navEl.querySelectorAll('button').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var setting = btn.getAttribute('data-setting');
-      activeFilter = activeFilter === setting ? null : setting;
-      renderNav();
-      renderCatalog();
-    });
-  });
-}
-
-function renderCatalog() {
-  var catalogEl = document.getElementById('catalog-grid');
-
-  if (HARNESSES.length === 0) {
-    catalogEl.innerHTML = '<div class="catalog-empty">Catalog coming soon.</div>';
-    return;
-  }
-
-  var visibleSettings = activeFilter ? [activeFilter] : order;
-
-  var html = visibleSettings.map(function(setting) {
-    var items = groups[setting];
-    var cards = items.map(renderCard).join('');
-
-    return (
-      '<section class="catalog-section" id="'+U.slug(setting)+'">'+
-        '<div class="catalog-section-head">'+
-          '<span class="catalog-section-name">'+U.esc(setting)+'</span>'+
-          '<span class="catalog-section-count">'+items.length+' harness'+(items.length !== 1 ? 'es' : '')+'</span>'+
-        '</div>'+
-        '<div class="catalog-grid">'+cards+'</div>'+
-      '</section>'
-    );
-  }).join('');
-
-  catalogEl.innerHTML = html;
-}
-
-function init() {
-  activeFilter = null;
-  document.getElementById('catalog-stats').innerHTML =
-    '<span><span class="stat-value">'+HARNESSES.length+'</span><span class="stat-label">harnesses</span></span>'+
-    '<span><span class="stat-value">'+order.length+'</span><span class="stat-label">settings</span></span>';
-  renderNav();
-  renderCatalog();
-  CatalogUtils.initBackToTop();
-}
-
-window.__page = { init: init, teardown: function() {} };
-init();
+window.__page = catalog;
+catalog.init();
 })();

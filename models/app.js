@@ -2,7 +2,9 @@
  * Exposes window.__page for SPA router. */
 (function () {
 'use strict';
-const MODELS = [
+var U = CatalogUtils;
+
+var MODELS = [
   // ─── Anthropic ────────────────────────────────────────
   { vendor: "Anthropic", name: "Claude Opus 4.7", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Current Anthropic flagship. Substantially better at software engineering and vision than 4.6, with high-resolution image support up to 3.75MP.", url: "https://www.anthropic.com/claude" },
   { vendor: "Anthropic", name: "Claude Opus 4.6", ctx: "1M", tags: ["hosted", {label:"thinking",cls:"mint"}, {label:"vision",cls:"pink"}], summary: "Previous-generation flagship. Extended-thinking mode, 1M token window, image input. Superseded by Opus 4.7 but still widely deployed.", url: "https://www.anthropic.com/claude" },
@@ -38,7 +40,6 @@ const MODELS = [
   { vendor: "Google", name: "Gemini 2.0 Pro", ctx: "1M", tags: ["hosted", {label:"multimodal",cls:"pink"}], summary: "Previous-generation frontier Gemini. Still deployed widely, especially in Workspace and Android integrations.", url: "https://deepmind.google/technologies/gemini/" },
   { vendor: "Google", name: "Gemini 2.0 Flash", ctx: "1M", tags: ["hosted", "fast", {label:"multimodal",cls:"pink"}], summary: "The 2.0 generation's speedster. Introduced native tool use and strong vision performance at low latency.", url: "https://deepmind.google/technologies/gemini/" },
   { vendor: "Google", name: "Gemini 1.5 Pro", ctx: "2M", tags: ["hosted", "legacy", {label:"multimodal",cls:"pink"}], summary: "The model that made 1M+ context windows normal. Still used where the very long context matters more than raw smarts.", url: "https://deepmind.google/technologies/gemini/" },
-  { vendor: "Google", name: "Gemma 3 27B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Google's open-weights model built on Gemini research. Multilingual, vision-capable, and small enough to run on a single GPU.", url: "https://ai.google.dev/gemma" },
   { vendor: "Google", name: "Gemma 4 31B", ctx: "256K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Google's most capable open model. 31B dense, multimodal, 140+ languages, Apache 2.0. Dominates math and competitive programming benchmarks for its size.", url: "https://ai.google.dev/gemma" },
   { vendor: "Google", name: "Gemma 4 26B MoE", ctx: "256K", tags: [{label:"open weights",cls:"mint"}, "MoE", "self-host"], summary: "MoE variant with only 3.8B active parameters. Runs on consumer GPUs while retaining strong performance. Apache 2.0.", url: "https://ai.google.dev/gemma" },
   { vendor: "Google", name: "Gemma 3 27B", ctx: "128K", tags: [{label:"open weights",cls:"mint"}, "self-host"], summary: "Previous-gen open model built on Gemini research. Multilingual, vision-capable, and small enough to run on a single GPU.", url: "https://ai.google.dev/gemma" },
@@ -102,75 +103,32 @@ const MODELS = [
   { vendor: "Others", name: "Baidu Ernie 4.5", ctx: "128K", tags: ["hosted"], summary: "Baidu's flagship. Dominant in the Chinese-language market and integrated throughout Baidu's products.", url: "https://ernie.baidu.com/" }
 ];
 
-var U = CatalogUtils;
-var grouped = U.groupBy(MODELS, 'vendor');
-var groups = grouped.groups;
-var order = grouped.order;
-
-var activeFilter = null;
-
 function renderCard(m) {
-  var e = U.esc;
   return (
-    '<a class="catalog-card" href="'+m.url+'" target="_blank" rel="noopener">'+
-      '<div class="catalog-card-name">'+e(m.name)+'</div>'+
-      '<div class="catalog-card-detail lg">'+
-        '<span class="value">'+e(m.ctx)+'</span>'+
-        '<span class="label">ctx</span>'+
-      '</div>'+
-      '<div class="catalog-tags">'+m.tags.map(U.tagHtml).join('')+'</div>'+
-      '<div class="catalog-card-summary">'+e(m.summary)+'</div>'+
-      '<div class="catalog-card-foot"><span class="out">read more &rarr;</span></div>'+
+    '<a class="catalog-card" href="' + m.url + '" target="_blank" rel="noopener">' +
+      '<div class="catalog-card-name">' + U.esc(m.name) + '</div>' +
+      '<div class="catalog-card-detail lg">' +
+        '<span class="value">' + U.esc(m.ctx) + '</span>' +
+        '<span class="label">ctx</span>' +
+      '</div>' +
+      '<div class="catalog-tags">' + m.tags.map(U.tagHtml).join('') + '</div>' +
+      '<div class="catalog-card-summary">' + U.esc(m.summary) + '</div>' +
+      '<div class="catalog-card-foot"><span class="out">read more &rarr;</span></div>' +
     '</a>'
   );
 }
 
-function renderNav() {
-  var navEl = document.getElementById('catalog-nav');
-  navEl.innerHTML = order.map(function(v) {
-    var cls = activeFilter === v ? ' class="active"' : '';
-    return '<button data-vendor="'+U.esc(v)+'"'+cls+'>'+U.esc(v)+'</button>';
-  }).join('');
+var catalog = U.createGroupedCatalog({
+  data: MODELS,
+  groupKey: 'vendor',
+  containerId: 'catalog-grid',
+  navId: 'catalog-nav',
+  statsId: 'catalog-stats',
+  renderCard: renderCard,
+  entityName: 'model',
+  groupLabel: 'vendors'
+});
 
-  navEl.querySelectorAll('button').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var vendor = btn.getAttribute('data-vendor');
-      activeFilter = activeFilter === vendor ? null : vendor;
-      renderNav();
-      renderCatalog();
-    });
-  });
-}
-
-function renderCatalog() {
-  var visibleVendors = activeFilter ? [activeFilter] : order;
-
-  var html = visibleVendors.map(function(vendor) {
-    var items = groups[vendor];
-    var cards = items.map(renderCard).join('');
-    return (
-      '<section class="catalog-section" id="'+U.slug(vendor)+'">'+
-        '<div class="catalog-section-head">'+
-          '<span class="catalog-section-name">'+U.esc(vendor)+'</span>'+
-          '<span class="catalog-section-count">'+items.length+' model'+(items.length !== 1 ? 's' : '')+'</span>'+
-        '</div>'+
-        '<div class="catalog-grid">'+cards+'</div>'+
-      '</section>'
-    );
-  }).join('');
-  document.getElementById('catalog-grid').innerHTML = html;
-}
-
-function init() {
-  activeFilter = null;
-  document.getElementById('catalog-stats').innerHTML =
-    '<span><span class="stat-value">'+MODELS.length+'</span><span class="stat-label">models</span></span>'+
-    '<span><span class="stat-value">'+order.length+'</span><span class="stat-label">vendors</span></span>';
-  renderNav();
-  renderCatalog();
-  CatalogUtils.initBackToTop();
-}
-
-window.__page = { init: init, teardown: function() {} };
-init();
+window.__page = catalog;
+catalog.init();
 })();
